@@ -7,13 +7,20 @@ function Home(props) {
     return (
         <div>
             <NavBar />
-            <div className="mainView">
-                <div className="leftMenu"></div>
-                <div >
-                    <PostListRoot />
+            <div className="largeScreen">
+                <div className="mainView">
+                    <div className="leftMenu"></div>
+                    <div >
+                        <PostListRoot />
+                    </div>
+                    <div >
+                        <ActiveUsersList />
+                    </div>
                 </div>
-                <div >
-                    <ActiveUsersList />
+            </div>
+            <div className="smallScreen">
+                <div className="mainViewSmall">
+                    <PostListRoot />
                 </div>
             </div>
         </div>

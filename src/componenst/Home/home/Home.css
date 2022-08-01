@@ -6,3 +6,34 @@
     overflow-y: hidden;
     background: #18191A;
 }
+
+.mainViewSmall {
+    margin-top: 125px;
+    display: grid;
+    grid-template-columns: auto;
+    max-height: calc(100vh - 125px);
+    overflow-y: hidden;
+    background: #18191A;
+}
+
+@media screen and (min-width:620px) {
+    .smallScreen {
+        display: none;
+    }
+
+    .largeScreen {
+        display: block;
+    }
+
+
+}
+
+@media screen and (max-width:620px) {
+    .largeScreen {
+        display: none;
+    }
+
+    .smallScreen {
+        display: block;
+    }
+}

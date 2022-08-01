@@ -3,6 +3,21 @@
     padding: 10px;
     overflow-y: auto;
     max-height: calc(100vh - 94px);
+
+}
+
+@media screen and (min-width:620px) {
+    .postsView {
+        max-height: calc(100vh - 94px);
+    }
+
+
+}
+
+@media screen and (max-width:620px) {
+    .postsView {
+        max-height: calc(100vh - 125px);
+    }
 }
 
 .postsView::-webkit-scrollbar {

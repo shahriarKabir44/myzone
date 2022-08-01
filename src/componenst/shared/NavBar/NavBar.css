@@ -68,9 +68,12 @@
 }
 
 .otherOptionsSmall {
-    display: flex;
     align-content: center;
     justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    align-items: center;
+    justify-items: center;
 }
 
 .menuBtn {
