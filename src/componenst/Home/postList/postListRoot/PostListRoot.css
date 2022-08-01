@@ -1,4 +1,6 @@
 .postsView {
     margin: auto;
     padding: 10px;
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
 }
