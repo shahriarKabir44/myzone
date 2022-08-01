@@ -1,7 +1,7 @@
 .ActiveUsersList {
-    height: 100vh;
+    height: 94vh;
     overflow: auto;
     background: #47494A;
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 94px);
     overflow-y: auto;
 }
