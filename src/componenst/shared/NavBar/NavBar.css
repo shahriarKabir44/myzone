@@ -58,6 +58,12 @@
     font-size: 35px;
 }
 
+.navBarContainer {
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
 .searchBarInput:focus {
     border: none;
 }

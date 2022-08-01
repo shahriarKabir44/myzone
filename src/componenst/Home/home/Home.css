@@ -1,0 +1,5 @@
+.mainView {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    margin-top: 100px;
+}
