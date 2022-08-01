@@ -1,9 +1,27 @@
+.profileBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.profileImageNavBar {
+    width: 100%;
+    height: 100%;
+}
+
 .nabvarRoot {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
     align-items: center;
+    padding: 20px;
+    background: #242526;
+}
+
+.nabvarRootSmall {
+
     padding: 20px;
     background: #242526;
 }
@@ -33,6 +51,12 @@
     width: 100%;
 }
 
+.siteNameTxtSmall {
+    padding: 10px 15px;
+    background: #D9D9D9;
+    border-radius: 10px;
+}
+
 .searchBtn {
     margin: 0px 7px;
 }
@@ -43,16 +67,10 @@
     display: flex;
 }
 
-.profileBtn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    overflow: hidden;
-}
-
-.profileImageNavBar {
-    width: 100%;
-    height: 100%;
+.otherOptionsSmall {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
 }
 
 .menuBtn {
@@ -69,4 +87,34 @@
 
 .searchBarInput:focus {
     border: none;
+}
+
+@media screen and (min-width:620px) {
+    .smallScreen {
+        display: none;
+    }
+
+    .largeScreen {
+        display: block;
+    }
+
+
+}
+
+@media screen and (max-width:620px) {
+    .largeScreen {
+        display: none;
+    }
+
+    .smallScreen {
+        display: block;
+    }
+}
+
+.siteHeadingSmall {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
