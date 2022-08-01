@@ -20,14 +20,17 @@
     display: flex;
     align-items: center;
     align-content: center;
+    justify-content: space-between;
     background: white;
     padding: 5px;
     border-radius: 18px;
+    width: 40%;
 }
 
 .searchBarInput {
     padding: 10px;
     border: none;
+    width: 100%;
 }
 
 .searchBtn {

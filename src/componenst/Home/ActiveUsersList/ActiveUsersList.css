@@ -5,3 +5,13 @@
     max-height: calc(100vh - 94px);
     overflow-y: auto;
 }
+
+.headingText {
+    background: #bfbbbb7a;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 7px;
+    color: white;
+    font-weight: 300;
+    font-size: 19px;
+}
