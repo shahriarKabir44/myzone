@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from '../../shared/NavBar/NavBar';
+import ActiveUsersList from '../ActiveUsersList/ActiveUsersList';
 import PostListRoot from '../postList/postListRoot/PostListRoot';
 import './Home.css'
 function Home(props) {
@@ -11,7 +12,9 @@ function Home(props) {
                 <div >
                     <PostListRoot />
                 </div>
-                <div className="activeUsersList"></div>
+                <div >
+                    <ActiveUsersList />
+                </div>
             </div>
         </div>
     );
