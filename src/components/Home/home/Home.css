@@ -1,10 +1,11 @@
 .mainView {
     display: grid;
-    grid-template-columns: 30% 40% 30%;
+    grid-template-columns: 25% 40% 25%;
     margin-top: 94px;
     max-height: calc(100vh - 94px);
     overflow-y: hidden;
     background: #18191A;
+    justify-content: space-between;
 }
 
 .mainViewSmall {

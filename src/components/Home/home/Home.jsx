@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../../shared/NavBar/NavBar';
 import ActiveUsersList from '../ActiveUsersList/ActiveUsersList';
 import PostListRoot from '../postList/postListRoot/PostListRoot';
+import LeftMenu from '../LeftMenu/LeftMenu'
 import './Home.css'
 function Home(props) {
     return (
@@ -9,7 +10,9 @@ function Home(props) {
             <NavBar />
             <div className="largeScreen">
                 <div className="mainView">
-                    <div className="leftMenu"></div>
+                    <div  >
+                        <LeftMenu />
+                    </div>
                     <div >
                         <PostListRoot />
                     </div>

@@ -1,0 +1,33 @@
+.leftMenuItem {
+    background: #5D5F61;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 20% auto;
+    color: white;
+    font-size: 19px;
+    align-content: center;
+    padding: 9px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+.leftMenuIcon {
+    font-size: 40px;
+}
+
+.userImageContainer {
+    width: 50px;
+}
+
+.userImage {
+    width: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1;
+}
+
+.leftMenuRoot {
+    background: #47494A;
+    height: calc(100vh - 94px);
+    padding: 10px;
+}
