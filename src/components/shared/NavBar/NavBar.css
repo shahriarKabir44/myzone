@@ -64,7 +64,12 @@
 .otherOptions {
     align-items: center;
     align-content: center;
-    display: flex;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, 25%);
+    background: #808080;
+    padding: 2px 22px;
+    border-radius: 10px;
 }
 
 .otherOptionsSmall {
