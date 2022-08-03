@@ -5,10 +5,10 @@ function ActiveUser(props) {
     return (
         <div className='activeUserContainer'>
             <div className="activeUserImgContainer">
-                <img src={stockImage} alt="" className="activeUserImg" />
+                <img src={props.user.img} alt="" className="activeUserImg" />
 
             </div>
-            <p className="activeUserName">{props.name}</p>
+            <p className="activeUserName">{props.user.name}</p>
         </div>
     );
 }
