@@ -16,7 +16,7 @@ function PostItem(props) {
 
                     </div>
                     <div className="info">
-                        <p className="creatorName postViewText">Nusrat Jahan</p>
+                        <p className="creatorName postViewText">{props.name}</p>
                         <p className="time postViewText">wed 14:45</p>
                     </div>
                 </div>

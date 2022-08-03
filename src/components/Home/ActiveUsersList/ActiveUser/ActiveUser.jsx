@@ -8,7 +8,7 @@ function ActiveUser(props) {
                 <img src={stockImage} alt="" className="activeUserImg" />
 
             </div>
-            <p className="activeUserName">Shahriar Kabir</p>
+            <p className="activeUserName">{props.name}</p>
         </div>
     );
 }

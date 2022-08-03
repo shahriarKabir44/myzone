@@ -7,18 +7,13 @@ function ActiveUsersList(props) {
             <div className="heading">
                 <p className="headingText">Active users</p>
             </div>
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
-            <ActiveUser />
+            <ActiveUser name="Rahul" />
+            <ActiveUser name="Monir" />
+            <ActiveUser name="Noor" />
+            <ActiveUser name="Samir" />
+            <ActiveUser name="Chayon" />
+            <ActiveUser name="Vashkar" />
+
 
         </div>
     );

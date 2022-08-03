@@ -4,10 +4,10 @@ import './PostListRoot.css'
 function PostListRoot(props) {
     return (
         <div className='postsView'>
-            <PostItem />
-            <PostItem />
-            <PostItem />
-            <PostItem />
+            <PostItem name="Rahul" />
+            <PostItem name="Samir" />
+            <PostItem name="Monir" />
+            <PostItem name="Rais" />
 
         </div>
     );
