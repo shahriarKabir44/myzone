@@ -1,6 +1,5 @@
 import React from 'react';
 import './ActiveUser.css'
-const stockImage = "https://blog.hubspot.com/hubfs/employee-retention-rate.jpg"
 function ActiveUser(props) {
     return (
         <div className='activeUserContainer'>

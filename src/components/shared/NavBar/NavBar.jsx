@@ -4,15 +4,16 @@ import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlin
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
+import WebWorkerManager from '../../../workerManagers/WebWorkerManager';
 
 const stockImageURL = "https://imageio.forbes.com/specials-images/imageserve/6109550f1aa8564670194ad4/Close-up-smiling-businesswoman-holding-computer-tablet--looking-to-side/960x0.jpg?format=jpg&width=960"
 function NavBar(props) {
     return (
         <div className="navBarContainer">
             <div className="largeScreen"><div className='nabvarRoot '>
-                <div className="siteName">
+                <button className="siteName">
                     <p className="siteNameTxt">MyZone</p>
-                </div>
+                </button>
                 <div className="searchBar">
                     <input type="text" name="" id="" className="searchBarInput" />
                     <SearchOutlinedIcon className='searchBtn' />
@@ -29,7 +30,13 @@ function NavBar(props) {
             </div></div>
 
             <div className="smallScreen"><div className='nabvarRootSmall '>
-                <div className="siteHeadingSmall">
+                <div onClick={() => {
+
+                    WebWorkerManager.worker.postMessage({
+                        type: "ChangeHomeView",
+                        value: 1
+                    })
+                }} className="siteHeadingSmall">
 
                     <p className="siteNameTxtSmall">MyZone</p>
                     <button className="menuBtn  profileBtn ">
@@ -38,7 +45,15 @@ function NavBar(props) {
                 </div>
 
                 <div className="otherOptionsSmall">
-                    <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
+                    <div onClick={() => {
+
+                        WebWorkerManager.worker.postMessage({
+                            type: "ChangeHomeView",
+                            value: 0
+                        })
+                    }}>
+                        <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
+                    </div>
                     <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn " />
                     <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
                     <SearchOutlinedIcon fontSize='10' className='searchBtn menuBtn' />
