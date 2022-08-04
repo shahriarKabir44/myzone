@@ -4,19 +4,19 @@ import './ActiveUsersList.css'
 
 let users = [
     {
-        name: "rahul",
+        name: "Rahul Islam",
         img: "https://blog.hubspot.com/hubfs/employee-retention-rate.jpg"
     },
     {
-        name: "Noor",
+        name: "Noor Mohammad",
         img: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
     },
     {
-        name: "monir",
+        name: "Moniruzzaman",
         img: "https://usveteransmagazine.com/wp-content/uploads/2017/10/Interview-Tips-1.jpg"
     },
     {
-        name: "samir",
+        name: "Samirul Alam",
         img: "https://www-assets.perkbox.com/media/10327/i620/4e203c806075308869b4.jpg"
     }
 ]
