@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from '../../shared/NavBar/NavBar';
 import ActiveUsersList from '../ActiveUsersList/ActiveUsersList';
-import PostListRoot from '../postList/postListRoot/PostListRoot';
+import PostListRoot from '../../shared/postList/postListRoot/PostListRoot';
 import LeftMenu from '../LeftMenu/LeftMenu'
 import './Home.css'
 import WebWorkerManager from '../../../workerManagers/WebWorkerManager';
@@ -14,14 +14,19 @@ function Home(props) {
     const worker = WebWorkerManager.worker
     function handleWorkerMessage(e) {
         if (e.data.type === "ChangeHomeView") {
-            console.log(focusedViewOnMobile, e.data.value)
             if (focusedViewOnMobile === 0 && e.data.value === 1) {
                 setToggleType(-1)
+
+                setFocusedViewOnMobile(e.data.value)
             }
             else if (focusedViewOnMobile === 1 && e.data.value === 0) {
                 setToggleType(1)
+                setFocusedViewOnMobile(e.data.value)
             }
-            setFocusedViewOnMobile(e.data.value)
+            else if (focusedViewOnMobile === 0 && e.data.value === 0) {
+                setToggleType(-1)
+                setFocusedViewOnMobile(1)
+            }
 
         }
     }

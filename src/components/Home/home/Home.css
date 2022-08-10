@@ -1,6 +1,6 @@
 .mainView {
     display: grid;
-    grid-template-columns: 25% 40% 25%;
+    grid-template-columns: 20% 40% 20%;
     margin-top: 94px;
     max-height: calc(100vh - 94px);
     overflow-y: hidden;
