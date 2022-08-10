@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from '../../shared/NavBar/NavBar';
 import ActiveUsersList from '../ActiveUsersList/ActiveUsersList';
 import PostListRoot from '../../shared/postList/postListRoot/PostListRoot';
 import LeftMenu from '../LeftMenu/LeftMenu'
@@ -43,7 +42,7 @@ function Home(props) {
     }, [])
     return (
         <div>
-            <NavBar />
+
             {!isOnMobile && <div className="largeScreen">
                 <div className="mainView">
                     <div  >
@@ -61,7 +60,8 @@ function Home(props) {
             {isOnMobile && <div className="smallScreen">
                 <div className="mainViewSmall">
                     <div className={`slideLeftMenu ${shouldToggleLeftMenu === 1 ? "slideRight" : shouldToggleLeftMenu === -1 ? "slideLeft" : ""}`}>
-                        <LeftMenu /> </div>
+                        <LeftMenu />
+                    </div>
                     <PostListRoot />
                 </div>
             </div>}

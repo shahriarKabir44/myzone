@@ -1,20 +1,24 @@
 import React from 'react';
 import './NavBar.css'
+import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import WebWorkerManager from '../../../workerManagers/WebWorkerManager';
-
 function NavBar(props) {
+
     const currentUser = useSelector((state) => state.currentUser.value)
     return (
         <div className="navBarContainer">
             <div className="largeScreen"><div className='nabvarRoot '>
-                <button className="siteName">
-                    <p className="siteNameTxt">MyZone</p>
-                </button>
+                <Link to={'/'}>
+                    <button className="siteName">
+                        <p className="siteNameTxt">MyZone</p>
+                    </button>
+                </Link>
+
                 <div className="searchBar">
                     <input type="text" name="" id="" className="searchBarInput" />
                     <SearchOutlinedIcon className='searchBtn' />
@@ -23,9 +27,12 @@ function NavBar(props) {
                     <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />
                     <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
                     <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
-                    <button className="menuBtn profileBtn">
-                        <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
-                    </button>
+                    <Link to={"/profile/" + currentUser.id}>
+                        <button className="menuBtn profileBtn">
+                            <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
+                        </button>
+                    </Link>
+
 
                 </div>
             </div></div>
@@ -38,11 +45,18 @@ function NavBar(props) {
                         value: 1
                     })
                 }} className="siteHeadingSmall">
+                    <Link to={'/'} >
+                        <button className="siteNameTxtSmall">
+                            <p>MyZone</p>
 
-                    <p className="siteNameTxtSmall">MyZone</p>
-                    <button className="menuBtn  profileBtn ">
-                        <img className='profileImageNavBar ' src={currentUser.profileImageURL} alt="profile pic" />
-                    </button>
+                        </button>
+
+                    </Link>
+                    <Link to={"/profile/" + currentUser.id}>
+                        <button className="menuBtn profileBtn">
+                            <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="otherOptionsSmall">
