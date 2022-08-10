@@ -5,12 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux'
-
+import CurrentUserManager from './redux/CurrentUserManager';
 import homeMenuSelection from './redux/HomeMenuSelector'
 
 let store = configureStore({
   reducer: {
-    currentlySelectedView: homeMenuSelection
+    currentlySelectedView: homeMenuSelection,
+    currentUser: CurrentUserManager
   }
 })
 

@@ -1,0 +1,43 @@
+.userImgContainer {
+    width: 50px;
+}
+
+.createPostInitialViewRoot {
+    background: #5d5f61;
+    padding: 10px;
+    margin: 9px;
+    border-radius: 10px;
+
+}
+
+
+
+.userImg {
+    width: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1;
+}
+
+.createPostInitContainer {
+    display: grid;
+    grid-template-columns: 70px auto;
+    align-content: center;
+    align-items: center;
+    justify-items: stretch;
+}
+
+.headingTextCreatePost {
+    font-size: 20px;
+    font-family: sans-serif;
+    margin: 20px auto;
+}
+
+.textContainer {
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 37px;
+    background: #919191;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 200;
+}

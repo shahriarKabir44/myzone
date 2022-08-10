@@ -6,6 +6,7 @@ import LeftMenu from '../LeftMenu/LeftMenu'
 import './Home.css'
 import WebWorkerManager from '../../../workerManagers/WebWorkerManager';
 
+
 function Home(props) {
 
     const [isOnMobile, seDeviceType] = React.useState(false)
@@ -49,6 +50,7 @@ function Home(props) {
                         <LeftMenu />
                     </div>
                     <div >
+
                         <PostListRoot />
                     </div>
                     <div >
