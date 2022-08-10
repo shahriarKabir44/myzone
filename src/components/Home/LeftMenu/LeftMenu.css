@@ -28,14 +28,14 @@
 
 .leftMenuRoot {
     background: #47494A;
-    height: calc(100vh - 152px);
+    height: calc(100vh - 130px);
     padding: 10px;
 }
 
 @media screen and (max-width: 620px) {
     .leftMenuRoot {
 
-        height: calc(100vh - 152px);
+        height: calc(100vh - 130px);
     }
 }
 
