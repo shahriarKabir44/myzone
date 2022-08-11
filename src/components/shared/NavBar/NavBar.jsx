@@ -61,7 +61,7 @@ function NavBar(props) {
 
                 <div className="otherOptionsSmall">
                     <div onClick={() => {
-
+                        console.log("click")
                         WebWorkerManager.worker.postMessage({
                             type: "ChangeHomeView",
                             value: 0

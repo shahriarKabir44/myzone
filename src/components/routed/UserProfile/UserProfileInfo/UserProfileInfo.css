@@ -7,6 +7,51 @@
     padding: 10px;
 }
 
+.profileViewLargeScreen {
+    background: #18191A;
+    overflow-y: auto
+}
+
+
+@media screen and (min-width:620px) {
+    .profileViewLargeScreen {
+        max-height: calc(100vh - 95px);
+    }
+
+
+}
+
+@media screen and (max-width:620px) {
+    .profileViewLargeScreen {
+        max-height: calc(100vh - 130px);
+    }
+
+
+}
+
+.profileViewLargeScreen::-webkit-scrollbar {
+    display: none;
+}
+
+.postsViewProfile::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width:620px) {
+    .postsViewProfile {
+        max-height: calc(100vh - 130px);
+    }
+
+
+}
+
+.postsViewProfile {
+    margin: auto;
+    padding: 10px;
+    overflow-y: auto;
+    width: 50vw;
+}
+
 .coverPhotoContainer {
     width: 80vw;
     margin: auto;
@@ -18,12 +63,12 @@
 
 .textInfo {
     line-height: 0px;
+    color: white;
 }
 
 .nameContainer {
     color: white;
     display: grid;
-    /* justify-content: space-between; */
     align-items: start;
     align-content: center;
     grid-template-columns: 70px auto;
@@ -36,13 +81,17 @@
     max-height: 60vh;
 }
 
+.nameAndPropic {
+    display: flex;
 
+}
 
 .profileViewUserInfoContainer {
-    width: 60px;
+    width: 100px;
     border-radius: 50%;
-
     overflow: hidden;
+    margin-top: -50px;
+    display: flex;
 
 }
 

@@ -38,7 +38,8 @@ function UserProfileRoot(props) {
         }
     }
     if (worker) {
-        worker.onmessage = e => handleWorkerMessage(e)
+
+        WebWorkerManager.worker.onmessage = e => handleWorkerMessage(e)
     }
     else {
         WebWorkerManager.initWorker()
@@ -51,7 +52,14 @@ function UserProfileRoot(props) {
         <div>
 
             {!isOnMobile && <div className="profileViewLargeScreen">
+                <div className=''>
+                    <UserProfileInfo userInfo={user} />
+                    <div className="postsViewProfile">
+                        <InitialCreatePostView />
+                        <UserPostListRoot />
+                    </div>
 
+                </div>
             </div>}
             {isOnMobile && <div className="smallScreen">
                 <div className="mainViewSmall">

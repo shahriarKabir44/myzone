@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 20% 40% 20%;
 
-    max-height: calc(100vh - 94px);
+    max-height: calc(100vh - 95px);
     overflow-y: hidden;
     background: #18191A;
     justify-content: space-between;

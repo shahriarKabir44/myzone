@@ -5,16 +5,20 @@ function UserProfileInfo(props) {
         <div className="userProfileInfoContainer">
             <div className="coverPhotoContainer">
                 <img src={props.userInfo.coverPhoto} alt="" className="userCoverPhoto" />
+                <div className="nameAndPropic">
+                    <div className="profileViewUserInfoContainer">
+                        <img src={props.userInfo.profileImage} alt="" className="profileViewProPic" />
+
+                    </div><div className="textInfo">
+                        <p className="userName">{props.userInfo.name}</p>
+                        <p>133 friends</p>
+                    </div>
+                </div>
+
             </div>
             <div className="nameContainer">
-                <div className="profileViewUserInfoContainer">
-                    <img src={props.userInfo.profileImage} alt="" className="profileViewProPic" />
 
-                </div>
-                <div className="textInfo">
-                    <p className="userName">{props.userInfo.name}</p>
-                    <p>133 friends</p>
-                </div>
+
             </div>
 
         </div>
