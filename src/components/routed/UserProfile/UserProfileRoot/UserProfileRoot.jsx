@@ -3,6 +3,16 @@ import LeftMenu from '../../../Home/LeftMenu/LeftMenu';
 import WebWorkerManager from '../../../../workerManagers/WebWorkerManager';
 import UserPostListRoot from '../UserPostsList/UserPostListRoot';
 import InitialCreatePostView from '../../../shared/CreatePost/InitialView/InitialCreatePostView';
+import UserProfileInfo from '../UserProfileInfo/UserProfileInfo';
+const stockImageURL = "https://imageio.forbes.com/specials-images/imageserve/6109550f1aa8564670194ad4/Close-up-smiling-businesswoman-holding-computer-tablet--looking-to-side/960x0.jpg?format=jpg&width=960"
+
+const user = {
+    name: "Shahriar Kabir",
+    profileImage: stockImageURL,
+    coverPhoto: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/sunset-quotes-21-1586531574.jpg",
+
+}
+
 function UserProfileRoot(props) {
     const [isOnMobile, seDeviceType] = React.useState(false)
     const [focusedViewOnMobile, setFocusedViewOnMobile] = React.useState(1)
@@ -39,6 +49,7 @@ function UserProfileRoot(props) {
     }, [])
     return (
         <div>
+
             {!isOnMobile && <div className="profileViewLargeScreen">
 
             </div>}
@@ -47,7 +58,8 @@ function UserProfileRoot(props) {
                     <div className={`slideLeftMenu ${shouldToggleLeftMenu === 1 ? "slideRight" : shouldToggleLeftMenu === -1 ? "slideLeft" : ""}`}>
                         <LeftMenu />
                     </div>
-                    <div>
+                    <div className='postsView'>
+                        <UserProfileInfo userInfo={user} />
                         <InitialCreatePostView />
                         <UserPostListRoot />
                     </div>

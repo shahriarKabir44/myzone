@@ -22,7 +22,7 @@ let posts = [
 ]
 function UserPostListRoot(props) {
     return (
-        <div className='postsView'>
+        <div>
 
             {posts.map((post, index) => {
                 return <PostItem key={index} post={post} />

@@ -1,0 +1,52 @@
+.userProfileInfoContainer {
+    position: relative;
+    margin: auto;
+    align-items: center;
+    grid-template-columns: auto;
+    justify-items: center;
+    padding: 10px;
+}
+
+.coverPhotoContainer {
+    width: 80vw;
+    margin: auto;
+}
+
+.userName {
+    font-size: 20px;
+}
+
+.textInfo {
+    line-height: 0px;
+}
+
+.nameContainer {
+    color: white;
+    display: grid;
+    /* justify-content: space-between; */
+    align-items: start;
+    align-content: center;
+    grid-template-columns: 70px auto;
+    flex: 1 1;
+    margin: 20px;
+}
+
+.userCoverPhoto {
+    width: 100%;
+    max-height: 60vh;
+}
+
+
+
+.profileViewUserInfoContainer {
+    width: 60px;
+    border-radius: 50%;
+
+    overflow: hidden;
+
+}
+
+.profileViewProPic {
+    width: 100%;
+    aspect-ratio: 1;
+}

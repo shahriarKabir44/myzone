@@ -2,7 +2,6 @@
     margin: auto;
     padding: 10px;
     overflow-y: auto;
-    max-height: calc(100vh - 94px);
 
 }
 
@@ -18,6 +17,8 @@
     .postsView {
         max-height: calc(100vh - 130px);
     }
+
+
 }
 
 .postsView::-webkit-scrollbar {
