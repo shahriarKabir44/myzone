@@ -1,6 +1,5 @@
 import React from 'react';
 import Home from './components/Home/home/Home'
-import WebWorkerManager from './workerManagers/WebWorkerManager';
 import NavBar from './components/shared/NavBar/NavBar'
 import {
 
@@ -9,11 +8,9 @@ import {
 } from "react-router-dom";
 import UserProfileRoot from './components/routed/UserProfile/UserProfileRoot/UserProfileRoot';
 function App() {
-	const worker = WebWorkerManager.worker
 	React.useEffect(() => {
-		if (!worker)
-			WebWorkerManager.initWorker()
-	}, [worker])
+
+	}, [])
 	return (
 		<div className="App">
 			<NavBar />

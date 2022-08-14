@@ -7,16 +7,8 @@ import {
 
 } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux'
-import CurrentUserManager from './redux/CurrentUserManager';
-import homeMenuSelection from './redux/HomeMenuSelector'
-let store = configureStore({
-	reducer: {
-		currentlySelectedView: homeMenuSelection,
-		currentUser: CurrentUserManager
-	}
-})
+import store from './redux/ReduxStore'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

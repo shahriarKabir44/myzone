@@ -6,10 +6,13 @@ import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlin
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
-import WebWorkerManager from '../../../workerManagers/WebWorkerManager';
 function NavBar(props) {
 
     const currentUser = useSelector((state) => state.currentUser.value)
+    const toggleSideMenu = useSelector(state => state.currentlySelectedView.value)
+    React.useEffect(() => {
+
+    }, [])
     return (
         <div className="navBarContainer">
             <div className="largeScreen"><div className='nabvarRoot '>
@@ -39,11 +42,7 @@ function NavBar(props) {
 
             <div className="smallScreen"><div className='nabvarRootSmall '>
                 <div onClick={() => {
-
-                    WebWorkerManager.worker.postMessage({
-                        type: "ChangeHomeView",
-                        value: 1
-                    })
+                    toggleSideMenu.handler(1)
                 }} className="siteHeadingSmall">
                     <Link to={'/'} >
                         <button className="siteNameTxtSmall">
@@ -61,11 +60,8 @@ function NavBar(props) {
 
                 <div className="otherOptionsSmall">
                     <div onClick={() => {
-                        console.log("click")
-                        WebWorkerManager.worker.postMessage({
-                            type: "ChangeHomeView",
-                            value: 0
-                        })
+
+                        toggleSideMenu.handler(0)
                     }}>
                         <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
                     </div>

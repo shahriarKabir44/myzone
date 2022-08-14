@@ -17,34 +17,34 @@ function UserProfileRoot(props) {
     const [isOnMobile, seDeviceType] = React.useState(false)
     const [focusedViewOnMobile, setFocusedViewOnMobile] = React.useState(1)
     const [shouldToggleLeftMenu, setToggleType] = React.useState(0)
+    let worker = null
+    // const worker = WebWorkerManager.worker
+    // function handleWorkerMessage(e) {
+    //     if (e.data.type === "ChangeHomeView") {
+    //         if (focusedViewOnMobile === 0 && e.data.value === 1) {
+    //             setToggleType(-1)
 
-    const worker = WebWorkerManager.worker
-    function handleWorkerMessage(e) {
-        if (e.data.type === "ChangeHomeView") {
-            if (focusedViewOnMobile === 0 && e.data.value === 1) {
-                setToggleType(-1)
+    //             setFocusedViewOnMobile(e.data.value)
+    //         }
+    //         else if (focusedViewOnMobile === 1 && e.data.value === 0) {
+    //             setToggleType(1)
+    //             setFocusedViewOnMobile(e.data.value)
+    //         }
+    //         else if (focusedViewOnMobile === 0 && e.data.value === 0) {
+    //             setToggleType(-1)
+    //             setFocusedViewOnMobile(1)
+    //         }
 
-                setFocusedViewOnMobile(e.data.value)
-            }
-            else if (focusedViewOnMobile === 1 && e.data.value === 0) {
-                setToggleType(1)
-                setFocusedViewOnMobile(e.data.value)
-            }
-            else if (focusedViewOnMobile === 0 && e.data.value === 0) {
-                setToggleType(-1)
-                setFocusedViewOnMobile(1)
-            }
+    //     }
+    // }
+    // if (worker) {
 
-        }
-    }
-    if (worker) {
-
-        WebWorkerManager.worker.onmessage = e => handleWorkerMessage(e)
-    }
-    else {
-        WebWorkerManager.initWorker()
-        worker.onmessage = e => handleWorkerMessage(e)
-    }
+    //     WebWorkerManager.worker.onmessage = e => handleWorkerMessage(e)
+    // }
+    // else {
+    //     WebWorkerManager.initWorker()
+    //     worker.onmessage = e => handleWorkerMessage(e)
+    // }
     React.useEffect(() => {
         seDeviceType(window.innerWidth <= 620)
     }, [])

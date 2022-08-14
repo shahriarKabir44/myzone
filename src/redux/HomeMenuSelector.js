@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 let homeMenuSelection = createSlice({
     name: "homeMenuSelection",
-    initialState: { value: 1 },
+    initialState: { value: null },
     reducers: {
-        updateNumber: (state, action) => {
+        setToggleFunction: (state, action) => {
 
             state.value = action.payload
         }
@@ -11,6 +11,6 @@ let homeMenuSelection = createSlice({
 
 })
 
-export const { updateHomeMenuSelection } = homeMenuSelection.actions
+export const { setToggleFunction } = homeMenuSelection.actions
 
 export default homeMenuSelection.reducer 

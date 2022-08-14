@@ -3,41 +3,46 @@ import ActiveUsersList from '../ActiveUsersList/ActiveUsersList';
 import PostListRoot from '../../shared/postList/postListRoot/PostListRoot';
 import LeftMenu from '../LeftMenu/LeftMenu'
 import './Home.css'
-import WebWorkerManager from '../../../workerManagers/WebWorkerManager';
+import { useDispatch } from 'react-redux'
+import { setToggleFunction } from '../../../redux/HomeMenuSelector'
 
 
 function Home(props) {
-
+    const sideBarTogglerDispatcher = useDispatch()
     const [isOnMobile, seDeviceType] = React.useState(false)
     const [focusedViewOnMobile, setFocusedViewOnMobile] = React.useState(1)
     const [shouldToggleLeftMenu, setToggleType] = React.useState(0)
-    const worker = WebWorkerManager.worker
-    function handleWorkerMessage(e) {
-        if (e.data.type === "ChangeHomeView") {
-            if (focusedViewOnMobile === 0 && e.data.value === 1) {
-                setToggleType(-1)
-
-                setFocusedViewOnMobile(e.data.value)
-            }
-            else if (focusedViewOnMobile === 1 && e.data.value === 0) {
-                setToggleType(1)
-                setFocusedViewOnMobile(e.data.value)
-            }
-            else if (focusedViewOnMobile === 0 && e.data.value === 0) {
+    let handlerObject = {
+        handler: function (data) {
+            if (focusedViewOnMobile === 0 && data === 1) {
                 setToggleType(-1)
                 setFocusedViewOnMobile(1)
             }
 
+            else if (data === 0) {
+                console.log("jhh", focusedViewOnMobile)
+                if (focusedViewOnMobile === 1) {
+                    setToggleType(1)
+                    setFocusedViewOnMobile(0)
+                }
+                else {
+                    setToggleType(-1)
+                    setFocusedViewOnMobile(1)
+                }
+
+            }
+
+            else if (focusedViewOnMobile === 1 && data === 1) {
+                setToggleType(-1)
+                setFocusedViewOnMobile(0)
+            }
+
         }
     }
-    if (worker) {
-        worker.onmessage = e => handleWorkerMessage(e)
-    }
-    else {
-        WebWorkerManager.initWorker()
-        worker.onmessage = e => handleWorkerMessage(e)
-    }
+
+
     React.useEffect(() => {
+        sideBarTogglerDispatcher(setToggleFunction(handlerObject))
         seDeviceType(window.innerWidth <= 620)
     }, [])
     return (
