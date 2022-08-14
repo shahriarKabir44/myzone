@@ -10,39 +10,21 @@ import { setToggleFunction } from '../../../redux/HomeMenuSelector'
 function Home(props) {
     const sideBarTogglerDispatcher = useDispatch()
     const [isOnMobile, seDeviceType] = React.useState(false)
-    const [focusedViewOnMobile, setFocusedViewOnMobile] = React.useState(1)
     const [shouldToggleLeftMenu, setToggleType] = React.useState(0)
     let handlerObject = {
         handler: function (data) {
-            if (focusedViewOnMobile === 0 && data === 1) {
+            if (data === 1) {
+                setToggleType(1)
+            }
+            else {
                 setToggleType(-1)
-                setFocusedViewOnMobile(1)
             }
-
-            else if (data === 0) {
-                console.log("jhh", focusedViewOnMobile)
-                if (focusedViewOnMobile === 1) {
-                    setToggleType(1)
-                    setFocusedViewOnMobile(0)
-                }
-                else {
-                    setToggleType(-1)
-                    setFocusedViewOnMobile(1)
-                }
-
-            }
-
-            else if (focusedViewOnMobile === 1 && data === 1) {
-                setToggleType(-1)
-                setFocusedViewOnMobile(0)
-            }
-
         }
     }
 
 
     React.useEffect(() => {
-        sideBarTogglerDispatcher(setToggleFunction(handlerObject))
+        sideBarTogglerDispatcher(setToggleFunction({ toggleHandler: handlerObject }))
         seDeviceType(window.innerWidth <= 620)
     }, [])
     return (

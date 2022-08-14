@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux'
+import { setToggleFunction } from '../../../../redux/HomeMenuSelector'
+
 import LeftMenu from '../../../Home/LeftMenu/LeftMenu';
-import WebWorkerManager from '../../../../workerManagers/WebWorkerManager';
 import UserPostListRoot from '../UserPostsList/UserPostListRoot';
 import InitialCreatePostView from '../../../shared/CreatePost/InitialView/InitialCreatePostView';
 import UserProfileInfo from '../UserProfileInfo/UserProfileInfo';
@@ -14,38 +16,24 @@ const user = {
 }
 
 function UserProfileRoot(props) {
+    const sideBarTogglerDispatcher = useDispatch()
+
     const [isOnMobile, seDeviceType] = React.useState(false)
-    const [focusedViewOnMobile, setFocusedViewOnMobile] = React.useState(1)
     const [shouldToggleLeftMenu, setToggleType] = React.useState(0)
-    let worker = null
-    // const worker = WebWorkerManager.worker
-    // function handleWorkerMessage(e) {
-    //     if (e.data.type === "ChangeHomeView") {
-    //         if (focusedViewOnMobile === 0 && e.data.value === 1) {
-    //             setToggleType(-1)
+    let handlerObject = {
+        handler: function (data) {
+            if (data === 1) {
+                setToggleType(1)
+            }
+            else {
+                setToggleType(-1)
+            }
+        }
+    }
 
-    //             setFocusedViewOnMobile(e.data.value)
-    //         }
-    //         else if (focusedViewOnMobile === 1 && e.data.value === 0) {
-    //             setToggleType(1)
-    //             setFocusedViewOnMobile(e.data.value)
-    //         }
-    //         else if (focusedViewOnMobile === 0 && e.data.value === 0) {
-    //             setToggleType(-1)
-    //             setFocusedViewOnMobile(1)
-    //         }
-
-    //     }
-    // }
-    // if (worker) {
-
-    //     WebWorkerManager.worker.onmessage = e => handleWorkerMessage(e)
-    // }
-    // else {
-    //     WebWorkerManager.initWorker()
-    //     worker.onmessage = e => handleWorkerMessage(e)
-    // }
     React.useEffect(() => {
+        sideBarTogglerDispatcher(setToggleFunction({ toggleHandler: handlerObject }))
+
         seDeviceType(window.innerWidth <= 620)
     }, [])
     return (

@@ -2,14 +2,20 @@ import React from 'react';
 import './NavBar.css'
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux'
+
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
+import { setToggleStatus } from '../../../redux/HomeMenuSelector'
 function NavBar(props) {
+    const sideBarToggleStatusrDispatcher = useDispatch()
 
     const currentUser = useSelector((state) => state.currentUser.value)
-    const toggleSideMenu = useSelector(state => state.currentlySelectedView.value)
+    const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
+
+    const toggleSideMenu = useSelector(state => state.currentlySelectedView.value.toggleHandler)
     React.useEffect(() => {
 
     }, [])
@@ -42,7 +48,9 @@ function NavBar(props) {
 
             <div className="smallScreen"><div className='nabvarRootSmall '>
                 <div onClick={() => {
-                    toggleSideMenu.handler(1)
+                    toggleSideMenu.toggleHandler.handler(0)
+                    sideBarToggleStatusrDispatcher(setToggleStatus(0))
+
                 }} className="siteHeadingSmall">
                     <Link to={'/'} >
                         <button className="siteNameTxtSmall">
@@ -61,7 +69,9 @@ function NavBar(props) {
                 <div className="otherOptionsSmall">
                     <div onClick={() => {
 
-                        toggleSideMenu.handler(0)
+                        toggleSideMenu.toggleHandler.handler(toggleSideMenuStatus ^ 1)
+                        sideBarToggleStatusrDispatcher(setToggleStatus(toggleSideMenuStatus ^ 1))
+
                     }}>
                         <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
                     </div>
