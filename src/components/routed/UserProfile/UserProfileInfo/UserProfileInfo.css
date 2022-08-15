@@ -33,9 +33,6 @@
     display: none;
 }
 
-.postsViewProfile::-webkit-scrollbar {
-    display: none;
-}
 
 @media screen and (max-width:620px) {
 
@@ -63,12 +60,7 @@
 
 }
 
-.postsViewProfile {
-    margin: auto;
-    padding: 10px;
-    overflow-y: auto;
-    max-height: inherit;
-}
+
 
 .coverPhotoContainer {
     width: 80vw;

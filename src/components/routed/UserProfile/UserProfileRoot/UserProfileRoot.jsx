@@ -38,7 +38,7 @@ function UserProfileRoot(props) {
             {!isOnMobile && <div className="profileViewLargeScreen">
 
 
-                <div className="postsViewProfile">
+                <div className="postsView">
                     <UserProfileInfo userInfo={user} />
                     <InitialCreatePostView />
                     <ProfileTabSelector />

@@ -1,4 +1,5 @@
 import React from 'react';
+import InterestList from './InterestList/InterestList';
 import './UserProfileInfo.css'
 function UserProfileInfo(props) {
     return (
@@ -13,6 +14,7 @@ function UserProfileInfo(props) {
                         <p className="userName">{props.userInfo.name}</p>
                         <p>133 friends</p>
                     </div>
+
                 </div>
 
             </div>
