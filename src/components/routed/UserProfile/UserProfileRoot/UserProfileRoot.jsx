@@ -1,41 +1,26 @@
 import React from 'react';
-import { useDispatch } from 'react-redux'
-import { setToggleFunction } from '../../../../redux/HomeMenuSelector'
-
+import { useSelector } from 'react-redux';
+import './UserProfileRoot.css'
 import LeftMenu from '../../../Home/LeftMenu/LeftMenu';
 import UserPostListRoot from '../UserPostsList/UserPostListRoot';
 import InitialCreatePostView from '../../../shared/CreatePost/InitialView/InitialCreatePostView';
 import UserProfileInfo from '../UserProfileInfo/UserProfileInfo';
-const stockImageURL = "https://imageio.forbes.com/specials-images/imageserve/6109550f1aa8564670194ad4/Close-up-smiling-businesswoman-holding-computer-tablet--looking-to-side/960x0.jpg?format=jpg&width=960"
+import { useDispatch } from 'react-redux'
+import { setToggleStatus } from '../../../../redux/HomeMenuSelector'
 
-const user = {
-    name: "Shahriar Kabir",
-    profileImage: stockImageURL,
-    coverPhoto: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/sunset-quotes-21-1586531574.jpg",
-
-}
 
 function UserProfileRoot(props) {
-    const sideBarTogglerDispatcher = useDispatch()
+    const user = useSelector((state) => state.currentUser.value)
+    const sideBarToggleStatusrDispatcher = useDispatch()
 
     const [isOnMobile, seDeviceType] = React.useState(false)
-    const [shouldToggleLeftMenu, setToggleType] = React.useState(0)
-    let handlerObject = {
-        handler: function (data) {
-            if (data === 1) {
-                setToggleType(1)
-            }
-            else {
-                setToggleType(-1)
-            }
-        }
-    }
+    const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
+
 
     React.useEffect(() => {
-        sideBarTogglerDispatcher(setToggleFunction({ toggleHandler: handlerObject }))
-
         seDeviceType(window.innerWidth <= 620)
-    }, [])
+        sideBarToggleStatusrDispatcher(setToggleStatus(2))
+    }, [sideBarToggleStatusrDispatcher])
     return (
         <div>
 
@@ -51,7 +36,7 @@ function UserProfileRoot(props) {
             </div>}
             {isOnMobile && <div className="smallScreen">
                 <div className="mainViewSmall">
-                    <div className={`slideLeftMenu ${shouldToggleLeftMenu === 1 ? "slideRight" : shouldToggleLeftMenu === -1 ? "slideLeft" : ""}`}>
+                    <div className={`slideLeftMenu ${toggleSideMenuStatus === 1 ? "slideRight" : toggleSideMenuStatus === 0 ? "slideLeft" : ""}`}>
                         <LeftMenu />
                     </div>
                     <div className='postsView'>

@@ -3,30 +3,18 @@ import ActiveUsersList from '../ActiveUsersList/ActiveUsersList';
 import PostListRoot from '../../shared/postList/postListRoot/PostListRoot';
 import LeftMenu from '../LeftMenu/LeftMenu'
 import './Home.css'
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import { setToggleFunction } from '../../../redux/HomeMenuSelector'
-
-
+import { setToggleStatus } from '../../../redux/HomeMenuSelector'
 function Home(props) {
-    const sideBarTogglerDispatcher = useDispatch()
+    const sideBarToggleStatusrDispatcher = useDispatch()
+
+    const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
     const [isOnMobile, seDeviceType] = React.useState(false)
-    const [shouldToggleLeftMenu, setToggleType] = React.useState(0)
-    let handlerObject = {
-        handler: function (data) {
-            if (data === 1) {
-                setToggleType(1)
-            }
-            else {
-                setToggleType(-1)
-            }
-        }
-    }
-
-
     React.useEffect(() => {
-        sideBarTogglerDispatcher(setToggleFunction({ toggleHandler: handlerObject }))
         seDeviceType(window.innerWidth <= 620)
-    }, [])
+        sideBarToggleStatusrDispatcher(setToggleStatus(2))
+    }, [sideBarToggleStatusrDispatcher])
     return (
         <div>
 
@@ -46,7 +34,7 @@ function Home(props) {
             </div>}
             {isOnMobile && <div className="smallScreen">
                 <div className="mainViewSmall">
-                    <div className={`slideLeftMenu ${shouldToggleLeftMenu === 1 ? "slideRight" : shouldToggleLeftMenu === -1 ? "slideLeft" : ""}`}>
+                    <div className={`slideLeftMenu ${toggleSideMenuStatus === 1 ? "slideRight" : toggleSideMenuStatus === 0 ? "slideLeft" : ""}`}>
                         <LeftMenu />
                     </div>
                     <PostListRoot />

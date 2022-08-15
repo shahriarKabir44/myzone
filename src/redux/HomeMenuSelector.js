@@ -4,7 +4,7 @@ let homeMenuSelection = createSlice({
     initialState: {
         value: {
             toggleHandler: null,
-            toggleStatus: 0
+            toggleStatus: 2
         }
     },
     reducers: {

@@ -7,7 +7,7 @@ function UserProfileInfo(props) {
                 <img src={props.userInfo.coverPhoto} alt="" className="userCoverPhoto" />
                 <div className="nameAndPropic">
                     <div className="profileViewUserInfoContainer">
-                        <img src={props.userInfo.profileImage} alt="" className="profileViewProPic" />
+                        <img src={props.userInfo.profileImageURL} alt="" className="profileViewProPic" />
 
                     </div><div className="textInfo">
                         <p className="userName">{props.userInfo.name}</p>

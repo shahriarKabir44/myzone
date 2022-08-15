@@ -42,6 +42,26 @@
         max-height: calc(100vh - 130px);
     }
 
+    .profileViewUserInfoContainer {
+        margin-top: -50px;
+
+    }
+
+}
+
+@media screen and (min-width:620px) {
+
+
+
+    .nameAndPropic {
+        display: flex;
+        justify-content: center;
+    }
+
+    .profileViewUserInfoContainer {
+        margin-top: -75px;
+
+    }
 
 }
 
@@ -81,16 +101,11 @@
     max-height: 60vh;
 }
 
-.nameAndPropic {
-    display: flex;
-
-}
 
 .profileViewUserInfoContainer {
-    width: 100px;
+    width: 150px;
     border-radius: 50%;
     overflow: hidden;
-    margin-top: -50px;
     display: flex;
 
 }

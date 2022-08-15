@@ -1,0 +1,14 @@
+.stickyUserInfoTab {
+    display: flex;
+    background: #5d5f61;
+    padding: 5px;
+    border-radius: 20px;
+    position: sticky;
+    align-items: center;
+    top: -10px;
+}
+
+.userImgContainerSticky {
+    width: 50px;
+    margin: 20px
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './NavBar.css'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
 
@@ -11,14 +11,24 @@ import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { setToggleStatus } from '../../../redux/HomeMenuSelector'
 function NavBar(props) {
     const sideBarToggleStatusrDispatcher = useDispatch()
-
+    const location = useLocation();
     const currentUser = useSelector((state) => state.currentUser.value)
     const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
 
-    const toggleSideMenu = useSelector(state => state.currentlySelectedView.value.toggleHandler)
     React.useEffect(() => {
 
     }, [])
+    function openDrawer(type = 1) {
+        let status = toggleSideMenuStatus
+        if (status === 2) status = 0
+        if (type) {
+            sideBarToggleStatusrDispatcher(setToggleStatus(status ^ 1))
+        }
+        else sideBarToggleStatusrDispatcher(setToggleStatus(0))
+    }
+    function renderHeaderBBtn() {
+        if (location.pathname === "") return
+    }
     return (
         <div className="navBarContainer">
             <div className="largeScreen"><div className='nabvarRoot '>
@@ -46,41 +56,38 @@ function NavBar(props) {
                 </div>
             </div></div>
 
-            <div className="smallScreen"><div className='nabvarRootSmall '>
-                <div onClick={() => {
-                    toggleSideMenu.toggleHandler.handler(0)
-                    sideBarToggleStatusrDispatcher(setToggleStatus(0))
-
-                }} className="siteHeadingSmall">
-                    <Link to={'/'} >
-                        <button className="siteNameTxtSmall">
-                            <p>MyZone</p>
-
-                        </button>
-
-                    </Link>
-                    <Link to={"/profile/" + currentUser.id}>
-                        <button className="menuBtn profileBtn">
-                            <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
-                        </button>
-                    </Link>
-                </div>
-
-                <div className="otherOptionsSmall">
+            <div className="smallScreen">
+                <div className='nabvarRootSmall '>
                     <div onClick={() => {
+                        openDrawer(0)
 
-                        toggleSideMenu.toggleHandler.handler(toggleSideMenuStatus ^ 1)
-                        sideBarToggleStatusrDispatcher(setToggleStatus(toggleSideMenuStatus ^ 1))
+                    }} className="siteHeadingSmall">
+                        <Link to={'/'} >
+                            <button className="siteNameTxtSmall">
+                                <p>MyZone</p>
 
-                    }}>
-                        <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
+                            </button>
+
+                        </Link>
+                        <Link to={"/profile/" + currentUser.id}>
+                            <button className="menuBtn profileBtn">
+                                <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
+                            </button>
+                        </Link>
                     </div>
-                    <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn " />
-                    <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
-                    <SearchOutlinedIcon fontSize='10' className='searchBtn menuBtn' />
 
-                </div>
-            </div></div>
+                    <div className="otherOptionsSmall">
+                        <div onClick={() => {
+                            openDrawer()
+                        }}>
+                            <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
+                        </div>
+                        <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn " />
+                        <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
+                        <SearchOutlinedIcon fontSize='10' className='searchBtn menuBtn' />
+
+                    </div>
+                </div></div>
 
         </div>
     );
