@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { setToggleStatus } from '../../../../redux/HomeMenuSelector'
 import { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager'
 import { useParams } from 'react-router-dom';
+import ProfileTabSelector from '../ProfileTabSelector/ProfileTabSelector';
 
 function UserProfileRoot(props) {
     const user = useSelector((state) => state.currentUser.value)
@@ -35,14 +36,16 @@ function UserProfileRoot(props) {
         <div>
 
             {!isOnMobile && <div className="profileViewLargeScreen">
-                <div className=''>
-                    <UserProfileInfo userInfo={user} />
-                    <div className="postsViewProfile">
-                        <InitialCreatePostView />
-                        <UserPostListRoot />
-                    </div>
 
+
+                <div className="postsViewProfile">
+                    <UserProfileInfo userInfo={user} />
+                    <InitialCreatePostView />
+                    <ProfileTabSelector />
+                    <UserPostListRoot />
                 </div>
+
+
             </div>}
             {isOnMobile && <div className="smallScreen">
                 <div className="mainViewSmall">
@@ -52,6 +55,7 @@ function UserProfileRoot(props) {
                     <div className='postsView'>
                         <UserProfileInfo userInfo={user} />
                         <InitialCreatePostView />
+                        <ProfileTabSelector />
                         <UserPostListRoot />
                     </div>
 

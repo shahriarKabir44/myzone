@@ -1,5 +1,6 @@
 import React from 'react';
 import PostItem from '../../../shared/postList/postItem/PostItem';
+import './UserPostListRoot.css'
 let posts = [
     {
         name: "Rahul Islam",
@@ -22,7 +23,7 @@ let posts = [
 ]
 function UserPostListRoot(props) {
     return (
-        <div>
+        <div className='postListRootUser'>
 
             {posts.map((post, index) => {
                 return <PostItem key={index} post={post} />

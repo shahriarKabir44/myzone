@@ -38,9 +38,7 @@
 }
 
 @media screen and (max-width:620px) {
-    .postsViewProfile {
-        max-height: calc(100vh - 130px);
-    }
+
 
     .profileViewUserInfoContainer {
         margin-top: -50px;
@@ -69,7 +67,7 @@
     margin: auto;
     padding: 10px;
     overflow-y: auto;
-    width: 40vw;
+    max-height: inherit;
 }
 
 .coverPhotoContainer {
