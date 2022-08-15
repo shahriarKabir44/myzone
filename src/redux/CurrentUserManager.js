@@ -10,17 +10,24 @@ let currentUserManager = createSlice({
             profileImageURL: stockImageURL,
             email: "shahriar@gmail.com",
             coverPhoto: coverPhotoURL
+        },
+        currentlyViewingProfile: {
+            id: 1,
+            name: "Shahriar Kabir"
         }
     },
     reducers: {
         updateUserInfo: (state, action) => {
 
             state.value = action.payload
+        },
+        updateCurrentlyViewingUser(state, action) {
+            state.currentlyViewingProfile = action.payload
         }
     }
 
 })
 
-export const { updateCurrentUser } = currentUserManager.actions
+export const { updateCurrentUser, updateCurrentlyViewingUser } = currentUserManager.actions
 
 export default currentUserManager.reducer 

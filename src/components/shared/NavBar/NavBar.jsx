@@ -3,7 +3,7 @@ import './NavBar.css'
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
@@ -14,7 +14,7 @@ function NavBar(props) {
     const location = useLocation();
     const currentUser = useSelector((state) => state.currentUser.value)
     const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
-
+    const currentlyFocusedUser = useSelector(state => state.currentUser.currentlyViewingProfile)
     React.useEffect(() => {
 
     }, [])
@@ -26,35 +26,44 @@ function NavBar(props) {
         }
         else sideBarToggleStatusrDispatcher(setToggleStatus(0))
     }
-    function renderHeaderBBtn() {
-        if (location.pathname === "") return
+    function renderHeaderBtn() {
+        if (location.pathname === "/") return (<Link style={{ textDecoration: 'none' }} to={'/'}>
+            <button className="siteName">
+                <p className="siteNameTxt">MyZone</p>
+            </button>
+        </Link>)
+        else if (location.pathname.startsWith('/profile')) {
+            return <Link style={{ textDecoration: 'none' }} to={'/'}>
+                <button className="siteName">
+                    <ArrowBackIcon />
+                    <p className="siteNameTxt">{currentlyFocusedUser.name}</p>
+                </button>
+            </Link>
+        }
     }
     return (
         <div className="navBarContainer">
-            <div className="largeScreen"><div className='nabvarRoot '>
-                <Link to={'/'}>
-                    <button className="siteName">
-                        <p className="siteNameTxt">MyZone</p>
-                    </button>
-                </Link>
+            <div className="largeScreen">
+                <div className='nabvarRoot '>
+                    {renderHeaderBtn()}
 
-                <div className="searchBar">
-                    <input type="text" name="" id="" className="searchBarInput" />
-                    <SearchOutlinedIcon className='searchBtn' />
-                </div>
-                <div className="otherOptions">
-                    <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />
-                    <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
-                    <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
-                    <Link to={"/profile/" + currentUser.id}>
-                        <button className="menuBtn profileBtn">
-                            <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
-                        </button>
-                    </Link>
+                    <div className="searchBar">
+                        <input type="text" name="" id="" className="searchBarInput" />
+                        <SearchOutlinedIcon className='searchBtn' />
+                    </div>
+                    <div className="otherOptions">
+                        <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />
+                        <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
+                        <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
+                        <Link to={"/profile/" + currentUser.id}>
+                            <button className="menuBtn profileBtn">
+                                <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
+                            </button>
+                        </Link>
 
 
-                </div>
-            </div></div>
+                    </div>
+                </div></div>
 
             <div className="smallScreen">
                 <div className='nabvarRootSmall '>
@@ -62,13 +71,7 @@ function NavBar(props) {
                         openDrawer(0)
 
                     }} className="siteHeadingSmall">
-                        <Link to={'/'} >
-                            <button className="siteNameTxtSmall">
-                                <p>MyZone</p>
-
-                            </button>
-
-                        </Link>
+                        {renderHeaderBtn()}
                         <Link to={"/profile/" + currentUser.id}>
                             <button className="menuBtn profileBtn">
                                 <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />

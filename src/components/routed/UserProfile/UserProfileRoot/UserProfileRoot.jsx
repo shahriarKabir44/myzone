@@ -7,17 +7,27 @@ import InitialCreatePostView from '../../../shared/CreatePost/InitialView/Initia
 import UserProfileInfo from '../UserProfileInfo/UserProfileInfo';
 import { useDispatch } from 'react-redux'
 import { setToggleStatus } from '../../../../redux/HomeMenuSelector'
-
+import { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager'
+import { useParams } from 'react-router-dom';
 
 function UserProfileRoot(props) {
     const user = useSelector((state) => state.currentUser.value)
     const sideBarToggleStatusrDispatcher = useDispatch()
-
+    const setFocusedUserDispatcher = useDispatch()
+    const currentRoute = useParams()
     const [isOnMobile, seDeviceType] = React.useState(false)
     const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
 
+    function setCurrentlyFocusedUser() {
+        setFocusedUserDispatcher(updateCurrentlyViewingUser({
+            id: currentRoute.userId,
+            name: user.name
+        }))
+
+    }
 
     React.useEffect(() => {
+        setCurrentlyFocusedUser()
         seDeviceType(window.innerWidth <= 620)
         sideBarToggleStatusrDispatcher(setToggleStatus(2))
     }, [sideBarToggleStatusrDispatcher])

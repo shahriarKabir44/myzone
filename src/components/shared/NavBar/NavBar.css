@@ -28,10 +28,15 @@
 
 .siteName {
     background: white;
-    padding: 2px 30px;
+    padding: 2px 20px;
     border-radius: 10px;
     font-family: sans-serif;
+    text-decoration: none;
     font-weight: 600;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .searchBar {
