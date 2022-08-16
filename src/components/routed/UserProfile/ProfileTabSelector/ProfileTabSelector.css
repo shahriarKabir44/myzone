@@ -18,12 +18,3 @@
 .active {
     border-bottom: 3px solid blue;
 }
-
-@media screen and (min-width:620px) {
-
-    .tabContainer {
-        width: 40vw;
-        margin: auto;
-    }
-
-}

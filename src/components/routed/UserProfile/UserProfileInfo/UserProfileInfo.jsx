@@ -1,5 +1,4 @@
 import React from 'react';
-import InterestList from './InterestList/InterestList';
 import './UserProfileInfo.css'
 function UserProfileInfo(props) {
     return (

@@ -10,6 +10,7 @@ import { setToggleStatus } from '../../../../redux/HomeMenuSelector'
 import { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager'
 import { useParams } from 'react-router-dom';
 import ProfileTabSelector from '../ProfileTabSelector/ProfileTabSelector';
+import InterestList from '../InterestList/InterestList';
 
 function UserProfileRoot(props) {
     const user = useSelector((state) => state.currentUser.value)
@@ -29,9 +30,10 @@ function UserProfileRoot(props) {
 
     React.useEffect(() => {
         setCurrentlyFocusedUser()
+
         seDeviceType(window.innerWidth <= 620)
         sideBarToggleStatusrDispatcher(setToggleStatus(2))
-    }, [sideBarToggleStatusrDispatcher])
+    }, [])
     return (
         <div>
 
@@ -40,9 +42,17 @@ function UserProfileRoot(props) {
 
                 <div className="postsView">
                     <UserProfileInfo userInfo={user} />
-                    <InitialCreatePostView />
-                    <ProfileTabSelector />
-                    <UserPostListRoot />
+
+                    <div className="gridContainer">
+                        <div></div>
+                        <div>
+                            <InitialCreatePostView />
+                            <ProfileTabSelector />
+                            <UserPostListRoot />
+                        </div>
+                        <InterestList />
+                    </div>
+
                 </div>
 
 
@@ -54,6 +64,7 @@ function UserProfileRoot(props) {
                     </div>
                     <div className='postsView'>
                         <UserProfileInfo userInfo={user} />
+                        <InterestList />
                         <InitialCreatePostView />
                         <ProfileTabSelector />
                         <UserPostListRoot />

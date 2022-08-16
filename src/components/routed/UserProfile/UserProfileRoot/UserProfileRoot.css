@@ -12,3 +12,12 @@
     width: 50px;
     margin: 20px
 }
+
+@media screen and (min-width:620px) {
+
+    .gridContainer {
+        display: grid;
+        grid-template-columns: 30vw 40vw 30vw;
+    }
+
+}
