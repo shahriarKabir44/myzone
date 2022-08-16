@@ -11,6 +11,7 @@ import { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager
 import { useParams } from 'react-router-dom';
 import ProfileTabSelector from '../ProfileTabSelector/ProfileTabSelector';
 import InterestList from '../InterestList/InterestList';
+import FeaturedPostGroupRoot from '../FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
 
 function UserProfileRoot(props) {
     const user = useSelector((state) => state.currentUser.value)
@@ -44,7 +45,9 @@ function UserProfileRoot(props) {
                     <UserProfileInfo userInfo={user} />
 
                     <div className="gridContainer">
-                        <div></div>
+                        <div>
+                            <FeaturedPostGroupRoot />
+                        </div>
                         <div>
                             <InitialCreatePostView />
                             <ProfileTabSelector />
@@ -65,6 +68,7 @@ function UserProfileRoot(props) {
                     <div className='postsView'>
                         <UserProfileInfo userInfo={user} />
                         <InterestList />
+                        <FeaturedPostGroupRoot />
                         <InitialCreatePostView />
                         <ProfileTabSelector />
                         <UserPostListRoot />

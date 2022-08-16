@@ -1,0 +1,21 @@
+.featuredPostHeading {
+    color: white;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.featuredPostsList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.featuredPostListContainer {
+    max-width: 95vw;
+}
+
+@media screen and (max-width:620px) {
+    .featuredPostsList {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+}
