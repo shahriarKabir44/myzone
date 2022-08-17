@@ -11,7 +11,7 @@ function InitialCreatePostView(props) {
                     <img src={currentUser.profileImageURL} alt="" className="userImg" />
                 </div>
                 <div className="textContainer">
-                    <p className="containerText">What's on your mind, {currentUser.name}?</p>
+                    <p className="containerText">What's on your mind?</p>
                 </div>
             </div>
         </div>

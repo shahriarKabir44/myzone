@@ -1,7 +1,7 @@
 import React from 'react';
 import './InterestList.css'
 let interests = [
-    "🚴 cycling", "🏊 swimming", "📖books", "📸photography", "🚴 cycling", "🏊 swimming", "📖books", "📸photography", "🚴 cycling", "🏊 swimming", "📖books", "📸photography"
+    "🚴 cycling", "🏊 swimming", "📖books", "📸photography", "♬ music", "💃 dance", "🧘 yoga", "☕ coffee", "🍕 pizza", "🎨 painting", "✈ travel", "💍 jwellery"
 ]
 function InterestList(props) {
     return (
