@@ -4,7 +4,7 @@ function ProfileTabSelector(props) {
     return (
         <div className='tabContainer'>
             <div className="tabItem active">
-                <p className="tabMenuText">Posts</p>
+                <p className="tabMenuText">Home</p>
             </div>
             <div className="tabItem">
                 <p className="tabMenuText">Friends</p>

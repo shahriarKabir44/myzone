@@ -1,5 +1,5 @@
 import React from 'react';
-import PostItem from '../../../shared/postList/postItem/PostItem';
+import PostItem from '../../../../../shared/postList/postItem/PostItem';
 import './UserPostListRoot.css'
 let posts = [
     {

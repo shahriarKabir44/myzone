@@ -2,16 +2,21 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import './UserProfileRoot.css'
 import LeftMenu from '../../../Home/LeftMenu/LeftMenu';
-import UserPostListRoot from '../UserPostsList/UserPostListRoot';
+import UserPostListRoot from '../routeGroupes/ProfileHome/UserPostsList/UserPostListRoot';
 import InitialCreatePostView from '../../../shared/CreatePost/InitialView/InitialCreatePostView';
-import UserProfileInfo from '../UserProfileInfo/UserProfileInfo';
+import UserProfileInfo from '../routeGroupes/ProfileHome/UserProfileInfo/UserProfileInfo';
 import { useDispatch } from 'react-redux'
 import { setToggleStatus } from '../../../../redux/HomeMenuSelector'
 import { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager'
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
+import {
+    Routes,
+    Route
+
+} from "react-router-dom";
 import ProfileTabSelector from '../ProfileTabSelector/ProfileTabSelector';
-import InterestList from '../InterestList/InterestList';
-import FeaturedPostGroupRoot from '../FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
+import InterestList from '../routeGroupes/ProfileHome/InterestList/InterestList';
+import FeaturedPostGroupRoot from '../routeGroupes/ProfileHome/FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
 
 function UserProfileRoot(props) {
     const user = useSelector((state) => state.currentUser.value)
@@ -36,25 +41,40 @@ function UserProfileRoot(props) {
         sideBarToggleStatusrDispatcher(setToggleStatus(2))
     }, [])
     return (
+
         <div>
 
             {!isOnMobile && <div className="profileViewLargeScreen">
 
 
                 <div className="postsView">
-                    <UserProfileInfo userInfo={user} />
 
-                    <div className="gridContainer">
-                        <div>
-                            <FeaturedPostGroupRoot />
-                        </div>
-                        <div>
-                            <InitialCreatePostView />
-                            <ProfileTabSelector />
-                            <UserPostListRoot />
-                        </div>
-                        <InterestList />
-                    </div>
+                    <Routes>
+                        <Route path='home' element={
+                            <>
+                                <UserProfileInfo userInfo={user} />
+                                <div className="gridContainer">
+
+                                    <div>
+                                        <FeaturedPostGroupRoot />
+                                    </div>
+                                    <div>
+
+                                        <ProfileTabSelector />
+                                        <InitialCreatePostView />
+                                        <UserPostListRoot />
+                                    </div>
+                                    <InterestList />
+                                </div>
+                            </>
+
+                        } />
+                        <Route path='/' element={<Navigate to="home" />} />
+                    </Routes>
+
+
+
+
 
                 </div>
 
@@ -67,16 +87,18 @@ function UserProfileRoot(props) {
                     </div>
                     <div className='postsView'>
                         <UserProfileInfo userInfo={user} />
+                        <ProfileTabSelector />
                         <InterestList />
                         <FeaturedPostGroupRoot />
                         <InitialCreatePostView />
-                        <ProfileTabSelector />
+
                         <UserPostListRoot />
                     </div>
 
                 </div>
             </div>}
         </div>
+
     );
 }
 

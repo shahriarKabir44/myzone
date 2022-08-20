@@ -17,11 +17,11 @@ function App() {
 
 			<Routes>
 				<Route path='/' element={<Home />} />
-				<Route path='profile'>
-					<Route path=':userId' element={<UserProfileRoot />} />
+				<Route path='/profile'>
+					<Route path=':userId/*' element={<UserProfileRoot />} />
+
 				</Route>
 			</Routes>
-
 
 
 		</div>
