@@ -4,7 +4,7 @@ import './UserProfileRoot.css'
 import LeftMenu from '../../../Home/LeftMenu/LeftMenu';
 import UserPostListRoot from '../routeGroupes/ProfileHome/UserPostsList/UserPostListRoot';
 import InitialCreatePostView from '../../../shared/CreatePost/InitialView/InitialCreatePostView';
-import UserProfileInfo from '../routeGroupes/ProfileHome/UserProfileInfo/UserProfileInfo';
+import UserProfileInfo from '../shared/UserProfileInfo/UserProfileInfo';
 import { useDispatch } from 'react-redux'
 import { setToggleStatus } from '../../../../redux/HomeMenuSelector'
 import { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager'
@@ -14,9 +14,10 @@ import {
     Route
 
 } from "react-router-dom";
-import ProfileTabSelector from '../ProfileTabSelector/ProfileTabSelector';
+import ProfileTabSelector from '../shared/ProfileTabSelector/ProfileTabSelector';
 import InterestList from '../routeGroupes/ProfileHome/InterestList/InterestList';
 import FeaturedPostGroupRoot from '../routeGroupes/ProfileHome/FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
+import FriendListRoot from '../routeGroupes/FriendList/FriendListRoot/FriendListRoot';
 
 function UserProfileRoot(props) {
     const user = useSelector((state) => state.currentUser.value)
@@ -69,6 +70,7 @@ function UserProfileRoot(props) {
                             </>
 
                         } />
+                        <Route path='friends' element={<FriendListRoot />} />
                         <Route path='/' element={<Navigate to="home" />} />
                     </Routes>
 
