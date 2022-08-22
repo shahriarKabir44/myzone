@@ -3,7 +3,28 @@ import ProfileTabSelector from '../../../shared/ProfileTabSelector/ProfileTabSel
 import UserProfileInfo from '../../../shared/UserProfileInfo/UserProfileInfo';
 import './FriendListRoot.css'
 import { useSelector } from 'react-redux';
+import FriendListItem from '../FriendListItem/FriendListItem';
 let friendList = [
+    {
+        name: "Rahul Islam",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
+    {
+        name: "Rahul Islam",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
+    {
+        name: "Rahul Islam",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
+    {
+        name: "Rahul Islam",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
+    {
+        name: "Rahul Islam",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
     {
         name: "Rahul Islam",
         profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
@@ -17,16 +38,26 @@ function FriendListRoot(props) {
             <div className="infoContainer">
                 <UserProfileInfo userInfo={user} />
                 <div className="centeredView" style={{
-                    margin: "auto"
+                    margin: "auto",
+                    display: "flex",
+                    justifyContent: "center"
                 }}>
-                    <ProfileTabSelector />
+                    <ProfileTabSelector pageIndex={2} />
                 </div>
 
             </div>
-            {friendList.map((friend, index) => {
-                return <p key={index}>{friend.name} </p>
-            })}
-        </div>
+            <div className="friendListCOntainerRoot">
+                <div className="friendListContainer">
+                    {
+                        friendList.map((friend, index) => {
+                            return <FriendListItem key={index} user={friend} />
+                        })
+                    }
+                </div>
+            </div>
+
+
+        </div >
     );
 }
 

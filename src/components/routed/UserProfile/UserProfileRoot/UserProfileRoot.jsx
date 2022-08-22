@@ -61,7 +61,7 @@ function UserProfileRoot(props) {
                                     </div>
                                     <div>
 
-                                        <ProfileTabSelector />
+                                        <ProfileTabSelector pageIndex={1} />
                                         <InitialCreatePostView />
                                         <UserPostListRoot />
                                     </div>
@@ -89,7 +89,7 @@ function UserProfileRoot(props) {
                     </div>
                     <div className='postsView'>
                         <UserProfileInfo userInfo={user} />
-                        <ProfileTabSelector />
+                        <ProfileTabSelector pageIndex={1} />
                         <InterestList />
                         <FeaturedPostGroupRoot />
                         <InitialCreatePostView />

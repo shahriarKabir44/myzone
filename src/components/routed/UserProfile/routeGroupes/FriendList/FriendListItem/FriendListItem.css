@@ -1,0 +1,20 @@
+.FriendListItemContainer {
+    display: flex;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.friendImageContainer {
+    width: 90px;
+    border-radius: 20px;
+    aspect-ratio: 1;
+}
+
+.friendImage {
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: 20px;
+
+}

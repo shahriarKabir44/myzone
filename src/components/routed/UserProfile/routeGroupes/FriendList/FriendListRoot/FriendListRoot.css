@@ -1,0 +1,10 @@
+.friendListContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 20vw);
+    grid-gap: 10px
+}
+
+.friendListCOntainerRoot {
+    display: flex;
+    justify-content: center;
+}

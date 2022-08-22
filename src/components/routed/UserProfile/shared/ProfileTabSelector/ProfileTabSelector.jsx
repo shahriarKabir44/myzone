@@ -3,10 +3,10 @@ import './ProfileTabSelector.css'
 function ProfileTabSelector(props) {
     return (
         <div className='tabContainer'>
-            <div className="tabItem active">
+            <div className={`tabItem ${props.pageIndex === 1 ? "active" : ""}  `}>
                 <p className="tabMenuText">Home</p>
             </div>
-            <div className="tabItem">
+            <div className={`tabItem ${props.pageIndex === 2 ? "active" : ""}  `}>
                 <p className="tabMenuText">Friends</p>
             </div>
             <div className="tabItem">
