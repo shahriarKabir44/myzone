@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import './UserProfileRoot.css'
 import LeftMenu from '../../../Home/LeftMenu/LeftMenu';
-import UserPostListRoot from '../routeGroupes/ProfileHome/UserPostsList/UserPostListRoot';
+import UserPostListRoot from '../routeGroups/ProfileHome/UserPostsList/UserPostListRoot';
 import InitialCreatePostView from '../../../shared/CreatePost/InitialView/InitialCreatePostView';
 import UserProfileInfo from '../shared/UserProfileInfo/UserProfileInfo';
 import { useDispatch } from 'react-redux'
@@ -15,9 +15,9 @@ import {
 
 } from "react-router-dom";
 import ProfileTabSelector from '../shared/ProfileTabSelector/ProfileTabSelector';
-import InterestList from '../routeGroupes/ProfileHome/InterestList/InterestList';
-import FeaturedPostGroupRoot from '../routeGroupes/ProfileHome/FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
-import FriendListRoot from '../routeGroupes/FriendList/FriendListRoot/FriendListRoot';
+import InterestList from '../routeGroups/ProfileHome/InterestList/InterestList';
+import FeaturedPostGroupRoot from '../routeGroups/ProfileHome/FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
+import FriendListRoot from '../routeGroups/FriendList/FriendListRoot/FriendListRoot';
 
 function UserProfileRoot(props) {
     const user = useSelector((state) => state.currentUser.value)
