@@ -10,8 +10,9 @@ let ConversationListViewToggleManager = createSlice({
     },
     reducers: {
         toggleConversationListView: (state, action) => {
+            if (state.value.status <= 0) state.value.status = 1
+            else state.value.status = 0
 
-            state.value.status = action.payload
         },
 
     }

@@ -9,10 +9,12 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { setToggleStatus } from '../../../redux/HomeMenuSelector'
+import { toggleConversationListView } from '../../../redux/ConversatinListToggleManager'
 function NavBar(props) {
     const sideBarToggleStatusrDispatcher = useDispatch()
     const location = useLocation();
     const currentUser = useSelector((state) => state.currentUser.value)
+    const toggleSlideInConversationList = useDispatch()
     const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
     const currentlyFocusedUser = useSelector(state => state.currentUser.currentlyViewingProfile)
     React.useEffect(() => {
@@ -53,7 +55,12 @@ function NavBar(props) {
                     </div>
                     <div className="otherOptions">
                         <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />
-                        <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
+                        <div className="menuBtn" onClick={() => {
+                            toggleSlideInConversationList(toggleConversationListView())
+                        }}>
+                            <QuestionAnswerOutlinedIcon fontSize='10' className=" messageBtn" />
+
+                        </div>
                         <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
                         <Link to={"/profile/" + currentUser.id}>
                             <button className="menuBtn profileBtn">
