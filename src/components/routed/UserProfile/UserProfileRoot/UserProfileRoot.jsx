@@ -54,6 +54,7 @@ function UserProfileRoot(props) {
                         <Route path='home' element={
                             <>
                                 <UserProfileInfo userInfo={user} />
+                                <ProfileTabSelector pageIndex={1} />
                                 <div className="gridContainer">
 
                                     <div>
@@ -61,7 +62,7 @@ function UserProfileRoot(props) {
                                     </div>
                                     <div>
 
-                                        <ProfileTabSelector pageIndex={1} />
+
                                         <InitialCreatePostView />
                                         <UserPostListRoot />
                                     </div>

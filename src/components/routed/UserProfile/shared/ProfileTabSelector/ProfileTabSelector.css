@@ -2,10 +2,12 @@
     display: flex;
     grid-template-columns: 20% auto;
     position: sticky;
-    top: -15px;
+    top: 0;
     background: #18191a;
     padding: 10px;
     border-radius: 10px;
+    width: 100vw;
+    justify-content: center;
 }
 
 .tabItem {

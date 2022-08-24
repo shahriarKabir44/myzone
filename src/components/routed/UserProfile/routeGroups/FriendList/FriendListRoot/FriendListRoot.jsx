@@ -10,7 +10,15 @@ let friendList = [
         profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
     },
     {
-        name: "Rahul Islam",
+        name: "Monir Islam",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
+    {
+        name: "Tarif Hasan",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
+    {
+        name: "Samirul Alam",
         profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
     },
     {
@@ -26,7 +34,15 @@ let friendList = [
         profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
     },
     {
-        name: "Rahul Islam",
+        name: "Monir Islam",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
+    {
+        name: "Tarif Hasan",
+        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
+    },
+    {
+        name: "Samirul Alam",
         profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
     }
 ]
@@ -35,18 +51,23 @@ function FriendListRoot(props) {
 
     return (
         <div className='FriendListRoot'>
-            <div className="infoContainer">
-                <UserProfileInfo userInfo={user} />
-                <div className="centeredView" style={{
-                    margin: "auto",
-                    display: "flex",
-                    justifyContent: "center"
-                }}>
-                    <ProfileTabSelector pageIndex={2} />
-                </div>
 
+
+            <UserProfileInfo userInfo={user} />
+            <div className="centeredView" style={{
+
+
+                position: "sticky",
+                top: 0
+            }}>
+                <ProfileTabSelector pageIndex={2} />
+            </div>
+
+            <div className="friendListheadingTextContainer">
+                <p className='friendListheadingText'>Friends</p>
             </div>
             <div className="friendListCOntainerRoot">
+
                 <div className="friendListContainer">
                     {
                         friendList.map((friend, index) => {

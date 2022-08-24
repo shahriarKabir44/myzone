@@ -6,9 +6,17 @@ function FriendListItem(props) {
             <div className="friendImageContainer">
                 <img src={props.user.profileImage} alt="" className="friendImage" />
             </div>
-            <p className="frinedName">
-                {props.user.name}
-            </p>
+            <div style={{
+                lineHeight: "1px"
+            }}>
+                <p className="frinedName">
+                    {props.user.name}
+                </p>
+                <p className="friendTime">
+                    Friends since 20th April 2022
+                </p>
+            </div>
+
         </div>
     );
 }
