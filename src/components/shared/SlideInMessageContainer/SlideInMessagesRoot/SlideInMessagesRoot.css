@@ -2,10 +2,10 @@
     position: absolute;
     height: calc(100vh - 95px);
     top: 95px;
-    left: -20vw;
+    left: -30vw;
     background: white;
     z-index: 2000;
-    width: 20vw;
+    width: 30vw;
     overflow-y: auto;
 }
 
@@ -22,9 +22,13 @@
     animation-fill-mode: forwards;
 }
 
+.SlideInMessagesRoot::-webkit-scrollbar {
+    display: none;
+}
+
 @keyframes slideContainerRight {
     0% {
-        left: -20vw;
+        left: -30vw;
     }
 
     100% {
@@ -34,7 +38,7 @@
 
 @keyframes slideContainerLeft {
     100% {
-        left: -20vw;
+        left: -30vw;
     }
 
     0% {
