@@ -58,7 +58,7 @@ function FriendListRoot(props) {
 
 
                 position: "sticky",
-                top: 0
+                top: "-10px"
             }}>
                 <ProfileTabSelector pageIndex={2} />
             </div>

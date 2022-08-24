@@ -7,6 +7,7 @@ import {
 	Route,
 } from "react-router-dom";
 import UserProfileRoot from './components/routed/UserProfile/UserProfileRoot/UserProfileRoot';
+import SlideInMessagesRoot from './components/shared/SlideInMessageContainer/SlideInMessagesRoot/SlideInMessagesRoot';
 function App() {
 	React.useEffect(() => {
 
@@ -14,7 +15,7 @@ function App() {
 	return (
 		<div className="App">
 			<NavBar />
-
+			<SlideInMessagesRoot />
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/profile'>
