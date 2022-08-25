@@ -92,7 +92,12 @@ function NavBar(props) {
                         }}>
                             <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
                         </div>
-                        <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn " />
+                        <div className="menuBtn messageBtn " onClick={() => {
+                            toggleSlideInConversationList(toggleConversationListView())
+                        }}>
+                            <QuestionAnswerOutlinedIcon fontSize='10' />
+
+                        </div>
                         <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
                         <SearchOutlinedIcon fontSize='10' className='searchBtn menuBtn' />
 

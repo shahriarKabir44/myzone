@@ -1,12 +1,19 @@
+:root {
+    --sidemenuWidth: 30vw;
+    --negativeSideMenuWidth: -30vw;
+}
+
 .SlideInMessagesRoot {
     position: absolute;
     height: calc(100vh - 95px);
     top: 95px;
-    left: -30vw;
     background: white;
     z-index: 2000;
-    width: 30vw;
+
     overflow-y: auto;
+
+    width: var(--sidemenuWidth);
+    left: var(--negativeSideMenuWidth);
 }
 
 
@@ -26,9 +33,22 @@
     display: none;
 }
 
+
+@media screen and (max-width:620px) {
+    :root {
+        --sidemenuWidth: 100vw;
+        --negativeSideMenuWidth: -100vw;
+    }
+
+    .SlideInMessagesRoot {
+        top: 130px;
+        height: calc(100vh - 130px);
+    }
+}
+
 @keyframes slideContainerRight {
     0% {
-        left: -30vw;
+        left: var(--negativeSideMenuWidth);
     }
 
     100% {
@@ -38,7 +58,7 @@
 
 @keyframes slideContainerLeft {
     100% {
-        left: -30vw;
+        left: -var(--sidemenuWidth);
     }
 
     0% {
