@@ -55,10 +55,10 @@ function NavBar(props) {
                     </div>
                     <div className="otherOptions">
                         <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />
-                        <div className="menuBtn" onClick={() => {
+                        <div onClick={() => {
                             toggleSlideInConversationList(toggleConversationListView())
                         }}>
-                            <QuestionAnswerOutlinedIcon fontSize='10' className=" messageBtn" />
+                            <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
 
                         </div>
                         <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
@@ -92,10 +92,10 @@ function NavBar(props) {
                         }}>
                             <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
                         </div>
-                        <div className="menuBtn messageBtn " onClick={() => {
+                        <div onClick={() => {
                             toggleSlideInConversationList(toggleConversationListView())
                         }}>
-                            <QuestionAnswerOutlinedIcon fontSize='10' />
+                            <QuestionAnswerOutlinedIcon className="menuBtn messageBtn " fontSize='10' />
 
                         </div>
                         <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
