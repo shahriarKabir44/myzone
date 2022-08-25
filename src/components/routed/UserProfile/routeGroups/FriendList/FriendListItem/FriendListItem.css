@@ -27,3 +27,14 @@
     font-weight: 100;
     width: 60vw;
 }
+
+.friendTime {
+    overflow-wrap: break-word;
+}
+
+.frinedInfoContainer {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+}

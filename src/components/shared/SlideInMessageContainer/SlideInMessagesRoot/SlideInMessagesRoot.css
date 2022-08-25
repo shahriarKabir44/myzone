@@ -36,8 +36,8 @@
 
 @media screen and (max-width:620px) {
     :root {
-        --sidemenuWidth: 100vw;
-        --negativeSideMenuWidth: -100vw;
+        --sidemenuWidth: 90vw;
+        --negativeSideMenuWidth: -90vw;
     }
 
     .SlideInMessagesRoot {

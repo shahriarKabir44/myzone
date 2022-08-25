@@ -1,6 +1,7 @@
 .postsView {
     margin: auto;
-
+    overflow-x: hidden;
+    width: 100vw;
     overflow-y: auto;
 
 }

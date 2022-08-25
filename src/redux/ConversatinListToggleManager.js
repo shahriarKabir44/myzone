@@ -14,11 +14,14 @@ let ConversationListViewToggleManager = createSlice({
             else state.value.status = 0
 
         },
+        closeConversationListView: (state, action) => {
+            state.value.status = 0
 
+        },
     }
 
 })
 
-export const { toggleConversationListView } = ConversationListViewToggleManager.actions
+export const { toggleConversationListView, closeConversationListView } = ConversationListViewToggleManager.actions
 
 export default ConversationListViewToggleManager.reducer 

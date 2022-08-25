@@ -74,11 +74,6 @@ function UserProfileRoot(props) {
                         <Route path='friends' element={<FriendListRoot />} />
                         <Route path='/' element={<Navigate to="home" />} />
                     </Routes>
-
-
-
-
-
                 </div>
 
 
@@ -89,13 +84,22 @@ function UserProfileRoot(props) {
                         <LeftMenu />
                     </div>
                     <div className='postsView'>
-                        <UserProfileInfo userInfo={user} />
-                        <ProfileTabSelector pageIndex={1} />
-                        <InterestList />
-                        <FeaturedPostGroupRoot />
-                        <InitialCreatePostView />
+                        <Routes>
+                            <Route path="home" element={<>
+                                <UserProfileInfo userInfo={user} />
+                                <ProfileTabSelector pageIndex={1} />
+                                <InterestList />
+                                <FeaturedPostGroupRoot />
+                                <InitialCreatePostView />
 
-                        <UserPostListRoot />
+                                <UserPostListRoot />
+                            </>}>
+
+                            </Route>
+                            <Route path='friends' element={<FriendListRoot />} />
+                            <Route path='/' element={<Navigate to="home" />} />
+                        </Routes>
+
                     </div>
 
                 </div>
