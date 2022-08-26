@@ -10,6 +10,7 @@ import {
 import UserProfileRoot from './components/routed/UserProfile/UserProfileRoot/UserProfileRoot';
 import SlideInMessagesRoot from './components/shared/SlideInMessageContainer/SlideInMessagesRoot/SlideInMessagesRoot';
 import NotificationListRoot from './components/shared/SlideInNotificationsContainer/NotificationListRoot/NotificationListRoot';
+import PostDetailsRoot from './components/routed/PostDetails/PostDetailsRoot/PostDetailsRoot';
 function App() {
 	React.useEffect(() => {
 
@@ -24,6 +25,9 @@ function App() {
 				<Route path='/profile'>
 					<Route path=':userId/*' element={<UserProfileRoot />} />
 
+				</Route>
+				<Route path='/post'>
+					<Route path=':id' element={<PostDetailsRoot />} />
 				</Route>
 			</Routes>
 

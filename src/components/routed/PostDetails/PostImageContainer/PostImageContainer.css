@@ -1,0 +1,25 @@
+.imgContainer,
+.focusedImg {
+    width: 100%;
+}
+
+
+.swipeContainerRoot {
+    display: flex;
+    justify-content: center;
+
+}
+
+.swipeContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.swipeBtn {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+}

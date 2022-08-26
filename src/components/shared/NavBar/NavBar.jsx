@@ -47,6 +47,14 @@ function NavBar(props) {
                 </button>
             </Link>
         }
+        else if (location.pathname.startsWith('/post')) {
+            return <Link style={{ textDecoration: 'none' }} to={'/'}>
+                <button className="siteName">
+                    <ArrowBackIcon />
+                    <p className="siteNameTxt">Post details</p>
+                </button>
+            </Link>
+        }
     }
     return (
         <div className="navBarContainer">
