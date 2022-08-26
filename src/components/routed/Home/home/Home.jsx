@@ -1,11 +1,11 @@
 import React from 'react';
 import ActiveUsersList from '../ActiveUsersList/ActiveUsersList';
-import PostListRoot from '../../shared/postList/postListRoot/PostListRoot';
+import PostListRoot from '../../../shared/postList/postListRoot/PostListRoot';
 import LeftMenu from '../LeftMenu/LeftMenu'
 import './Home.css'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import { setToggleStatus } from '../../../redux/HomeMenuSelector'
+import { setToggleStatus } from '../../../../redux/HomeMenuSelector'
 function Home(props) {
     const sideBarToggleStatusrDispatcher = useDispatch()
 

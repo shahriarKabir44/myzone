@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './UserProfileRoot.css'
-import LeftMenu from '../../../Home/LeftMenu/LeftMenu';
+import LeftMenu from '../../Home/LeftMenu/LeftMenu';
 import UserPostListRoot from '../routeGroups/ProfileHome/UserPostsList/UserPostListRoot';
 import InitialCreatePostView from '../../../shared/CreatePost/InitialView/InitialCreatePostView';
 import UserProfileInfo from '../shared/UserProfileInfo/UserProfileInfo';
