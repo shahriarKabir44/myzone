@@ -39,6 +39,10 @@
         height: calc(100vh - 130px);
         grid-template-columns: 0vw auto 0vw;
     }
+
+    .postDetailsContainer {
+        margin: 10px;
+    }
 }
 
 .postCreatorInfoContainer {
