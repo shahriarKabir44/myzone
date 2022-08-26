@@ -1,6 +1,10 @@
 import React from 'react';
 import PostImageContainer from '../PostImageContainer/PostImageContainer';
+import CommentIcon from '@mui/icons-material/Comment';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+
 import './PostDetailsRoot.css'
+import PostComments from '../PostComments/PostComments';
 let postInfo = {
     postedBy: 1,
     creatorInfo: {
@@ -39,6 +43,18 @@ function PostDetailsRoot(props) {
                     <p className="postText">{postInfo.postBody}</p>
                 </div>
                 {postInfo.linkedImages.length > 0 && <PostImageContainer images={postInfo.linkedImages} />}
+
+                <div className="reactionsTab">
+                    <div className="likes postInteractions">
+                        <ThumbUpIcon className='reactionBtn' />
+                        <p className="likesCount reactionText">{Math.floor(Math.random() * 100) + 10}</p>
+                    </div>
+                    <div className="comments postInteractions">
+                        <CommentIcon className='reactionBtn' />
+                        <p className="commentsCount  reactionText">20</p>
+                    </div>
+                </div>
+                <PostComments />
             </div>
             <div></div>
         </div>
