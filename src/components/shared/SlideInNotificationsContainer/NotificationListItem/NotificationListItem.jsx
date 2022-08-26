@@ -11,7 +11,7 @@ function NotificationListItem({ notification }) {
                 </div>
                 <div className="notificationMessageContainer">
                     <p className="notificationMessage">{notification.message}</p>
-                    <p className="notificationTime">{new Date(notification.time).toLocaleTimeString()}</p>
+                    <p className="notificationTime">{new Date(notification.time).toLocaleTimeString()} {new Date(notification.time).toLocaleDateString()}</p>
                 </div>
                 <div className="initiatorInfoContainer ">
                     <img src={notification.initiatorInfo.data.profileImageURL} alt="" style={{ width: "50px" }} className="initiatorImg userImg" />

@@ -10,8 +10,10 @@ import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { setToggleStatus } from '../../../redux/HomeMenuSelector'
 import { toggleConversationListView } from '../../../redux/ConversatinListToggleManager'
+import { toggleNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
 function NavBar(props) {
-    const sideBarToggleStatusrDispatcher = useDispatch()
+    const sideBarToggleStatusDispatcher = useDispatch()
+    const notificationTrayToggleDispatcher = useDispatch()
     const location = useLocation();
     const currentUser = useSelector((state) => state.currentUser.value)
     const toggleSlideInConversationList = useDispatch()
@@ -24,9 +26,9 @@ function NavBar(props) {
         let status = toggleSideMenuStatus
         if (status === 2) status = 0
         if (type) {
-            sideBarToggleStatusrDispatcher(setToggleStatus(status ^ 1))
+            sideBarToggleStatusDispatcher(setToggleStatus(status ^ 1))
         }
-        else sideBarToggleStatusrDispatcher(setToggleStatus(0))
+        else sideBarToggleStatusDispatcher(setToggleStatus(0))
     }
     function renderHeaderBtn() {
         if (location.pathname === "/") return (<Link style={{ textDecoration: 'none' }} to={'/'}>
@@ -61,7 +63,12 @@ function NavBar(props) {
                             <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
 
                         </div>
-                        <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
+                        <div onClick={() => {
+                            notificationTrayToggleDispatcher(toggleNotificationTrayView())
+                        }}>
+                            <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
+
+                        </div>
                         <Link to={"/profile/" + currentUser.id}>
                             <button className="menuBtn profileBtn">
                                 <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
@@ -98,7 +105,12 @@ function NavBar(props) {
                             <QuestionAnswerOutlinedIcon className="menuBtn messageBtn " fontSize='10' />
 
                         </div>
-                        <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
+                        <div onClick={() => {
+                            notificationTrayToggleDispatcher(toggleNotificationTrayView())
+                        }}>
+                            <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
+
+                        </div>
                         <SearchOutlinedIcon fontSize='10' className='searchBtn menuBtn' />
 
                     </div>

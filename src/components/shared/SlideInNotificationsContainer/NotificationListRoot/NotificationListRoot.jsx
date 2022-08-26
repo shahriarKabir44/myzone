@@ -1,6 +1,7 @@
 import React from 'react';
 import NotificationListItem from '../NotificationListItem/NotificationListItem';
 import './NotificationListRoot.css'
+import { useSelector } from 'react-redux'
 let notificationList = [
     {
         senderId: "1",
@@ -46,10 +47,12 @@ let notificationList = [
     },
 ]
 function NotificationListRoot(props) {
+    const toggleStatus = useSelector(state => state.notificationsTrayManager.value.status)
+
     return (
         <div style={{
             background: "#47494a"
-        }} className={`NotificationListRoot SlideInContainerRoot slideContainerRight`}>
+        }} className={`NotificationListRoot SlideInContainerRoot ${toggleStatus === 1 ? 'slideContainerRight' : toggleStatus === 0 ? 'slideContainerLeft' : ""}`}>
             {notificationList.map((notification, index) => {
                 return <NotificationListItem key={index} notification={notification} />
             })}

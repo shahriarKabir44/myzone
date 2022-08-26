@@ -3,11 +3,13 @@ import ConversatinListToggleManager from './ConversatinListToggleManager';
 
 import CurrentUserManager from './CurrentUserManager';
 import homeMenuSelection from './HomeMenuSelector'
+import NotificationTrayToggleManager from './NotificationTrayToggleManager';
 let store = configureStore({
     reducer: {
         currentlySelectedView: homeMenuSelection,
         currentUser: CurrentUserManager,
-        conversationListToggleManager: ConversatinListToggleManager
+        conversationListToggleManager: ConversatinListToggleManager,
+        notificationsTrayManager: NotificationTrayToggleManager
     }
 })
 
