@@ -15,7 +15,8 @@ let NotificationTrayToggleManager = createSlice({
 
         },
         closeNotificationTrayView: (state, action) => {
-            state.value.status = 0
+            if (state.value.status === 1)
+                state.value.status = 0
 
         },
     }

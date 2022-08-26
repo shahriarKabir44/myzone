@@ -13,7 +13,7 @@ function Home(props) {
     const [isOnMobile, seDeviceType] = React.useState(false)
     React.useEffect(() => {
         seDeviceType(window.innerWidth <= 620)
-        sideBarToggleStatusrDispatcher(setToggleStatus(2))
+        sideBarToggleStatusrDispatcher(setToggleStatus(-2))
     }, [sideBarToggleStatusrDispatcher])
     return (
         <div>

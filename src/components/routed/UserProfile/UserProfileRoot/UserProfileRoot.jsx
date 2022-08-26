@@ -39,7 +39,7 @@ function UserProfileRoot(props) {
         setCurrentlyFocusedUser()
 
         seDeviceType(window.innerWidth <= 620)
-        sideBarToggleStatusrDispatcher(setToggleStatus(2))
+        sideBarToggleStatusrDispatcher(setToggleStatus(-2))
     }, [])
     return (
 
