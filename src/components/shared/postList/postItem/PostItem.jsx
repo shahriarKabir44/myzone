@@ -3,6 +3,7 @@ import './PostItem.css'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CommentIcon from '@mui/icons-material/Comment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { Link } from 'react-router-dom';
 function PostItem(props) {
 
     return (
@@ -20,13 +21,16 @@ function PostItem(props) {
                 </div>
                 <MoreVertIcon className='moreBtn' />
             </div>
-            <div className="postContent">
-                <p className="postText">{props.post.txt}</p>
-                <div className="postImageContainer">
-                    <img src={props.post.postImg} alt="" style={{ width: "100%" }} className="postImage" />
+            <Link to='/post/1'>
+                <div className="postContent">
+                    <p className="postText">{props.post.txt}</p>
+                    <div className="postImageContainer">
+                        <img src={props.post.postImg} alt="" style={{ width: "100%" }} className="postImage" />
 
+                    </div>
                 </div>
-            </div>
+            </Link>
+
             <div className="reactionsTab">
                 <div className="likes postInteractions">
                     <ThumbUpIcon className='reactionBtn' />

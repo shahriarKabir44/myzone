@@ -21,6 +21,8 @@
     font-weight: 100;
 }
 
+
+
 .mainPostDetailsContainer {
     max-height: calc(100vh - 95px);
     background: #18191a;
@@ -29,6 +31,14 @@
     grid-template-columns: 30vw auto 30vw;
     align-items: center;
     overflow-y: auto;
+}
+
+@media screen and (max-width:620px) {
+    .mainPostDetailsContainer {
+        max-height: calc(100vh - 130px);
+        height: calc(100vh - 130px);
+        grid-template-columns: 0vw auto 0vw;
+    }
 }
 
 .postCreatorInfoContainer {
