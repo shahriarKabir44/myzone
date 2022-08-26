@@ -2,3 +2,66 @@
     --sidemenuWidth: 30vw;
     --negativeSideMenuWidth: -30vw;
 }
+
+.SlideInContainerRoot {
+    position: absolute;
+    height: calc(100vh - 95px);
+    top: 95px;
+    background: white;
+    z-index: 2000;
+
+    overflow-y: auto;
+
+    width: var(--sidemenuWidth);
+    left: var(--negativeSideMenuWidth);
+}
+
+
+.slideContainerRight {
+    animation-name: slideContainerRight;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+}
+
+.slideContainerLeft {
+    animation-name: slideContainerLeft;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+}
+
+.SlideInContainerRoot::-webkit-scrollbar {
+    display: none;
+}
+
+
+@media screen and (max-width:620px) {
+    :root {
+        --sidemenuWidth: 90vw;
+        --negativeSideMenuWidth: -90vw;
+    }
+
+    .SlideInContainerRoot {
+        top: 130px;
+        height: calc(100vh - 130px);
+    }
+}
+
+@keyframes slideContainerRight {
+    0% {
+        left: var(--negativeSideMenuWidth);
+    }
+
+    100% {
+        left: 0vw;
+    }
+}
+
+@keyframes slideContainerLeft {
+    100% {
+        left: -var(--sidemenuWidth);
+    }
+
+    0% {
+        left: 0vw;
+    }
+}

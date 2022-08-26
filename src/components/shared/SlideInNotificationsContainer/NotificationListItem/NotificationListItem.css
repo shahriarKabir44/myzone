@@ -1,0 +1,21 @@
+.relatedImgContainer {
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.notiificationContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #757778;
+    margin: 10px;
+    border-radius: 10px;
+
+}
+
+.notificationMessage,
+.notificationTime {
+    margin: 0
+}

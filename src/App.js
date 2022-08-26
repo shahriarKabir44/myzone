@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './components/Home/home/Home'
 import NavBar from './components/shared/NavBar/NavBar'
+import './App.css'
 import {
 
 	Routes,
@@ -8,6 +9,7 @@ import {
 } from "react-router-dom";
 import UserProfileRoot from './components/routed/UserProfile/UserProfileRoot/UserProfileRoot';
 import SlideInMessagesRoot from './components/shared/SlideInMessageContainer/SlideInMessagesRoot/SlideInMessagesRoot';
+import NotificationListRoot from './components/shared/SlideInNotificationsContainer/NotificationListRoot/NotificationListRoot';
 function App() {
 	React.useEffect(() => {
 
@@ -16,6 +18,7 @@ function App() {
 		<div className="App">
 			<NavBar />
 			<SlideInMessagesRoot />
+			<NotificationListRoot />
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/profile'>

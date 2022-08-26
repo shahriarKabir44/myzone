@@ -37,4 +37,5 @@
     align-content: center;
     flex-wrap: wrap;
     gap: 0;
+    flex-direction: column;
 }

@@ -9,7 +9,7 @@ function SlideInMessagesRoot(props) {
     return (
         <div style={{
             background: "#47494a"
-        }} className={`SlideInMessagesRoot ${toggleStatus === 1 ? 'slideContainerRight' : toggleStatus === 0 ? 'slideContainerLeft' : ""}`}>
+        }} className={`SlideInContainerRoot ${toggleStatus === 1 ? 'slideContainerRight' : toggleStatus === 0 ? 'slideContainerLeft' : ""}`}>
 
             <ConversationListRoot />
 
