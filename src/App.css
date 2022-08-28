@@ -16,6 +16,9 @@
     left: var(--negativeSideMenuWidth);
 }
 
+.flex {
+    display: flex;
+}
 
 .slideContainerRight {
     animation-name: slideContainerRight;

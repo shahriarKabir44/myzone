@@ -1,6 +1,6 @@
 import React from 'react';
 import './PostComments.css'
-
+import SendIcon from '@mui/icons-material/Send';
 let comments = [
     {
         commentedBy: 1,
@@ -31,7 +31,7 @@ function PostComments(props) {
             }}>Comments</p>
             {comments.map((comment, index) => {
                 return <PostCommentItem key={index} comment={comment} />
-            })}
+            })} <CreateComment />
         </div>
     );
 }
@@ -50,6 +50,24 @@ function PostCommentItem({ comment }) {
                 </p>
                 <p className="commentTime">{new Date(comment.time).toLocaleString()}</p>
 
+
+            </div>
+        </div>
+    )
+}
+
+function CreateComment(props) {
+    return (
+        <div className="createCommentRoot">
+            <p className='createCommentHeading'>Post a comment</p>
+            <div className="commentActionsContainer">
+                <input type="text" name="" className='postCommentInput' placeholder='Comment something' id="" />
+
+                <SendIcon style={{
+                    padding: "5px",
+                    background: "white",
+                    borderRadius: "5px"
+                }} />
 
             </div>
         </div>
