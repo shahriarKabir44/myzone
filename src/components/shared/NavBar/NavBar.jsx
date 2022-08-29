@@ -55,6 +55,14 @@ function NavBar(props) {
                 </button>
             </Link>
         }
+        else if (location.pathname.startsWith('/messenger')) {
+            return <Link style={{ textDecoration: 'none' }} to={'/'}>
+                <button className="siteName">
+                    <ArrowBackIcon />
+                    <p className="siteNameTxt">Messenger</p>
+                </button>
+            </Link>
+        }
     }
     return (
         <div className="navBarContainer">

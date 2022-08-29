@@ -1,0 +1,42 @@
+.messageContainerRoot {
+    display: flex;
+    justify-content: center;
+    height: 40vh;
+
+}
+
+.is {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.us2 {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container {
+    background: red;
+    width: 30vw;
+    overflow-y: auto;
+}
+
+.messageText {
+    background: white;
+    padding: 20px;
+
+    border-radius: 10px;
+    margin: 0;
+}
+
+.senderNameContainer {
+
+    background: yellow;
+    padding: 2px;
+
+    border-radius: 5px;
+}
+
+.innerContainer {
+    margin: 10px;
+}

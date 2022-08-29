@@ -1,0 +1,40 @@
+.largeScreenMessengerViewRoot {
+    display: grid;
+    grid-template-columns: 30vw auto;
+
+}
+
+.textingContainerRoot {
+    padding: 10px;
+    height: calc(100% - 20px);
+}
+
+.conversationListContainer {
+    max-height: calc(100vh - 95px);
+    overflow-y: auto;
+}
+
+.messengerContainer {
+    max-height: calc(100vh - 95px);
+    background: #f57878;
+    ;
+}
+
+.participantInfoContainer {
+
+    align-items: center;
+
+}
+
+.participantImageContainer {
+    width: 50px;
+}
+
+.participantName,
+.activityStatus {
+    margin: 0;
+}
+
+.messagesContainer {
+    height: calc(100% - 50px);
+}

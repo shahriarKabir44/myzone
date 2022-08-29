@@ -1,0 +1,31 @@
+.messageContainerRoot {
+    display: flex;
+    justify-content: center;
+    height: 40vh;
+
+}
+
+.sent {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.received {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+
+.messageText {
+    background: white;
+    padding: 20px;
+
+    border-radius: 10px;
+    margin: 0;
+}
+
+
+.innerContainer {
+    margin: 10px;
+}

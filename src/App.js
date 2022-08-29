@@ -11,6 +11,7 @@ import UserProfileRoot from './components/routed/UserProfile/UserProfileRoot/Use
 import SlideInMessagesRoot from './components/shared/SlideInMessageContainer/SlideInMessagesRoot/SlideInMessagesRoot';
 import NotificationListRoot from './components/shared/SlideInNotificationsContainer/NotificationListRoot/NotificationListRoot';
 import PostDetailsRoot from './components/routed/PostDetails/PostDetailsRoot/PostDetailsRoot';
+import MessengerRoot from './components/routed/Messenger/MessengerRoot/MessengerRoot';
 function App() {
 	React.useEffect(() => {
 
@@ -25,6 +26,9 @@ function App() {
 				<Route path='/profile'>
 					<Route path=':userId/*' element={<UserProfileRoot />} />
 
+				</Route>
+				<Route path='/messenger'>
+					<Route path=':conversationId' element={<MessengerRoot />} />
 				</Route>
 				<Route path='/post'>
 					<Route path=':id' element={<PostDetailsRoot />} />
