@@ -1,9 +1,3 @@
-.largeScreenMessengerViewRoot {
-    display: grid;
-    grid-template-columns: 30vw auto;
-
-}
-
 .textingContainerRoot {
     padding: 10px;
     height: calc(100% - 20px);
@@ -17,7 +11,14 @@
 .messengerContainer {
     max-height: calc(100vh - 95px);
     background: #f57878;
-    ;
+
+}
+
+@media screen and (max-width: 620px) {
+    .messengerContainer {
+        max-height: calc(100vh - 130px);
+        height: calc(100vh - 130px);
+    }
 }
 
 .participantInfoContainer {
@@ -37,4 +38,10 @@
 
 .messagesContainer {
     height: calc(100% - 50px);
+}
+
+@media screen and(max-width: 620px) {
+    .messagesContainer {
+        height: calc(100% - 50px);
+    }
 }

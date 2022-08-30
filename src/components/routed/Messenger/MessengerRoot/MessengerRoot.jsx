@@ -11,7 +11,10 @@ function MessengerRoot(props) {
     return (
         <div>
             {isOnMobileScreen && <div className="mobileScreenMessengerViewRoot">
+                <div className="messengerContainer">
+                    <TextingContainer />
 
+                </div>
             </div>}
             {!isOnMobileScreen && <div className="largeScreenMessengerViewRoot">
                 <div className="conversationListContainer">
@@ -19,6 +22,7 @@ function MessengerRoot(props) {
                 </div>
                 <div className="messengerContainer">
                     <TextingContainer />
+
                 </div>
             </div>}
         </div>

@@ -7,6 +7,10 @@
     width: 50px;
 }
 
+.messageTime {
+    font-size: 10px;
+}
+
 .conversationListHeading {
     display: flex;
     align-items: center;

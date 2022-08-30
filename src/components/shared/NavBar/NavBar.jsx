@@ -78,7 +78,8 @@ function NavBar(props) {
                         <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />
                         <div onClick={() => {
                             closeAll(3)
-                            toggleSlideInConversationList(toggleConversationListView())
+                            if (!location.pathname.startsWith('/messenger'))
+                                toggleSlideInConversationList(toggleConversationListView())
                         }}>
                             <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
 

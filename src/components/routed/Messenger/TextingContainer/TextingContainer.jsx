@@ -1,6 +1,7 @@
 import React from 'react';
 import MessageContainerRoot from '../../../shared/MessagesContainer/MessageContainerRoot/MessageContainerRoot';
 import './TextingContainer.css'
+import SendIcon from '@mui/icons-material/Send';
 
 
 let messages = {
@@ -92,6 +93,16 @@ function TextingContainer(props) {
             </div>
             <div className="messagesContainer">
                 <MessageContainerRoot messages={messages} />
+                <div className="commentActionsContainer">
+                    <input type="text" name="" className='postCommentInput' placeholder='Your Message' id="" />
+
+                    <SendIcon style={{
+                        padding: "5px",
+                        background: "white",
+                        borderRadius: "5px"
+                    }} />
+
+                </div>
             </div>
         </div>
     );

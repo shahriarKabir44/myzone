@@ -1,0 +1,5 @@
+.largeScreenMessengerViewRoot {
+    display: grid;
+    grid-template-columns: 30vw auto;
+
+}

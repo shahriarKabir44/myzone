@@ -89,7 +89,7 @@ function ConversationListItem(props) {
             <div className="infoContainer">
                 <p className="senderName">{props.conversation.senderInfo.name}</p>
                 <p className="messageBody">{props.conversation.message}</p>
-                <p className="messageTime">{props.conversation.time}</p>
+                <p className="messageTime">{new Date(props.conversation.time).toLocaleString()}</p>
             </div>
         </div>
     );
