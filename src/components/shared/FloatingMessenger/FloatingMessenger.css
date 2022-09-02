@@ -1,0 +1,26 @@
+.floatingMessengerContainer {
+    position: absolute;
+    top: 40vh;
+    width: 30vw;
+
+    right: 0;
+    height: 60vh;
+}
+
+.messengerHeadingContainer {
+    background: #242526;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.textMessagesContainer {
+    max-height: calc(100% - 71px);
+    overflow-y: auto;
+}
+
+.userInfoContainer {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+}

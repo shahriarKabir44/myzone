@@ -26,7 +26,7 @@ function PostImageContainer({ images }) {
                     <button onClick={() => {
                         swipe(1)
                     }} className="prev swipeBtn">
-                        <p className='swipeText'>Prev</p><ChevronRightIcon />
+                        <p className='swipeText'>Next</p><ChevronRightIcon />
 
                     </button>
                 </div>

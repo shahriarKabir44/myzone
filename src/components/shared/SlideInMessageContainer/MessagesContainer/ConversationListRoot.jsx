@@ -1,5 +1,6 @@
 import React from 'react';
 import OpenWithIcon from '@mui/icons-material/OpenWith';
+import { Link } from 'react-router-dom'
 import './ConversationListRoot.css';
 let conversationList = [
     {
@@ -82,7 +83,7 @@ function ConversationListRoot(props) {
 }
 function ConversationListItem(props) {
     return (
-        <div className='conversationContainer'>
+        <Link to={"/messenger/1"}><div className='conversationContainer'>
             <div className="conversationImgContainer">
                 <img src={props.conversation.senderInfo.profileImageURL} alt="" className="userImg" />
             </div>
@@ -92,6 +93,8 @@ function ConversationListItem(props) {
                 <p className="messageTime">{new Date(props.conversation.time).toLocaleString()}</p>
             </div>
         </div>
+        </Link>
+
     );
 }
 export default ConversationListRoot;
