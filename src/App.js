@@ -12,7 +12,7 @@ import SlideInMessagesRoot from './components/shared/SlideInMessageContainer/Sli
 import NotificationListRoot from './components/shared/SlideInNotificationsContainer/NotificationListRoot/NotificationListRoot';
 import PostDetailsRoot from './components/routed/PostDetails/PostDetailsRoot/PostDetailsRoot';
 import MessengerRoot from './components/routed/Messenger/MessengerRoot/MessengerRoot';
-import FloatingMessenger from './components/shared/FloatingMessenger/FloatingMessenger';
+import FloatingMessengerRoot from './components/shared/FloatingMessenger/FloatingMessengerRoot/FloatingMessengerRoot';
 function App() {
 	React.useEffect(() => {
 
@@ -35,7 +35,7 @@ function App() {
 					<Route path=':id' element={<PostDetailsRoot />} />
 				</Route>
 			</Routes>
-			<FloatingMessenger />
+			<FloatingMessengerRoot />
 
 		</div>
 	);

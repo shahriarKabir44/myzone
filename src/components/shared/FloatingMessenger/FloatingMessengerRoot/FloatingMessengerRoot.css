@@ -1,0 +1,22 @@
+.chatHeadContainer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scrollableChatHeadListContainer>div {
+    margin: 10px;
+
+}
+
+.scrollableChatHeadListContainer {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.scrollableChatHeadListContainer::-webkit-scrollbar {
+    display: none;
+}

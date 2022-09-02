@@ -1,16 +1,25 @@
 .floatingMessengerContainer {
     position: absolute;
-    top: 40vh;
+    top: calc(40vh - 40px);
     width: 30vw;
 
     right: 0;
     height: 60vh;
 }
 
+.actionBtnContainer {
+    display: flex;
+    gap: 10px;
+}
+
 .messengerHeadingContainer {
     background: #242526;
     color: white;
     border-bottom: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
 }
 
 .textMessagesContainer {

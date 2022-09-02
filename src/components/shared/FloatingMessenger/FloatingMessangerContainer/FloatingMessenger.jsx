@@ -1,6 +1,10 @@
 import React from 'react';
-import MessageContainerRoot from '../MessagesContainer/MessageContainerRoot/MessageContainerRoot';
+import MessageContainerRoot from '../../MessagesContainer/MessageContainerRoot/MessageContainerRoot';
 import './FloatingMessenger.css'
+import CloseIcon from '@mui/icons-material/Close';
+import LaunchIcon from '@mui/icons-material/Launch';
+import SendIcon from '@mui/icons-material/Send';
+
 let messagesData = {
     senderInfo: {
         id: 1,
@@ -10,7 +14,7 @@ let messagesData = {
     messages: [
         {
             sender: 1,
-            body: `def shrinking(factor=2):
+            body: `def shrinking(factor=2):\n
             imgObject=Image.open(imageURL)
             width, height=imgObject.size
             imgAccess=imgObject.load()
@@ -99,26 +103,49 @@ let messagesData = {
         }
     ]
 };
-function FloatingMessenger(props) {
+function FloatingMessenger({ selectedChatHead, onClose }) {
     return (
         <div className='floatingMessengerContainer'>
             <div className="messengerHeadingContainer">
                 <div className="userInfoContainer">
-                    <img src={messagesData.senderInfo.profileImageURL} style={{
+                    <img src={selectedChatHead.profileImageURL} style={{
                         width: "50px", height: "50px"
                     }} alt="" className="userImage" />
                     <div className="chatHeadTextData">
                         <p style={{
                             margin: 0
-                        }} className="otherUserName">{messagesData.senderInfo.name}</p>
+                        }} className="otherUserName">{selectedChatHead.name}</p>
                         <p style={{
                             margin: 0
                         }}>Active now🟢</p>
                     </div>
                 </div>
+                <div className="actionBtnContainer">
+                    <div onClick={() => {
+                        onClose()
+                    }}>
+                        <CloseIcon />
+                    </div>
+                    <div >
+                        <LaunchIcon />
+                    </div>
+
+                </div>
             </div>
             <div className="textMessagesContainer">
                 <MessageContainerRoot messages={messagesData} />
+            </div>
+            <div className="messageInputContainer">
+                <div className="commentActionsContainer">
+                    <input type="text" name="" className='postCommentInput' placeholder='Your message' id="" />
+
+                    <SendIcon style={{
+                        padding: "5px",
+                        background: "white",
+                        borderRadius: "5px"
+                    }} />
+
+                </div>
             </div>
         </div>
     );

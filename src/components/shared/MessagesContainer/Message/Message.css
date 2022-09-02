@@ -38,4 +38,6 @@
     border-radius: 20px;
     color: white;
     font-weight: 200;
+    max-width: 60%;
+    overflow-wrap: break-word;
 }
