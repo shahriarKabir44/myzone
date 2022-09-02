@@ -4,7 +4,7 @@ import './FloatingMessenger.css'
 import CloseIcon from '@mui/icons-material/Close';
 import LaunchIcon from '@mui/icons-material/Launch';
 import SendIcon from '@mui/icons-material/Send';
-
+import { useNavigate } from "react-router-dom";
 let messagesData = {
     senderInfo: {
         id: 1,
@@ -104,6 +104,8 @@ let messagesData = {
     ]
 };
 function FloatingMessenger({ selectedChatHead, onClose }) {
+    let navigate = useNavigate();
+
     return (
         <div className='floatingMessengerContainer'>
             <div className="messengerHeadingContainer">
@@ -126,7 +128,9 @@ function FloatingMessenger({ selectedChatHead, onClose }) {
                     }}>
                         <CloseIcon />
                     </div>
-                    <div >
+                    <div onClick={() => {
+                        navigate("/messenger/1")
+                    }} >
                         <LaunchIcon />
                     </div>
 

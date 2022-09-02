@@ -6,6 +6,7 @@ import {
 
 	Routes,
 	Route,
+	useLocation
 } from "react-router-dom";
 import UserProfileRoot from './components/routed/UserProfile/UserProfileRoot/UserProfileRoot';
 import SlideInMessagesRoot from './components/shared/SlideInMessageContainer/SlideInMessagesRoot/SlideInMessagesRoot';
@@ -14,6 +15,8 @@ import PostDetailsRoot from './components/routed/PostDetails/PostDetailsRoot/Pos
 import MessengerRoot from './components/routed/Messenger/MessengerRoot/MessengerRoot';
 import FloatingMessengerRoot from './components/shared/FloatingMessenger/FloatingMessengerRoot/FloatingMessengerRoot';
 function App() {
+	const location = useLocation();
+
 	React.useEffect(() => {
 
 	}, [])
@@ -35,7 +38,8 @@ function App() {
 					<Route path=':id' element={<PostDetailsRoot />} />
 				</Route>
 			</Routes>
-			<FloatingMessengerRoot />
+			{!location.pathname.startsWith('/messenger') &&
+				<FloatingMessengerRoot />}
 
 		</div>
 	);
