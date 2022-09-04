@@ -1,0 +1,35 @@
+.createPostModalHeader {
+    color: #dddfe4;
+    font-weight: 300;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.postTextInput {
+    width: 100%;
+    background: inherit;
+    color: #dddfe4;
+    margin: 10px;
+}
+
+.attachedImagesContainer {
+    display: flex;
+
+    align-items: center;
+
+}
+
+.horizontalImagesContainer {
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.attachedImageContainer {
+    margin: 10px;
+}
+
+img.attachedImage {
+    height: 100px;
+}

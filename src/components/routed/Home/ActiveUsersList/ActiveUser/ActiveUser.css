@@ -1,18 +1,18 @@
 .activeUserContainer {
     display: grid;
-    grid-template-columns: 60px auto;
-    background: #5D5F61;
+    grid-template-columns: 50px auto;
+    /* background: #5D5F61; */
     padding: 2px 12px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 1px solid white;
+    margin: 5px;
+    /* border-radius: 10px; */
+    /* border: 1px solid white; */
     align-items: center;
     align-content: center;
 
 }
 
 .activeUserImgContainer {
-    width: 50px;
+    width: 40px;
 }
 
 .activeUserImg {
