@@ -36,7 +36,9 @@ function NavBar(props) {
     function renderHeaderBtn() {
         if (location.pathname === "/") return (<Link style={{ textDecoration: 'none' }} to={'/'}>
             <button className="siteName">
-                <p className="siteNameTxt">MyZone</p>
+                <img src="logo2.png" alt="" style={{
+                    width: "100%"
+                }} className="logoContainer" />
             </button>
         </Link>)
         else if (location.pathname.startsWith('/profile')) {

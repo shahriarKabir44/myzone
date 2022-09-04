@@ -42,6 +42,6 @@
 @media screen and (min-width: 620px) {
     .leftMenuRoot {
 
-        height: calc(100vh - 95px);
+        height: calc(100vh - 109px);
     }
 }

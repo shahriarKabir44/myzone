@@ -26,10 +26,20 @@
     background: #242526;
 }
 
+@media screen and (max-width:620px) {
+    .siteName {
+        width: 130px;
+    }
+}
+
+@media screen and (min-width:620px) {
+    .siteName {
+        width: 196px;
+    }
+}
+
 .siteName {
     background: white;
-    padding: 2px 20px;
-    border-radius: 10px;
     font-family: sans-serif;
     text-decoration: none;
     font-weight: 600;
@@ -37,6 +47,7 @@
     align-content: center;
     align-items: center;
     justify-content: space-around;
+    border-radius: 10px;
 }
 
 .searchBar {

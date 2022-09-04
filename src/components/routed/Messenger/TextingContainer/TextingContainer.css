@@ -4,12 +4,12 @@
 }
 
 .conversationListContainer {
-    max-height: calc(100vh - 95px);
+    max-height: calc(100vh - 109px);
     overflow-y: auto;
 }
 
 .messengerContainer {
-    max-height: calc(100vh - 95px);
+    max-height: calc(100vh - 109px);
     background: #f57878;
 
 }

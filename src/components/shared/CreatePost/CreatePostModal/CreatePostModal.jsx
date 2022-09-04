@@ -19,9 +19,12 @@ const style = {
     p: 4,
 };
 function CreatePostModal(props) {
-    const fileInputRef = React.useRef(null)
     const [selectedImages, setSelectedImages] = React.useState([])
-    const [tempImg, setTempImg] = React.useState(null)
+
+    React.useEffect(() => {
+        setSelectedImages([])
+    }, [])
+    const fileInputRef = React.useRef(null)
     function handleFileChange(event) {
         console.log('here')
         const fileObj = event.target.files && event.target.files[0];
@@ -35,7 +38,10 @@ function CreatePostModal(props) {
         <div className='createPostModalRoot'>
             <Modal keepMounted
                 open={props.open}
-                onClose={props.onClose}
+                onClose={() => {
+                    setSelectedImages([])
+                    props.onClose()
+                }}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
 
