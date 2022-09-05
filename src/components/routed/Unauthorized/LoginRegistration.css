@@ -101,3 +101,23 @@ input.inputContainerForm {
         max-height: 100px;
     }
 }
+
+@media screen and (max-width:620px) {
+    .unauthorizedViewContainer {
+        display: block;
+    }
+
+    .logoContainer {
+        position: absolute;
+    }
+}
+
+img.loginPageLogo {
+    width: 100%;
+    background: white;
+}
+
+.formActionBtnContainer {
+    display: flex;
+
+}
