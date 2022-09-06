@@ -3,6 +3,7 @@ import UploadManager from "./UploadManager";
 
 export default class UserService {
     static async registerUser(userInfo) {
+        console.log(userInfo)
         return await fetch(Globals.SERVER_IP + '/user/register', {
             method: 'POST',
             body: JSON.stringify(userInfo),
@@ -12,14 +13,29 @@ export default class UserService {
         }).then(res => res.json())
     }
     static async registerThenUploadImage(userInfo, profileImgeURL) {
-        let createdUserInfo = await UserService.registerUser(userInfo)
+        let { data } = await UserService.registerUser(userInfo)
+        let id = data
         let createdProfileImageURL = await UploadManager.uploadImage(profileImgeURL, {
             "title": "profile_image",
-            "id": createdUserInfo.id
-        }, "proffile_picture")
+            "id": id
+        }, "file", '/user/setProfileImage')
+        UserService.setProfileImage(id, createdProfileImageURL.data)
         return {
-            ...createdProfileImageURL,
-            profileImageURL: createdProfileImageURL
+            ...userInfo,
+            profileImageURL: createdProfileImageURL.data
         }
+    }
+    static async setProfileImage(id, url) {
+        return await fetch(Globals.SERVER_IP + '/user/setProfileImageUrl', {
+            method: 'POST',
+            body: JSON.stringify({
+                Id: id,
+                profileImageURL: url
+            }),
+            headers: {
+                'Content-Type': "application/json"
+            }
+        }).then(res => res.json())
+
     }
 }

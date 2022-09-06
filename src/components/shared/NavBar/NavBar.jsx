@@ -43,7 +43,9 @@ function NavBar(props) {
         </Link>)
         else if (location.pathname.startsWith('/profile')) {
             return <Link style={{ textDecoration: 'none' }} to={'/'}>
-                <button className="siteName">
+                <button className="siteName" style={{
+                    padding: "10px"
+                }}>
                     <ArrowBackIcon />
                     <p className="siteNameTxt">{currentlyFocusedUser.name}</p>
                 </button>
@@ -51,7 +53,9 @@ function NavBar(props) {
         }
         else if (location.pathname.startsWith('/post')) {
             return <Link style={{ textDecoration: 'none' }} to={'/'}>
-                <button className="siteName">
+                <button className="siteName" style={{
+                    padding: "10px"
+                }}>
                     <ArrowBackIcon />
                     <p className="siteNameTxt">Post details</p>
                 </button>
@@ -59,7 +63,9 @@ function NavBar(props) {
         }
         else if (location.pathname.startsWith('/messenger')) {
             return <Link style={{ textDecoration: 'none' }} to={'/'}>
-                <button className="siteName">
+                <button className="siteName" style={{
+                    padding: "10px"
+                }}>
                     <ArrowBackIcon />
                     <p className="siteNameTxt">Messenger</p>
                 </button>

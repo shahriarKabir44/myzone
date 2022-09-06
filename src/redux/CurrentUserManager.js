@@ -4,13 +4,7 @@ const coverPhotoURL = "https://cdn.vox-cdn.com/thumbor/cMoBp9foDH6ZIHLVpfIzI4AAG
 let currentUserManager = createSlice({
     name: "currentUserManager",
     initialState: {
-        value: {
-            id: 1,
-            name: "Shahriar Kabir",
-            profileImageURL: stockImageURL,
-            email: "shahriar@gmail.com",
-            coverPhoto: coverPhotoURL
-        },
+        value: null,
         currentlyViewingProfile: {
             id: 1,
             name: "Shahriar Kabir"
@@ -28,6 +22,6 @@ let currentUserManager = createSlice({
 
 })
 
-export const { updateCurrentUser, updateCurrentlyViewingUser } = currentUserManager.actions
+export const { updateUserInfo, updateCurrentlyViewingUser } = currentUserManager.actions
 
 export default currentUserManager.reducer 
