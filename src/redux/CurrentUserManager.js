@@ -6,7 +6,7 @@ let currentUserManager = createSlice({
     initialState: {
         value: null,
         currentlyViewingProfile: {
-            id: 1,
+            Id: 1,
             name: "Shahriar Kabir"
         }
     },

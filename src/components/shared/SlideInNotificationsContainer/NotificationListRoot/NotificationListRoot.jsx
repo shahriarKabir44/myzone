@@ -14,13 +14,13 @@ let notificationList = [
             type: 1,
             data: {
                 name: "Shahriar Kabir",
-                id: 1,
-                profileImageURL: "https://www.hubspot.com/hubfs/employee-retention-rate.jpg"
+                Id: 1,
+                profileImage: "https://www.hubspot.com/hubfs/employee-retention-rate.jpg"
             }
         },
         relatedSchemaInfo: {
             data: {
-                id: 2,
+                Id: 2,
                 type: "post",
                 imageURL: "https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg"
             }
@@ -37,8 +37,8 @@ let notificationList = [
             type: 1,
             data: {
                 name: "Shahriar Kabir",
-                id: 1,
-                profileImageURL: "https://www.hubspot.com/hubfs/employee-retention-rate.jpg"
+                Id: 1,
+                profileImage: "https://www.hubspot.com/hubfs/employee-retention-rate.jpg"
             }
         },
         relatedSchemaInfo: {

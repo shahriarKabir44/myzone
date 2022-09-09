@@ -3,7 +3,6 @@ import UploadManager from "./UploadManager";
 
 export default class UserService {
     static async registerUser(userInfo) {
-        console.log(userInfo)
         return await fetch(Globals.SERVER_IP + '/user/register', {
             method: 'POST',
             body: JSON.stringify(userInfo),
@@ -12,28 +11,42 @@ export default class UserService {
             }
         }).then(res => res.json())
     }
+    static async isAuthorized() {
+        return fetch(Globals.SERVER_IP + '/user/isAuthorized', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token')
+            }
+        }).then(res => res.json())
+    }
     static async registerThenUploadImage(userInfo, profileImgeURL) {
-        let { data } = await UserService.registerUser(userInfo)
-        let id = data
+        let { Id, token } = await UserService.registerUser(userInfo)
+        localStorage.setItem('token', token)
         let createdProfileImageURL = await UploadManager.uploadImage(profileImgeURL, {
             "title": "profile_image",
-            "id": id
+            "Id": Id,
+
         }, "file", '/user/setProfileImage')
-        UserService.setProfileImage(id, createdProfileImageURL.data)
+        UserService.setProfileImage(Id, createdProfileImageURL.data)
+            .then(({ data, token }) => {
+                localStorage.setItem('token', token);
+            })
         return {
             ...userInfo,
-            profileImageURL: createdProfileImageURL.data
+            profileImage: createdProfileImageURL.data
         }
     }
-    static async setProfileImage(id, url) {
+    static async setProfileImage(Id, url) {
         return await fetch(Globals.SERVER_IP + '/user/setProfileImageUrl', {
             method: 'POST',
             body: JSON.stringify({
-                Id: id,
-                profileImageURL: url
+                Id: Id,
+                profileImage: url
             }),
             headers: {
-                'Content-Type': "application/json"
+                'Content-Type': "application/json",
+                'token': localStorage.getItem('token')
             }
         }).then(res => res.json())
 

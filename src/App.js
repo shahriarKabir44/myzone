@@ -2,14 +2,14 @@ import React from 'react';
 
 import './App.css'
 import {
-
+	useNavigate,
 	Routes,
 	Route,
 	useLocation
 } from "react-router-dom";
 import Home from './components/routed/Home/home/Home'
 import NavBar from './components/shared/NavBar/NavBar'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import UserProfileRoot from './components/routed/UserProfile/UserProfileRoot/UserProfileRoot';
 import SlideInMessagesRoot from './components/shared/SlideInMessageContainer/SlideInMessagesRoot/SlideInMessagesRoot';
 import NotificationListRoot from './components/shared/SlideInNotificationsContainer/NotificationListRoot/NotificationListRoot';
@@ -17,11 +17,22 @@ import PostDetailsRoot from './components/routed/PostDetails/PostDetailsRoot/Pos
 import MessengerRoot from './components/routed/Messenger/MessengerRoot/MessengerRoot';
 import FloatingMessengerRoot from './components/shared/FloatingMessenger/FloatingMessengerRoot/FloatingMessengerRoot';
 import LoginRegistration from './components/routed/Unauthorized/LoginRegistration';
+import UserService from './service/UserServices';
+import { updateUserInfo } from './redux/CurrentUserManager'
 function App() {
+	const navigate = useNavigate()
 	const location = useLocation();
 	const currentser = useSelector(state => state.currentUser.value)
+	const setCurrentUserDispatch = useDispatch()
 	React.useEffect(() => {
+		UserService.isAuthorized()
+			.then(({ user }) => {
 
+				setCurrentUserDispatch(updateUserInfo(user))
+				if (!user) {
+					navigate('/')
+				}
+			})
 	}, [])
 	return (
 		<div className="App">
@@ -41,7 +52,7 @@ function App() {
 						<Route path=':conversationId' element={<MessengerRoot />} />
 					</Route>
 					<Route path='/post'>
-						<Route path=':id' element={<PostDetailsRoot />} />
+						<Route path=':Id' element={<PostDetailsRoot />} />
 					</Route>
 
 				</>}

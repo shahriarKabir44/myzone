@@ -6,9 +6,9 @@ import SendIcon from '@mui/icons-material/Send';
 
 let messages = {
     senderInfo: {
-        id: 1,
+        Id: 1,
         name: "Rahul Islam",
-        profileImageURL: "https://www.hoyletanner.com/wp-content/uploads/2017/08/IMG_8280_1-Square-300x300.jpg"
+        profileImage: "https://www.hoyletanner.com/wp-content/uploads/2017/08/IMG_8280_1-Square-300x300.jpg"
     },
     messages: [
         {
@@ -83,7 +83,7 @@ function TextingContainer(props) {
         <div className='textingContainerRoot'>
             <div className="participantInfoContainer flex">
                 <div className="participantImageContainer ">
-                    <img src={messages.senderInfo.profileImageURL} alt="" className="participantImg userImg" />
+                    <img src={messages.senderInfo.profileImage} alt="" className="participantImg userImg" />
                 </div>
                 <div className="textInfoContainer ">
                     <p className="participantName">Rahul Islam</p>

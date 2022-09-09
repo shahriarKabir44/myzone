@@ -7,9 +7,9 @@ import SendIcon from '@mui/icons-material/Send';
 import { useNavigate } from "react-router-dom";
 let messagesData = {
     senderInfo: {
-        id: 1,
+        Id: 1,
         name: "Rahul Islam",
-        profileImageURL: "https://www.hoyletanner.com/wp-content/uploads/2017/08/IMG_8280_1-Square-300x300.jpg"
+        profileImage: "https://www.hoyletanner.com/wp-content/uploads/2017/08/IMG_8280_1-Square-300x300.jpg"
     },
     messages: [
         {
@@ -110,7 +110,7 @@ function FloatingMessenger({ selectedChatHead, onClose }) {
         <div className='floatingMessengerContainer'>
             <div className="messengerHeadingContainer">
                 <div className="userInfoContainer">
-                    <img src={selectedChatHead.profileImageURL} style={{
+                    <img src={selectedChatHead.profileImage} style={{
                         width: "50px", height: "50px"
                     }} alt="" className="userImage" />
                     <div className="chatHeadTextData">

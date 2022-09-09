@@ -29,7 +29,7 @@ function UserProfileRoot(props) {
 
     function setCurrentlyFocusedUser() {
         setFocusedUserDispatcher(updateCurrentlyViewingUser({
-            id: currentRoute.userId,
+            Id: currentRoute.userId,
             name: user.name
         }))
 

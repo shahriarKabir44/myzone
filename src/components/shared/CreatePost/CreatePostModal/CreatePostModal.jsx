@@ -31,7 +31,7 @@ function CreatePostModal(props) {
         if (!fileObj) {
             return;
         }
-        setSelectedImages([...selectedImages, { id: selectedImages.length, image: URL.createObjectURL(fileObj) }])
+        setSelectedImages([...selectedImages, { Id: selectedImages.length, image: URL.createObjectURL(fileObj) }])
     }
     const currentUser = useSelector((state) => state.currentUser.value)
     return (
@@ -52,7 +52,7 @@ function CreatePostModal(props) {
                     </h2>
                     <div id="modal-modal-description" sx={{ mt: 2 }}>
                         <div className="postCreatorContainer">
-                            <UserInfoContainer name={currentUser.name} imgURL={currentUser.profileImageURL} />
+                            <UserInfoContainer name={currentUser.name} imgURL={currentUser.profileImage} />
                         </div>
                         <div className="createPostTextContainer" style={{
                             margin: "10px"

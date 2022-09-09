@@ -10,7 +10,7 @@ function InitialCreatePostView(props) {
             <p className="headingTextCreatePost">Create a post</p>
             <div className="createPostInitContainer">
                 <div className="userImgContainer">
-                    <img src={currentUser.profileImageURL} alt="" className="userImg" />
+                    <img src={currentUser.profileImage} alt="" className="userImg" />
                 </div>
                 <div className="textContainer" onClick={() => {
                     toggleCreatePostModalVisible(true)

@@ -8,9 +8,9 @@ import PostComments from '../PostComments/PostComments';
 let postInfo = {
     postedBy: 1,
     creatorInfo: {
-        id: 1,
+        Id: 1,
         name: "Shahriar Kabir",
-        profileImageURL: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg"
+        profileImage: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg"
     },
     postBody: "Nice \n sunset",
     linkedImages: [
@@ -28,7 +28,7 @@ function PostDetailsRoot(props) {
                     <div style={{
                         width: '50px'
                     }} className="userImg">
-                        <img src={postInfo.creatorInfo.profileImageURL} alt="" className="creatorImg" />
+                        <img src={postInfo.creatorInfo.profileImage} alt="" className="creatorImg" />
                     </div>
                     <div className="infoContainer">
                         <p style={{

@@ -6,7 +6,7 @@ let conversationList = [
     {
         senderId: "1",
         senderInfo: {
-            profileImageURL: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg",
+            profileImage: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg",
             name: "Rahul Kabir"
         },
         message: "Hello!",
@@ -16,7 +16,7 @@ let conversationList = [
     {
         senderId: "1",
         senderInfo: {
-            profileImageURL: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg",
+            profileImage: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg",
             name: "Monir Islam"
         },
         message: "Good Day!",
@@ -26,7 +26,7 @@ let conversationList = [
     {
         senderId: "1",
         senderInfo: {
-            profileImageURL: "https://assets.entrepreneur.com/content/3x2/2000/1655744650-shutterstock-1350369713.jpg?auto=webp&quality=95&crop=2:1&width=400",
+            profileImage: "https://assets.entrepreneur.com/content/3x2/2000/1655744650-shutterstock-1350369713.jpg?auto=webp&quality=95&crop=2:1&width=400",
             name: "Imran Kabir"
         },
         message: "Hi!",
@@ -36,7 +36,7 @@ let conversationList = [
     {
         senderId: "1",
         senderInfo: {
-            profileImageURL: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg",
+            profileImage: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg",
             name: "Rahul Kabir"
         },
         message: "Hello!",
@@ -46,7 +46,7 @@ let conversationList = [
     {
         senderId: "1",
         senderInfo: {
-            profileImageURL: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg",
+            profileImage: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg",
             name: "Monir Islam"
         },
         message: "Good Day!",
@@ -56,7 +56,7 @@ let conversationList = [
     {
         senderId: "1",
         senderInfo: {
-            profileImageURL: "https://assets.entrepreneur.com/content/3x2/2000/1655744650-shutterstock-1350369713.jpg?auto=webp&quality=95&crop=2:1&width=400",
+            profileImage: "https://assets.entrepreneur.com/content/3x2/2000/1655744650-shutterstock-1350369713.jpg?auto=webp&quality=95&crop=2:1&width=400",
             name: "Imran Kabir"
         },
         message: "Hi!",
@@ -85,7 +85,7 @@ function ConversationListItem(props) {
     return (
         <Link to={"/messenger/1"}><div className='conversationContainer'>
             <div className="conversationImgContainer">
-                <img src={props.conversation.senderInfo.profileImageURL} alt="" className="userImg" />
+                <img src={props.conversation.senderInfo.profileImage} alt="" className="userImg" />
             </div>
             <div className="infoContainer">
                 <p className="senderName">{props.conversation.senderInfo.name}</p>

@@ -14,6 +14,7 @@ export default class UploadManager {
     }
     static async uploadImage(URI, additionalData, fileName, apiURL) {
         let blob = await UploadManager.getBlobFromURI(URI)
+        console.log(blob)
         let base64str = await UploadManager.blobToBase64(blob)
         let formData = new FormData()
 

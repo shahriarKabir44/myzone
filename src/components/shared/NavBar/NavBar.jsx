@@ -34,49 +34,26 @@ function NavBar(props) {
 
     }
     function renderHeaderBtn() {
-        if (location.pathname === "/") return (<Link style={{ textDecoration: 'none' }} to={'/'}>
+        return (<Link style={{ textDecoration: 'none' }} to={'/'}>
             <button className="siteName">
                 <img src="logo2.png" alt="" style={{
                     width: "100%"
                 }} className="logoContainer" />
             </button>
         </Link>)
-        else if (location.pathname.startsWith('/profile')) {
-            return <Link style={{ textDecoration: 'none' }} to={'/'}>
-                <button className="siteName" style={{
-                    padding: "10px"
-                }}>
-                    <ArrowBackIcon />
-                    <p className="siteNameTxt">{currentlyFocusedUser.name}</p>
-                </button>
-            </Link>
-        }
-        else if (location.pathname.startsWith('/post')) {
-            return <Link style={{ textDecoration: 'none' }} to={'/'}>
-                <button className="siteName" style={{
-                    padding: "10px"
-                }}>
-                    <ArrowBackIcon />
-                    <p className="siteNameTxt">Post details</p>
-                </button>
-            </Link>
-        }
-        else if (location.pathname.startsWith('/messenger')) {
-            return <Link style={{ textDecoration: 'none' }} to={'/'}>
-                <button className="siteName" style={{
-                    padding: "10px"
-                }}>
-                    <ArrowBackIcon />
-                    <p className="siteNameTxt">Messenger</p>
-                </button>
-            </Link>
-        }
+
     }
     return (
         <div className="navBarContainer">
             <div className="largeScreen">
                 <div className='nabvarRoot '>
-                    {renderHeaderBtn()}
+                    <Link style={{ textDecoration: 'none' }} to={'/'}>
+                        <button className="siteName">
+                            <img src="logo2.png" alt="" style={{
+                                width: "100%"
+                            }} className="logoContainer" />
+                        </button>
+                    </Link>
 
                     <div className="searchBar">
                         <input type="text" name="" id="" className="searchBarInput" />
@@ -99,9 +76,9 @@ function NavBar(props) {
                             <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
 
                         </div>
-                        <Link to={"/profile/" + currentUser.id}>
+                        <Link to={"/profile/" + currentUser.Id}>
                             <button className="menuBtn profileBtn">
-                                <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
+                                <img className='profileImageNavBar' src={currentUser.profileImage} alt="profile pic" />
                             </button>
                         </Link>
 
@@ -117,9 +94,9 @@ function NavBar(props) {
 
                     }} className="siteHeadingSmall">
                         {renderHeaderBtn()}
-                        <Link to={"/profile/" + currentUser.id}>
+                        <Link to={"/profile/" + currentUser.Id}>
                             <button className="menuBtn profileBtn">
-                                <img className='profileImageNavBar' src={currentUser.profileImageURL} alt="profile pic" />
+                                <img className='profileImageNavBar' src={currentUser.profileImage} alt="profile pic" />
                             </button>
                         </Link>
                     </div>
