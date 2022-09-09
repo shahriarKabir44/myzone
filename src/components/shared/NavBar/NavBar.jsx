@@ -36,7 +36,7 @@ function NavBar(props) {
     function renderHeaderBtn() {
         return (<Link style={{ textDecoration: 'none' }} to={'/'}>
             <button className="siteName">
-                <img src="logo2.png" alt="" style={{
+                <img src="http://localhost:3000/logo2.png" alt="" style={{
                     width: "100%"
                 }} className="logoContainer" />
             </button>
@@ -47,13 +47,7 @@ function NavBar(props) {
         <div className="navBarContainer">
             <div className="largeScreen">
                 <div className='nabvarRoot '>
-                    <Link style={{ textDecoration: 'none' }} to={'/'}>
-                        <button className="siteName">
-                            <img src="logo2.png" alt="" style={{
-                                width: "100%"
-                            }} className="logoContainer" />
-                        </button>
-                    </Link>
+                    {renderHeaderBtn()}
 
                     <div className="searchBar">
                         <input type="text" name="" id="" className="searchBarInput" />

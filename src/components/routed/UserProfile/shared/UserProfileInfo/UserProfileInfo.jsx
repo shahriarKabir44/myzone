@@ -1,6 +1,7 @@
 import React from 'react';
 import './UserProfileInfo.css'
 function UserProfileInfo(props) {
+
     return (
         <div className="userProfileInfoContainer">
             <div className="coverPhotoContainer">

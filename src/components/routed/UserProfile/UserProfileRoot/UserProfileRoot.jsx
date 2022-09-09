@@ -14,6 +14,9 @@ import {
     Route
 
 } from "react-router-dom";
+import { useInView } from 'react-intersection-observer';
+
+
 import ProfileTabSelector from '../shared/ProfileTabSelector/ProfileTabSelector';
 import InterestList from '../routeGroups/ProfileHome/InterestList/InterestList';
 import FeaturedPostGroupRoot from '../routeGroups/ProfileHome/FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
@@ -30,17 +33,26 @@ function UserProfileRoot(props) {
     function setCurrentlyFocusedUser() {
         setFocusedUserDispatcher(updateCurrentlyViewingUser({
             Id: currentRoute.userId,
-            name: user.name
+            name: user.name,
+            profileImage: user.profileImage
         }))
 
     }
-
+    const { ref, inView } = useInView({
+        /* Optional options */
+        threshold: 0,
+    });
     React.useEffect(() => {
+
         setCurrentlyFocusedUser()
 
         seDeviceType(window.innerWidth <= 620)
         sideBarToggleStatusrDispatcher(setToggleStatus(-2))
-    }, [])
+
+
+    }, []);
+
+
     return (
 
         <div>
@@ -53,9 +65,15 @@ function UserProfileRoot(props) {
                     <Routes>
                         <Route path='home' element={
                             <>
-                                <UserProfileInfo userInfo={user} />
-                                <ProfileTabSelector pageIndex={1} />
-                                <div className="gridContainer">
+                                <div ref={ref}>
+                                    <UserProfileInfo userInfo={user} />
+                                </div>
+
+
+
+
+                                <ProfileTabSelector shouldShowUserInfo={inView} pageIndex={1} />
+                                <div className={`gridContainer `}>
 
                                     <div>
                                         <FeaturedPostGroupRoot />

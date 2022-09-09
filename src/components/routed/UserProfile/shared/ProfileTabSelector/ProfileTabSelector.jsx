@@ -1,9 +1,19 @@
 import React from 'react';
 import './ProfileTabSelector.css'
 import { Link } from 'react-router-dom'
+
+import UserInfoContainer from '../../../../shared/UserInfoContainer';
+import { useSelector } from 'react-redux';
+
 function ProfileTabSelector(props) {
+    const currentlyFocuseduser = useSelector(state => state.currentUser.currentlyViewingProfile)
+
     return (
         <div className='tabContainer'>
+            {!props.shouldShowUserInfo && <div className="tabItem">
+                <UserInfoContainer imgURL={currentlyFocuseduser.profileImage} name={currentlyFocuseduser.name} />
+
+            </div>}
             <Link style={{ textDecoration: 'none' }} to={'../home'}>
                 <div className={`tabItem ${props.pageIndex === 1 ? "active" : ""}  `}>
                     <p className="tabMenuText">Home</p>
