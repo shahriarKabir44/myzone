@@ -8,7 +8,7 @@
 
 @media screen and (min-width:620px) {
     .postsView {
-        max-height: calc(100vh - 109px);
+        max-height: var(--containerHeightLarge);
 
     }
 
@@ -17,7 +17,7 @@
 
 @media screen and (max-width:620px) {
     .postsView {
-        max-height: calc(100vh - 130px);
+        max-height: var(--containerHeightSmall);
         width: 100vw;
     }
 

@@ -15,7 +15,7 @@
 
 @media screen and (min-width:620px) {
     .profileViewLargeScreen {
-        max-height: calc(100vh - 109px);
+        max-height: var(--containerHeightLarge);
     }
 
 
@@ -23,7 +23,7 @@
 
 @media screen and (max-width:620px) {
     .profileViewLargeScreen {
-        max-height: calc(100vh - 130px);
+        max-height: var(--containerHeightSmall);
     }
 
 

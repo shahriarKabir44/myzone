@@ -4,20 +4,20 @@
 }
 
 .conversationListContainer {
-    max-height: calc(100vh - 109px);
+    max-height: var(--containerHeightLarge);
     overflow-y: auto;
 }
 
 .messengerContainer {
-    max-height: calc(100vh - 109px);
+    max-height: var(--containerHeightLarge);
     background: #f57878;
 
 }
 
 @media screen and (max-width: 620px) {
     .messengerContainer {
-        max-height: calc(100vh - 130px);
-        height: calc(100vh - 130px);
+        max-height: var(--containerHeightSmall);
+        height: var(--containerHeightSmall);
     }
 }
 

@@ -28,20 +28,20 @@
 
 .leftMenuRoot {
     background: #47494A;
-    height: calc(100vh - 130px);
+    height: var(--containerHeightSmall);
     padding: 10px;
 }
 
 @media screen and (max-width: 620px) {
     .leftMenuRoot {
 
-        height: calc(100vh - 130px);
+        height: var(--containerHeightSmall);
     }
 }
 
 @media screen and (min-width: 620px) {
     .leftMenuRoot {
 
-        height: calc(100vh - 109px);
+        height: var(--containerHeightLarge);
     }
 }

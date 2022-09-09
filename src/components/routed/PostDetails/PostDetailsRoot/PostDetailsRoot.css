@@ -24,9 +24,9 @@
 
 
 .mainPostDetailsContainer {
-    max-height: calc(100vh - 109px);
+    max-height: var(--containerHeightLarge);
     background: #18191a;
-    height: calc(100vh - 109px);
+    height: var(--containerHeightLarge);
     display: grid;
     grid-template-columns: 30vw auto 30vw;
     align-items: center;
@@ -35,8 +35,8 @@
 
 @media screen and (max-width:620px) {
     .mainPostDetailsContainer {
-        max-height: calc(100vh - 130px);
-        height: calc(100vh - 130px);
+        max-height: var(--containerHeightSmall);
+        height: var(--containerHeightSmall);
         grid-template-columns: 0vw auto 0vw;
     }
 

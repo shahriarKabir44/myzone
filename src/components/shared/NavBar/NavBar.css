@@ -40,13 +40,7 @@
 
 .siteName {
     background: white;
-    font-family: sans-serif;
-    text-decoration: none;
-    font-weight: 600;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: space-around;
+
     border-radius: 10px;
 }
 

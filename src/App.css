@@ -1,12 +1,14 @@
 :root {
     --sidemenuWidth: 30vw;
     --negativeSideMenuWidth: -30vw;
+    --containerHeightLarge: calc(100vh - 113px);
+    --containerHeightSmall: calc(100vh - 130px)
 }
 
 .SlideInContainerRoot {
     position: absolute;
-    height: calc(100vh - 109px);
-    top: 109px;
+    height: var(--containerHeightLarge);
+    top: 114px;
     background: white;
     z-index: 2000;
 
@@ -45,7 +47,7 @@
 
     .SlideInContainerRoot {
         top: 130px;
-        height: calc(100vh - 130px);
+        height: var(--containerHeightSmall);
     }
 }
 

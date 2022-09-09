@@ -3,7 +3,6 @@ import './NavBar.css'
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
@@ -17,7 +16,6 @@ function NavBar(props) {
     const location = useLocation();
     const currentUser = useSelector((state) => state.currentUser.value)
     const toggleSlideInConversationList = useDispatch()
-    const currentlyFocusedUser = useSelector(state => state.currentUser.currentlyViewingProfile)
     React.useEffect(() => {
 
 
@@ -36,9 +34,9 @@ function NavBar(props) {
     function renderHeaderBtn() {
         return (<Link style={{ textDecoration: 'none' }} to={'/'}>
             <button className="siteName">
-                <img src="http://localhost:3000/logo2.png" alt="" style={{
+                <img src="http://192.168.43.90:3000/logo2.png" alt="" style={{
                     width: "100%"
-                }} className="logoContainer" />
+                }} className="" />
             </button>
         </Link>)
 
