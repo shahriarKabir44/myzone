@@ -52,15 +52,17 @@ function FriendListRoot(props) {
     return (
         <div className='FriendListRoot'>
 
+            <div ref={props.intersectionObserverRef}>
+                <UserProfileInfo userInfo={user} />
 
-            <UserProfileInfo userInfo={user} />
+            </div>
             <div className="centeredView" style={{
 
 
                 position: "sticky",
                 top: "-10px"
             }}>
-                <ProfileTabSelector pageIndex={2} />
+                <ProfileTabSelector shouldShowUserInfo={props.shouldShowUserInfo} pageIndex={2} />
             </div>
 
             <div className="friendListheadingTextContainer">
