@@ -6,7 +6,8 @@ import Button from '@mui/material/Button'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import Modal from '@mui/material/Modal';
 import UserInfoContainer from '../../UserInfoContainer'
-
+import CancelIcon from '@mui/icons-material/Cancel';
+import PostService from '../../../../service/PostService';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -20,7 +21,7 @@ const style = {
 };
 function CreatePostModal(props) {
     const [selectedImages, setSelectedImages] = React.useState([])
-
+    const [postBody, setPostBody] = React.useState("")
     React.useEffect(() => {
         setSelectedImages([])
     }, [])
@@ -57,7 +58,11 @@ function CreatePostModal(props) {
                         <div className="createPostTextContainer" style={{
                             margin: "10px"
                         }}>
-                            <textarea className='postTextInput' name="" id="" cols="30" rows="10"></textarea>
+                            <textarea value={postBody} onChange={(e) => {
+                                setPostBody(e.target.value)
+                            }} style={{
+                                resize: 'none'
+                            }} className='postTextInput' name="" id="" cols="30" rows="10"></textarea>
                         </div>
                         <div className="attachedImagesContainer">
                             <input
@@ -78,13 +83,17 @@ function CreatePostModal(props) {
                             </div>
                             <div className="horizontalImagesContainer">
                                 {selectedImages.map((image, index) => {
-                                    return <AttachedPostImage file={image.image} key={index} />
+                                    return <AttachedPostImage file={image.image} key={index} onDelete={() => {
+                                        setSelectedImages(selectedImages.filter(img => img.Id !== image.Id))
+                                    }} />
                                 })}
                             </div>
 
                         </div>
                         <div className="createPostBtn">
-                            <Button style={{
+                            <Button onClick={() => {
+                                PostService.createPost(currentUser.Id, postBody, selectedImages.map(img => img.image))
+                            }} style={{
                                 width: "100%",
                                 margin: "10px 0px"
                             }} variant="contained">Done</Button>
@@ -102,6 +111,9 @@ function CreatePostModal(props) {
 function AttachedPostImage(props) {
 
     return (<div className="attachedImageContainer">
+        <div className="closeBtn" onClick={props.onDelete}>
+            <CancelIcon />
+        </div>
         <img src={props.file} alt="" className="attachedImage" />
     </div>)
 }

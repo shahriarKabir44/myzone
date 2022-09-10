@@ -20,6 +20,8 @@
 
 }
 
+
+
 .horizontalImagesContainer {
     display: flex;
     max-width: 100%;
@@ -28,8 +30,17 @@
 
 .attachedImageContainer {
     margin: 10px;
+    position: relative;
 }
 
 img.attachedImage {
     height: 100px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: -10px;
+    z-index: 1000;
+
+    left: -10px;
 }
