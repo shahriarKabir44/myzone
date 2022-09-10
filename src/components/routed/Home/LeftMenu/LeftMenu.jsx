@@ -6,7 +6,6 @@ import ThreePIcon from '@mui/icons-material/ThreeP';
 import { useSelector } from 'react-redux';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Link } from 'react-router-dom';
-const stockImage = "https://blog.hubspot.com/hubfs/employee-retention-rate.jpg"
 
 function LeftMenu(props) {
     const currentUser = useSelector((state) => state.currentUser.value)

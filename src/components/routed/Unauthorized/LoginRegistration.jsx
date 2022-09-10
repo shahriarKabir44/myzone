@@ -15,13 +15,14 @@ function LoginRegistration(props) {
     const [formMode, setFormMode] = React.useState(0)
     const [selectedImage, setSelectedImage] = React.useState(defaultImageURL)
     const fileInputRef = React.useRef(null)
+    const [hasEmailError, setHasEmailError] = React.useState(false)
     const [userData, setUserData] = React.useState({
         password: "",
         email: "",
         name: "",
     })
     function handleFileChange(event) {
-        console.log('here')
+
         const fileObj = event.target.files && event.target.files[0];
         if (!fileObj) {
             return;
@@ -82,26 +83,34 @@ function LoginRegistration(props) {
                     </div>
 
                 </div>
-                {(formMode === 1) && <div className='formActionBtnContainer'>
-                    <Button onClick={() => {
-                        console.log(userData)
-                        UserService.registerThenUploadImage(userData, selectedImage)
-                            .then(data => {
-                                console.log(data)
-                                globalUserDispatcher(updateUserInfo({
-                                    ...data,
-                                    coverPhoto: ''
-                                }))
-                            })
+                {(formMode === 1) && <>
+                    <div className='formActionBtnContainer'>
+                        <Button onClick={() => {
+                            console.log(userData)
+                            UserService.registerThenUploadImage(userData, selectedImage)
+                                .then(data => {
+                                    if (!data) {
+                                        setHasEmailError(true)
+                                        return
+                                    }
+                                    globalUserDispatcher(updateUserInfo({
+                                        ...data,
+                                        coverPhoto: ''
+                                    }))
+                                })
 
-                    }} variant="contained">Sign up</Button>
-                    <p>Already have an account?</p>
-                    <Button style={{
-                        color: "white"
-                    }} onClick={() => {
-                        setFormMode(2)
-                    }} variant="text">Log in</Button>
-                </div>}
+                        }} variant="contained">Sign up</Button>
+                        <p>Already have an account?</p>
+                        <Button style={{
+                            color: "white"
+                        }} onClick={() => {
+                            setFormMode(2)
+                        }} variant="text">Log in</Button>
+                    </div>
+                    {hasEmailError && <p className="errorMessage" style={{
+                        margin: 0
+                    }}>*The email address is already in use.</p>}
+                </>}
 
                 {(formMode === 2 || formMode === 0) && <div className='formActionBtnContainer'>
                     <Button variant="contained">Log in</Button>

@@ -22,6 +22,7 @@ export default class UserService {
     }
     static async registerThenUploadImage(userInfo, profileImgeURL) {
         let { Id, token } = await UserService.registerUser(userInfo)
+        if (Id == null) return null
         localStorage.setItem('token', token)
         let createdProfileImageURL = await UploadManager.uploadImage(profileImgeURL, {
             "title": "profile_image",

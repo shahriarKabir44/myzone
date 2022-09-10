@@ -8,7 +8,7 @@
 .SlideInContainerRoot {
     position: absolute;
     height: var(--containerHeightLarge);
-    top: 114px;
+    top: 113px;
     background: white;
     z-index: 2000;
 

@@ -121,7 +121,7 @@ function CreatePostModal(props) {
                     setUploadWaitingModalVisible(false)
                 }}
                 message="Creating post.."
-                action={() => <IconButton
+                action={<IconButton
                     size="small"
                     aria-label="close"
                     color="inherit"
