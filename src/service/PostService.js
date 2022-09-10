@@ -31,7 +31,6 @@ export default class PostService {
                 index: n,
                 token: localStorage.getItem('token')
             }, 'file', '/post/uploadPostImage').then(({ url }) => {
-                console.log(url);
                 uploadedURLs.push(url)
             }))
         }

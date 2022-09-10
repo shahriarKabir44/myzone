@@ -5,8 +5,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import Modal from '@mui/material/Modal';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
 import UserInfoContainer from '../../UserInfoContainer'
 import CancelIcon from '@mui/icons-material/Cancel';
+import Snackbar from '@mui/material/Snackbar';
 import PostService from '../../../../service/PostService';
 const style = {
     position: 'absolute',
@@ -22,6 +26,8 @@ const style = {
 function CreatePostModal(props) {
     const [selectedImages, setSelectedImages] = React.useState([])
     const [postBody, setPostBody] = React.useState("")
+    const [uploadConfirmationModalVisible, setUploadConfirmationgModalVisible] = React.useState(false)
+    const [uploadWaitingModalVisible, setUploadWaitingModalVisible] = React.useState(false)
     React.useEffect(() => {
         setSelectedImages([])
     }, [])
@@ -92,7 +98,13 @@ function CreatePostModal(props) {
                         </div>
                         <div className="createPostBtn">
                             <Button onClick={() => {
+                                setUploadWaitingModalVisible(true)
+                                props.onClose()
                                 PostService.createPost(currentUser.Id, postBody, selectedImages.map(img => img.image))
+                                    .then(() => {
+                                        setUploadConfirmationgModalVisible(true)
+                                        setSelectedImages([])
+                                    })
                             }} style={{
                                 width: "100%",
                                 margin: "10px 0px"
@@ -102,7 +114,42 @@ function CreatePostModal(props) {
                 </Box>
 
             </Modal>
-
+            <Snackbar
+                open={uploadWaitingModalVisible}
+                autoHideDuration={4000}
+                onClose={() => {
+                    setUploadWaitingModalVisible(false)
+                }}
+                message="Creating post.."
+                action={() => <IconButton
+                    size="small"
+                    aria-label="close"
+                    color="inherit"
+                    onClick={() => {
+                        setUploadWaitingModalVisible(false)
+                    }}
+                >
+                    <CloseIcon fontSize="small" />
+                </IconButton>}
+            />
+            <Snackbar
+                open={uploadConfirmationModalVisible}
+                autoHideDuration={4000}
+                onClose={() => {
+                    setUploadConfirmationgModalVisible(false)
+                }}
+                message="Post created successfully"
+                action={<IconButton
+                    size="small"
+                    aria-label="close"
+                    color="inherit"
+                    onClick={() => {
+                        setUploadConfirmationgModalVisible(false)
+                    }}
+                >
+                    <CloseIcon fontSize="small" />
+                </IconButton>}
+            />
         </div>
     );
 }
