@@ -15,6 +15,7 @@ function LoginRegistration(props) {
     const [formMode, setFormMode] = React.useState(0)
     const [selectedImage, setSelectedImage] = React.useState(defaultImageURL)
     const fileInputRef = React.useRef(null)
+    const [hasLoginError, setHasLoginError] = React.useState(false)
     const [hasEmailError, setHasEmailError] = React.useState(false)
     const [userData, setUserData] = React.useState({
         password: "",
@@ -95,7 +96,7 @@ function LoginRegistration(props) {
                                     }
                                     globalUserDispatcher(updateUserInfo({
                                         ...data,
-                                        coverPhoto: ''
+
                                     }))
                                 })
 
@@ -112,15 +113,31 @@ function LoginRegistration(props) {
                     }}>*The email address is already in use.</p>}
                 </>}
 
-                {(formMode === 2 || formMode === 0) && <div className='formActionBtnContainer'>
-                    <Button variant="contained">Log in</Button>
-                    <p>Don't have an account?</p>
-                    <Button style={{
-                        color: "white"
-                    }} onClick={() => {
-                        setFormMode(1)
-                    }} variant="text">Sign up</Button>
-                </div>}
+                {(formMode === 2 || formMode === 0) && <React.Fragment>
+                    <div className='formActionBtnContainer'>
+                        <Button onClick={() => {
+                            console.log(userData)
+                            UserService.login(userData)
+                                .then(data => {
+                                    localStorage.setItem('token', data.token)
+                                    console.log(data)
+                                    if (!data) setHasLoginError(true)
+                                    else {
+                                        globalUserDispatcher(updateUserInfo(data.data))
+                                    }
+                                })
+                        }} variant="contained">Log in</Button>
+                        <p>Don't have an account?</p>
+                        <Button style={{
+                            color: "white"
+                        }} onClick={() => {
+                            setFormMode(1)
+                        }} variant="text">Sign up</Button>
+                    </div>
+                    {hasLoginError && <p className="errorMessage" style={{
+                        margin: 0
+                    }}>*The email address is already in use.</p>}
+                </React.Fragment>}
             </div>
         </div>
     );

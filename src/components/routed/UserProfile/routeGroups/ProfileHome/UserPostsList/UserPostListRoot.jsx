@@ -22,10 +22,11 @@ let posts = [
     }
 ]
 function UserPostListRoot(props) {
+    console.log(props.createsPosts)
     return (
         <div className='postListRootUser'>
 
-            {posts.map((post, index) => {
+            {props.createsPosts.map((post, index) => {
                 return <PostItem key={index} post={post} />
             })}
 

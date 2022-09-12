@@ -21,6 +21,7 @@ import ProfileTabSelector from '../shared/ProfileTabSelector/ProfileTabSelector'
 import InterestList from '../routeGroups/ProfileHome/InterestList/InterestList';
 import FeaturedPostGroupRoot from '../routeGroups/ProfileHome/FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
 import FriendListRoot from '../routeGroups/FriendList/FriendListRoot/FriendListRoot';
+import UserService from '../../../../service/UserServices';
 
 function UserProfileRoot(props) {
     const user = useSelector((state) => state.currentUser.value)
@@ -29,22 +30,26 @@ function UserProfileRoot(props) {
     const currentRoute = useParams()
     const [isOnMobile, seDeviceType] = React.useState(false)
     const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
-
-    function setCurrentlyFocusedUser() {
-        setFocusedUserDispatcher(updateCurrentlyViewingUser({
-            Id: currentRoute.userId,
-            name: user.name,
-            profileImage: user.profileImage
-        }))
-
+    const [createsPosts, setCreatedPostList] = React.useState([])
+    function getUserInfo(Id) {
+        UserService.getUserProfileInfo(Id)
+            .then((data) => {
+                let userInfo = {
+                    Id: currentRoute.userId,
+                    name: data.name,
+                    profileImage: data.profileImage
+                }
+                setCreatedPostList(data.createdPosts)
+                setFocusedUserDispatcher(updateCurrentlyViewingUser(userInfo))
+            })
     }
     const { ref, inView } = useInView({
-        /* Optional options */
+
         threshold: 0,
     });
     React.useEffect(() => {
 
-        setCurrentlyFocusedUser()
+        getUserInfo(currentRoute.userId)
 
         seDeviceType(window.innerWidth <= 620)
         sideBarToggleStatusrDispatcher(setToggleStatus(-2))
@@ -82,7 +87,7 @@ function UserProfileRoot(props) {
 
 
                                         <InitialCreatePostView />
-                                        <UserPostListRoot />
+                                        <UserPostListRoot createsPosts={createsPosts} />
                                     </div>
                                     <InterestList />
                                 </div>
@@ -110,7 +115,7 @@ function UserProfileRoot(props) {
                                 <FeaturedPostGroupRoot />
                                 <InitialCreatePostView />
 
-                                <UserPostListRoot />
+                                <UserPostListRoot createsPosts={createsPosts} />
                             </>}>
 
                             </Route>

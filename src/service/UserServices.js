@@ -2,6 +2,15 @@ import Globals from "./Globals";
 import UploadManager from "./UploadManager";
 
 export default class UserService {
+    static async login(userInfo) {
+        return await fetch(Globals.SERVER_IP + '/user/login', {
+            method: 'POST',
+            body: JSON.stringify(userInfo),
+            headers: {
+                'Content-Type': "application/json"
+            }
+        }).then(res => res.json())
+    }
     static async registerUser(userInfo) {
         return await fetch(Globals.SERVER_IP + '/user/register', {
             method: 'POST',
@@ -19,6 +28,39 @@ export default class UserService {
                 'token': localStorage.getItem('token')
             }
         }).then(res => res.json())
+    }
+    static async getUserProfileInfo(Id) {
+        let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: `query{
+                    findUserById(Id:${Id}){
+                      name
+                      profileImage
+                      coverPhoto
+                      createdPosts{
+                        Id
+                        body
+                        posted_by
+                        posted_on
+                        numReactions
+                        attached_media
+                        numComments
+                        creatorInfo{
+                            Id
+                            name
+                            profileImage
+                          }
+                      }
+                    }
+                  }`
+            })
+        }).then(res => res.json())
+
+        return data.findUserById
     }
     static async registerThenUploadImage(userInfo, profileImgeURL) {
         let { Id, token } = await UserService.registerUser(userInfo)
