@@ -21,7 +21,7 @@ function PostItem(props) {
                 </div>
                 <MoreVertIcon className='moreBtn' />
             </div>
-            <Link to='/post/1'>
+            <Link to={`/post/${props.post.Id}`}>
                 <div className="postContent">
                     <p className="postText">{props.post.body}</p>
                     {JSON.parse(props.post.attached_media)[0] !== null && <div className="postImageContainer">

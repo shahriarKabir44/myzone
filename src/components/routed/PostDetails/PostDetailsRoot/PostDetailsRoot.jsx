@@ -2,24 +2,37 @@ import React from 'react';
 import PostImageContainer from '../PostImageContainer/PostImageContainer';
 import CommentIcon from '@mui/icons-material/Comment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { Navigate, useParams } from 'react-router-dom';
 
 import './PostDetailsRoot.css'
 import PostComments from '../PostComments/PostComments';
-let postInfo = {
-    postedBy: 1,
-    creatorInfo: {
-        Id: 1,
-        name: "Shahriar Kabir",
-        profileImage: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg"
-    },
-    postBody: "Nice \n sunset",
-    linkedImages: [
-        "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2VhJTIwc3Vuc2V0fGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-        "https://upload.wikimedia.org/wikipedia/commons/5/58/Sunset_2007-1.jpg"
-    ],
-    time: (new Date()) * 1
-};
+import PostService from '../../../../service/PostService';
+
 function PostDetailsRoot(props) {
+    const currentRoute = useParams()
+    const [postDetails, setPostDetails] = React.useState({
+        "Id": "",
+        "body": " ",
+        "attached_media": "[]",
+        "posted_on": 0,
+        "numReactions": null,
+        "numComments": null,
+        "creatorInfo": {
+            "Id": "",
+            "name": "",
+            "profileImage": ""
+        },
+        "getFirstComments": []
+    })
+    const [postComments, setPostComments] = React.useState([])
+    React.useEffect(() => {
+        PostService.getPostDetails(currentRoute.Id)
+            .then((postDetails) => {
+                setPostComments(postDetails.getFirstComments)
+
+                setPostDetails({ ...postDetails, getFirstComments: [] })
+            })
+    }, [])
     return (
         <div className="mainPostDetailsContainer">
             <div></div>
@@ -28,21 +41,21 @@ function PostDetailsRoot(props) {
                     <div style={{
                         width: '50px'
                     }} className="userImg">
-                        <img src={postInfo.creatorInfo.profileImage} alt="" className="creatorImg" />
+                        <img src={postDetails.creatorInfo.profileImage} alt="" className="creatorImg" />
                     </div>
                     <div className="infoContainer">
                         <p style={{
                             margin: 0
-                        }} className="creatorName">{postInfo.creatorInfo.name}</p>
+                        }} className="creatorName">{postDetails.creatorInfo.name}</p>
                         <p style={{
                             margin: 0
-                        }} className="creationTime"> {new Date(postInfo.time).toLocaleString()} </p>
+                        }} className="creationTime"> {new Date(postDetails.posted_on).toLocaleString()} </p>
                     </div>
                 </div>
                 <div className="postBodyContainer">
-                    <p className="postText">{postInfo.postBody}</p>
+                    <p className="postText">{postDetails.body}</p>
                 </div>
-                {postInfo.linkedImages.length > 0 && <PostImageContainer images={postInfo.linkedImages} />}
+                {JSON.parse(postDetails.attached_media).length > 0 && <PostImageContainer images={JSON.parse(postDetails.attached_media)} />}
 
                 <div className="reactionsTab">
                     <div className="likes postInteractions">
@@ -54,7 +67,7 @@ function PostDetailsRoot(props) {
                         <p className="commentsCount  reactionText">20</p>
                     </div>
                 </div>
-                <PostComments />
+                <PostComments comments={postComments} />
             </div>
             <div></div>
         </div>

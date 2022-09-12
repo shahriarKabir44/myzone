@@ -21,7 +21,7 @@ let comments = [
         }
     },
 ]
-function PostComments(props) {
+function PostComments({ comments }) {
     return (
         <div className="postCommentsRoot">
             <p style={{
@@ -40,13 +40,13 @@ function PostCommentItem({ comment }) {
     return (
         <div className="commentRoot">
             <div className="commenterImgContainer" style={{ width: "50px" }}>
-                <img src={comment.commenterInfo.profileImage} alt="" style={{ width: "100%" }} className="commenterImg" />
+                <img src={comment.commenterProfileImage} alt="" style={{ width: "100%" }} className="commenterImg" />
             </div>
             <div className="commentsContainer">
 
-                <p className="commenterName">{comment.commenterInfo.name}</p>
+                <p className="commenterName">{comment.commenterName}</p>
                 <p className="commentBody">
-                    {comment.body}
+                    {comment.commentBody}
                 </p>
                 <p className="commentTime">{new Date(comment.time).toLocaleString()}</p>
 

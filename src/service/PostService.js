@@ -53,4 +53,40 @@ export default class PostService {
             }
         })
     }
+    static async getPostDetails(Id) {
+        let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify({
+                query: `query{
+                    findPostById(Id:${Id}){
+                       Id
+                      body
+                      attached_media
+                      posted_on
+                      numReactions
+                      numComments
+                      creatorInfo{
+                        Id
+                        name
+                        profileImage
+                        
+                      }
+                      getFirstComments{
+                        commentId
+                        commentBody
+                        commenterId
+                        commenterName
+                        time
+                        commenterProfileImage
+                      }
+                    }
+                  }`
+            }),
+
+        }).then(res => res.json())
+        return data.findPostById
+    }
 }
