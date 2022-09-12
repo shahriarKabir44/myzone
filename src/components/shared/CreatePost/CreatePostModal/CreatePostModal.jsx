@@ -33,7 +33,6 @@ function CreatePostModal(props) {
     }, [])
     const fileInputRef = React.useRef(null)
     function handleFileChange(event) {
-        console.log('here')
         const fileObj = event.target.files && event.target.files[0];
         if (!fileObj) {
             return;

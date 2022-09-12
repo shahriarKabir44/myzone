@@ -19,9 +19,7 @@ export default class PostService {
 
     }
     static async createPost(postedBy, postBody, imageURIs) {
-        console.log(imageURIs)
         let { newPost } = await PostService.createPostObject(postedBy, postBody)
-        console.log(newPost)
         let uploadedURLs = []
         let promises = []
         for (let n = 0; n < imageURIs.length; n++) {
@@ -37,10 +35,8 @@ export default class PostService {
         Promise.all(promises).then(() => {
             PostService.setPostImageURLs(newPost.Id, JSON.stringify(uploadedURLs))
         })
-        console.log(uploadedURLs)
     }
     static async setPostImageURLs(Id, attached_media) {
-        console.log(attached_media)
         return fetch(Globals.SERVER_IP + '/post/setPostImageURLs', {
             method: 'POST',
             body: JSON.stringify({

@@ -1,26 +1,8 @@
 import React from 'react';
 import './PostComments.css'
+import { Link } from 'react-router-dom'
 import SendIcon from '@mui/icons-material/Send';
-let comments = [
-    {
-        commentedBy: 1,
-        time: (new Date()) * 1,
-        body: "Very nice",
-        commenterInfo: {
-            name: "Shahriar Kabir",
-            profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-        }
-    },
-    {
-        commentedBy: 1,
-        time: (new Date()) * 1 - 3600,
-        body: "Very nice indeed",
-        commenterInfo: {
-            name: "Monir Kabir",
-            profileImage: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg"
-        }
-    },
-]
+
 function PostComments({ comments }) {
     return (
         <div className="postCommentsRoot">
@@ -43,8 +25,10 @@ function PostCommentItem({ comment }) {
                 <img src={comment.commenterProfileImage} alt="" style={{ width: "100%" }} className="commenterImg" />
             </div>
             <div className="commentsContainer">
+                <Link to={"/profile/" + comment.commenterId}>
+                    <p className="commenterName">{comment.commenterName}</p>
+                </Link>
 
-                <p className="commenterName">{comment.commenterName}</p>
                 <p className="commentBody">
                     {comment.commentBody}
                 </p>

@@ -60,11 +60,11 @@ function PostDetailsRoot(props) {
                 <div className="reactionsTab">
                     <div className="likes postInteractions">
                         <ThumbUpIcon className='reactionBtn' />
-                        <p className="likesCount reactionText">{Math.floor(Math.random() * 100) + 10}</p>
+                        <p className="likesCount reactionText">{postDetails.numReactions ? postDetails.numReactions : 0}</p>
                     </div>
                     <div className="comments postInteractions">
                         <CommentIcon className='reactionBtn' />
-                        <p className="commentsCount  reactionText">20</p>
+                        <p className="commentsCount  reactionText">{postDetails.numComments ? postDetails.numComments : 0}</p>
                     </div>
                 </div>
                 <PostComments comments={postComments} />

@@ -27,7 +27,6 @@ function App() {
 	React.useEffect(() => {
 		UserService.isAuthorized()
 			.then(({ user }) => {
-
 				setCurrentUserDispatch(updateUserInfo(user))
 				if (!user) {
 					navigate('/')

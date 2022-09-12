@@ -28,7 +28,6 @@ function LoginRegistration(props) {
         if (!fileObj) {
             return;
         }
-        console.log(fileObj)
         setSelectedImage(URL.createObjectURL(fileObj))
     }
     return (
@@ -87,7 +86,6 @@ function LoginRegistration(props) {
                 {(formMode === 1) && <>
                     <div className='formActionBtnContainer'>
                         <Button onClick={() => {
-                            console.log(userData)
                             UserService.registerThenUploadImage(userData, selectedImage)
                                 .then(data => {
                                     if (!data) {
@@ -116,11 +114,9 @@ function LoginRegistration(props) {
                 {(formMode === 2 || formMode === 0) && <React.Fragment>
                     <div className='formActionBtnContainer'>
                         <Button onClick={() => {
-                            console.log(userData)
                             UserService.login(userData)
                                 .then(data => {
                                     localStorage.setItem('token', data.token)
-                                    console.log(data)
                                     if (!data) setHasLoginError(true)
                                     else {
                                         globalUserDispatcher(updateUserInfo(data.data))

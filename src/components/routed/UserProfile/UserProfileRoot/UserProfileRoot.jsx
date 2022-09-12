@@ -24,7 +24,7 @@ import FriendListRoot from '../routeGroups/FriendList/FriendListRoot/FriendListR
 import UserService from '../../../../service/UserServices';
 
 function UserProfileRoot(props) {
-    const user = useSelector((state) => state.currentUser.value)
+    const [user, setUser] = React.useState({})
     const sideBarToggleStatusrDispatcher = useDispatch()
     const setFocusedUserDispatcher = useDispatch()
     const currentRoute = useParams()
@@ -37,8 +37,10 @@ function UserProfileRoot(props) {
                 let userInfo = {
                     Id: currentRoute.userId,
                     name: data.name,
-                    profileImage: data.profileImage
+                    profileImage: data.profileImage,
+                    coverPhoto: data.coverPhoto
                 }
+                setUser(userInfo)
                 setCreatedPostList(data.createdPosts)
                 setFocusedUserDispatcher(updateCurrentlyViewingUser(userInfo))
             })
@@ -55,7 +57,7 @@ function UserProfileRoot(props) {
         sideBarToggleStatusrDispatcher(setToggleStatus(-2))
 
 
-    }, []);
+    }, [currentRoute]);
 
 
     return (
