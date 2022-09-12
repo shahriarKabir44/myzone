@@ -67,6 +67,7 @@ function PostDetailsRoot(props) {
                         <p className="commentsCount  reactionText">{postDetails.numComments ? postDetails.numComments : 0}</p>
                     </div>
                 </div>
+                {/* needs an event handler to update postComments when a comment is posted */}
                 <PostComments comments={postComments} />
             </div>
             <div></div>
