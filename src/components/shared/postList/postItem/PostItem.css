@@ -30,6 +30,11 @@
 
 .postViewText {
     color: white;
+    margin: 20px
+}
+
+p.time {
+    font-size: 10px;
 }
 
 .postHeader {
