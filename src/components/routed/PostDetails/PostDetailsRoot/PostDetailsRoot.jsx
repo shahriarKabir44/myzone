@@ -7,11 +7,20 @@ import { useSelector } from 'react-redux';
 import './PostDetailsRoot.css'
 import PostComments from '../PostComments/PostComments';
 import PostService from '../../../../service/PostService';
-import CommentService from '../../../../service/CommentService';
+import PostInteractionService from '../../../../service/PostInteractionService';
 
 function PostDetailsRoot(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const currentRoute = useParams()
+    const [hasReacted, setReactionSattus] = React.useState(false)
+    function checkReaction() {
+        PostInteractionService.hasReacted({
+            postId: currentRoute.Id,
+            reactedBy: currentUser.Id
+        }).then(({ data }) => {
+            setReactionSattus(data)
+        })
+    }
     const [postDetails, setPostDetails] = React.useState({
         "Id": "",
         "body": " ",
@@ -31,7 +40,7 @@ function PostDetailsRoot(props) {
         PostService.getPostDetails(currentRoute.Id)
             .then((postDetails) => {
                 setPostComments(postDetails.getFirstComments.reverse())
-
+                checkReaction()
                 setPostDetails({ ...postDetails, getFirstComments: [] })
             })
     }, [])
@@ -61,7 +70,35 @@ function PostDetailsRoot(props) {
 
                 <div className="reactionsTab">
                     <div className="likes postInteractions">
-                        <ThumbUpIcon className='reactionBtn' />
+                        <div onClick={() => {
+                            if (!hasReacted) {
+                                PostInteractionService.react({
+                                    postId: currentRoute.Id,
+                                    reactedBy: currentUser.Id
+                                }).then(() => {
+                                    let reactionCount = postDetails.numReactions + 1
+
+                                    setPostDetails({ ...postDetails, numReactions: reactionCount })
+                                    setReactionSattus(true)
+                                })
+                            }
+                            else {
+                                PostInteractionService.removeReaction({
+                                    postId: currentRoute.Id,
+                                    reactedBy: currentUser.Id
+                                }).then(() => {
+                                    let reactionCount = postDetails.numReactions - 1
+                                    setPostDetails({ ...postDetails, numReactions: reactionCount })
+                                    setReactionSattus(false)
+                                })
+                            }
+
+                        }}>
+                            <ThumbUpIcon style={{
+                                color: `${hasReacted ? "#2323ab" : "white"}`
+                            }} className='reactionBtn' />
+
+                        </div>
                         <p className="likesCount reactionText">{postDetails.numReactions ? postDetails.numReactions : 0}</p>
                     </div>
                     <div className="comments postInteractions">
@@ -76,10 +113,13 @@ function PostDetailsRoot(props) {
                         commentedBy: currentUser.Id,
                         postId: currentRoute.Id
                     }
-                    CommentService.postComment(newComment)
+                    PostInteractionService.postComment(newComment)
                         .then(({ data }) => {
                             console.log(data);
                             setPostComments([...postComments, data])
+                            let numComments = postDetails.numComments + 1
+                            setPostDetails({ ...postDetails, numComments: numComments })
+
                         })
                 }} comments={postComments} />
             </div>
