@@ -3,7 +3,7 @@ import './PostComments.css'
 import { Link } from 'react-router-dom'
 import SendIcon from '@mui/icons-material/Send';
 
-function PostComments({ comments }) {
+function PostComments({ comments, onCommentCreated }) {
     return (
         <div className="postCommentsRoot">
             <p style={{
@@ -13,7 +13,9 @@ function PostComments({ comments }) {
             }}>Comments</p>
             {comments.map((comment, index) => {
                 return <PostCommentItem key={index} comment={comment} />
-            })} <CreateComment />
+            })} <CreateComment onCommentCreated={(comentBody) => {
+                onCommentCreated(comentBody)
+            }} />
         </div>
     );
 }
@@ -41,17 +43,25 @@ function PostCommentItem({ comment }) {
 }
 
 function CreateComment(props) {
+    const [comment, setComment] = React.useState("")
     return (
         <div className="createCommentRoot">
             <p className='createCommentHeading'>Post a comment</p>
             <div className="commentActionsContainer">
-                <input type="text" name="" className='postCommentInput' placeholder='Comment something' id="" />
+                <input value={comment} onChange={(e) => {
+                    setComment(e.target.value)
+                }} type="text" name="" className='postCommentInput' placeholder='Comment something' id="" />
 
-                <SendIcon style={{
-                    padding: "5px",
-                    background: "white",
-                    borderRadius: "5px"
-                }} />
+                <div onClick={() => {
+                    props.onCommentCreated(comment)
+                }} >
+                    <SendIcon style={{
+                        padding: "5px",
+                        background: "white",
+                        borderRadius: "5px"
+                    }} />
+                </div>
+
 
             </div>
         </div>

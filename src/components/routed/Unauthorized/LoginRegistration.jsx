@@ -117,7 +117,8 @@ function LoginRegistration(props) {
                             UserService.login(userData)
                                 .then(data => {
                                     localStorage.setItem('token', data.token)
-                                    if (!data) setHasLoginError(true)
+                                    console.log(data)
+                                    if (data.data === -1) setHasLoginError(true)
                                     else {
                                         globalUserDispatcher(updateUserInfo(data.data))
                                     }
@@ -132,7 +133,7 @@ function LoginRegistration(props) {
                     </div>
                     {hasLoginError && <p className="errorMessage" style={{
                         margin: 0
-                    }}>*The email address is already in use.</p>}
+                    }}>*Invalid email or password</p>}
                 </React.Fragment>}
             </div>
         </div>

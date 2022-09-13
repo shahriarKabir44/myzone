@@ -2,13 +2,15 @@ import React from 'react';
 import PostImageContainer from '../PostImageContainer/PostImageContainer';
 import CommentIcon from '@mui/icons-material/Comment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import { Navigate, useParams } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './PostDetailsRoot.css'
 import PostComments from '../PostComments/PostComments';
 import PostService from '../../../../service/PostService';
+import CommentService from '../../../../service/CommentService';
 
 function PostDetailsRoot(props) {
+    const currentUser = useSelector((state) => state.currentUser.value)
     const currentRoute = useParams()
     const [postDetails, setPostDetails] = React.useState({
         "Id": "",
@@ -28,7 +30,7 @@ function PostDetailsRoot(props) {
     React.useEffect(() => {
         PostService.getPostDetails(currentRoute.Id)
             .then((postDetails) => {
-                setPostComments(postDetails.getFirstComments)
+                setPostComments(postDetails.getFirstComments.reverse())
 
                 setPostDetails({ ...postDetails, getFirstComments: [] })
             })
@@ -68,7 +70,18 @@ function PostDetailsRoot(props) {
                     </div>
                 </div>
                 {/* needs an event handler to update postComments when a comment is posted */}
-                <PostComments comments={postComments} />
+                <PostComments onCommentCreated={(comment) => {
+                    let newComment = {
+                        commentBody: comment,
+                        commentedBy: currentUser.Id,
+                        postId: currentRoute.Id
+                    }
+                    CommentService.postComment(newComment)
+                        .then(({ data }) => {
+                            console.log(data);
+                            setPostComments([...postComments, data])
+                        })
+                }} comments={postComments} />
             </div>
             <div></div>
         </div>
