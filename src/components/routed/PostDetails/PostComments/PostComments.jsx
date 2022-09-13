@@ -27,7 +27,7 @@ function PostCommentItem({ comment }) {
                 <img src={comment.commenterProfileImage} alt="" style={{ width: "100%" }} className="commenterImg" />
             </div>
             <div className="commentsContainer">
-                <Link to={"/profile/" + comment.commenterId}>
+                <Link style={{ textDecoration: 'none' }} to={"/profile/" + comment.commenterId}>
                     <p className="commenterName">{comment.commenterName}</p>
                 </Link>
 
@@ -38,7 +38,7 @@ function PostCommentItem({ comment }) {
 
 
             </div>
-        </div>
+        </div >
     )
 }
 
@@ -53,6 +53,7 @@ function CreateComment(props) {
                 }} type="text" name="" className='postCommentInput' placeholder='Comment something' id="" />
 
                 <div onClick={() => {
+                    setComment('')
                     props.onCommentCreated(comment)
                 }} >
                     <SendIcon style={{

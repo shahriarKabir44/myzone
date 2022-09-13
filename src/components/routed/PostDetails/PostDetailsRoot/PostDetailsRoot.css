@@ -33,6 +33,10 @@
     overflow-y: auto;
 }
 
+.mainPostDetailsContainer::-webkit-scrollbar {
+    display: none;
+}
+
 @media screen and (max-width:620px) {
     .mainPostDetailsContainer {
         max-height: var(--containerHeightSmall);

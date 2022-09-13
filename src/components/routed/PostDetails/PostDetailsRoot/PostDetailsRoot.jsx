@@ -12,13 +12,13 @@ import PostInteractionService from '../../../../service/PostInteractionService';
 function PostDetailsRoot(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const currentRoute = useParams()
-    const [hasReacted, setReactionSattus] = React.useState(false)
+    const [hasReacted, setReactionSatus] = React.useState(false)
     function checkReaction() {
         PostInteractionService.hasReacted({
             postId: currentRoute.Id,
             reactedBy: currentUser.Id
         }).then(({ data }) => {
-            setReactionSattus(data)
+            setReactionSatus(data)
         })
     }
     const [postDetails, setPostDetails] = React.useState({
@@ -79,7 +79,7 @@ function PostDetailsRoot(props) {
                                     let reactionCount = postDetails.numReactions + 1
 
                                     setPostDetails({ ...postDetails, numReactions: reactionCount })
-                                    setReactionSattus(true)
+                                    setReactionSatus(true)
                                 })
                             }
                             else {
@@ -89,7 +89,7 @@ function PostDetailsRoot(props) {
                                 }).then(() => {
                                     let reactionCount = postDetails.numReactions - 1
                                     setPostDetails({ ...postDetails, numReactions: reactionCount })
-                                    setReactionSattus(false)
+                                    setReactionSatus(false)
                                 })
                             }
 
@@ -99,14 +99,15 @@ function PostDetailsRoot(props) {
                             }} className='reactionBtn' />
 
                         </div>
-                        <p className="likesCount reactionText">{postDetails.numReactions ? postDetails.numReactions : 0}</p>
+                        <p className="likesCount reactionText">{postDetails.numReactions ? postDetails.numReactions : 0} reaction(s)</p>
                     </div>
                     <div className="comments postInteractions">
                         <CommentIcon className='reactionBtn' />
-                        <p className="commentsCount  reactionText">{postDetails.numComments ? postDetails.numComments : 0}</p>
+                        <p className="commentsCount  reactionText">{postDetails.numComments ? postDetails.numComments : 0} comment(s)</p>
                     </div>
                 </div>
-                {/* needs an event handler to update postComments when a comment is posted */}
+
+
                 <PostComments onCommentCreated={(comment) => {
                     let newComment = {
                         commentBody: comment,

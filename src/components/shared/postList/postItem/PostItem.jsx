@@ -4,8 +4,22 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CommentIcon from '@mui/icons-material/Comment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+import PostInteractionService from '../../../../service/PostInteractionService'
 function PostItem(props) {
-    const creatorInfo = props.post.creatorInfo
+
+    const [post, setPostDetails] = React.useState(props.post)
+    const currentUser = useSelector((state) => state.currentUser.value)
+    const [hasReacted, setReactionSatus] = React.useState(false)
+    React.useEffect(() => {
+        PostInteractionService.hasReacted({
+            postId: post.Id,
+            reactedBy: currentUser.Id
+        }).then(({ data }) => {
+            setReactionSatus(data)
+        })
+    }, [currentUser])
+    const creatorInfo = post.creatorInfo
     return (
         <div className='postBody'>
             <div className="postHeader">
@@ -16,16 +30,16 @@ function PostItem(props) {
                     </div>
                     <div className="info">
                         <p className="creatorName postViewText">{creatorInfo.name}</p>
-                        <p className="time postViewText">{new Date(props.post.posted_on).toLocaleString()}</p>
+                        <p className="time postViewText">{new Date(post.posted_on).toLocaleString()}</p>
                     </div>
                 </div>
                 <MoreVertIcon className='moreBtn' />
             </div>
-            <Link to={`/post/${props.post.Id}`}>
+            <Link to={`/post/${post.Id}`}>
                 <div className="postContent">
-                    <p className="postText">{props.post.body}</p>
-                    {JSON.parse(props.post.attached_media)[0] !== null && <div className="postImageContainer">
-                        <img src={JSON.parse(props.post.attached_media)[0]} alt="" style={{ width: "100%" }} className="postImage" />
+                    <p className="postText">{post.body}</p>
+                    {JSON.parse(post.attached_media)[0] !== null && <div className="postImageContainer">
+                        <img src={JSON.parse(post.attached_media)[0]} alt="" style={{ width: "100%" }} className="postImage" />
 
                     </div>}
                 </div>
@@ -33,14 +47,45 @@ function PostItem(props) {
             {/*  */}
             <div className="reactionsTab">
                 <div className="likes postInteractions">
-                    <ThumbUpIcon className='reactionBtn' />
-                    <p className="likesCount reactionText">{props.post.numReactions ? props.post.numReactions : 0}</p>
+                    <div onClick={() => {
+                        if (!hasReacted) {
+                            PostInteractionService.react({
+                                postId: post.Id,
+                                reactedBy: currentUser.Id
+                            }).then(() => {
+                                let reactionCount = post.numReactions + 1
+
+                                setPostDetails({ ...post, numReactions: reactionCount })
+                                setReactionSatus(true)
+                            })
+                        }
+                        else {
+                            PostInteractionService.removeReaction({
+                                postId: post.Id,
+                                reactedBy: currentUser.Id
+                            }).then(() => {
+                                let reactionCount = post.numReactions - 1
+                                setPostDetails({ ...post, numReactions: reactionCount })
+                                setReactionSatus(false)
+                            })
+                        }
+
+                    }}>
+                        <ThumbUpIcon style={{
+                            color: `${hasReacted ? "#2323ab" : "white"}`
+                        }} className='reactionBtn' />
+
+                    </div>
+                    <p className="likesCount reactionText">{post.numReactions ? post.numReactions : 0} reaction(s)</p>
                 </div>
                 <div className="comments postInteractions">
                     <CommentIcon className='reactionBtn' />
-                    <p className="commentsCount  reactionText">{props.post.numComments ? props.post.numComments : 0}</p>
+                    <p className="commentsCount  reactionText">{post.numComments ? post.numComments : 0} comment(s)</p>
                 </div>
             </div>
+
+
+
         </div>
     );
 }
