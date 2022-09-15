@@ -77,6 +77,7 @@ export default class UserService {
             })
         return {
             ...userInfo,
+            Id: Id,
             profileImage: createdProfileImageURL.data
         }
     }

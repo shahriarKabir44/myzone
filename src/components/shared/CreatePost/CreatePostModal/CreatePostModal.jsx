@@ -12,7 +12,7 @@ import UserInfoContainer from '../../UserInfoContainer'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Snackbar from '@mui/material/Snackbar';
 import PostService from '../../../../service/PostService';
-const style = {
+const modalStyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -52,7 +52,7 @@ function CreatePostModal(props) {
                 aria-describedby="modal-modal-description"
 
             >
-                <Box sx={style}>
+                <Box sx={modalStyle}>
                     <h2 className='createPostModalHeader'>
                         Create a post
                     </h2>

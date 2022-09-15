@@ -3,6 +3,17 @@
     padding: 10px;
 }
 
+.friendInfoContainer {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.createMessageContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
 .conversationImgContainer {
     width: 50px;
 }
@@ -28,9 +39,12 @@
     align-items: center;
     line-height: 1px;
     gap: 0.5em;
-    border: 1px solid white;
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
     color: white;
+}
+
+.conversationContainer:hover {
+    background: #9c9fa1;
 }

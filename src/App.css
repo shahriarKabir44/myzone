@@ -10,7 +10,7 @@
     height: var(--containerHeightLarge);
     top: 113px;
     background: white;
-    z-index: 2000;
+    z-index: 1000;
 
     overflow-y: auto;
 
