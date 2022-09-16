@@ -100,7 +100,7 @@ function ConversationListRoot(props) {
             }} variant="contained">
                 <div className="createMessageContainer">
                     <RateReviewIcon />
-                    <p>Create new message</p>
+                    <p>Create new conversation</p>
                 </div>
             </Button>
             <CreateConversationModal currentUserId={currentUser.Id} friendList={friendsList} open={shouldOpenCreateConversationModal} onClose={() => {

@@ -5,8 +5,9 @@ import './MessageContainerRoot.css'
 function MessageContainerRoot(props) {
     return (
         <div className='messagesContainerRoot'>
-            {props.messages.messages.map((message, index) => {
+            {props.messages.map((message, index) => {
                 return <Message message={message} key={index} />
+                // return <p key={index}>{message.body}</p>
             })}
 
         </div>

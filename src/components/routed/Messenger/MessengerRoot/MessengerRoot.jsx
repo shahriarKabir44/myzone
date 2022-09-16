@@ -2,7 +2,6 @@ import React from 'react';
 import './MessengerRoot.css'
 import ConversationListRoot from '../../../shared/SlideInMessageContainer/MessagesContainer/ConversationListRoot'
 import TextingContainer from '../TextingContainer/TextingContainer';
-
 function MessengerRoot(props) {
     const [isOnMobileScreen, setScreenType] = React.useState(false)
     React.useEffect(() => {
