@@ -39,23 +39,26 @@ function TextingContainer(props) {
             </div>
             <div className="messagesContainer">
                 <MessageContainerRoot messages={messages} /> {/**/}
-                <div className="commentActionsContainer">
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    let message = messageText
+                    setmessageText('')
+                    sendMessage(message)
+                }} className="commentActionsContainer">
                     <input value={messageText}
                         onChange={(e) => {
                             setmessageText(e.target.value)
                         }}
                         type="text" name="" className='postCommentInput' placeholder='Your Message' id="" />
 
-                    <div onClick={() => {
-                        sendMessage(messageText)
-                    }}><SendIcon style={{
+                    <div type="submit"><SendIcon style={{
                         padding: "5px",
                         background: "white",
                         borderRadius: "5px"
                     }} />
                     </div>
 
-                </div>
+                </form>
             </div>
         </div>
     );

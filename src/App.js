@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css'
+import Globals from './service/Globals'
 
 import {
 	useNavigate,
@@ -24,7 +25,6 @@ function App() {
 	const location = useLocation();
 	const currentser = useSelector(state => state.currentUser.value)
 	const setCurrentUserDispatch = useDispatch()
-
 	React.useEffect(() => {
 
 		UserService.isAuthorized()
@@ -34,6 +34,7 @@ function App() {
 				if (!user) {
 					navigate('/')
 				}
+				else Globals.initSocket(user.Id)
 			})
 
 	}, [])
