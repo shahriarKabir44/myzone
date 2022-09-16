@@ -11,17 +11,18 @@ import useChat from '../../../../service/useChat';
 function TextingContainer(props) {
     const currentUser = useSelector(state => state.currentUser.value)
     const currentRoute = useParams()
-    const { messages, sendMessage, setMessages } = useChat(currentRoute.conversationId, currentUser.Id, [])
+    const { messages, sendMessage, setMessages, setParticipantId } = useChat(currentRoute.conversationId, currentUser.Id, [])
     const [messageText, setmessageText] = React.useState("")
     const [participantInfo, setParticipantInfo] = React.useState({})
     React.useEffect(() => {
         ConversationService.getConversationMessages(currentRoute.conversationId)
             .then(({ data }) => {
-                console.log(data)
+
                 setMessages(data)
             })
         ConversationService.getParticipantInfo(currentRoute.conversationId, currentUser.Id)
             .then(({ participant }) => {
+                setParticipantId(participant.Id)
                 setParticipantInfo(participant)
             })
     }, [currentUser, currentRoute])
@@ -51,12 +52,13 @@ function TextingContainer(props) {
                         }}
                         type="text" name="" className='postCommentInput' placeholder='Your Message' id="" />
 
-                    <div type="submit"><SendIcon style={{
-                        padding: "5px",
-                        background: "white",
-                        borderRadius: "5px"
-                    }} />
-                    </div>
+                    <button type="submit">
+                        <SendIcon style={{
+                            padding: "5px",
+                            background: "white",
+                            borderRadius: "5px"
+                        }} />
+                    </button>
 
                 </form>
             </div>

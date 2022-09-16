@@ -17,6 +17,7 @@ export default class Globals {
             }
             socket.send(JSON.stringify(message))
         }
+
         Globals.socket = socket
         Globals.hasSocketInitiated = true
     }

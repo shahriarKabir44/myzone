@@ -25,7 +25,7 @@ export default class ConversationService {
         }).then(res => res.json())
     }
     static async getParticipantInfo(conversationId, currentUserId) {
-        return fetch(Globals.SERVER_IP + '/conversation/getParticipantInfo/', {
+        return fetch(Globals.SERVER_IP + '/conversation/getParticipantInfo', {
             method: 'POST',
             body: JSON.stringify({
                 conversationId, currentUserId

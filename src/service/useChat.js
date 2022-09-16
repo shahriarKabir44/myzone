@@ -5,7 +5,7 @@ import Globals from './Globals'
 export default function useChat(conversationId, sender, messageList) {
     const [messages, setMessages] = React.useState(messageList);
     const socketRef = React.useRef()
-
+    const [participantId, setParticipantId] = React.useState(-1)
     React.useEffect(() => {
         try {
             socketRef.current = Globals.socket
@@ -13,10 +13,10 @@ export default function useChat(conversationId, sender, messageList) {
             console.log(error)
         }
 
-        // socketRef.current.on("messageReceived", (newMessage) => {
-        //     console.log(newMessage)
-        //     setMessages([...messages, newMessage])
-        // })
+        socketRef.current.onmessage = ({ data }) => {
+            data = (JSON.parse(data))
+            setMessages([...messages, data.newMessage])
+        }
     })
     function sendMessage(body) {
         console.log(body)
@@ -25,7 +25,11 @@ export default function useChat(conversationId, sender, messageList) {
             conversationId, sender, time, body
         }
         setMessages([...messages, newMessage])
-        socketRef.current.send(JSON.stringify(newMessage))
+        let message = {
+            type: 'personalMessage',
+            body: { newMessage, participantId }
+        }
+        socketRef.current.send(JSON.stringify(message))
     }
-    return { messages, sendMessage, setMessages }
+    return { messages, sendMessage, setMessages, setParticipantId }
 }
