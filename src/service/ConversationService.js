@@ -36,4 +36,14 @@ export default class ConversationService {
             }
         }).then(res => res.json())
     }
+    static async createMessage(message) {
+        return fetch(Globals.SERVER_IP + '/conversation/createMessage', {
+            method: 'POST',
+            body: JSON.stringify(message),
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token')
+            }
+        }).then(res => res.json())
+    }
 }

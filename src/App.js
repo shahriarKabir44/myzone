@@ -1,6 +1,8 @@
 import React from 'react';
-
+import Globals from './service/Globals'
 import './App.css'
+import socketIOClient from 'socket.io-client'
+
 import {
 	useNavigate,
 	Routes,
@@ -27,11 +29,14 @@ function App() {
 	React.useEffect(() => {
 		UserService.isAuthorized()
 			.then(({ user }) => {
+				Globals.socket.emit('poop', user)
+
 				setCurrentUserDispatch(updateUserInfo(user))
 				if (!user) {
 					navigate('/')
 				}
 			})
+
 	}, [])
 	return (
 		<div className="App">
