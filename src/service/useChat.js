@@ -1,4 +1,5 @@
 import React from 'react';
+import ConversationService from './ConversationService';
 import Globals from './Globals'
 // import { io } from 'socket.io-client'
 
@@ -19,11 +20,12 @@ export default function useChat(conversationId, sender, messageList) {
         }
     })
     function sendMessage(body) {
-        console.log(body)
         let time = (new Date()) * 1
         let newMessage = {
             conversationId, sender, time, body
         }
+        window.scrollBy(0, 100);
+        ConversationService.createMessage(newMessage)
         setMessages([...messages, newMessage])
         let message = {
             type: 'personalMessage',

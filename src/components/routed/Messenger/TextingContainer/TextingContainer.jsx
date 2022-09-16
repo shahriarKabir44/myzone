@@ -9,6 +9,7 @@ import useChat from '../../../../service/useChat';
 
 
 function TextingContainer(props) {
+    const divRef = React.useRef(null)
     const currentUser = useSelector(state => state.currentUser.value)
     const currentRoute = useParams()
     const { messages, sendMessage, setMessages, setParticipantId } = useChat(currentRoute.conversationId, currentUser.Id, [])
@@ -18,7 +19,9 @@ function TextingContainer(props) {
         ConversationService.getConversationMessages(currentRoute.conversationId)
             .then(({ data }) => {
 
-                setMessages(data)
+                setMessages(data);
+                divRef.current.scrollIntoView({ behavior: 'smooth' });
+                return data
             })
         ConversationService.getParticipantInfo(currentRoute.conversationId, currentUser.Id)
             .then(({ participant }) => {
@@ -39,12 +42,20 @@ function TextingContainer(props) {
 
             </div>
             <div className="messagesContainer">
-                <MessageContainerRoot messages={messages} /> {/**/}
+                <MessageContainerRoot divRef={divRef} messages={messages} /> {/**/}
                 <form onSubmit={(e) => {
+
                     e.preventDefault();
+
+                    if (messageText.length === 0) return
                     let message = messageText
                     setmessageText('')
                     sendMessage(message)
+                    setTimeout(() => {
+                        divRef.current.scrollIntoView({ behavior: 'smooth' });
+
+                    }, 100)
+
                 }} className="commentActionsContainer">
                     <input value={messageText}
                         onChange={(e) => {
