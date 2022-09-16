@@ -1,6 +1,6 @@
 import React from 'react';
 import OpenWithIcon from '@mui/icons-material/OpenWith';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './ConversationListRoot.css';
 import Button from '@mui/material/Button';
 import RateReviewIcon from '@mui/icons-material/RateReview';
@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import UserInfoContainer from '../../UserInfoContainer'
 import { useSelector } from 'react-redux'
 import FriendshipService from '../../../../service/FriendshipService';
-import EmailIcon from '@mui/icons-material/Email';
+import ConversationService from '../../../../service/ConversationService';
 let conversationList = [
     {
         senderId: "1",
@@ -103,7 +103,7 @@ function ConversationListRoot(props) {
                     <p>Create new message</p>
                 </div>
             </Button>
-            <CreateConversationModal friendList={friendsList} open={shouldOpenCreateConversationModal} onClose={() => {
+            <CreateConversationModal currentUserId={currentUser.Id} friendList={friendsList} open={shouldOpenCreateConversationModal} onClose={() => {
                 toggleConversationModal(false)
             }} />
             <div className="conversationListContainer">
@@ -146,6 +146,15 @@ const modalStyle = {
 };
 
 function CreateConversationModal(props) {
+    let navigate = useNavigate();
+
+    function createConversation(participant2) {
+        ConversationService.createConversation(props.currentUserId, participant2)
+            .then(({ data }) => {
+                props.onClose()
+                return navigate('/messenger/' + data.Id)
+            })
+    }
     return (
         <Modal keepMounted
             open={props.open}
@@ -166,9 +175,11 @@ function CreateConversationModal(props) {
                     </h4>
                     {props.friendList.map((friend, index) => {
                         return (
-                            <div className="friendInfoContainer flex" >
+                            <div className="friendInfoContainer flex" key={index} >
                                 <UserInfoContainer name={friend.name} imgURL={friend.profileImage} />
-                                <Button variant="contained">
+                                <Button onClick={() => {
+                                    createConversation(friend.Id)
+                                }} variant="contained">
                                     Message
                                 </Button>
                             </div>
