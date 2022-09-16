@@ -1,7 +1,5 @@
 import React from 'react';
-import Globals from './service/Globals'
 import './App.css'
-import socketIOClient from 'socket.io-client'
 
 import {
 	useNavigate,
@@ -26,10 +24,11 @@ function App() {
 	const location = useLocation();
 	const currentser = useSelector(state => state.currentUser.value)
 	const setCurrentUserDispatch = useDispatch()
+
 	React.useEffect(() => {
+
 		UserService.isAuthorized()
 			.then(({ user }) => {
-				Globals.socket.emit('poop', user)
 
 				setCurrentUserDispatch(updateUserInfo(user))
 				if (!user) {

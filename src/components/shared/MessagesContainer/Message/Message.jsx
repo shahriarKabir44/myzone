@@ -2,27 +2,15 @@ import React from 'react';
 import './Message.css'
 function Message(props) {
     return (
-        <>
-            {props.message.sender === 1 && <div className="message sent">
 
-                <div className="innerContainer">
+        <div className={`message ${props.message.sender === props.currentUserId ? 'sent' : 'received'} `}>
 
+            <div className="innerContainer">
+                <p className="messageText">{props.message.body}</p>
+            </div>
 
-                    <p className="messageText">{props.message.body}</p>
-                </div>
+        </div>
 
-            </div>}
-
-            {props.message.sender !== 1 && <div className="message received">
-
-                <div className="innerContainer">
-
-
-                    <p className="messageText">{props.message.body}</p>
-                </div>
-
-            </div>}
-        </>
     );
 }
 

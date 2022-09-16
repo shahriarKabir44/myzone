@@ -5,19 +5,20 @@ import SendIcon from '@mui/icons-material/Send';
 import { useParams } from 'react-router-dom';
 import ConversationService from '../../../../service/ConversationService';
 import { useSelector } from 'react-redux'
+import useChat from '../../../../service/useChat';
 
 
 function TextingContainer(props) {
     const currentUser = useSelector(state => state.currentUser.value)
     const currentRoute = useParams()
+    const { messages, sendMessage, setMessages } = useChat(currentRoute.conversationId, currentUser.Id, [])
     const [messageText, setmessageText] = React.useState("")
-    const [messageList, setMessageList] = React.useState([])
     const [participantInfo, setParticipantInfo] = React.useState({})
     React.useEffect(() => {
         ConversationService.getConversationMessages(currentRoute.conversationId)
             .then(({ data }) => {
                 console.log(data)
-                setMessageList(data)
+                setMessages(data)
             })
         ConversationService.getParticipantInfo(currentRoute.conversationId, currentUser.Id)
             .then(({ participant }) => {
@@ -37,7 +38,7 @@ function TextingContainer(props) {
 
             </div>
             <div className="messagesContainer">
-                <MessageContainerRoot messages={messageList} /> {/**/}
+                <MessageContainerRoot messages={messages} /> {/**/}
                 <div className="commentActionsContainer">
                     <input value={messageText}
                         onChange={(e) => {
@@ -46,9 +47,7 @@ function TextingContainer(props) {
                         type="text" name="" className='postCommentInput' placeholder='Your Message' id="" />
 
                     <div onClick={() => {
-                        // ConversationService.createMessage({
-
-                        // })
+                        sendMessage(messageText)
                     }}><SendIcon style={{
                         padding: "5px",
                         background: "white",
