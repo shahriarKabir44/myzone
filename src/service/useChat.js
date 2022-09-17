@@ -16,25 +16,20 @@ export default function useChat(conversationId, sender, messageList, component =
             console.log(error)
         }
 
-        socketRef.current.onmessage = ({ data }) => {
-
-            data = (JSON.parse(data))
-            SocketSubscriptionManager.sendMessages(data)
-
-            if (data.type === 'personalMessage')
-                setMessages([...messages, data.body.newMessage])
-        }
     })
     function subscribe() {
-        SocketSubscriptionManager.subscriptions.push({
-            'component': component,
-            onMessage: (e) => {
-                console.log(e)
+        SocketSubscriptionManager.subscribe({
+            component,
+            onMessage: (data) => {
+                if (data.type === 'personalMessage') {
+                    setMessages([...messages, data.body.newMessage])
+
+                }
             }
         })
     }
     function unsubscribe() {
-        SocketSubscriptionManager.subscriptions = SocketSubscriptionManager.subscriptions.filter(subscription => subscription.component !== component)
+        SocketSubscriptionManager.unsubscribe(component)
     }
 
     function sendMessage(body) {

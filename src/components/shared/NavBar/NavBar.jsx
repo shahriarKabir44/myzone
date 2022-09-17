@@ -1,5 +1,7 @@
 import React from 'react';
 import './NavBar.css'
+import SocketSubscriptionManager from '../../../service/SocketSubscriptionManager'
+import Globals from '../../../service/Globals'
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
@@ -14,12 +16,17 @@ function NavBar(props) {
     const sideBarToggleStatusDispatcher = useDispatch()
     const notificationTrayToggleDispatcher = useDispatch()
     const location = useLocation();
+    const socketRef = React.useRef()
     const currentUser = useSelector((state) => state.currentUser.value)
     const toggleSlideInConversationList = useDispatch()
     React.useEffect(() => {
         if (location.pathname.startsWith('/messenger')) {
             toggleSlideInConversationList(toggleConversationListView())
 
+        }
+        socketRef.current = Globals.socket
+        socketRef.current.onmessage = e => {
+            SocketSubscriptionManager.sendMessages(JSON.parse(e.data))
         }
 
     }, [])

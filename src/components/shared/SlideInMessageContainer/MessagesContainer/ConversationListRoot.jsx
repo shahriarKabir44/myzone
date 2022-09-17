@@ -16,14 +16,17 @@ function ConversationListRoot(props) {
     const currentRoute = useParams()
     const currentUser = useSelector((state) => state.currentUser.value)
     const [friendsList, setFriends] = React.useState([])
-    const { conversationList, setConversationList } = useConversation()
+    const { conversationList, setConversationList, subscribe, unsubscribe } = useConversation()
     // const [conversationList, setConversationList] = React.useState([])
     React.useEffect(() => {
-
+        subscribe()
         ConversationService.getConversationList(currentUser.Id)
             .then(({ conversationList }) => {
                 setConversationList(conversationList)
             })
+        return () => {
+            unsubscribe()
+        }
     }, [])
     const [shouldOpenCreateConversationModal, toggleConversationModal] = React.useState(false)
     function getFriendsList() {

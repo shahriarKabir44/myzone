@@ -6,19 +6,21 @@ export default function useConversation(component = "messagesRoot") {
     const socketRef = React.useRef()
     React.useEffect(() => {
         socketRef.current = Globals.socket
-        Globals.socket.onmessage = ({ data }) => {
-            // SocketSubscriptionManager.sendMessages(data)
-            data = (JSON.parse(data))
-            console.log('hereeee', data)
-            if (data.type !== 'personalMessage') return
-            let { body } = data
-            let { newMessage } = body
-            handleOnMessage(newMessage)
-        }
+
     })
-    // SocketSubscriptionManager.subsciptions.push((e) => {
-    //     console.log(e)
-    // })
+    function subscribe() {
+        SocketSubscriptionManager.subscribe({
+            component,
+            onMessage: (data) => {
+                console.log('here', data)
+                if (data.type === 'personalMessage')
+                    handleOnMessage(data.body.newMessage)
+            }
+        })
+    }
+    function unsubscribe() {
+        SocketSubscriptionManager.unsubscribe(component)
+    }
     function handleOnMessage(newMessage) {
         let tempList = conversationList.filter(conversation => conversation.Id === 1 * newMessage.conversationId)
         if (tempList.length) {
@@ -30,6 +32,6 @@ export default function useConversation(component = "messagesRoot") {
             setConversationList(newList)
         }
     }
-    return { conversationList, setConversationList, handleOnMessage }
+    return { conversationList, setConversationList, handleOnMessage, subscribe, unsubscribe }
 
 }

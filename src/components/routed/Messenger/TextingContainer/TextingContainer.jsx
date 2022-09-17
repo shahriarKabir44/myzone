@@ -30,7 +30,6 @@ function TextingContainer(props) {
                 setParticipantInfo(participant)
             })
         return () => {
-            console.log('here')
             unsubscribe()
         }
     }, [currentUser, currentRoute])
