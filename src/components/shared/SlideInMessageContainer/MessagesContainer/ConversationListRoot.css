@@ -1,6 +1,7 @@
 .conversationListRoot {
     background: #47494a;
     padding: 10px;
+    height: calc(100% - 20px);
 }
 
 .friendInfoContainer {

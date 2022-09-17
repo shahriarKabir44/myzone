@@ -6,14 +6,19 @@ import './SlideInMessagesRoot.css'
 
 function SlideInMessagesRoot(props) {
     const toggleStatus = useSelector(state => state.conversationListToggleManager.value.status)
+    React.useEffect(() => { }, [toggleStatus])
     return (
-        <div style={{
-            background: "#47494a"
-        }} className={`SlideInContainerRoot ${toggleStatus === 1 ? 'slideContainerRight' : toggleStatus === 0 ? 'slideContainerLeft' : ""}`}>
+        <>
+            {toggleStatus === 1 && <div style={{
+                background: "#47494a",
+                right: 0
+            }} className={`SlideInContainerRoot`}  >
 
-            <ConversationListRoot />
+                <ConversationListRoot />
+            </div>}
 
-        </div>
+        </>
+
     );
 }
 

@@ -12,6 +12,18 @@ export default class ConversationService {
             }
         }).then(res => res.json())
     }
+    static async getConversationList(userId, pageNumber = 0) {
+        return fetch(Globals.SERVER_IP + '/conversation/getConversationList', {
+            method: 'POST',
+            body: JSON.stringify({
+                userId, pageNumber
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token')
+            }
+        }).then(res => res.json())
+    }
     static async getConversationMessages(conversationId, pageNumber = 0) {
         return fetch(Globals.SERVER_IP + '/conversation/getConversationMessages/', {
             method: 'POST',

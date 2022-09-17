@@ -13,61 +13,61 @@ import ConversationService from '../../../../service/ConversationService';
 let conversationList = [
     {
         senderId: "1",
-        senderInfo: {
+        participantInfo: {
             profileImage: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg",
             name: "Rahul Kabir"
         },
-        message: "Hello!",
+        last_message: "Hello!",
         conversationId: 1,
         time: (new Date()) * 1
     },
     {
         senderId: "1",
-        senderInfo: {
+        participantInfo: {
             profileImage: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg",
             name: "Monir Islam"
         },
-        message: "Good Day!",
+        last_message: "Good Day!",
         conversationId: 1,
         time: (new Date()) * 1
     },
     {
         senderId: "1",
-        senderInfo: {
+        participantInfo: {
             profileImage: "https://assets.entrepreneur.com/content/3x2/2000/1655744650-shutterstock-1350369713.jpg?auto=webp&quality=95&crop=2:1&width=400",
             name: "Imran Kabir"
         },
-        message: "Hi!",
+        last_message: "Hi!",
         conversationId: 1,
         time: (new Date()) * 1
     },
     {
         senderId: "1",
-        senderInfo: {
+        participantInfo: {
             profileImage: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg",
             name: "Rahul Kabir"
         },
-        message: "Hello!",
+        last_message: "Hello!",
         conversationId: 1,
         time: (new Date()) * 1
     },
     {
         senderId: "1",
-        senderInfo: {
+        participantInfo: {
             profileImage: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg",
             name: "Monir Islam"
         },
-        message: "Good Day!",
+        last_message: "Good Day!",
         conversationId: 1,
         time: (new Date()) * 1
     },
     {
         senderId: "1",
-        senderInfo: {
+        participantInfo: {
             profileImage: "https://assets.entrepreneur.com/content/3x2/2000/1655744650-shutterstock-1350369713.jpg?auto=webp&quality=95&crop=2:1&width=400",
             name: "Imran Kabir"
         },
-        message: "Hi!",
+        last_message: "Hi!",
         conversationId: 1,
         time: (new Date()) * 1
     },
@@ -75,6 +75,13 @@ let conversationList = [
 function ConversationListRoot(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const [friendsList, setFriends] = React.useState([])
+    const [conversationList, setConversationList] = React.useState([])
+    React.useEffect(() => {
+        ConversationService.getConversationList(currentUser.Id)
+            .then(({ conversationList }) => {
+                setConversationList(conversationList)
+            })
+    }, [])
     const [shouldOpenCreateConversationModal, toggleConversationModal] = React.useState(false)
     function getFriendsList() {
         FriendshipService.getAllFriends(currentUser.Id)
@@ -120,11 +127,11 @@ function ConversationListItem(props) {
             textDecoration: "none"
         }} to={"/messenger/1"}><div className='conversationContainer'>
                 <div className="conversationImgContainer">
-                    <img src={props.conversation.senderInfo.profileImage} alt="" className="userImg" />
+                    <img src={props.conversation.participantInfo.profileImage} alt="" className="userImg" />
                 </div>
                 <div className="infoContainer">
-                    <p className="senderName">{props.conversation.senderInfo.name}</p>
-                    <p className="messageBody">{props.conversation.message}</p>
+                    <p className="senderName">{props.conversation.participantInfo.name}</p>
+                    <p className="messageBody">{props.conversation.last_message}</p>
                     <p className="messageTime">{new Date(props.conversation.time).toLocaleString()}</p>
                 </div>
             </div>
@@ -180,7 +187,7 @@ function CreateConversationModal(props) {
                                 <Button onClick={() => {
                                     createConversation(friend.Id)
                                 }} variant="contained">
-                                    Message
+                                    last_message
                                 </Button>
                             </div>
                         )

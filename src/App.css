@@ -15,7 +15,7 @@
     overflow-y: auto;
 
     width: var(--sidemenuWidth);
-    left: var(--negativeSideMenuWidth);
+    right: 0;
 }
 
 .flex {

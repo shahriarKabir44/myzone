@@ -17,7 +17,10 @@ function NavBar(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const toggleSlideInConversationList = useDispatch()
     React.useEffect(() => {
+        if (location.pathname.startsWith('/messenger')) {
+            toggleSlideInConversationList(toggleConversationListView())
 
+        }
 
     }, [])
     function closeAll(toIgnore) {

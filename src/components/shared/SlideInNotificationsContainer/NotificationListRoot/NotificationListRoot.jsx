@@ -50,14 +50,18 @@ function NotificationListRoot(props) {
     const toggleStatus = useSelector(state => state.notificationsTrayManager.value.status)
 
     return (
-        <div style={{
-            background: "#47494a"
-        }} className={`NotificationListRoot SlideInContainerRoot ${toggleStatus === 1 ? 'slideContainerRight' : toggleStatus === 0 ? 'slideContainerLeft' : ""}`}>
-            {notificationList.map((notification, index) => {
-                return <NotificationListItem key={index} notification={notification} />
-            })}
-        </div>
+        <>
+            {toggleStatus === 1 && <div style={{
+                background: "#47494a"
+            }} className={`NotificationListRoot SlideInContainerRoot `}>
+                {notificationList.map((notification, index) => {
+                    return <NotificationListItem key={index} notification={notification} />
+                })}
+            </div>}
+        </>
+
     );
 }
+
 
 export default NotificationListRoot;
