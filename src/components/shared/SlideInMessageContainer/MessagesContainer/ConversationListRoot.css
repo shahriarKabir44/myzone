@@ -4,6 +4,10 @@
     height: calc(100% - 20px);
 }
 
+.activeConversationItem {
+    background: #737473
+}
+
 .friendInfoContainer {
     justify-content: space-between;
     align-items: center;

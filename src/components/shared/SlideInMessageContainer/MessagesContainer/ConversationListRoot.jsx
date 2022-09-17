@@ -10,73 +10,16 @@ import UserInfoContainer from '../../UserInfoContainer'
 import { useSelector } from 'react-redux'
 import FriendshipService from '../../../../service/FriendshipService';
 import ConversationService from '../../../../service/ConversationService';
-let conversationList = [
-    {
-        senderId: "1",
-        participantInfo: {
-            profileImage: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg",
-            name: "Rahul Kabir"
-        },
-        last_message: "Hello!",
-        conversationId: 1,
-        time: (new Date()) * 1
-    },
-    {
-        senderId: "1",
-        participantInfo: {
-            profileImage: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg",
-            name: "Monir Islam"
-        },
-        last_message: "Good Day!",
-        conversationId: 1,
-        time: (new Date()) * 1
-    },
-    {
-        senderId: "1",
-        participantInfo: {
-            profileImage: "https://assets.entrepreneur.com/content/3x2/2000/1655744650-shutterstock-1350369713.jpg?auto=webp&quality=95&crop=2:1&width=400",
-            name: "Imran Kabir"
-        },
-        last_message: "Hi!",
-        conversationId: 1,
-        time: (new Date()) * 1
-    },
-    {
-        senderId: "1",
-        participantInfo: {
-            profileImage: "https://biz30.timedoctor.com/images/2019/08/remote-employee-software.jpg",
-            name: "Rahul Kabir"
-        },
-        last_message: "Hello!",
-        conversationId: 1,
-        time: (new Date()) * 1
-    },
-    {
-        senderId: "1",
-        participantInfo: {
-            profileImage: "https://www.humanrights.vic.gov.au/static/6a24f35b5bd855d2b82601b7e130d239/ecd90/IMG-Hub_Employee_workplace_rights.jpg",
-            name: "Monir Islam"
-        },
-        last_message: "Good Day!",
-        conversationId: 1,
-        time: (new Date()) * 1
-    },
-    {
-        senderId: "1",
-        participantInfo: {
-            profileImage: "https://assets.entrepreneur.com/content/3x2/2000/1655744650-shutterstock-1350369713.jpg?auto=webp&quality=95&crop=2:1&width=400",
-            name: "Imran Kabir"
-        },
-        last_message: "Hi!",
-        conversationId: 1,
-        time: (new Date()) * 1
-    },
-]
+import { useParams } from 'react-router-dom'
+import useConversation from '../../../../service/useConversation'
 function ConversationListRoot(props) {
+    const currentRoute = useParams()
     const currentUser = useSelector((state) => state.currentUser.value)
     const [friendsList, setFriends] = React.useState([])
-    const [conversationList, setConversationList] = React.useState([])
+    const { conversationList, setConversationList } = useConversation()
+    // const [conversationList, setConversationList] = React.useState([])
     React.useEffect(() => {
+
         ConversationService.getConversationList(currentUser.Id)
             .then(({ conversationList }) => {
                 setConversationList(conversationList)
@@ -115,7 +58,7 @@ function ConversationListRoot(props) {
             }} />
             <div className="conversationListContainer">
                 {conversationList.map((conversation, index) => {
-                    return <ConversationListItem conversation={conversation} key={index} />
+                    return <ConversationListItem currentRoute={currentRoute} conversation={conversation} key={index} />
                 })}
             </div>
         </div>
@@ -125,7 +68,9 @@ function ConversationListItem(props) {
     return (
         <Link style={{
             textDecoration: "none"
-        }} to={"/messenger/1"}><div className='conversationContainer'>
+        }} to={"/messenger/" + props.conversation.Id}><div className={`conversationContainer 
+            ${props.conversation.Id === props.currentRoute.conversationId * 1 ? 'activeConversationItem' : ''}
+        `}>
                 <div className="conversationImgContainer">
                     <img src={props.conversation.participantInfo.profileImage} alt="" className="userImg" />
                 </div>

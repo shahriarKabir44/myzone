@@ -12,10 +12,11 @@ function TextingContainer(props) {
     const divRef = React.useRef(null)
     const currentUser = useSelector(state => state.currentUser.value)
     const currentRoute = useParams()
-    const { messages, sendMessage, setMessages, setParticipantId } = useChat(currentRoute.conversationId, currentUser.Id, [])
+    const { messages, sendMessage, setMessages, setParticipantId, unsubscribe, subscribe } = useChat(currentRoute.conversationId, currentUser.Id, [])
     const [messageText, setmessageText] = React.useState("")
     const [participantInfo, setParticipantInfo] = React.useState({})
     React.useEffect(() => {
+        subscribe()
         ConversationService.getConversationMessages(currentRoute.conversationId)
             .then(({ data }) => {
 
@@ -28,6 +29,10 @@ function TextingContainer(props) {
                 setParticipantId(participant.Id)
                 setParticipantInfo(participant)
             })
+        return () => {
+            console.log('here')
+            unsubscribe()
+        }
     }, [currentUser, currentRoute])
     return (
         <div className='textingContainerRoot'>

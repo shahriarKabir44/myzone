@@ -1,9 +1,11 @@
 import React from 'react';
 import ConversationService from './ConversationService';
 import Globals from './Globals'
+import SocketSubscriptionManager from './SocketSubscriptionManager'
+
 // import { io } from 'socket.io-client'
 
-export default function useChat(conversationId, sender, messageList) {
+export default function useChat(conversationId, sender, messageList, component = 'mainMessenger') {
     const [messages, setMessages] = React.useState(messageList);
     const socketRef = React.useRef()
     const [participantId, setParticipantId] = React.useState(-1)
@@ -15,10 +17,26 @@ export default function useChat(conversationId, sender, messageList) {
         }
 
         socketRef.current.onmessage = ({ data }) => {
+
             data = (JSON.parse(data))
-            setMessages([...messages, data.newMessage])
+            SocketSubscriptionManager.sendMessages(data)
+
+            if (data.type === 'personalMessage')
+                setMessages([...messages, data.body.newMessage])
         }
     })
+    function subscribe() {
+        SocketSubscriptionManager.subscriptions.push({
+            'component': component,
+            onMessage: (e) => {
+                console.log(e)
+            }
+        })
+    }
+    function unsubscribe() {
+        SocketSubscriptionManager.subscriptions = SocketSubscriptionManager.subscriptions.filter(subscription => subscription.component !== component)
+    }
+
     function sendMessage(body) {
         let time = (new Date()) * 1
         let newMessage = {
@@ -33,5 +51,5 @@ export default function useChat(conversationId, sender, messageList) {
         }
         socketRef.current.send(JSON.stringify(message))
     }
-    return { messages, sendMessage, setMessages, setParticipantId }
+    return { messages, sendMessage, setMessages, setParticipantId, unsubscribe, subscribe }
 }

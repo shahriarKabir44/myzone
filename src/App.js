@@ -26,7 +26,6 @@ function App() {
 	const currentser = useSelector(state => state.currentUser.value)
 	const setCurrentUserDispatch = useDispatch()
 	React.useEffect(() => {
-
 		UserService.isAuthorized()
 			.then(({ user }) => {
 

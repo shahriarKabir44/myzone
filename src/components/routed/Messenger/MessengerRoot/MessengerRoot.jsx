@@ -4,14 +4,13 @@ import ConversationListRoot from '../../../shared/SlideInMessageContainer/Messag
 import TextingContainer from '../TextingContainer/TextingContainer';
 import { useDispatch } from 'react-redux'
 
-import { toggleConversationListView } from '../../../../redux/ConversatinListToggleManager'
+import { closeConversationListView } from '../../../../redux/ConversatinListToggleManager'
 function MessengerRoot(props) {
     const [isOnMobileScreen, setScreenType] = React.useState(false)
     const toggleSlideInConversationList = useDispatch()
 
     React.useEffect(() => {
-        console.log('here')
-        toggleSlideInConversationList(toggleConversationListView(0))
+        toggleSlideInConversationList(closeConversationListView())
         setScreenType(window.innerWidth <= 620)
     }, [])
     return (
