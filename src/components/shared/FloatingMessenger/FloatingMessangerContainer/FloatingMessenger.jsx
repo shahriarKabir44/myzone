@@ -59,7 +59,7 @@ function FloatingMessenger({ selectedChatHead, onClose }) {
                         <CloseIcon />
                     </div>
                     <div onClick={() => {
-                        navigate("/messenger/1")
+                        navigate("/messenger/" + selectedChatHead.conversationId)
                     }} >
                         <LaunchIcon />
                     </div>

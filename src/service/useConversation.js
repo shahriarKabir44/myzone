@@ -30,7 +30,6 @@ export default function useConversation(component = "messagesRoot", fetchConvers
             newData.last_message = newMessage.body
             newData.time = newMessage.time
             let newList = [newData, ...conversations.filter(conversation => conversation.Id !== 1 * newMessage.conversationId)]
-            console.log(newList)
             setConversationList(newList)
         }
         else {
