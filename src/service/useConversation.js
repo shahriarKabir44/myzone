@@ -12,8 +12,8 @@ export default function useConversation(component = "messagesRoot") {
         SocketSubscriptionManager.subscribe({
             component,
             onMessage: (data) => {
-                console.log('here', data)
-                if (data.type === 'personalMessage')
+                console.log(data.type == 'personalMessage')
+                if (data.type == 'personalMessage')
                     handleOnMessage(data.body.newMessage)
             }
         })
@@ -29,7 +29,11 @@ export default function useConversation(component = "messagesRoot") {
             newData.last_message = newMessage.body
             newData.time = newMessage.time
             let newList = [newData, ...conversationList.filter(conversation => conversation.Id !== 1 * newMessage.conversationId)]
+            console.log(newList)
             setConversationList(newList)
+        }
+        else {
+            setConversationList([newMessage, ...conversationList])
         }
     }
     return { conversationList, setConversationList, handleOnMessage, subscribe, unsubscribe }

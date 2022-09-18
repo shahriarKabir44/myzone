@@ -29,6 +29,24 @@ export default class UserService {
             }
         }).then(res => res.json())
     }
+    static async getUserInfo(Id) {
+        let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: `query{
+                    findUserById(Id:${Id}){
+                      name
+                      profileImage
+                    }
+                  }`
+            })
+        }).then(res => res.json())
+
+        return data.findUserById
+    }
     static async getUserProfileInfo(Id) {
         let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
             method: 'POST',

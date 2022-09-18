@@ -3,42 +3,21 @@ import './FloatingMessengerRoot.css'
 import MapsUgcIcon from '@mui/icons-material/MapsUgc';
 import FloatingMessenger from '../FloatingMessangerContainer/FloatingMessenger';
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
-let chatHeadList = [
-    {
-        name: "Rahul Islam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-        , Id: 3
-    },
-    {
-        Id: 2,
-        name: "Monir Islam",
-        profileImage: "https://cdn.vox-cdn.com/thumbor/cMoBp9foDH6ZIHLVpfIzI4AAGNM=/0x0:2000x1288/1200x800/filters:focal(840x484:1160x804)/cdn.vox-cdn.com/uploads/chorus_image/image/65855855/566006899.jpg.0.jpg"
-    },
-    {
-        Id: 1,
-        name: "Tarif Hasan",
-        profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYRAWqd6TQyF2T7q3XretY6PCSDQVBnPhYg&usqp=CAU"
-    },
-    {
-        name: "Rahul Islam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-        , Id: 3
-    },
-    {
-        Id: 2,
-        name: "Monir Islam",
-        profileImage: "https://cdn.vox-cdn.com/thumbor/cMoBp9foDH6ZIHLVpfIzI4AAGNM=/0x0:2000x1288/1200x800/filters:focal(840x484:1160x804)/cdn.vox-cdn.com/uploads/chorus_image/image/65855855/566006899.jpg.0.jpg"
-    },
-    {
-        Id: 1,
-        name: "Tarif Hasan",
-        profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYRAWqd6TQyF2T7q3XretY6PCSDQVBnPhYg&usqp=CAU"
-    }
-]
+import useConversation from '../../../../service/useConversation';
+import UserService from '../../../../service/UserServices'
 function FloatingMessengerRoot(props) {
     const [isChatHeadSelected, setSelectionStatus] = React.useState(false)
     const [selectedChatHead, setSelectedChatHead] = React.useState(null)
     const [isChatHeadListExpanded, setExpansionStatus] = React.useState(false)
+    const { conversationList, subscribe, unsubscribe } = useConversation("floatingMessenger")
+    React.useEffect(() => {
+        subscribe()
+
+        return () => {
+            unsubscribe()
+        }
+    }, [])
+
     function openFloatingMessenger(chatHead) {
         setSelectionStatus(true)
         setSelectedChatHead(chatHead)
@@ -58,14 +37,10 @@ function FloatingMessengerRoot(props) {
                     }} />
                     </div>
                     <div className="scrollableChatHeadListContainer">
-                        {chatHeadList.map((chatHead, index) => {
-                            return <div key={index} onClick={() => {
-                                openFloatingMessenger(chatHead)
-                            }} className="chatHead">
-                                <img src={chatHead.profileImage} style={{
-                                    height: "50px", width: "50px"
-                                }} alt="" className="userImg" />
-                            </div>
+                        {conversationList.map((chatHead, index) => {
+                            return <ChatHead conversation={chatHead} key={index} onOpen={() => {
+                                openFloatingMessenger(chatHead);
+                            }} />
                         })}
                     </div>
 
@@ -88,6 +63,25 @@ function FloatingMessengerRoot(props) {
             }} />}
         </div>
     );
+}
+
+function ChatHead({ conversation, onOpen }) {
+    const [participantInfo, setParticipantInfo] = React.useState({})
+    React.useEffect(() => {
+        UserService.getUserInfo(conversation.sender)
+            .then(userInfo => {
+                setParticipantInfo(userInfo)
+            })
+    }, [])
+    return (
+        <div onClick={() => {
+            onOpen();
+        }}>
+            <img src={participantInfo.profileImage} style={{
+                height: "50px", width: "50px"
+            }} alt="" className="userImg" />
+        </div>
+    )
 }
 
 export default FloatingMessengerRoot;
