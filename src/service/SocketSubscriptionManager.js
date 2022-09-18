@@ -2,7 +2,8 @@ export default class SocketSubscriptionManager {
     static subscriptions = []
     static sendMessages(e) {
         SocketSubscriptionManager.subscriptions.forEach((sub) => {
-            sub.onMessage(e)
+            let message = JSON.stringify(e)
+            sub.onMessage(JSON.parse(message))
         })
     }
     static subscribe(sub) {

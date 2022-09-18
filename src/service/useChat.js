@@ -6,8 +6,9 @@ import SocketSubscriptionManager from './SocketSubscriptionManager'
 // import { io } from 'socket.io-client'
 
 export default function useChat(conversationId, sender, messageList, component = 'mainMessenger') {
-    const [messages, setMessages] = React.useState(messageList);
+    const [messages, setMessagesList] = React.useState(messageList);
     const socketRef = React.useRef()
+
     const [participantId, setParticipantId] = React.useState(-1)
     React.useEffect(() => {
         try {
@@ -16,19 +17,30 @@ export default function useChat(conversationId, sender, messageList, component =
             console.log(error)
         }
 
-    })
+    }, [])
+    function setMessages(data) {
+        setMessagesList(data)
+        localStorage.setItem('messages', JSON.stringify(data))
+    }
+    function getMessages() {
+        return JSON.parse(localStorage.getItem('messages'))
+    }
     function subscribe() {
         SocketSubscriptionManager.subscribe({
             component,
             onMessage: (data) => {
                 if (data.type === 'personalMessage') {
-                    setMessages([...messages, data.body.newMessage])
-
+                    //setMessages(messages)
+                    let newList = JSON.parse(JSON.stringify(getMessages()))
+                    newList.push(data.body.newMessage)
+                    //console.log(getMessages(), newList)
+                    setMessages(newList)
                 }
             }
         })
     }
     function unsubscribe() {
+        localStorage.removeItem('messages')
         SocketSubscriptionManager.unsubscribe(component)
     }
 

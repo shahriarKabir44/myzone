@@ -21,7 +21,9 @@ function TextingContainer(props) {
             .then(({ data }) => {
 
                 setMessages(data);
-                divRef.current.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    divRef.current.scrollIntoView({ behavior: 'smooth' });
+                }, 200)
                 return data
             })
         ConversationService.getParticipantInfo(currentRoute.conversationId, currentUser.Id)

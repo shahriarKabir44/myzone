@@ -4,7 +4,6 @@ import './MessageContainerRoot.css'
 import { useSelector } from 'react-redux'
 function MessageContainerRoot(props) {
     const currentUser = useSelector(state => state.currentUser.value);
-
     return (
         <div className='messagesContainerRoot'>
             {props.messages.map((message, index) => {

@@ -1,9 +1,11 @@
 import React from 'react';
 import Globals from './Globals'
+import UserService from './UserServices'
 import SocketSubscriptionManager from './SocketSubscriptionManager'
-export default function useConversation(component = "messagesRoot") {
-    const [conversationList, setConversationList] = React.useState([])
+export default function useConversation(component = "messagesRoot", fetchConversations = 0) {
+    const [conversations, setConversationList] = React.useState([])
     const socketRef = React.useRef()
+
     React.useEffect(() => {
         socketRef.current = Globals.socket
 
@@ -12,7 +14,6 @@ export default function useConversation(component = "messagesRoot") {
         SocketSubscriptionManager.subscribe({
             component,
             onMessage: (data) => {
-                console.log(data.type == 'personalMessage')
                 if (data.type == 'personalMessage')
                     handleOnMessage(data.body.newMessage)
             }
@@ -22,20 +23,25 @@ export default function useConversation(component = "messagesRoot") {
         SocketSubscriptionManager.unsubscribe(component)
     }
     function handleOnMessage(newMessage) {
-        let tempList = conversationList.filter(conversation => conversation.Id === 1 * newMessage.conversationId)
+        let tempList = conversations.filter(conversation => conversation.Id === 1 * newMessage.conversationId)
         if (tempList.length) {
 
             let newData = tempList[0]
             newData.last_message = newMessage.body
             newData.time = newMessage.time
-            let newList = [newData, ...conversationList.filter(conversation => conversation.Id !== 1 * newMessage.conversationId)]
+            let newList = [newData, ...conversations.filter(conversation => conversation.Id !== 1 * newMessage.conversationId)]
             console.log(newList)
             setConversationList(newList)
         }
         else {
-            setConversationList([newMessage, ...conversationList])
+            UserService.getUserInfo(newMessage.sender)
+                .then(userInfo => {
+                    newMessage.last_message = newMessage.body
+                    newMessage.participantInfo = userInfo
+                    setConversationList([newMessage, ...conversations])
+                })
         }
     }
-    return { conversationList, setConversationList, handleOnMessage, subscribe, unsubscribe }
+    return { conversations, setConversationList, handleOnMessage, subscribe, unsubscribe }
 
 }

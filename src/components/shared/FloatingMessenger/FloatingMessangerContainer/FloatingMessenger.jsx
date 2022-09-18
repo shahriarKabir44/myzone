@@ -3,120 +3,50 @@ import MessageContainerRoot from '../../MessagesContainer/MessageContainerRoot/M
 import './FloatingMessenger.css'
 import CloseIcon from '@mui/icons-material/Close';
 import LaunchIcon from '@mui/icons-material/Launch';
-import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
-let messagesData = {
-    senderInfo: {
-        Id: 1,
-        name: "Rahul Islam",
-        profileImage: "https://www.hoyletanner.com/wp-content/uploads/2017/08/IMG_8280_1-Square-300x300.jpg"
-    },
-    messages: [
-        {
-            sender: 1,
-            body: `def shrinking(factor=2):\n
-            imgObject=Image.open(imageURL)
-            width, height=imgObject.size
-            imgAccess=imgObject.load()
-             
-            newMat=np.zeros((height//factor,width//factor,3),dtype=np.uint8)
-            rowNum=0
-            for n in range(height):
-                if n%factor!=0:
-                    continue
-                colNum=0
-                for k in  range(width):
-                    if k%factor!=0:
-                        continue
-                    [r,g,b]=imgAccess[k,n]
-                    try:
-        
-                        newMat[rowNum,colNum]=(r,g,b)
-                    except IndexError:
-                        continue
-                    colNum+=1
-                rowNum+=1
-            newImage=Image.fromarray((newMat) )
-            print(newImage.size)
-            return newImag`,
-
-        },
-        {
-            sender: 2,
-            body: "Good day!"
-        },
-        {
-            sender: 2,
-            body: "How are you doing?"
-        },
-        {
-            sender: 1,
-            body: "Hello there!",
-
-        },
-        {
-            sender: 2,
-            body: "Good day!"
-        },
-        {
-            sender: 2,
-            body: "How are you doing?"
-        },
-        {
-            sender: 1,
-            body: "Hello there!",
-
-        },
-        {
-            sender: 2,
-            body: "Good day!"
-        },
-        {
-            sender: 2,
-            body: "How are you doing?"
-        },
-        {
-            sender: 1,
-            body: "Hello there!",
-
-        },
-        {
-            sender: 2,
-            body: "Good day!"
-        },
-        {
-            sender: 2,
-            body: "How are you doing?"
-        },
-        {
-            sender: 1,
-            body: "Hello there!",
-
-        },
-        {
-            sender: 2,
-            body: "Good day!"
-        },
-        {
-            sender: 2,
-            body: "How are you doing?"
-        }
-    ]
-};
+import ConversationService from '../../../../service/ConversationService'
+import useChat from '../../../../service/useChat';
+import { useSelector } from 'react-redux'
+import UserService from '../../../../service/UserServices';
 function FloatingMessenger({ selectedChatHead, onClose }) {
     let navigate = useNavigate();
+    let divRef = React.useRef(null)
+    const currentUser = useSelector(state => state.currentUser.value)
+    const [participantInfo, setParticipantInfo] = React.useState({})
+    const { messages, sendMessage, setMessages, setParticipantId, unsubscribe, subscribe } = useChat(selectedChatHead.conversationId, currentUser.Id, [], 'floatingMessengerMain')
+    const [messageText, setmessageText] = React.useState("")
 
+    React.useEffect(() => {
+        subscribe()
+        ConversationService.getConversationMessages(selectedChatHead.conversationId)
+            .then(({ data }) => {
+
+                setMessages(data);
+                divRef.current.scrollIntoView({ behavior: 'smooth' });
+                return data
+            })
+        setParticipantId(selectedChatHead.sender)
+        UserService.getUserInfo(selectedChatHead.sender)
+            .then(userInfo => {
+                setParticipantInfo(userInfo)
+            })
+
+        return () => {
+            unsubscribe()
+        }
+    }, [])
     return (
         <div className='floatingMessengerContainer'>
             <div className="messengerHeadingContainer">
                 <div className="userInfoContainer">
-                    <img src={selectedChatHead.profileImage} style={{
+                    <img src={participantInfo.profileImage} style={{
                         width: "50px", height: "50px"
                     }} alt="" className="userImage" />
                     <div className="chatHeadTextData">
                         <p style={{
                             margin: 0
-                        }} className="otherUserName">{selectedChatHead.name}</p>
+                        }} className="otherUserName">{participantInfo.name}</p>
                         <p style={{
                             margin: 0
                         }}>Active now🟢</p>
@@ -137,19 +67,32 @@ function FloatingMessenger({ selectedChatHead, onClose }) {
                 </div>
             </div>
             <div className="textMessagesContainer">
-                <MessageContainerRoot messages={messagesData} />
+                <MessageContainerRoot divRef={divRef} messages={messages} />
             </div>
             <div className="messageInputContainer">
-                <div className="commentActionsContainer">
-                    <input type="text" name="" className='postCommentInput' placeholder='Your message' id="" />
+                <form onSubmit={(e) => {
+                    e.preventDefault()
+                    e.preventDefault();
 
-                    <SendIcon style={{
-                        padding: "5px",
-                        background: "white",
-                        borderRadius: "5px"
-                    }} />
+                    if (messageText.length === 0) return
+                    let message = messageText
+                    setmessageText('')
+                    sendMessage(message)
+                    setTimeout(() => {
+                        divRef.current.scrollIntoView({ behavior: 'smooth' });
 
-                </div>
+                    }, 100)
+                }} className="sendMessageFormContainer">
+                    <input value={messageText}
+                        onChange={(e) => {
+                            setmessageText(e.target.value)
+                        }} type="text" name="" className='postCommentInput' placeholder='Your message' id="" />
+                    <Button style={{
+                        background: 'white'
+                    }} type="submit" variant="outlined">send</Button>
+
+
+                </form>
             </div>
         </div>
     );

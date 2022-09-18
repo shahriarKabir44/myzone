@@ -16,8 +16,7 @@ function ConversationListRoot(props) {
     const currentRoute = useParams()
     const currentUser = useSelector((state) => state.currentUser.value)
     const [friendsList, setFriends] = React.useState([])
-    const { conversationList, setConversationList, subscribe, unsubscribe } = useConversation()
-    // const [conversationList, setConversationList] = React.useState([])
+    const { conversations, setConversationList, subscribe, unsubscribe } = useConversation()
     React.useEffect(() => {
         subscribe()
         ConversationService.getConversationList(currentUser.Id)
@@ -60,7 +59,7 @@ function ConversationListRoot(props) {
                 toggleConversationModal(false)
             }} />
             <div className="conversationListContainer">
-                {conversationList.map((conversation, index) => {
+                {conversations.map((conversation, index) => {
                     return <ConversationListItem currentRoute={currentRoute} conversation={conversation} key={index} />
                 })}
             </div>

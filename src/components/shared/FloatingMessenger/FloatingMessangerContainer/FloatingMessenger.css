@@ -13,6 +13,12 @@
     }
 }
 
+.sendMessageFormContainer {
+    display: grid;
+    grid-template-columns: auto 70px;
+    align-items: center;
+}
+
 .actionBtnContainer {
     display: flex;
     gap: 10px;

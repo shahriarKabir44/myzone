@@ -9,7 +9,7 @@ function FloatingMessengerRoot(props) {
     const [isChatHeadSelected, setSelectionStatus] = React.useState(false)
     const [selectedChatHead, setSelectedChatHead] = React.useState(null)
     const [isChatHeadListExpanded, setExpansionStatus] = React.useState(false)
-    const { conversationList, subscribe, unsubscribe } = useConversation("floatingMessenger")
+    const { conversations, subscribe, unsubscribe } = useConversation("floatingMessenger")
     React.useEffect(() => {
         subscribe()
 
@@ -21,6 +21,7 @@ function FloatingMessengerRoot(props) {
     function openFloatingMessenger(chatHead) {
         setSelectionStatus(true)
         setSelectedChatHead(chatHead)
+
     }
     return (
         <div>
@@ -37,7 +38,7 @@ function FloatingMessengerRoot(props) {
                     }} />
                     </div>
                     <div className="scrollableChatHeadListContainer">
-                        {conversationList.map((chatHead, index) => {
+                        {conversations.map((chatHead, index) => {
                             return <ChatHead conversation={chatHead} key={index} onOpen={() => {
                                 openFloatingMessenger(chatHead);
                             }} />
