@@ -3,8 +3,6 @@ import ConversationService from './ConversationService';
 import Globals from './Globals'
 import SocketSubscriptionManager from './SocketSubscriptionManager'
 
-// import { io } from 'socket.io-client'
-
 export default function useChat(conversationId, sender, messageList, component = 'mainMessenger') {
     const [messages, setMessagesList] = React.useState(messageList);
     const socketRef = React.useRef()

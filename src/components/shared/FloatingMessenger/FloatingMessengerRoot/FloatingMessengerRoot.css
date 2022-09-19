@@ -12,6 +12,13 @@
 
 }
 
+.newIconContainer {
+    position: absolute;
+    top: 30px;
+    color: red;
+    left: 5px;
+}
+
 .scrollableChatHeadListContainer {
     max-height: 200px;
     overflow-y: auto;

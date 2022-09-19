@@ -4,12 +4,16 @@ import MapsUgcIcon from '@mui/icons-material/MapsUgc';
 import FloatingMessenger from '../FloatingMessangerContainer/FloatingMessenger';
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import useConversation from '../../../../service/useConversation';
-import UserService from '../../../../service/UserServices'
+import FiberNewSharpIcon from '@mui/icons-material/FiberNewSharp';
 function FloatingMessengerRoot(props) {
     const [isChatHeadSelected, setSelectionStatus] = React.useState(false)
     const [selectedChatHead, setSelectedChatHead] = React.useState(null)
     const [isChatHeadListExpanded, setExpansionStatus] = React.useState(false)
-    const { conversations, subscribe, unsubscribe } = useConversation("floatingMessenger")
+    const [hasNewConversationArrived, setNewConversationArrival] = React.useState(false)
+    const { conversations, subscribe, unsubscribe } = useConversation("floatingMessenger", (message) => {
+        setNewConversationArrival(true)
+
+    })
     React.useEffect(() => {
         subscribe()
 
@@ -48,14 +52,19 @@ function FloatingMessengerRoot(props) {
                 </>}
                 {!isChatHeadListExpanded && <div onClick={() => {
                     setExpansionStatus(true)
+                    setNewConversationArrival(false)
                 }} style={{
-                    margin: 0
+                    margin: 0,
+                    position: 'relative'
                 }}>
                     <MapsUgcIcon style={{
                         fontSize: "60px",
                         color: "white",
 
                     }} />
+                    {hasNewConversationArrived && <div className="newIconContainer">
+                        <FiberNewSharpIcon />
+                    </div>}
                 </div>}
             </div>}
             {isChatHeadSelected && selectedChatHead !== null && <FloatingMessenger selectedChatHead={selectedChatHead} onClose={() => {
@@ -67,18 +76,12 @@ function FloatingMessengerRoot(props) {
 }
 
 function ChatHead({ conversation, onOpen }) {
-    const [participantInfo, setParticipantInfo] = React.useState({})
-    React.useEffect(() => {
-        UserService.getUserInfo(conversation.sender)
-            .then(userInfo => {
-                setParticipantInfo(userInfo)
-            })
-    }, [])
+
     return (
         <div onClick={() => {
             onOpen();
         }}>
-            <img src={participantInfo.profileImage} style={{
+            <img src={conversation.participantInfo.profileImage} style={{
                 height: "50px", width: "50px"
             }} alt="" className="userImg" />
         </div>

@@ -8,7 +8,7 @@ import './PostDetailsRoot.css'
 import PostComments from '../PostComments/PostComments';
 import PostService from '../../../../service/PostService';
 import PostInteractionService from '../../../../service/PostInteractionService';
-
+import NotificationService from '../../../../service/NotificationService'
 function PostDetailsRoot(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const currentRoute = useParams()
@@ -72,6 +72,16 @@ function PostDetailsRoot(props) {
                     <div className="likes postInteractions">
                         <div onClick={() => {
                             if (!hasReacted) {
+                                console.log(currentUser.Id, postDetails.creatorInfo.Id * 1)
+                                if (currentUser.Id !== postDetails.creatorInfo.Id * 1) {
+                                    NotificationService.createNotification({
+                                        senderId: currentUser.Id,
+                                        receiverId: postDetails.creatorInfo.Id,
+                                        body: `${currentUser.name} has liked your post.`,
+                                        relatedSchemaId: currentRoute.Id,
+                                        type: 1
+                                    })
+                                }
                                 PostInteractionService.react({
                                     postId: currentRoute.Id,
                                     reactedBy: currentUser.Id
@@ -114,9 +124,17 @@ function PostDetailsRoot(props) {
                         commentedBy: currentUser.Id,
                         postId: currentRoute.Id
                     }
+                    if (currentUser.Id !== postDetails.creatorInfo.Id * 1) {
+                        NotificationService.createNotification({
+                            senderId: currentUser.Id,
+                            receiverId: postDetails.creatorInfo.Id,
+                            body: `${currentUser.name} has commented on your post.`,
+                            relatedSchemaId: currentRoute.Id,
+                            type: 2
+                        })
+                    }
                     PostInteractionService.postComment(newComment)
                         .then(({ data }) => {
-                            console.log(data);
                             setPostComments([...postComments, data])
                             let numComments = postDetails.numComments + 1
                             setPostDetails({ ...postDetails, numComments: numComments })
