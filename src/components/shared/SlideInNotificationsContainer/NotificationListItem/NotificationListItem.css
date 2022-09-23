@@ -6,16 +6,24 @@
 
 .notiificationContainer {
     display: flex;
-
     align-items: center;
     padding: 10px;
-    background: #757778;
-    margin: 10px;
     border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-weight: 100;
+    gap: 10px;
+}
 
+.notiificationContainer:hover {
+    background: #938c8c;
 }
 
 .notificationMessage,
 .notificationTime {
     margin: 0
+}
+
+.notificationTime {
+    font-size: 12px;
 }

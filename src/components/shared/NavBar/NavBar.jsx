@@ -5,11 +5,12 @@ import Globals from '../../../service/Globals'
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh'; import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { toggleLeftMenu, closeLeftMenu } from '../../../redux/HomeMenuSelector'
+import useNotifications from '../../../service/useNotifications'
 import { toggleConversationListView, closeConversationListView } from '../../../redux/ConversatinListToggleManager'
 import { toggleNotificationTrayView, closeNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
 function NavBar(props) {
@@ -19,7 +20,12 @@ function NavBar(props) {
     const socketRef = React.useRef()
     const currentUser = useSelector((state) => state.currentUser.value)
     const toggleSlideInConversationList = useDispatch()
+    const [hasNewNotificationArrived, setNewNotificationArrivalState] = React.useState(false)
+    const { subscribe: subscribeUseNotification } = useNotifications('navBar', (notification) => {
+        setNewNotificationArrivalState(true)
+    })
     React.useEffect(() => {
+        subscribeUseNotification()
         if (location.pathname.startsWith('/messenger')) {
             toggleSlideInConversationList(toggleConversationListView())
 
@@ -71,10 +77,18 @@ function NavBar(props) {
                             <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
 
                         </div>
-                        <div onClick={() => {
+                        <div style={{
+                            position: 'relative',
+                        }} onClick={() => {
+                            setNewNotificationArrivalState(false)
                             closeAll(2)
                             notificationTrayToggleDispatcher(toggleNotificationTrayView())
                         }}>
+                            {hasNewNotificationArrived && <PriorityHighIcon style={{
+                                position: 'absolute',
+                                color: 'red',
+                                right: "5px"
+                            }} />}
                             <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
 
                         </div>
