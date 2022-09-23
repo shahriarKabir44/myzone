@@ -21,6 +21,31 @@ export default class NotidicationService {
                 }))
             })
     }
+    static async getNotifications(receiverId, pageNumber = 0) {
+        const { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                query: `query{
+                    getNotifications(receiverId:${receiverId},pageNumber:${pageNumber}){
+                      body
+                      time
+                      type
+                      Id
+                      relatedSchemaId
+                      senderInfo{
+                        Id
+                        profileImage
+                      }
+                    }
+                  }`
+            })
+        }).then(res => res.json())
+        return data.getNotifications
+    }
 }
 
 /**

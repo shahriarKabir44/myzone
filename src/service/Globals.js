@@ -8,7 +8,6 @@ export default class Globals {
 
         let socket = new WebSocket('ws://localhost:4030')
         socket.onopen = (e) => {
-            console.log(e)
             const message = {
                 type: 'setWebSocketId',
                 body: {

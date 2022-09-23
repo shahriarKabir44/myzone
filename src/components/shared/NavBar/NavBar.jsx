@@ -44,7 +44,7 @@ function NavBar(props) {
     function renderHeaderBtn() {
         return (<Link style={{ textDecoration: 'none' }} to={'/'}>
             <button className="siteName">
-                <img src="http://192.168.43.90:3000/logo2.png" alt="" style={{
+                <img src="http://localhost:3000/logo2.png" alt="" style={{
                     width: "100%"
                 }} className="" />
             </button>
