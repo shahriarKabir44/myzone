@@ -8,14 +8,16 @@ function FriendListItem(props) {
             </div>
             <div className="frinedInfoContainer">
                 <p style={{
-                    margin: "0"
+                    margin: "0",
+                    fontSize: "20px"
                 }} className="frinedName">
                     {props.user.name}
                 </p>
                 <p style={{
-                    margin: "0"
+                    margin: "0",
+
                 }} className="friendTime">
-                    Friends since 20th April 2022
+                    Friends since {(new Date(props.user.initiation_time)).toLocaleString()}
                 </p>
             </div>
 

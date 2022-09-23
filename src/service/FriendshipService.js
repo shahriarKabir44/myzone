@@ -1,7 +1,6 @@
 import Globals from "./Globals";
 export default class FriendshipService {
     static async getAllFriends(userId) {
-        console.log(userId);
         return fetch(Globals.SERVER_IP + '/friendship/getFriends/' + userId, {
             method: 'GET',
             headers: {

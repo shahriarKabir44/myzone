@@ -37,7 +37,9 @@ function ConversationListRoot(props) {
     return (
         <div className='conversationListRoot'>
             <div className="conversationListHeading">
-                <p className="headingTextSlideMessage">Messages</p>
+                <h3 style={{
+                    fontWeight: 200
+                }} className="headingTextSlideMessage">Messages</h3>
                 <div>
                     <OpenWithIcon />
                 </div>

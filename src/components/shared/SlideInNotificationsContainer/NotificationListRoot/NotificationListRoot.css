@@ -1,0 +1,6 @@
+.nottificationContinerLable {
+    display: flex;
+    color: white;
+    justify-content: center;
+    font-weight: 200;
+}

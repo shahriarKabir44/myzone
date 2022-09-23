@@ -4,51 +4,17 @@ import UserProfileInfo from '../../../shared/UserProfileInfo/UserProfileInfo';
 import './FriendListRoot.css'
 import { useSelector } from 'react-redux';
 import FriendListItem from '../FriendListItem/FriendListItem';
-let friendList = [
-    {
-        name: "Rahul Islam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Monir Islam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Tarif Hasan",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Samirul Alam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Rahul Islam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Rahul Islam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Rahul Islam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Monir Islam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Tarif Hasan",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    },
-    {
-        name: "Samirul Alam",
-        profileImage: "https://www.ecommercetimes.com/wp-content/uploads/sites/5/2022/02/office-worker.jpg"
-    }
-]
-function FriendListRoot(props) {
-    const user = useSelector((state) => state.currentUser.value)
+import FriendShipService from '../../../../../../service/FriendshipService'
 
+function FriendListRoot(props) {
+    const [friendList, setFriendList] = React.useState([])
+    const user = useSelector((state) => state.currentUser.value)
+    React.useEffect(() => {
+        FriendShipService.getAllFriends(user.Id)
+            .then(({ data }) => {
+                setFriendList(data)
+            })
+    }, [])
     return (
         <div className='FriendListRoot'>
 

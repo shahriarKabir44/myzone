@@ -36,6 +36,7 @@ function NotificationsListContainer() {
     return (<div style={{
         background: "#47494a"
     }} className={`NotificationListRoot SlideInContainerRoot `}>
+        <h2 className='nottificationContinerLable'>Notifications</h2>
         {notificationsList.map((notification, index) => {
             return <NotificationListItem key={index} notification={notification} />
         })}

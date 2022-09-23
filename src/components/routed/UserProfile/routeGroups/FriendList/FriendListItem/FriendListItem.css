@@ -30,12 +30,14 @@
 
 .friendTime {
     overflow-wrap: break-word;
+    font-size: 15px;
 }
 
 .frinedInfoContainer {
     display: flex;
     align-content: center;
     flex-wrap: wrap;
+    font-weight: 100;
     gap: 0;
     flex-direction: column;
 }
