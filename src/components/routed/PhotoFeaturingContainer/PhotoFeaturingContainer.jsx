@@ -1,15 +1,17 @@
 import React from 'react'
 import './PhotoFeaturingContainer.css'
 import { useParams } from 'react-router-dom'
-import UserInfoContainer from '../../shared/UserInfoContainer'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 import FeaturingService from '../../../service/FeaturingService'
 export default function PhotoFeaturingContainer() {
     const currentRoute = useParams()
     const [photos, setPhotoList] = React.useState([])
     const [creatorInfo, setCreatorInfo] = React.useState({})
     const [label, setLabel] = React.useState("")
+    const [photoIndex, setPhotoIndex] = React.useState(0)
     React.useEffect(() => {
-        console.log(currentRoute)
         FeaturingService.getAlbumInfo(currentRoute.groupId)
             .then(albumInfo => {
                 setCreatorInfo(albumInfo.creatorInfo)
@@ -17,7 +19,10 @@ export default function PhotoFeaturingContainer() {
                 setLabel(albumInfo.label)
             })
     }, [])
-    return (
+    function swipe(direction) {
+
+        setPhotoIndex((photoIndex + direction + photos.length) % photos.length);
+    } return (
         <div className='featuredPhotoContainerRoot'>
             <div className="storyContainer">
                 <div className="creatorInfoContainer">
@@ -52,7 +57,24 @@ export default function PhotoFeaturingContainer() {
                     <img className="photo" alt="imag" src={photos[0]} />
                 </div>
                 <div className="navContainer">
+                    <div className="swipeContainerRoot">
+                        <div className="swipeContainer">
+                            <button onClick={() => {
+                                swipe(-1)
+                            }} className="prev swipeBtn">
+                                <ChevronLeftIcon />
+                                <p className='swipeText'>Prev</p>
+                            </button>
+                            <p className="swipeCounter">{photoIndex + 1} of {photos.length}</p>
+                            <button onClick={() => {
+                                swipe(1)
+                            }} className="prev swipeBtn">
+                                <p className='swipeText'>Next</p><ChevronRightIcon />
 
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

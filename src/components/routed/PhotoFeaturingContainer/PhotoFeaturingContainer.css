@@ -16,6 +16,9 @@
     padding: 10px;
     border-radius: 10px;
     background: #6d6e6e;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .photoContainer {
