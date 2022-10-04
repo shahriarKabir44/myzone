@@ -60,6 +60,12 @@ export default class UserService {
                       name
                       profileImage
                       coverPhoto
+                      featuredAlbums{
+                        label
+                        numPosts
+                        Id
+                        initialPhoto
+                      }
                       createdPosts{
                         Id
                         body

@@ -24,14 +24,15 @@ let featuredList = [
         label: "Wedding"
     }
 ]
-function FeaturedPostGroupRoot(props) {
+function FeaturedPostGroupRoot({ featuredAlbums }) {
+    console.log(featuredAlbums)
     return (
         <div className="featuredPostListContainer">
             <p className="featuredPostHeading">
                 Featured
             </p>
             <div className='featuredPostsList' >
-                {featuredList.map((item, index) => {
+                {featuredAlbums.map((item, index) => {
                     return <FeaturedPostGroupItem post={item} key={index} />
                 })}
             </div>

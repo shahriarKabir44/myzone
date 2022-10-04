@@ -5,7 +5,7 @@ function FeaturedPostGroupItem({ post }) {
         <div>
             <div className="featuredPostContainer">
                 <div className="featuredImageContainer">
-                    <img src={post.imageURL} alt="" className="featuredImage" />
+                    <img src={post.initialPhoto} alt="" className="featuredImage" />
                 </div>
                 <div className="groupLabel">
                     <p className="groupLabelText">{post.label}</p>

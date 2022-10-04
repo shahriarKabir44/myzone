@@ -38,7 +38,8 @@ function UserProfileRoot(props) {
                     Id: currentRoute.userId,
                     name: data.name,
                     profileImage: data.profileImage,
-                    coverPhoto: data.coverPhoto
+                    coverPhoto: data.coverPhoto,
+                    featuredAlbums: data.featuredAlbums
                 }
                 setUser(userInfo)
                 setCreatedPostList(data.createdPosts)
@@ -83,7 +84,7 @@ function UserProfileRoot(props) {
                                 <div className={`gridContainer `}>
 
                                     <div>
-                                        <FeaturedPostGroupRoot />
+                                        <FeaturedPostGroupRoot featuredAlbums={user.featuredAlbums} />
                                     </div>
                                     <div>
 
@@ -114,7 +115,7 @@ function UserProfileRoot(props) {
                                 <UserProfileInfo userInfo={user} />
                                 <ProfileTabSelector pageIndex={1} />
                                 <InterestList />
-                                <FeaturedPostGroupRoot />
+                                <FeaturedPostGroupRoot featuredAlbums={user.featuredAlbums} />
                                 <InitialCreatePostView />
 
                                 <UserPostListRoot createsPosts={createsPosts} />
