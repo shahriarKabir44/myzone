@@ -31,6 +31,7 @@ function UserProfileRoot(props) {
     const [isOnMobile, seDeviceType] = React.useState(false)
     const toggleSideMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
     const [createsPosts, setCreatedPostList] = React.useState([])
+    const [featuredAlbums, setFeaturedPhotos] = React.useState([])
     function getUserInfo(Id) {
         UserService.getUserProfileInfo(Id)
             .then((data) => {
@@ -39,8 +40,9 @@ function UserProfileRoot(props) {
                     name: data.name,
                     profileImage: data.profileImage,
                     coverPhoto: data.coverPhoto,
-                    featuredAlbums: data.featuredAlbums
                 }
+                setFeaturedPhotos(data.featuredAlbums)
+                console.log(data)
                 setUser(userInfo)
                 setCreatedPostList(data.createdPosts)
                 setFocusedUserDispatcher(updateCurrentlyViewingUser(userInfo))
@@ -84,7 +86,7 @@ function UserProfileRoot(props) {
                                 <div className={`gridContainer `}>
 
                                     <div>
-                                        <FeaturedPostGroupRoot featuredAlbums={user.featuredAlbums} />
+                                        <FeaturedPostGroupRoot featuredAlbums={featuredAlbums} />
                                     </div>
                                     <div>
 
@@ -115,7 +117,7 @@ function UserProfileRoot(props) {
                                 <UserProfileInfo userInfo={user} />
                                 <ProfileTabSelector pageIndex={1} />
                                 <InterestList />
-                                <FeaturedPostGroupRoot featuredAlbums={user.featuredAlbums} />
+                                <FeaturedPostGroupRoot featuredAlbums={featuredAlbums} />
                                 <InitialCreatePostView />
 
                                 <UserPostListRoot createsPosts={createsPosts} />

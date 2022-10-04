@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UserInfoContainer({ imgURL, name }) {
+function UserInfoContainer({ imgURL, name, additionalInfo }) {
     return (
         <div style={{
             display: "flex",
@@ -11,10 +11,13 @@ function UserInfoContainer({ imgURL, name }) {
                 height: "50px",
                 width: "50px"
             }} alt="" className="userImg" />
-            <p style={{
-                color: "white",
-                fontWeight: 200
-            }}>{name}</p>
+            <div>
+                <p style={{
+                    color: "white",
+                    fontWeight: 200
+                }}>{name}</p>
+                {additionalInfo}
+            </div>
         </div>
     );
 }

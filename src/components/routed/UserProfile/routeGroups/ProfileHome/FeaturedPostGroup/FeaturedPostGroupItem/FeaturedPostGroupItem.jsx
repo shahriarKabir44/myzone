@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './FeaturedPostGroupItem.css'
 function FeaturedPostGroupItem({ post }) {
     return (
-        <div>
+        <Link to={'/featured/' + post.Id}>
             <div className="featuredPostContainer">
                 <div className="featuredImageContainer">
                     <img src={post.initialPhoto} alt="" className="featuredImage" />
@@ -11,7 +12,7 @@ function FeaturedPostGroupItem({ post }) {
                     <p className="groupLabelText">{post.label}</p>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

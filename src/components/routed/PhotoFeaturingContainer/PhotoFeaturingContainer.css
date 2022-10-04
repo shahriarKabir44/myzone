@@ -1,0 +1,28 @@
+.featuredPhotoContainerRoot {
+
+    height: calc(100vh - 113px);
+    width: 100%;
+    background: #18191a;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.storyContainer {
+    width: 25vw;
+    border: 1px solid;
+    height: 90%;
+    padding: 10px;
+    border-radius: 10px;
+    background: #6d6e6e;
+}
+
+.photoContainer {
+    max-height: 70vh;
+}
+
+.photo {
+    max-width: 100%;
+    max-height: 100%;
+}

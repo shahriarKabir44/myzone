@@ -20,6 +20,7 @@ import FloatingMessengerRoot from './components/shared/FloatingMessenger/Floatin
 import LoginRegistration from './components/routed/Unauthorized/LoginRegistration';
 import UserService from './service/UserServices';
 import { updateUserInfo } from './redux/CurrentUserManager'
+import PhotoFeaturingContainer from './components/routed/PhotoFeaturingContainer/PhotoFeaturingContainer';
 function App() {
 	const navigate = useNavigate()
 	const location = useLocation();
@@ -51,6 +52,9 @@ function App() {
 				{currentser != null && <>  <Route path='/' element={<Home />} />  <Route path='/profile'>
 					<Route path=':userId/*' element={<UserProfileRoot />} />
 				</Route>
+					<Route path='/featured'>
+						<Route path=':groupId/*' element={<PhotoFeaturingContainer />} />
+					</Route>
 					<Route path='/messenger'>
 						<Route path=':conversationId' element={<MessengerRoot />} />
 					</Route>

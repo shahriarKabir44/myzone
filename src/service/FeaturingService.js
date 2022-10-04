@@ -10,7 +10,32 @@ export default class FeaturingService {
             }
         }).then(res => res.json())
     }
+    static async getAlbumInfo(Id) {
+        let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+            method: 'POST',
+            body: JSON.stringify({
+                query: `{
+                        getFeaturedAlbum(Id:${Id}){
+                            label
+                            initialPhoto
+                            attachedPhotos
+                            creatorInfo{
+                            Id
+                            name
+                            profileImage
+                            }
+                        }
+                        }
+                        `
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token')
+            }
+        }).then(res => res.json());
+        return data.getFeaturedAlbum
 
+    }
     static async createFeaturedAlbum(label, createdBy) {
         return fetch(Globals.SERVER_IP + '/featuredAlbums/createFeaturedAlbum/', {
             method: 'POST',
