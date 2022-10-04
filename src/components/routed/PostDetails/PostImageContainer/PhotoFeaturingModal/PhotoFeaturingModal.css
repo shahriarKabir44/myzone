@@ -1,0 +1,10 @@
+.albumSelectorForm {
+    display: grid;
+    grid-template-columns: 50% auto;
+}
+
+.albumSelector {
+    border: none;
+    border-radius: 10px;
+    align-content: center;
+}

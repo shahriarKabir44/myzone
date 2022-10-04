@@ -66,13 +66,12 @@ function PostDetailsRoot(props) {
                 <div className="postBodyContainer">
                     <p className="postText">{postDetails.body}</p>
                 </div>
-                {JSON.parse(postDetails.attached_media).length > 0 && <PostImageContainer images={JSON.parse(postDetails.attached_media)} />}
+                {JSON.parse(postDetails.attached_media) && JSON.parse(postDetails.attached_media).length > 0 && <PostImageContainer currentUser={currentUser} postDetails={postDetails} images={JSON.parse(postDetails.attached_media)} />}
 
                 <div className="reactionsTab">
                     <div className="likes postInteractions">
                         <div onClick={() => {
                             if (!hasReacted) {
-                                console.log(currentUser.Id, postDetails.creatorInfo.Id * 1)
                                 if (currentUser.Id !== postDetails.creatorInfo.Id * 1) {
                                     NotificationService.createNotification({
                                         senderId: currentUser.Id,

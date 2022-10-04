@@ -48,6 +48,7 @@ export default class UserService {
         return data.findUserById
     }
     static async getUserProfileInfo(Id) {
+        console.log(Id)
         let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
             method: 'POST',
             headers: {

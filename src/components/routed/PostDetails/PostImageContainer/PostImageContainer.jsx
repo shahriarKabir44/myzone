@@ -1,13 +1,17 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 import './PostImageContainer.css'
+import PhotoFeaturingModal from './PhotoFeaturingModal/PhotoFeaturingModal'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-function PostImageContainer({ images }) {
+function PostImageContainer({ images, postDetails, currentUser }) {
+    const [albumSelectorModalVisibility, setAlbumSelectorModalVisibility] = React.useState(false)
     const [currentlyViewingImageIndex, setCurrentlyViewingImageIndex] = React.useState(0)
     function swipe(direction) {
 
         setCurrentlyViewingImageIndex((currentlyViewingImageIndex + direction + images.length) % images.length);
     }
+    const [selectedImgURL, setSelctedImgURL] = React.useState("")
     React.useEffect(() => { }, [])
     return (
         <div className='postImageContainer'>
@@ -30,8 +34,25 @@ function PostImageContainer({ images }) {
 
                     </button>
                 </div>
-            </div>
 
+            </div>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                margin: '10px'
+            }}>
+                {currentUser.Id * 1 === postDetails.creatorInfo.Id * 1 && <>
+                    <Button onClick={() => {
+                        setSelctedImgURL(images[currentlyViewingImageIndex])
+                        setAlbumSelectorModalVisibility(true)
+                    }} variant="contained">Feature this photo</Button>
+                    <PhotoFeaturingModal open={albumSelectorModalVisibility} selectedImgURL={selectedImgURL} handleClose={() => {
+                        setAlbumSelectorModalVisibility(false)
+                    }} />
+
+                </>}
+
+            </div>
         </div>
     );
 }
