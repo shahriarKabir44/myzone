@@ -20,4 +20,16 @@ export default class Globals {
         Globals.socket = socket
         Globals.hasSocketInitiated = true
     }
+    static async _fetch(url, body) {
+
+        return fetch(url, {
+            method: body ? 'POST' : 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token'),
+            },
+            body: body ? JSON.stringify(body) : null
+        }).then(res => res.json())
+    }
+
 }

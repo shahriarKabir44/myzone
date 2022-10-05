@@ -11,14 +11,23 @@ function InterestList(props) {
             </p>
             <div className='interestListPanel' >
                 {interests.map((interest, index) => {
-                    return <div key={index} className="interestItem">
-                        <p className="itemText">{interest}</p>
-                    </div>
+                    return <InterestItem key={index} interest={interest} />
                 })}
             </div>
         </div>
 
     );
+}
+export function InterestItem({ interest, additionalInfo }) {
+    return <div className="interestItem" style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignContent: 'center'
+    }}>
+        <p className="itemText">{interest}</p>
+        {additionalInfo}
+    </div>
 }
 
 export default InterestList;

@@ -117,7 +117,6 @@ function LoginRegistration(props) {
                             UserService.login(userData)
                                 .then(data => {
                                     localStorage.setItem('token', data.token)
-                                    console.log(data)
                                     if (data.data === -1) setHasLoginError(true)
                                     else {
                                         globalUserDispatcher(updateUserInfo(data.data))

@@ -42,7 +42,6 @@ function UserProfileRoot(props) {
                     coverPhoto: data.coverPhoto,
                 }
                 setFeaturedPhotos(data.featuredAlbums)
-                console.log(data)
                 setUser(userInfo)
                 setCreatedPostList(data.createdPosts)
                 setFocusedUserDispatcher(updateCurrentlyViewingUser(userInfo))

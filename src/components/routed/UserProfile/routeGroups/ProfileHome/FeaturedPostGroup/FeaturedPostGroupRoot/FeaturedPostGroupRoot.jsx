@@ -4,7 +4,6 @@ import './FeaturedPostGroupRoot.css'
 
 
 function FeaturedPostGroupRoot({ featuredAlbums }) {
-    console.log(featuredAlbums)
     return (
         <div className="featuredPostListContainer">
             <p className="featuredPostHeading">
