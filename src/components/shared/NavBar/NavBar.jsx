@@ -64,7 +64,7 @@ function NavBar(props) {
                     {renderHeaderBtn()}
 
                     <div className="searchBar">
-                        <input type="text" name="" id="" className="searchBarInput" />
+                        <input type="text" placeholder='search' name="" id="" className="searchBarInput" />
                         <SearchOutlinedIcon className='searchBtn' />
                     </div>
                     <div className="otherOptions">
