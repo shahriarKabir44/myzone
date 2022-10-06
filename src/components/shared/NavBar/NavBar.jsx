@@ -2,16 +2,15 @@ import React from 'react';
 import './NavBar.css'
 import SocketSubscriptionManager from '../../../service/SocketSubscriptionManager'
 import Globals from '../../../service/Globals'
-import { Link, useLocation } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux'
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh'; import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { toggleLeftMenu, closeLeftMenu } from '../../../redux/HomeMenuSelector'
 import useNotifications from '../../../service/useNotifications'
-import { useNavigate } from 'react-router-dom';
 import { toggleConversationListView, closeConversationListView } from '../../../redux/ConversatinListToggleManager'
 import { toggleNotificationTrayView, closeNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
 function NavBar(props) {
@@ -86,7 +85,10 @@ function NavBar(props) {
                         </div>
                     </div>
                     <div className="otherOptions">
-                        <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />
+                        {location.pathname !== '/' && <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />}
+                        <div onClick={() => { }}>
+                            <GroupAddIcon fontSize='10' className="menuBtn messageBtn" />
+                        </div>
                         <div onClick={() => {
                             closeAll(3)
                             if (!location.pathname.startsWith('/messenger'))
@@ -141,6 +143,9 @@ function NavBar(props) {
                             openDrawer()
                         }}>
                             <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
+                        </div>
+                        <div>
+                            <GroupAddIcon></GroupAddIcon>
                         </div>
                         <div onClick={() => {
                             closeAll(3)
