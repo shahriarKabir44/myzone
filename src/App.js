@@ -21,6 +21,7 @@ import LoginRegistration from './components/routed/Unauthorized/LoginRegistratio
 import UserService from './service/UserServices';
 import { updateUserInfo } from './redux/CurrentUserManager'
 import PhotoFeaturingContainer from './components/routed/PhotoFeaturingContainer/PhotoFeaturingContainer';
+import SearchResultRoot from './components/routed/SearchResultRoot/SearchResultRoot';
 function App() {
 	const navigate = useNavigate()
 	const location = useLocation();
@@ -60,9 +61,14 @@ function App() {
 				}} />} />}
 
 
-				{currentser != null && <>  <Route path='/' element={<Home />} />  <Route path='/profile'>
-					<Route path=':userId/*' element={<UserProfileRoot />} />
-				</Route>
+				{currentser != null && <>
+					<Route path='/' element={<Home />} />
+					<Route path='/profile'>
+						<Route path=':userId/*' element={<UserProfileRoot />} />
+					</Route>
+					<Route path='/search' >
+						<Route path='query=:query/*' element={<SearchResultRoot />} />
+					</Route>
 					<Route path='/featured'>
 						<Route path=':groupId/*' element={<PhotoFeaturingContainer />} />
 					</Route>

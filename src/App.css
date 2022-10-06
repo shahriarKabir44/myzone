@@ -80,3 +80,30 @@ input::placeholder {
         left: 0vw;
     }
 }
+
+.tabContainer {
+    display: flex;
+    grid-template-columns: 20% auto;
+    position: sticky;
+    top: -10px;
+    background: #18191a;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100vw;
+    justify-content: center;
+}
+
+.red {
+    background: red
+}
+
+.tabItem {
+    font-size: 20px;
+    font-weight: 100;
+    margin-right: 20px;
+    color: white;
+}
+
+.active {
+    border-bottom: 3px solid blue;
+}

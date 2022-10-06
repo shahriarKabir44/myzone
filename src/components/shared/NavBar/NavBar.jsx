@@ -11,9 +11,12 @@ import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { toggleLeftMenu, closeLeftMenu } from '../../../redux/HomeMenuSelector'
 import useNotifications from '../../../service/useNotifications'
+import { useNavigate } from 'react-router-dom';
 import { toggleConversationListView, closeConversationListView } from '../../../redux/ConversatinListToggleManager'
 import { toggleNotificationTrayView, closeNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
 function NavBar(props) {
+    const navigate = useNavigate()
+    const [searchQuery, setSearchQuery] = React.useState('')
     const sideBarToggleStatusDispatcher = useDispatch()
     const notificationTrayToggleDispatcher = useDispatch()
     const location = useLocation();
@@ -64,8 +67,15 @@ function NavBar(props) {
                     {renderHeaderBtn()}
 
                     <div className="searchBar">
-                        <input type="text" placeholder='search' name="" id="" className="searchBarInput" />
-                        <SearchOutlinedIcon className='searchBtn' />
+                        <input value={searchQuery} onChange={e => {
+                            setSearchQuery(e.target.value)
+                        }} type="text" placeholder='search' name="" id="" className="searchBarInput" />
+                        <div onClick={() => {
+                            navigate('search/query=' + searchQuery)
+                        }} style={{
+                            margin: 0
+                        }}><SearchOutlinedIcon className='searchBtn' />
+                        </div>
                     </div>
                     <div className="otherOptions">
                         <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />

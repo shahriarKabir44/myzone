@@ -1,0 +1,5 @@
+.searchResultContainer {
+    background: #18191a;
+    height: calc(100vh - 113px);
+    margin: 0;
+}
