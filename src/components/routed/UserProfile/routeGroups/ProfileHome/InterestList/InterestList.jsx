@@ -4,12 +4,10 @@ import { useParams } from 'react-router-dom'
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ManageInterestsModal from '../../../../../shared/ManageInterestsModal/ManageInterestsModal';
 import InterestManagerService from '../../../../../../service/InterestManagerService';
-let interests = [
-    "🚴 cycling", "🏊 swimming", "📖books", "📸photography", "♬ music", "💃 dance", "🧘 yoga", "☕ coffee", "🍕 pizza", "🎨 painting", "✈ travel", "💍 jwellery"
-]
-
+import { useSelector } from 'react-redux'
 function InterestList(props) {
     const { userId } = useParams()
+    const currentUser = useSelector((state) => state.currentUser.value)
     const [interestList, setInterestList] = React.useState([])
     function getInterestList(userId) {
         InterestManagerService.getInterestList(userId)
@@ -39,13 +37,14 @@ function InterestList(props) {
                 <p className="interestListHeading">
                     Interests
                 </p>
-                <div onClick={() => {
+
+                {userId * 1 === currentUser.Id * 1 && <div onClick={() => {
                     setInterestsEditModalVisibility(true)
                 }}>
                     <BorderColorIcon style={{
                         color: 'white'
                     }} />
-                </div>
+                </div>}
 
             </div>
 

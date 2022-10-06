@@ -30,14 +30,23 @@ function App() {
 		UserService.isAuthorized()
 			.then(({ user }) => {
 
-				setCurrentUserDispatch(updateUserInfo(user))
+
 				if (!user) {
 					navigate('/')
 				}
 				else Globals.initSocket(user.Id)
+				setTimeout(() => {
+					setCurrentUserDispatch(updateUserInfo(user))
+				}, 300)
 			})
 
 	}, [])
+	function onAuthorized(user) {
+		Globals.initSocket(user.Id)
+		setTimeout(() => {
+			setCurrentUserDispatch(updateUserInfo(user))
+		}, 300)
+	}
 	return (
 		<div className="App">
 			{currentser != null && <><NavBar />
@@ -46,7 +55,9 @@ function App() {
 			</>}
 
 			<Routes>
-				{currentser == null && <Route path='/' element={<LoginRegistration />} />}
+				{currentser == null && <Route path='/' element={<LoginRegistration onAuthorized={(user) => {
+					onAuthorized(user)
+				}} />} />}
 
 
 				{currentser != null && <>  <Route path='/' element={<Home />} />  <Route path='/profile'>

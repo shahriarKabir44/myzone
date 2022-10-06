@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 import UserService from '../../../service/UserServices'
 
 const defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXUeyw_tNSf_cm7tM_q8uWbkcr0deNJhyItxp3ZSk&s"
-function LoginRegistration(props) {
+function LoginRegistration({ onAuthorized }) {
     const globalUserDispatcher = useDispatch()
     const [formMode, setFormMode] = React.useState(0)
     const [selectedImage, setSelectedImage] = React.useState(defaultImageURL)
@@ -92,10 +92,8 @@ function LoginRegistration(props) {
                                         setHasEmailError(true)
                                         return
                                     }
-                                    globalUserDispatcher(updateUserInfo({
-                                        ...data,
+                                    onAuthorized(data)
 
-                                    }))
                                 })
 
                         }} variant="contained">Sign up</Button>
@@ -119,7 +117,7 @@ function LoginRegistration(props) {
                                     localStorage.setItem('token', data.token)
                                     if (data.data === -1) setHasLoginError(true)
                                     else {
-                                        globalUserDispatcher(updateUserInfo(data.data))
+                                        onAuthorized(data.data)
                                     }
                                 })
                         }} variant="contained">Log in</Button>
