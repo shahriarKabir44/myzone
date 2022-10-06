@@ -1,7 +1,7 @@
 :root {
     --sidemenuWidth: 30vw;
     --negativeSideMenuWidth: -30vw;
-    --containerHeightLarge: calc(100vh - 113px);
+    --containerHeightLarge: calc(100vh - 115px);
     --containerHeightSmall: calc(100vh - 130px)
 }
 

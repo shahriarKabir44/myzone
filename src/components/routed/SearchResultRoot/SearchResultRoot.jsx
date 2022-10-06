@@ -3,6 +3,7 @@ import './SearchResultRoot.css';
 import { useParams } from 'react-router-dom'
 import { Link, Route, Routes, Navigate } from 'react-router-dom'
 import UserSearchResults from './UserSearchResults/UserSearchResults';
+import PostSearchResults from './PostSearchResults/PostSearchResults';
 function SearchResultRoot(props) {
     const { query } = useParams()
     const [tabValue, setTabValue] = React.useState(1)
@@ -11,9 +12,7 @@ function SearchResultRoot(props) {
     }, [])
     return (
         <div className='searchResultContainer'>
-            <Routes>
-                <Route path='/' element={<Navigate to="users" />} />
-            </Routes>
+
 
             <div className="mainSearchResultContainer">
                 <div style={{
@@ -53,7 +52,14 @@ function SearchResultRoot(props) {
                 <div className="searchResultsRoutesRoot">
                     <div></div>
                     <Routes>
-                        <Route path='/users' element={<UserSearchResults query={query} />} />
+                        <Route path='/posts' element={<PostSearchResults onLoad={(v) => {
+                            setTabValue(2)
+                            console.log(v)
+                        }} query={query} />} />
+                        <Route path='/users' element={<UserSearchResults onLoad={(v) => {
+                            console.log(v)
+                            setTabValue(1)
+                        }} query={query} />} />
                         <Route path='/' element={<Navigate to="users" />} />
                     </Routes>
                     <div></div>

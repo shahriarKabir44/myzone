@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SearchingServices from '../../../../service/SearchingServices';
 import './UserSearchResults.css'
-function UserSearchResults({ query }) {
+function UserSearchResults({ query, onLoad }) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const [searchResult, setSearchResultUsers] = React.useState([])
     React.useEffect(() => {
+        onLoad()
         SearchingServices.findUsers(query, currentUser.Id)
             .then(({ users }) => {
                 setSearchResultUsers(users)
