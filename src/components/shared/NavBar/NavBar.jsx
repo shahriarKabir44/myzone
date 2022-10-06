@@ -27,7 +27,15 @@ function NavBar(props) {
     const { subscribe: subscribeUseNotification } = useNotifications('navBar', (notification) => {
         setNewNotificationArrivalState(true)
     })
+    function getSearchQuery() {
+        if (location.pathname.startsWith('/search')) {
+            let tempPath = location.pathname.split('/')[2]
+            const query = tempPath.split('=')[1]
+            setSearchQuery(query)
+        }
+    }
     React.useEffect(() => {
+        getSearchQuery()
         subscribeUseNotification()
         if (location.pathname.startsWith('/messenger')) {
             toggleSlideInConversationList(toggleConversationListView())

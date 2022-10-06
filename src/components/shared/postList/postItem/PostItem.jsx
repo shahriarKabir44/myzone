@@ -35,7 +35,7 @@ function PostItem(props) {
                 </div>
                 <MoreVertIcon className='moreBtn' />
             </div>
-            <Link to={`/post/${post.Id}`}>
+            <Link to={`/post/${post.Id}`} style={{ textDecoration: 'none' }}>
                 <div className="postContent">
                     <p className="postText">{post.body}</p>
                     {JSON.parse(post.attached_media)[0] !== null && <div className="postImageContainer">

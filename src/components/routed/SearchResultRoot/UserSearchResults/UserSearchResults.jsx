@@ -28,7 +28,7 @@ function UserSearchResults({ query, onLoad }) {
         </div>
     );
 }
-function SearchResultUserContainer({ user }) {
+export function SearchResultUserContainer({ user }) {
 
     return <Link to={'/profile/' + user.Id} style={{ textDecoration: 'none' }}>
         <div className='searchResultUserInfo' >

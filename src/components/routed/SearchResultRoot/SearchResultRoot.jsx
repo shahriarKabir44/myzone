@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { Link, Route, Routes, Navigate } from 'react-router-dom'
 import UserSearchResults from './UserSearchResults/UserSearchResults';
 import PostSearchResults from './PostSearchResults/PostSearchResults';
+import InterestSearchResult from './InterestSearchResult/InterestSearchResult';
 function SearchResultRoot(props) {
     const { query } = useParams()
     const [tabValue, setTabValue] = React.useState(1)
@@ -41,7 +42,7 @@ function SearchResultRoot(props) {
                         </div>
                     </Link>
 
-                    <Link to={'Interests'} style={{ textDecoration: 'none' }}  >
+                    <Link to={'interest'} style={{ textDecoration: 'none' }}  >
 
                         <div className={`tabItem ${tabValue === 3 ? "active" : ""}  `}>
                             <p className="tabMenuText">Interest</p>
@@ -53,13 +54,18 @@ function SearchResultRoot(props) {
                     <div></div>
                     <Routes>
                         <Route path='/posts' element={<PostSearchResults onLoad={(v) => {
+
                             setTabValue(2)
-                            console.log(v)
                         }} query={query} />} />
                         <Route path='/users' element={<UserSearchResults onLoad={(v) => {
-                            console.log(v)
+
                             setTabValue(1)
                         }} query={query} />} />
+                        <Route path='/interest' element={
+                            <InterestSearchResult query={query} onLoad={() => {
+                                setTabValue(3)
+                            }} />
+                        } />
                         <Route path='/' element={<Navigate to="users" />} />
                     </Routes>
                     <div></div>

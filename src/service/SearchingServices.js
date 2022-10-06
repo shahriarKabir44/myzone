@@ -5,13 +5,13 @@ export default class SearchingServices {
         return Globals._fetch(this.basePath + '/users', { query, currentUserId, pageNumber })
     }
     static async searchposts(query, pageNumber = 0) {
-        console.log(query)
         let { data } = await Globals._fetch(Globals.SERVER_IP + '/graphql', {
             query: `query {
                         filterPost(query:"${query}",pageNumber:${pageNumber}){
                             attached_media
                             posted_on
                             Id
+                            body
                             creatorInfo{
                                 name
                                 profileImage
@@ -24,5 +24,8 @@ export default class SearchingServices {
         })
 
         return data.filterPost
+    }
+    static async searchUsersByInterest(query, userId) {
+        return Globals._fetch(this.basePath + '/searchUsersByInterest', { query, userId })
     }
 }
