@@ -6,16 +6,20 @@ import ThreePIcon from '@mui/icons-material/ThreeP';
 import { useSelector } from 'react-redux';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Link } from 'react-router-dom';
+import ManageInterestsModal from '../../../shared/ManageInterestsModal/ManageInterestsModal';
 
 function LeftMenu(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
-
+    const [manageInterestModalVisibility, setManageInterestModalVisibility] = React.useState(false)
     const [isOnMobile, setDeviceType] = React.useState(false)
     React.useEffect(() => {
         setDeviceType(window.innerWidth <= 620)
     }, [])
     return (
         <div className="leftMenuRoot">
+            <ManageInterestsModal modalVisibility={manageInterestModalVisibility} closeModal={() => {
+                setManageInterestModalVisibility(false)
+            }} onComplete={() => { }} />
             <Link style={{ textDecoration: 'none' }} to={"/profile/" + currentUser.Id}>
                 <div className="leftMenuItem">
                     <div className="userImageContainer">
@@ -40,7 +44,11 @@ function LeftMenu(props) {
                 }} className="leftMenuIcon"></GroupAddIcon>
                 <p className="leftMenuText">Find friends</p>
             </div>
-            <div className="leftMenuItem">
+            <div className="leftMenuItem" onClick={() => {
+                setManageInterestModalVisibility(true)
+            }} style={{
+                cursor: 'pointer'
+            }}>
                 <BuildCircleIcon style={{
                     fontSize: "40px"
                 }} className="leftMenuIcon"></BuildCircleIcon>

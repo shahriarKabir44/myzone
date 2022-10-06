@@ -1,16 +1,35 @@
 import React from 'react';
 import './InterestList.css'
+import { useParams } from 'react-router-dom'
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ManageInterestsModal from '../../../../../shared/ManageInterestsModal/ManageInterestsModal';
+import InterestManagerService from '../../../../../../service/InterestManagerService';
 let interests = [
     "🚴 cycling", "🏊 swimming", "📖books", "📸photography", "♬ music", "💃 dance", "🧘 yoga", "☕ coffee", "🍕 pizza", "🎨 painting", "✈ travel", "💍 jwellery"
 ]
 
 function InterestList(props) {
+    const { userId } = useParams()
+    const [interestList, setInterestList] = React.useState([])
+    function getInterestList(userId) {
+        InterestManagerService.getInterestList(userId)
+            .then(({ interests }) => {
+                let tempList = []
+                for (let interest of interests) {
+                    tempList.push(interest.interest_name)
+                }
+                setInterestList(tempList)
+            })
+    }
+    React.useEffect(() => {
+        getInterestList(userId)
+    }, [])
     const [interestsEditModalVisibility, setInterestsEditModalVisibility] = React.useState(false)
     return (
         <div className="interestListContainer">
-            <ManageInterestsModal closeModal={() => {
+            <ManageInterestsModal onComplete={() => {
+                getInterestList(userId)
+            }} closeModal={() => {
                 setInterestsEditModalVisibility(false)
             }} modalVisibility={interestsEditModalVisibility} />
             <div className="flex" style={{
@@ -31,7 +50,7 @@ function InterestList(props) {
             </div>
 
             <div className='interestListPanel' >
-                {interests.map((interest, index) => {
+                {interestList.map((interest, index) => {
                     return <InterestItem key={index} interest={interest} />
                 })}
             </div>

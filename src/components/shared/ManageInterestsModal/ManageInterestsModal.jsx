@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { InterestItem } from '../../routed/UserProfile/routeGroups/ProfileHome/InterestList/InterestList'
 import InterestManagerService from '../../../service/InterestManagerService';
-function ManageInterestsModal(props) {
+function ManageInterestsModal({ onComplete, closeModal, modalVisibility }) {
     const [interestConfirmationVisibility, setInterestConfirmationVisibility] = React.useState(false)
 
     React.useEffect(() => { }, [])
@@ -49,15 +49,15 @@ function ManageInterestsModal(props) {
                 </IconButton>}
             />
             <Modal
-                open={props.modalVisibility}
-                onClose={props.closeModal}
+                open={modalVisibility}
+                onClose={closeModal}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
                 <Box style={{
                     width: "60vw"
                 }} sx={modalStyle}>
-                    {props.modalVisibility && <InterestsManagerRoot setInterestConfirmationVisibility={setInterestConfirmationVisibility} {...props} />}
+                    {modalVisibility && <InterestsManagerRoot setInterestConfirmationVisibility={setInterestConfirmationVisibility} closeModal={closeModal} modalVisibility={modalVisibility} onComplete={onComplete} />}
                 </Box>
             </Modal>
         </div>
@@ -96,6 +96,7 @@ function InterestsManagerRoot(props) {
         InterestManagerService.updateInterestList(newItems, addedItems, removedItems, currentUser.Id)
             .then(() => {
                 props.setInterestConfirmationVisibility(true)
+                if (props.onComplete) props.onComplete()
                 props.closeModal()
             })
 
