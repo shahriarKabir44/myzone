@@ -3,3 +3,8 @@
     height: calc(100vh - 113px);
     margin: 0;
 }
+
+.searchResultsRoutesRoot {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+}

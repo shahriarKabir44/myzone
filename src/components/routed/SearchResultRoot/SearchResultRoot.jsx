@@ -14,7 +14,7 @@ function SearchResultRoot(props) {
             <Routes>
                 <Route path='/' element={<Navigate to="users" />} />
             </Routes>
-            <div></div>
+
             <div className="mainSearchResultContainer">
                 <div style={{
                     display: 'flex',
@@ -50,14 +50,18 @@ function SearchResultRoot(props) {
                     </Link>
 
                 </div>
+                <div className="searchResultsRoutesRoot">
+                    <div></div>
+                    <Routes>
+                        <Route path='/users' element={<UserSearchResults query={query} />} />
+                        <Route path='/' element={<Navigate to="users" />} />
+                    </Routes>
+                    <div></div>
+                </div>
 
-                <Routes>
-                    <Route path='/users' element={<UserSearchResults query={query} />} />
-                    <Route path='/' element={<Navigate to="users" />} />
-                </Routes>
             </div>
 
-            <div></div>
+
         </div>
     );
 }
