@@ -10,6 +10,10 @@ function NotificationListItem({ notification }) {
             case 2:
                 return navigate('post/' + notification.relatedSchemaId)
 
+            case 3:
+                return navigate('profile/' + notification.relatedSchemaId)
+            case 4:
+                return navigate('profile/' + notification.relatedSchemaId)
 
             default:
                 break;

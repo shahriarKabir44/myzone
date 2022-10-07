@@ -12,9 +12,11 @@ import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { toggleLeftMenu, closeLeftMenu } from '../../../redux/HomeMenuSelector'
 import useNotifications from '../../../service/useNotifications'
 import useFriendRequest from '../../../service/useFriendRequest'
+import { toggleFriendRequestTrayView, closeFriendRequestTrayView } from '../../../redux/FriendRequestToggleManager'
 import { toggleConversationListView, closeConversationListView } from '../../../redux/ConversatinListToggleManager'
 import { toggleNotificationTrayView, closeNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
 function NavBar(props) {
+    const fiendRequestTrayViewToggleDispatcher = useDispatch()
     const navigate = useNavigate()
     const [searchQuery, setSearchQuery] = React.useState('')
     const sideBarToggleStatusDispatcher = useDispatch()
@@ -59,6 +61,9 @@ function NavBar(props) {
         if (toIgnore !== 2) notificationTrayToggleDispatcher(closeNotificationTrayView())
         if (toIgnore !== 3)
             toggleSlideInConversationList(closeConversationListView())
+        if (toIgnore !== 4) {
+            fiendRequestTrayViewToggleDispatcher(closeFriendRequestTrayView())
+        }
     }
     function openDrawer(type = 1) {
         closeAll(1)
@@ -94,7 +99,11 @@ function NavBar(props) {
                     </div>
                     <div className="otherOptions">
                         {location.pathname !== '/' && <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />}
-                        <div onClick={() => { }}>
+                        <div onClick={() => {
+                            console.log('frw')
+                            closeAll(4)
+                            fiendRequestTrayViewToggleDispatcher(toggleFriendRequestTrayView())
+                        }}>
                             <GroupAddIcon fontSize='10' className="menuBtn messageBtn" />
                         </div>
                         <div onClick={() => {

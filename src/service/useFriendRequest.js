@@ -26,6 +26,7 @@ export default function useFriendRequest({
         SocketSubscriptionManager.subscribe({
             component,
             onMessage: (data) => {
+                console.log(data)
                 if (data.type == 'friendRequest') {
                     onFriendRequestReceived(data.body.newMessage)
                 }

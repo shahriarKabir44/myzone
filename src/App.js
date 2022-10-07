@@ -22,6 +22,7 @@ import UserService from './service/UserServices';
 import { updateUserInfo } from './redux/CurrentUserManager'
 import PhotoFeaturingContainer from './components/routed/PhotoFeaturingContainer/PhotoFeaturingContainer';
 import SearchResultRoot from './components/routed/SearchResultRoot/SearchResultRoot';
+import FriendRequestContainer from './components/shared/FriendRequestContainer/FriendRequestContainer';
 function App() {
 	const navigate = useNavigate()
 	const location = useLocation();
@@ -53,6 +54,7 @@ function App() {
 			{currentser != null && <><NavBar />
 				<SlideInMessagesRoot />
 				<NotificationListRoot />
+				<FriendRequestContainer />
 			</>}
 
 			<Routes>

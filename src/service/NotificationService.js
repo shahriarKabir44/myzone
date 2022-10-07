@@ -3,7 +3,6 @@ import Globals from './Globals'
 export default class NotidicationService {
     static async createNotification({ senderId, receiverId, body, relatedSchemaId, type }) {
         const time = (new Date()) * 1
-        console.log(senderId, receiverId, body, relatedSchemaId, type)
         return await fetch(Globals.SERVER_IP + '/notification/create', {
             method: 'POST',
             headers: {
@@ -30,7 +29,7 @@ export default class NotidicationService {
             },
             body: JSON.stringify({
                 query: `query{
-                    getNotifications(receiverId:${receiverId},pageNumber:${pageNumber}){
+                    getNotifications(receiverId:${receiverId},pageNumber:${pageNumber},groupType:0){
                       body
                       time
                       type

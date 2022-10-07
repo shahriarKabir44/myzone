@@ -14,6 +14,26 @@ export default class FriendshipService {
     static async getFriendshipType(userId, friendId) {
         return Globals._fetch(this.basePath + '/getFriendshipType', { userId, friendId })
     }
+    static async getFriendsipNotification(receiverId, pageNumber = 0) {
+        console.log(receiverId)
+        let { data } = await Globals._fetch(Globals.SERVER_IP + '/graphql', {
+            query: `query{
+                    getNotifications(receiverId:${receiverId},pageNumber:${pageNumber},groupType:1){
+                      body
+                      time
+                      type
+                      Id
+                      relatedSchemaId
+                      senderInfo{
+                        Id
+                        profileImage
+                      }
+                    }
+                  }`
+        })
+
+        return data.getNotifications
+    }
     static async createFriendRequest(currentUser, friendId) {
         return Promise.all([
             Globals._fetch(this.basePath + '/createFriendRequest',
