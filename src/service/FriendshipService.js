@@ -34,6 +34,9 @@ export default class FriendshipService {
 
         return data.getNotifications
     }
+    static async cancelFriendRequest(userId, friendId) {
+        return Globals._fetch(this.basePath + '/cancelFriendRequest', { userId, friendId })
+    }
     static async createFriendRequest(currentUser, friendId) {
         return Promise.all([
             Globals._fetch(this.basePath + '/createFriendRequest',

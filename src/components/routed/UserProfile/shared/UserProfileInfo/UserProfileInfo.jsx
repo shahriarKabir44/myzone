@@ -38,6 +38,12 @@ function UserProfileInfo(props) {
             type: 3
         }, userId)
     }
+    function cancelRequest() {
+        FriendshipService.cancelFriendRequest(currentUser.Id, userId)
+            .then(() => {
+                setFriendShipStatus(0)
+            })
+    }
     return (
         <div className="userProfileInfoContainer">
             <div className="coverPhotoContainer">
@@ -59,7 +65,7 @@ function UserProfileInfo(props) {
                             addFriend()
                         }} color='primary'>add friend</Button>}
                         {friendShipStatus === 2 && <Button variant='contained' onClick={() => {
-                            addFriend()
+                            cancelRequest()
                         }} color='primary'>Cancel request</Button>}
                     </>}
 
