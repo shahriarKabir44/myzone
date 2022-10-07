@@ -4,8 +4,13 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button'
 import FriendshipService from '../../../../../service/FriendshipService';
+import useFriendRequest from '../../../../../service/useFriendRequest';
 function UserProfileInfo(props) {
     const { userId } = useParams()
+    let { sendRequest } = useFriendRequest({
+        component: null, onFriendRequestReceived: null
+
+    })
     const [friendShipStatus, setFriendShipStatus] = React.useState(-1)
     const currentUser = useSelector((state) => state.currentUser.value)
     function getFriendshipType(currentUserId, userId) {
@@ -25,6 +30,13 @@ function UserProfileInfo(props) {
                 getFriendshipType(currentUser.Id, userId)
 
             })
+        sendRequest({
+            senderId: currentUser.Id,
+            receiverId: userId,
+            relatedSchemaId: currentUser.Id,
+            body: `${currentUser.name} has send you a friend request.`,
+            type: 3
+        }, userId)
     }
     return (
         <div className="userProfileInfoContainer">

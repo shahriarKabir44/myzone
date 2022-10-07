@@ -27,7 +27,8 @@ export default class FriendshipService {
                 relatedSchemaId: currentUser.Id,
                 body: `${currentUser.name} has send you a friend request.`,
                 type: 3
-            })
+            }),
+
         ])
     }
 }
