@@ -11,6 +11,7 @@ import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { toggleLeftMenu, closeLeftMenu } from '../../../redux/HomeMenuSelector'
 import useNotifications from '../../../service/useNotifications'
+import useFriendRequest from '../../../service/useFriendRequest'
 import { toggleConversationListView, closeConversationListView } from '../../../redux/ConversatinListToggleManager'
 import { toggleNotificationTrayView, closeNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
 function NavBar(props) {
@@ -26,6 +27,12 @@ function NavBar(props) {
     const { subscribe: subscribeUseNotification } = useNotifications('navBar', (notification) => {
         setNewNotificationArrivalState(true)
     })
+    const { subscribe: subscribeUseFriendRequest } = useFriendRequest({
+        component: 'navBarFriendRequest',
+        onFriendRequestReceived: message => {
+            console.log(message)
+        }
+    })
     function getSearchQuery() {
         if (location.pathname.startsWith('/search')) {
             let tempPath = location.pathname.split('/')[2]
@@ -34,6 +41,7 @@ function NavBar(props) {
         }
     }
     React.useEffect(() => {
+        subscribeUseFriendRequest()
         getSearchQuery()
         subscribeUseNotification()
         if (location.pathname.startsWith('/messenger')) {
