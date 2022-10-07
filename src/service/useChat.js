@@ -52,7 +52,7 @@ export default function useChat(conversationId, sender, messageList, component =
         setMessages([...messages, newMessage])
         let message = {
             type: 'personalMessage',
-            body: { newMessage, participantId }
+            body: { newMessage, participantId, receiverId: participantId }
         }
         socketRef.current.send(JSON.stringify(message))
     }

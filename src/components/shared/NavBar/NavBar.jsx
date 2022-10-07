@@ -52,6 +52,7 @@ function NavBar(props) {
         }
         socketRef.current = Globals.socket
         socketRef.current.onmessage = e => {
+            console.log(e)
             SocketSubscriptionManager.sendMessages(JSON.parse(e.data))
         }
 

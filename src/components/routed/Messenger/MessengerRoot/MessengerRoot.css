@@ -1,5 +1,6 @@
 .largeScreenMessengerViewRoot {
     display: grid;
     grid-template-columns: 30vw auto;
-
+    align-items: stretch;
+    height: var(--containerHeightLarge);
 }
