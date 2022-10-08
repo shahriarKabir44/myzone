@@ -37,6 +37,12 @@ export default class FriendshipService {
     static async cancelFriendRequest(userId, friendId) {
         return Globals._fetch(this.basePath + '/cancelFriendRequest', { userId, friendId })
     }
+    static async accept(friend1, friend2) {
+        return Globals._fetch(this.basePath + '/accept', { friend1, friend2 })
+    }
+    static async removeFriendshipRecord(friend1, friend2) {
+        return Globals._fetch(this.basePath + '/removeFriendshipRecord', { friend1, friend2 })
+    }
     static async createFriendRequest(currentUser, friendId) {
         return Promise.all([
             Globals._fetch(this.basePath + '/createFriendRequest',

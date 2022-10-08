@@ -5,7 +5,10 @@ import SocketSubscriptionManager from './SocketSubscriptionManager'
 export default function useConversation(component = "messagesRoot", onMessageReceived = null) {
     const [conversations, setConversationList] = React.useState([])
     const socketRef = React.useRef()
-
+    function onSelfMessage(newMessage) {
+        newMessage.last_message = newMessage.body
+        setConversationList([newMessage, ...conversations.filter(conversation => conversation.Id !== newMessage.conversationId)])
+    }
     React.useEffect(() => {
         socketRef.current = Globals.socket
 
@@ -47,6 +50,6 @@ export default function useConversation(component = "messagesRoot", onMessageRec
                 })
         }
     }
-    return { conversations, setConversationList, handleOnMessage, subscribe, unsubscribe }
+    return { conversations, setConversationList, handleOnMessage, subscribe, unsubscribe, onSelfMessage }
 
 }

@@ -6,8 +6,6 @@ import { useParams } from 'react-router-dom';
 import ConversationService from '../../../../service/ConversationService';
 import { useSelector } from 'react-redux'
 import useChat from '../../../../service/useChat';
-
-
 function TextingContainer(props) {
     const divRef = React.useRef(null)
     const currentUser = useSelector(state => state.currentUser.value)
@@ -15,6 +13,7 @@ function TextingContainer(props) {
     const { messages, sendMessage, setMessages, setParticipantId, unsubscribe, subscribe } = useChat(currentRoute.conversationId, currentUser.Id, [])
     const [messageText, setmessageText] = React.useState("")
     const [participantInfo, setParticipantInfo] = React.useState({})
+
     React.useEffect(() => {
         subscribe()
         ConversationService.getConversationMessages(currentRoute.conversationId)

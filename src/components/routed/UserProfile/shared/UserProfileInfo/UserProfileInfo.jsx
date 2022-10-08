@@ -67,6 +67,26 @@ function UserProfileInfo(props) {
                         {friendShipStatus === 2 && <Button variant='contained' onClick={() => {
                             cancelRequest()
                         }} color='primary'>Cancel request</Button>}
+                        {friendShipStatus === 3 && <div className="flex" style={{
+                            gap: "10px"
+                        }}>
+                            <Button variant='contained' onClick={() => {
+                                FriendshipService.accept(currentUser.Id, userId)
+                                    .then(setFriendShipStatus(1))
+                            }}>Accept</Button>
+                            <Button variant='contained' onClick={() => {
+                                FriendshipService.removeFriendshipRecord(currentUser.Id, userId)
+                                    .then(setFriendShipStatus(0))
+                            }}>Reject</Button>
+
+                        </div>}
+                        {friendShipStatus === 1 && <div className="flex">
+                            <Button variant='contained' onClick={() => {
+                                FriendshipService.removeFriendshipRecord(currentUser.Id, userId)
+                                    .then(setFriendShipStatus(0))
+                            }}>Unfriend</Button>
+
+                        </div>}
                     </>}
 
                 </div>
