@@ -1,5 +1,6 @@
 import Globals from "./Globals";
 export default class ConversationService {
+    static basePath = Globals.SERVER_IP + '/conversation'
     static async createConversation(participant1, participant2) {
         return fetch(Globals.SERVER_IP + '/conversation/createConversation', {
             method: 'POST',
@@ -12,18 +13,14 @@ export default class ConversationService {
             }
         }).then(res => res.json())
     }
-    static async getConversations() { }
+    static async getConversationInfo(participant1, participant2) {
+        return Globals._fetch(this.basePath + '/getConversationInfo', { participant1, participant2 })
+    }
     static async getConversationList(userId, pageNumber = 0) {
-        return fetch(Globals.SERVER_IP + '/conversation/getConversationList', {
-            method: 'POST',
-            body: JSON.stringify({
-                userId, pageNumber
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'token': localStorage.getItem('token')
-            }
-        }).then(res => res.json())
+        return Globals._fetch(this.basePath + '/getConversationList', {
+            userId, pageNumber
+        })
+
     }
     static async getConversationMessages(conversationId, pageNumber = 0) {
         return fetch(Globals.SERVER_IP + '/conversation/getConversationMessages/', {

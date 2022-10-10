@@ -6,7 +6,9 @@ import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import useConversation from '../../../../service/useConversation';
 import FiberNewSharpIcon from '@mui/icons-material/FiberNewSharp';
 import MessengerTogglerService from '../../../../service/MessengerTogglerService';
+import { useSelector } from 'react-redux'
 function FloatingMessengerRoot(props) {
+    const currentUser = useSelector((state) => state.currentUser.value)
     const [isChatHeadSelected, setSelectionStatus] = React.useState(false)
     const [selectedChatHead, setSelectedChatHead] = React.useState(null)
     const [isChatHeadListExpanded, setExpansionStatus] = React.useState(false)
@@ -20,6 +22,12 @@ function FloatingMessengerRoot(props) {
         subscribe()
         MessengerTogglerService.subscribe({
             onCall: (data) => {
+                setSelectedChatHead({
+                    conversationId: data.Id,
+                    sender: currentUser.Id * 1 === data.participant1 * 1 ? data.participant1 : data.participant2
+                })
+
+                setSelectionStatus(true)
                 console.log(data)
             }
         })

@@ -36,7 +36,7 @@ function ActiveUsersList(props) {
                 <p className="headingText">Active users</p>
             </div>
             {activeFriendsList.map((user, index) => {
-                return <ActiveUser key={index} user={user} />
+                return <ActiveUser currentUserId={currentUser.Id} key={index} user={user} />
             })}
 
 
