@@ -60,4 +60,7 @@ export default class FriendshipService {
 
         ])
     }
+    static async getActiveFriends(userId) {
+        return Globals._fetch(this.basePath + '/getActiveFriends/' + userId)
+    }
 }

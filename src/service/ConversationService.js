@@ -12,6 +12,7 @@ export default class ConversationService {
             }
         }).then(res => res.json())
     }
+    static async getConversations() { }
     static async getConversationList(userId, pageNumber = 0) {
         return fetch(Globals.SERVER_IP + '/conversation/getConversationList', {
             method: 'POST',

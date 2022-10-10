@@ -5,6 +5,7 @@ import FloatingMessenger from '../FloatingMessangerContainer/FloatingMessenger';
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import useConversation from '../../../../service/useConversation';
 import FiberNewSharpIcon from '@mui/icons-material/FiberNewSharp';
+import MessengerTogglerService from '../../../../service/MessengerTogglerService';
 function FloatingMessengerRoot(props) {
     const [isChatHeadSelected, setSelectionStatus] = React.useState(false)
     const [selectedChatHead, setSelectedChatHead] = React.useState(null)
@@ -14,9 +15,14 @@ function FloatingMessengerRoot(props) {
         setNewConversationArrival(true)
 
     })
+
     React.useEffect(() => {
         subscribe()
-
+        MessengerTogglerService.subscribe({
+            onCall: (data) => {
+                console.log(data)
+            }
+        })
         return () => {
             unsubscribe()
         }

@@ -1,7 +1,8 @@
 import React from 'react';
 import ActiveUser from './ActiveUser/ActiveUser';
 import './ActiveUsersList.css'
-
+import FriendshipService from '../../../../service/FriendshipService'
+import { useSelector } from 'react-redux';
 let users = [
     {
         name: "Rahul Islam",
@@ -21,12 +22,20 @@ let users = [
     }
 ]
 function ActiveUsersList(props) {
+    const currentUser = useSelector((state) => state.currentUser.value)
+    const [activeFriendsList, setActiveFriendsList] = React.useState([])
+    React.useEffect(() => {
+        FriendshipService.getActiveFriends(currentUser.Id)
+            .then(({ activeFriends }) => {
+                setActiveFriendsList((activeFriends))
+            })
+    }, [])
     return (
         <div className='ActiveUsersList'>
             <div className="heading">
                 <p className="headingText">Active users</p>
             </div>
-            {users.map((user, index) => {
+            {activeFriendsList.map((user, index) => {
                 return <ActiveUser key={index} user={user} />
             })}
 
