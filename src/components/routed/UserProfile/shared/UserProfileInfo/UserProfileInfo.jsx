@@ -71,7 +71,7 @@ function UserProfileInfo(props) {
                             gap: "10px"
                         }}>
                             <Button variant='contained' onClick={() => {
-                                FriendshipService.accept(currentUser.Id, userId)
+                                FriendshipService.accept(currentUser, userId)
                                     .then(setFriendShipStatus(1))
                             }}>Accept</Button>
                             <Button variant='contained' onClick={() => {

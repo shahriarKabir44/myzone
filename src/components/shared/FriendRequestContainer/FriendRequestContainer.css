@@ -1,0 +1,7 @@
+.notificationsContainerRoot {
+    overflow-y: auto;
+    max-height: calc(var(--containerHeightLarge) - 50px);
+    height: calc(var(--containerHeightLarge) - 50px);
+
+
+}

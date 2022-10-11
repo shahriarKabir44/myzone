@@ -52,7 +52,6 @@ function NavBar(props) {
         }
         socketRef.current = Globals.socket
         socketRef.current.onmessage = e => {
-            console.log(e)
             SocketSubscriptionManager.sendMessages(JSON.parse(e.data))
         }
 
@@ -101,7 +100,6 @@ function NavBar(props) {
                     <div className="otherOptions">
                         {location.pathname !== '/' && <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />}
                         <div onClick={() => {
-                            console.log('frw')
                             closeAll(4)
                             fiendRequestTrayViewToggleDispatcher(toggleFriendRequestTrayView())
                         }}>

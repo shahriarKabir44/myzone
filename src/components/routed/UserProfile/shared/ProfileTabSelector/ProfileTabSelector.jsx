@@ -25,12 +25,12 @@ function ProfileTabSelector(props) {
                 </div>
             </Link>
 
-            <div className="tabItem">
+            {/* <div className="tabItem">
                 <p className="tabMenuText">Photos</p>
             </div>
             <div className="tabItem">
                 <p className="tabMenuText">About</p>
-            </div>
+            </div> */}
         </div>
     );
 }

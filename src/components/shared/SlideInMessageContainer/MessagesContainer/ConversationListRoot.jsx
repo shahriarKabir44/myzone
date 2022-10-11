@@ -1,5 +1,4 @@
 import React from 'react';
-import OpenWithIcon from '@mui/icons-material/OpenWith';
 import { Link, useNavigate } from 'react-router-dom'
 import './ConversationListRoot.css';
 import Button from '@mui/material/Button';
@@ -36,14 +35,7 @@ function ConversationListRoot(props) {
     }
     return (
         <div className='conversationListRoot'>
-            <div className="conversationListHeading">
-                <h3 style={{
-                    fontWeight: 200
-                }} className="headingTextSlideMessage">Messages</h3>
-                <div>
-                    <OpenWithIcon />
-                </div>
-            </div>
+
             <Button onClick={() => {
                 getFriendsList()
                 toggleConversationModal(true)
