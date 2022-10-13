@@ -10,7 +10,6 @@ let FriendRequestToggleManager = createSlice({
     },
     reducers: {
         toggleFriendRequestTrayView: (state, action) => {
-            console.log(state.value.status)
             if (state.value.status <= 0) state.value.status = 1
             else state.value.status = 0
 

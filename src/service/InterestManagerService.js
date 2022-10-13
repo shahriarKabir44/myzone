@@ -22,7 +22,6 @@ export default class InterestManagerService {
      */
     static async createManyInterestItemAndConnect(interestList, userId) {
         let promises = []
-        console.log(interestList)
         for (let interestName of interestList) {
             promises.push(InterestManagerService.createInterest(interestName)
                 .then(() => {

@@ -15,7 +15,6 @@ export default class FriendshipService {
         return Globals._fetch(this.basePath + '/getFriendshipType', { userId, friendId })
     }
     static async getFriendsipNotification(receiverId, pageNumber = 0) {
-        console.log(receiverId)
         let { data } = await Globals._fetch(Globals.SERVER_IP + '/graphql', {
             query: `query{
                     getNotifications(receiverId:${receiverId},pageNumber:${pageNumber},groupType:1){

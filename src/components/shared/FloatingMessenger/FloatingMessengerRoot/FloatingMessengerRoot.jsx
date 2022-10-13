@@ -28,7 +28,6 @@ function FloatingMessengerRoot(props) {
                 })
 
                 setSelectionStatus(true)
-                console.log(data)
             }
         })
         return () => {

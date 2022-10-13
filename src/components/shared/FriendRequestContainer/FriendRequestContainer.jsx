@@ -47,7 +47,6 @@ function NotificationsRoot() {
     React.useEffect(() => {
         FriendshipService.getFriendsipNotification(currentUser.Id)
             .then(notification => {
-                console.log("here")
                 setNotificationsList(notification);
             })
     }, [])

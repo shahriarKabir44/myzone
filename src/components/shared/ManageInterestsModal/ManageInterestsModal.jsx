@@ -83,7 +83,6 @@ function InterestsManagerRoot(props) {
             isAltered: true,
 
         }]
-        console.log(newOverAllList.filter(item => !item.isAdded))
         setOverallList(newOverAllList)
         updateNotAddedList(newOverAllList.filter(item => !item.isAdded));
 
@@ -125,14 +124,12 @@ function InterestsManagerRoot(props) {
                     })
 
                 }
-                console.log(interests)
                 return tempOverallList
 
             })
             .then((tempOverallList) => {
                 InterestManagerService.getOtherInterests(currentUser.Id)
                     .then((otherInterests) => {
-                        console.log(otherInterests)
 
                         for (let interest of otherInterests) {
                             tempOverallList.push({
@@ -145,7 +142,6 @@ function InterestsManagerRoot(props) {
 
 
                         }
-                        console.log(tempOverallList)
                         setOverallList([...tempOverallList])
                         updateNotAddedList(tempOverallList.filter(item => !item.isAdded))
 

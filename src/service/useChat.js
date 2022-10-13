@@ -12,7 +12,6 @@ export default function useChat(conversationId, sender, messageList, component =
         try {
             socketRef.current = Globals.socket
         } catch (error) {
-            console.log(error)
         }
 
     }, [])
