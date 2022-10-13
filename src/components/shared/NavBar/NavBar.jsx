@@ -26,16 +26,8 @@ function NavBar(props) {
     const socketRef = React.useRef()
     const currentUser = useSelector((state) => state.currentUser.value)
     const toggleSlideInConversationList = useDispatch()
-    const [hasNewNotificationArrived, setNewNotificationArrivalState] = React.useState(false)
-    const { subscribe: subscribeUseNotification } = useNotifications('navBar', (notification) => {
-        setNewNotificationArrivalState(true)
-    })
-    const { subscribe: subscribeUseFriendRequest } = useFriendRequest({
-        component: 'navBarFriendRequest',
-        onFriendRequestReceived: message => {
-            console.log(message)
-        }
-    })
+
+
     function getSearchQuery() {
         if (location.pathname.startsWith('/search')) {
             let tempPath = location.pathname.split('/')[2]
@@ -47,7 +39,7 @@ function NavBar(props) {
     const [missedFrientRequestCount, setMissedFrientRequestCount] = React.useState(0)
     const [missedMessagestCount, setMissedMessagesCount] = React.useState(0)
 
-    function updateNumMissedNotifications() {
+    function updateNumMissedNotificationsUtil() {
         UserService.getNumMissedNotifications(currentUser.Id)
             .then(({ numMissedNotifications }) => {
                 setMissedNotificationCount(numMissedNotifications.numUnseenNotification)
@@ -55,11 +47,17 @@ function NavBar(props) {
 
             })
     }
+    function updateNumMissedNotifications() {
+        updateNumMissedNotificationsUtil()
+        UserService.getNumUnreadMessages(currentUser.Id)
+            .then(({ numUnreadMessages }) => {
+                setMissedMessagesCount(numUnreadMessages)
+            })
+
+    }
     React.useEffect(() => {
-        subscribeUseFriendRequest()
         getSearchQuery()
         updateNumMissedNotifications()
-        subscribeUseNotification()
         if (location.pathname.startsWith('/messenger')) {
             toggleSlideInConversationList(toggleConversationListView())
 
@@ -67,6 +65,10 @@ function NavBar(props) {
         socketRef.current = Globals.socket
         socketRef.current.onmessage = e => {
             SocketSubscriptionManager.sendMessages(JSON.parse(e.data))
+            const message = JSON.parse(e.data)
+            if (message.type === 'notification' || message.type === 'friendRequest') {
+                updateNumMissedNotificationsUtil()
+            }
         }
 
     }, [])
@@ -113,32 +115,39 @@ function NavBar(props) {
                     </div>
                     <div className="otherOptions">
                         {location.pathname !== '/' && <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />}
-                        <div onClick={() => {
+                        <div style={{
+                            position: 'relative'
+                        }} onClick={() => {
+                            setMissedFrientRequestCount(0)
                             closeAll(4)
                             fiendRequestTrayViewToggleDispatcher(toggleFriendRequestTrayView())
                         }}>
+                            {missedFrientRequestCount !== 0 && <div className='alertingNumber'>
+                                {missedFrientRequestCount}</div>}
                             <GroupAddIcon fontSize='10' className="menuBtn messageBtn" />
                         </div>
-                        <div onClick={() => {
+                        <div style={{
+                            position: 'relative'
+                        }} onClick={() => {
                             closeAll(3)
+                            setMissedMessagesCount(0)
                             if (!location.pathname.startsWith('/messenger'))
                                 toggleSlideInConversationList(toggleConversationListView())
                         }}>
+                            {missedMessagestCount !== 0 && <div className='alertingNumber'>
+                                {missedMessagestCount}</div>}
                             <QuestionAnswerOutlinedIcon fontSize='10' className="menuBtn messageBtn" />
 
                         </div>
                         <div style={{
                             position: 'relative',
                         }} onClick={() => {
-                            setNewNotificationArrivalState(false)
                             closeAll(2)
+                            setMissedNotificationCount(0)
                             notificationTrayToggleDispatcher(toggleNotificationTrayView())
                         }}>
-                            {hasNewNotificationArrived && <PriorityHighIcon style={{
-                                position: 'absolute',
-                                color: 'red',
-                                right: "5px"
-                            }} />}
+                            {missedNotificationCount !== 0 && <div className='alertingNumber'>
+                                {missedNotificationCount}</div>}
                             <NotificationsSharpIcon fontSize='10' className="menuBtn notifBtn" />
 
                         </div>

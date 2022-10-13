@@ -88,6 +88,16 @@
 
 }
 
+.alertingNumber {
+    background: #e90606;
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
 .otherOptionsSmall {
     align-content: center;
     justify-content: space-between;

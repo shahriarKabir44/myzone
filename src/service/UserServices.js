@@ -6,6 +6,9 @@ export default class UserService {
     static async getNumMissedNotifications(userId) {
         return Globals._fetch(this.basePath + '/getNumMissedNotifications', { userId })
     }
+    static async getNumUnreadMessages(userId) {
+        return Globals._fetch(`${Globals.SERVER_IP}/conversation/getNumUnreadMessages/${userId}`)
+    }
     static async login(userInfo) {
         return await fetch(Globals.SERVER_IP + '/user/login', {
             method: 'POST',
