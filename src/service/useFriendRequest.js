@@ -27,7 +27,7 @@ export default function useFriendRequest({
             component,
             onMessage: (data) => {
                 if (data.type == 'friendRequest') {
-                    onFriendRequestReceived(data.body.newMessage)
+                    onFriendRequestReceived(data)
                 }
 
             }

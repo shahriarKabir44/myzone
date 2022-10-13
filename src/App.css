@@ -1,9 +1,9 @@
 :root {
     --sidemenuWidth: 30vw;
     --negativeSideMenuWidth: -30vw;
-    --containerHeightLarge: calc(100vh - 75px);
+    --containerHeightLarge: calc(100vh - 57px);
     --containerHeightSmall: calc(100vh - 130px);
-    --navBarHeightLarge: 75px
+    --navBarHeightLarge: 57px
 }
 
 .notificationsContainerRoot {

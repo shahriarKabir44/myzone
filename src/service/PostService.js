@@ -49,6 +49,27 @@ export default class PostService {
             }
         })
     }
+    static async getNewsFeed(userId, pageNumber = 0) {
+        let { data } = await Globals._fetch(Globals.SERVER_IP + '/graphql', {
+            query: `query{
+                getNewFeed(userId: ${userId}, pageNumber: ${pageNumber}){
+                    Id
+                    body
+                    posted_by
+                    posted_on
+                    numReactions
+                    attached_media
+                    numComments
+                    creatorInfo{
+                        Id
+                        name
+                        profileImage
+                    }
+                }
+            }`
+        })
+        return data
+    }
     static async getPostDetails(Id) {
         let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
             method: 'POST',
