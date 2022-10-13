@@ -43,7 +43,7 @@ export default class FriendshipService {
                 senderId: friend1.Id,
                 receiverId: friend2,
                 relatedSchemaId: friend1.Id,
-                body: `${friend1.name} has send you a friend request.`,
+                body: `${friend1.name} has accepted your friend request.`,
                 type: 3
             })
         ])

@@ -81,12 +81,16 @@ function UserProfileInfo(props) {
                             }}>Reject</Button>
 
                         </div>}
-                        {friendShipStatus === 1 && <div className="flex">
+                        {friendShipStatus === 1 && <div className="flex" style={{
+                            gap: "10px"
+                        }}>
                             <Button variant='contained' onClick={() => {
                                 FriendshipService.removeFriendshipRecord(currentUser.Id, userId)
                                     .then(setFriendShipStatus(0))
                             }}>Unfriend</Button>
+                            <Button variant='contained' onClick={() => {
 
+                            }}>Send message</Button>
                         </div>}
                     </>}
 

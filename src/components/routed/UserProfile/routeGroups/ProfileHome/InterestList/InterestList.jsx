@@ -1,12 +1,13 @@
 import React from 'react';
 import './InterestList.css'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ManageInterestsModal from '../../../../../shared/ManageInterestsModal/ManageInterestsModal';
 import InterestManagerService from '../../../../../../service/InterestManagerService';
 import { useSelector } from 'react-redux'
 function InterestList(props) {
     const { userId } = useParams()
+    const navigate = useNavigate()
     const currentUser = useSelector((state) => state.currentUser.value)
     const [interestList, setInterestList] = React.useState([])
     function getInterestList(userId) {
@@ -50,7 +51,9 @@ function InterestList(props) {
 
             <div className='interestListPanel' >
                 {interestList.map((interest, index) => {
-                    return <InterestItem key={index} interest={interest} />
+                    return <InterestItem _onClick={() => {
+                        navigate(`/search/query=${interest}/interest`)
+                    }} key={index} interest={interest} />
                 })}
             </div>
 
@@ -66,7 +69,8 @@ export function InterestItem({ interest, _onClick, additionalInfo }) {
         justifyContent: 'space-between',
         alignItems: 'center',
         alignContent: 'center',
-        fontSize: '18px'
+        fontSize: '18px',
+        cursor: 'pointer',
     }}>
         <p className="itemText">{interest}</p>
         {additionalInfo !== null && additionalInfo}
