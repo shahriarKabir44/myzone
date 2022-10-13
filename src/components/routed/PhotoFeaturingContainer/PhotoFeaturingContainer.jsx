@@ -5,6 +5,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import FeaturingService from '../../../service/FeaturingService'
+import Globals from '../../../service/Globals';
 export default function PhotoFeaturingContainer() {
     const currentRoute = useParams()
     const [photos, setPhotoList] = React.useState([])
@@ -31,7 +32,7 @@ export default function PhotoFeaturingContainer() {
                         alignItems: "center",
                         gap: "10px"
                     }}>
-                        <img src={creatorInfo.profileImage} style={{
+                        <img src={Globals.SERVER_IP + creatorInfo.profileImage} style={{
                             height: "50px",
                             width: "50px"
                         }} alt="" className="userImg" />
@@ -54,7 +55,7 @@ export default function PhotoFeaturingContainer() {
                     </div>
                 </div>
                 <div className="photoContainer">
-                    <img className="photo" alt="imag" src={photos[0]} />
+                    <img className="photo" alt="imag" src={Globals.SERVER_IP + photos[0]} />
                 </div>
                 <div className="navContainer">
                     <div className="swipeContainerRoot">

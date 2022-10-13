@@ -1,10 +1,11 @@
 import React from 'react';
+import Globals from '../../../../../../service/Globals';
 import './FriendListItem.css'
 function FriendListItem(props) {
     return (
         <div className='FriendListItemContainer'>
             <div className="friendImageContainer">
-                <img src={props.user.profileImage} alt="" className="friendImage" />
+                <img src={Globals.SERVER_IP + props.user.profileImage} alt="" className="friendImage" />
             </div>
             <div className="frinedInfoContainer">
                 <p style={{

@@ -15,6 +15,7 @@ import useFriendRequest from '../../../service/useFriendRequest'
 import { toggleFriendRequestTrayView, closeFriendRequestTrayView } from '../../../redux/FriendRequestToggleManager'
 import { toggleConversationListView, closeConversationListView } from '../../../redux/ConversatinListToggleManager'
 import { toggleNotificationTrayView, closeNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
+import UserService from '../../../service/UserServices';
 function NavBar(props) {
     const fiendRequestTrayViewToggleDispatcher = useDispatch()
     const navigate = useNavigate()
@@ -42,9 +43,22 @@ function NavBar(props) {
             setSearchQuery(query)
         }
     }
+    const [missedNotificationCount, setMissedNotificationCount] = React.useState(0)
+    const [missedFrientRequestCount, setMissedFrientRequestCount] = React.useState(0)
+    const [missedMessagestCount, setMissedMessagesCount] = React.useState(0)
+
+    function updateNumMissedNotifications() {
+        UserService.getNumMissedNotifications(currentUser.Id)
+            .then(({ numMissedNotifications }) => {
+                setMissedNotificationCount(numMissedNotifications.numUnseenNotification)
+                setMissedFrientRequestCount(numMissedNotifications.numNewFriendRequests)
+
+            })
+    }
     React.useEffect(() => {
         subscribeUseFriendRequest()
         getSearchQuery()
+        updateNumMissedNotifications()
         subscribeUseNotification()
         if (location.pathname.startsWith('/messenger')) {
             toggleSlideInConversationList(toggleConversationListView())
@@ -130,7 +144,7 @@ function NavBar(props) {
                         </div>
                         <Link to={"/profile/" + currentUser.Id}>
                             <button className="menuBtn profileBtn">
-                                <img className='profileImageNavBar' src={currentUser.profileImage} alt="profile pic" />
+                                <img className='profileImageNavBar' src={Globals.SERVER_IP + currentUser.profileImage} alt="profile pic" />
                             </button>
                         </Link>
 
@@ -148,7 +162,7 @@ function NavBar(props) {
                         {renderHeaderBtn()}
                         <Link to={"/profile/" + currentUser.Id}>
                             <button className="menuBtn profileBtn">
-                                <img className='profileImageNavBar' src={currentUser.profileImage} alt="profile pic" />
+                                <img className='profileImageNavBar' src={Globals.SERVER_IP + currentUser.profileImage} alt="profile pic" />
                             </button>
                         </Link>
                     </div>

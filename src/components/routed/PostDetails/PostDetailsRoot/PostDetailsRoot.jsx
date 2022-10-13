@@ -9,6 +9,7 @@ import PostComments from '../PostComments/PostComments';
 import PostService from '../../../../service/PostService';
 import PostInteractionService from '../../../../service/PostInteractionService';
 import NotificationService from '../../../../service/NotificationService'
+import Globals from '../../../../service/Globals';
 function PostDetailsRoot(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const currentRoute = useParams()
@@ -52,7 +53,7 @@ function PostDetailsRoot(props) {
                     <div style={{
                         width: '50px'
                     }} className="userImg">
-                        <img src={postDetails.creatorInfo.profileImage} alt="" className="creatorImg" />
+                        <img src={Globals.SERVER_IP + postDetails.creatorInfo.profileImage} alt="" className="creatorImg" />
                     </div>
                     <div className="infoContainer">
                         <p style={{

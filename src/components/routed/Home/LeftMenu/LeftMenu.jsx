@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Link } from 'react-router-dom';
 import ManageInterestsModal from '../../../shared/ManageInterestsModal/ManageInterestsModal';
+import Globals from '../../../../service/Globals';
 
 function LeftMenu(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
@@ -23,7 +24,7 @@ function LeftMenu(props) {
             <Link style={{ textDecoration: 'none' }} to={"/profile/" + currentUser.Id}>
                 <div className="leftMenuItem">
                     <div className="userImageContainer">
-                        <img src={currentUser.profileImage} alt="" className="userImage" />
+                        <img src={Globals.SERVER_IP + currentUser.profileImage} alt="" className="userImage" />
 
                     </div>
                     <p className="leftMenuText">{currentUser.name}</p>

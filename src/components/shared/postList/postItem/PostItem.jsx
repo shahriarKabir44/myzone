@@ -6,6 +6,8 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import PostInteractionService from '../../../../service/PostInteractionService'
+import { Global } from '@emotion/react';
+import Globals from '../../../../service/Globals';
 function PostItem(props) {
 
     const [post, setPostDetails] = React.useState(props.post)
@@ -25,7 +27,7 @@ function PostItem(props) {
             <div className="postHeader">
                 <div className="postCreatorSection">
                     <div className="imageContainer">
-                        <img src={creatorInfo.profileImage} alt="" className="creatorImg" />
+                        <img src={Globals.SERVER_IP + creatorInfo.profileImage} alt="" className="creatorImg" />
 
                     </div>
                     <div className="info">
@@ -39,7 +41,7 @@ function PostItem(props) {
                 <div className="postContent">
                     <p className="postText">{post.body}</p>
                     {JSON.parse(post.attached_media)[0] !== null && <div className="postImageContainer">
-                        <img src={JSON.parse(post.attached_media)[0]} alt="" style={{ width: "100%" }} className="postImage" />
+                        <img src={Globals.SERVER_IP + JSON.parse(post.attached_media)[0]} alt="" style={{ width: "100%" }} className="postImage" />
 
                     </div>}
                 </div>

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import ConversationService from '../../../../service/ConversationService';
 import { useSelector } from 'react-redux'
 import useChat from '../../../../service/useChat';
+import Globals from '../../../../service/Globals';
 function TextingContainer(props) {
     const divRef = React.useRef(null)
     const currentUser = useSelector(state => state.currentUser.value)
@@ -38,7 +39,7 @@ function TextingContainer(props) {
         <div className='textingContainerRoot'>
             <div className="participantInfoContainer flex">
                 <div className="participantImageContainer ">
-                    <img src={participantInfo.profileImage} alt="" className="participantImg userImg" />
+                    <img src={Globals.SERVER_IP + participantInfo.profileImage} alt="" className="participantImg userImg" />
                 </div>
                 <div className="textInfoContainer ">
                     <p className="participantName">{participantInfo.name}</p>

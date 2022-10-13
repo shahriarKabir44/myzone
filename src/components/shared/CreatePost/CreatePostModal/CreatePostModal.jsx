@@ -12,6 +12,7 @@ import UserInfoContainer from '../../UserInfoContainer'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Snackbar from '@mui/material/Snackbar';
 import PostService from '../../../../service/PostService';
+import Globals from '../../../../service/Globals';
 const modalStyle = {
     position: 'absolute',
     top: '50%',
@@ -160,7 +161,7 @@ function AttachedPostImage(props) {
         <div className="closeBtn" onClick={props.onDelete}>
             <CancelIcon />
         </div>
-        <img src={props.file} alt="" className="attachedImage" />
+        <img src={Globals.SERVER_IP + props.file} alt="" className="attachedImage" />
     </div>)
 }
 

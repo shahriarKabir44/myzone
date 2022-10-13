@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button'
 import FriendshipService from '../../../../../service/FriendshipService';
 import useFriendRequest from '../../../../../service/useFriendRequest';
+import Globals from '../../../../../service/Globals';
 function UserProfileInfo(props) {
     const { userId } = useParams()
     let { sendRequest } = useFriendRequest({
@@ -47,10 +48,10 @@ function UserProfileInfo(props) {
     return (
         <div className="userProfileInfoContainer">
             <div className="coverPhotoContainer">
-                <img src={props.userInfo.coverPhoto} alt="" className="userCoverPhoto" />
+                <img src={Globals.SERVER_IP + props.userInfo.coverPhoto} alt="" className="userCoverPhoto" />
                 <div className="nameAndPropic">
                     <div className="profileViewUserInfoContainer">
-                        <img src={props.userInfo.profileImage} alt="" className="profileViewProPic" />
+                        <img src={Globals.SERVER_IP + props.userInfo.profileImage} alt="" className="profileViewProPic" />
 
                     </div>
                     <div className="flex">

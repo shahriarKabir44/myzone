@@ -7,6 +7,7 @@ import useConversation from '../../../../service/useConversation';
 import FiberNewSharpIcon from '@mui/icons-material/FiberNewSharp';
 import MessengerTogglerService from '../../../../service/MessengerTogglerService';
 import { useSelector } from 'react-redux'
+import Globals from '../../../../service/Globals';
 function FloatingMessengerRoot(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const [isChatHeadSelected, setSelectionStatus] = React.useState(false)
@@ -94,7 +95,7 @@ function ChatHead({ conversation, onOpen }) {
         <div onClick={() => {
             onOpen();
         }}>
-            <img src={conversation.participantInfo.profileImage} style={{
+            <img src={Globals.SERVER_IP + conversation.participantInfo.profileImage} style={{
                 height: "50px", width: "50px"
             }} alt="" className="userImg" />
         </div>

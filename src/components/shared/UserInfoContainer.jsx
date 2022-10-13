@@ -1,4 +1,5 @@
 import React from 'react';
+import Globals from '../../service/Globals';
 
 function UserInfoContainer({ imgURL, name, additionalInfo }) {
     return (
@@ -7,7 +8,7 @@ function UserInfoContainer({ imgURL, name, additionalInfo }) {
             alignItems: "center",
             gap: "10px"
         }}>
-            <img src={imgURL} style={{
+            <img src={Globals.SERVER_IP + imgURL} style={{
                 height: "50px",
                 width: "50px"
             }} alt="" className="userImg" />

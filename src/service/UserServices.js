@@ -2,6 +2,10 @@ import Globals from "./Globals";
 import UploadManager from "./UploadManager";
 
 export default class UserService {
+    static basePath = Globals.SERVER_IP + '/user'
+    static async getNumMissedNotifications(userId) {
+        return Globals._fetch(this.basePath + '/getNumMissedNotifications', { userId })
+    }
     static async login(userInfo) {
         return await fetch(Globals.SERVER_IP + '/user/login', {
             method: 'POST',

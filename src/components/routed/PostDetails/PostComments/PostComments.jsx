@@ -2,6 +2,7 @@ import React from 'react';
 import './PostComments.css'
 import { Link } from 'react-router-dom'
 import SendIcon from '@mui/icons-material/Send';
+import Globals from '../../../../service/Globals';
 
 function PostComments({ comments, onCommentCreated }) {
     return (
@@ -24,7 +25,7 @@ function PostCommentItem({ comment }) {
     return (
         <div className="commentRoot">
             <div className="commenterImgContainer" style={{ width: "50px" }}>
-                <img src={comment.commenterProfileImage} alt="" style={{ width: "100%" }} className="commenterImg" />
+                <img src={Globals.SERVER_IP + comment.commenterProfileImage} alt="" style={{ width: "100%" }} className="commenterImg" />
             </div>
             <div className="commentsContainer">
                 <Link style={{ textDecoration: 'none' }} to={"/profile/" + comment.commenterId}>

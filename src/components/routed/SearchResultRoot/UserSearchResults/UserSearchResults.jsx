@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Globals from '../../../../service/Globals';
 import SearchingServices from '../../../../service/SearchingServices';
 import './UserSearchResults.css'
 function UserSearchResults({ query, onLoad }) {
@@ -38,7 +39,7 @@ export function SearchResultUserContainer({ user }) {
                 gap: '10px'
             }}>
                 <div className="imgCOntainer">
-                    <img src={user.profileImage} alt="" style={{
+                    <img src={Globals.SERVER_IP + user.profileImage} alt="" style={{
                         width: '60px'
                     }} className="userImg" />
                 </div>

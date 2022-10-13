@@ -9,6 +9,7 @@ import ConversationService from '../../../../service/ConversationService'
 import useChat from '../../../../service/useChat';
 import { useSelector } from 'react-redux'
 import UserService from '../../../../service/UserServices';
+import Globals from '../../../../service/Globals';
 function FloatingMessenger({ selectedChatHead, onClose }) {
     let navigate = useNavigate();
     let divRef = React.useRef(null)
@@ -40,7 +41,7 @@ function FloatingMessenger({ selectedChatHead, onClose }) {
         <div className='floatingMessengerContainer'>
             <div className="messengerHeadingContainer">
                 <div className="userInfoContainer">
-                    <img src={participantInfo.profileImage} style={{
+                    <img src={Globals.SERVER_IP + participantInfo.profileImage} style={{
                         width: "50px", height: "50px"
                     }} alt="" className="userImage" />
                     <div className="chatHeadTextData">

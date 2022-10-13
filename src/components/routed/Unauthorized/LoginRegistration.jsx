@@ -8,6 +8,7 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { updateUserInfo } from '../../../redux/CurrentUserManager'
 import { useDispatch } from 'react-redux'
 import UserService from '../../../service/UserServices'
+import Globals from '../../../service/Globals';
 
 const defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXUeyw_tNSf_cm7tM_q8uWbkcr0deNJhyItxp3ZSk&s"
 function LoginRegistration({ onAuthorized }) {
@@ -76,7 +77,7 @@ function LoginRegistration({ onAuthorized }) {
                             }} />
 
                         </div>
-                        <img src={selectedImage} style={{
+                        <img src={Globals.SERVER_IP + selectedImage} style={{
                             height: "150px",
                             width: "150px"
                         }} alt="" className="tempProfileImageContainer" />

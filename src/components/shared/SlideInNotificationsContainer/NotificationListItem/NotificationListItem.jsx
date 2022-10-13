@@ -1,6 +1,7 @@
 import React from 'react';
 import './NotificationListItem.css'
 import { useNavigate } from 'react-router-dom'
+import Globals from '../../../../service/Globals';
 function NotificationListItem({ notification }) {
     const navigate = useNavigate()
     function redirect() {
@@ -25,7 +26,7 @@ function NotificationListItem({ notification }) {
                 redirect()
             }} className="notiificationContainer">
                 <div className="initiatorInfoContainer ">
-                    <img src={notification.senderInfo.profileImage} alt="" style={{ width: "50px" }} className="initiatorImg userImg" />
+                    <img src={Globals.SERVER_IP + notification.senderInfo.profileImage} alt="" style={{ width: "50px" }} className="initiatorImg userImg" />
                 </div>
                 <div className="notificationMessageContainer">
                     <p className="notificationMessage">{notification.body}</p>
