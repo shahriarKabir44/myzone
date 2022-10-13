@@ -10,6 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
 function PhotoFeaturingModal(props) {
+    const [featuringConfirmationVisibility, setFeaturingConfirmationVisibility] = React.useState(false)
+
     const modalStyle = {
         position: 'absolute',
         top: '50%',
@@ -31,9 +33,28 @@ function PhotoFeaturingModal(props) {
             >
 
                 <Box sx={modalStyle}>
-                    {props.open && <AlbumSelector {...props} />}
+                    {props.open && <AlbumSelector {...props} setFeaturingConfirmationVisibility={setFeaturingConfirmationVisibility} />}
                 </Box>
             </Modal>
+
+            <Snackbar
+                open={featuringConfirmationVisibility}
+                autoHideDuration={4000}
+                onClose={() => {
+                    setFeaturingConfirmationVisibility(false)
+                }}
+                message="Photo featured successfully"
+                action={<IconButton
+                    size="small"
+                    aria-label="close"
+                    color="inherit"
+                    onClick={() => {
+                        setFeaturingConfirmationVisibility(false)
+                    }}
+                >
+                    <CloseIcon fontSize="small" />
+                </IconButton>}
+            />
         </div>
     )
 }
@@ -44,7 +65,6 @@ function AlbumSelector(props) {
     const [albumList, setAlbumList] = React.useState([{
         Id: 0, label: "s", numPhotos: 0
     }])
-    const [featuringConfirmationVisibility, setFeaturingConfirmationVisibility] = React.useState(false)
     const [newAlbumName, setNewAlbumName] = React.useState('')
     const [selectedAlbumId, setSelectedAlbumId] = React.useState(-1)
     React.useEffect(() => {
@@ -79,7 +99,7 @@ function AlbumSelector(props) {
             <Button onClick={() => {
                 FeaturingService.addPhotoToFeaturedAlbum(selectedAlbumId, props.selectedImgURL)
                     .then(() => {
-                        setFeaturingConfirmationVisibility(true)
+                        props.setFeaturingConfirmationVisibility(true)
 
                         props.handleClose()
                     })
@@ -111,7 +131,7 @@ function AlbumSelector(props) {
                             else {
                                 FeaturingService.addPhotoToFeaturedAlbum(featuredAlbum.Id, props.selectedImgURL)
                                     .then(() => {
-                                        setFeaturingConfirmationVisibility(true)
+                                        props.setFeaturingConfirmationVisibility(true)
                                         props.handleClose()
                                     })
                             }
@@ -120,24 +140,7 @@ function AlbumSelector(props) {
 
             </div>
         </div>}
-        <Snackbar
-            open={featuringConfirmationVisibility}
-            autoHideDuration={4000}
-            onClose={() => {
-                setFeaturingConfirmationVisibility(false)
-            }}
-            message="Photo featured successfully"
-            action={<IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={() => {
-                    setFeaturingConfirmationVisibility(false)
-                }}
-            >
-                <CloseIcon fontSize="small" />
-            </IconButton>}
-        />
+
     </div>)
 }
 

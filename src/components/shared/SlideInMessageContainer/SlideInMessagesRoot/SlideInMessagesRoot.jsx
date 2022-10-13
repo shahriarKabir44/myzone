@@ -10,9 +10,10 @@ import { closeConversationListView } from '../../../../redux/ConversatinListTogg
 import Modal from '@mui/material/Modal';
 const modalStyle = {
     position: 'absolute',
-    top: '110px',
+    top: 'var(--navBarHeightLarge);',
     right: '10px',
     width: "30vw",
+    height: 'calc(var(--containerHeightLarge) - 50px)',
     bgcolor: '#47494a',
     border: '1px solid',
     boxShadow: 24,

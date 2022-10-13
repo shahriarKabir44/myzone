@@ -11,9 +11,10 @@ function FriendRequestContainer(props) {
     const friendRequestTrayToggleDispatcher = useDispatch()
     const modalStyle = {
         position: 'absolute',
-        top: '115px',
-        right: '0',
-        width: 400,
+        top: 'var(--navBarHeightLarge);',
+        right: '10px',
+        width: "30vw",
+        height: 'calc(var(--containerHeightLarge) - 50px)',
         bgcolor: '#47494a',
         border: '1px solid',
         boxShadow: 24,

@@ -1,14 +1,21 @@
 :root {
     --sidemenuWidth: 30vw;
     --negativeSideMenuWidth: -30vw;
-    --containerHeightLarge: calc(100vh - 115px);
-    --containerHeightSmall: calc(100vh - 130px)
+    --containerHeightLarge: calc(100vh - 75px);
+    --containerHeightSmall: calc(100vh - 130px);
+    --navBarHeightLarge: 75px
+}
+
+.notificationsContainerRoot {
+    overflow-y: auto;
+    max-height: calc(100% - 77px);
+    height: calc(100% - 77px);
 }
 
 .SlideInContainerRoot {
     position: absolute;
     height: var(--containerHeightLarge);
-    top: 113px;
+    top: var(--navBarHeightLarge);
     background: white;
     z-index: 1000;
 

@@ -1,6 +1,7 @@
 .featuredPhotoContainerRoot {
 
-    height: calc(100vh - 113px);
+    height: var(--containerHeightLarge);
+
     width: 100%;
     background: #18191a;
     display: flex;
