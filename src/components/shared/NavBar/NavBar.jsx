@@ -175,7 +175,7 @@ function NavBar(props) {
                             <AppsSharpIcon fontSize='10' className="menuBtn  menuButton " />
                         </div>
                         <div>
-                            <GroupAddIcon></GroupAddIcon>
+                            <GroupAddIcon fontSize='10' className="menuBtn  menuButton "></GroupAddIcon>
                         </div>
                         <div onClick={() => {
                             closeAll(3)

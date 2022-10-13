@@ -24,8 +24,10 @@
 }
 
 .nabvarRootSmall {
-
-    padding: 20px;
+    gap: 0px;
+    justify-content: baseline !important;
+    padding: 0 !important;
+    padding: 0px;
     background: #242526;
 }
 
@@ -90,7 +92,7 @@
     align-content: center;
     justify-content: space-between;
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(5, 20%);
     align-items: center;
     justify-items: center;
 }

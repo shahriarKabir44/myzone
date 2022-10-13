@@ -2,8 +2,9 @@
     --sidemenuWidth: 30vw;
     --negativeSideMenuWidth: -30vw;
     --containerHeightLarge: calc(100vh - 57px);
-    --containerHeightSmall: calc(100vh - 130px);
-    --navBarHeightLarge: 57px
+    --containerHeightSmall: calc(100vh - 90px);
+    --navBarHeightLarge: 57px;
+    --navBarHeightSmall: 90px;
 }
 
 .notificationsContainerRoot {
