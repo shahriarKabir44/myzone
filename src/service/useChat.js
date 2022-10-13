@@ -48,7 +48,7 @@ export default function useChat(conversationId, sender, messageList, component =
             conversationId, sender, time, body
         }
         window.scrollBy(0, 100);
-        ConversationService.createMessage(newMessage)
+        ConversationService.createMessage({ ...newMessage, receiver: participantId })
         setMessages([...messages, newMessage])
         let message = {
             type: 'personalMessage',
