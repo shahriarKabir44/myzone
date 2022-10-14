@@ -66,6 +66,7 @@ export default class UserService {
                       name
                       profileImage
                       coverPhoto
+                      numFriends
                       featuredAlbums{
                         label
                         numPosts

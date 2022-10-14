@@ -36,9 +36,10 @@ function UserProfileRoot(props) {
             .then((data) => {
                 let userInfo = {
                     Id: currentRoute.userId,
-                    name: data.name,
+                    name: data.name + "",
                     profileImage: data.profileImage,
                     coverPhoto: data.coverPhoto,
+                    numFriends: data.numFriends,
                 }
                 setFeaturedPhotos(data.featuredAlbums)
                 setUser(userInfo)

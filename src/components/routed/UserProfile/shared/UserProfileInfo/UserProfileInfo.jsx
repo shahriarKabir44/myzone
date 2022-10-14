@@ -13,6 +13,7 @@ function UserProfileInfo(props) {
         component: null, onFriendRequestReceived: null
 
     })
+    console.log(props)
     const [friendShipStatus, setFriendShipStatus] = React.useState(-1)
     const currentUser = useSelector((state) => state.currentUser.value)
     function getFriendshipType(currentUserId, userId) {
@@ -58,7 +59,7 @@ function UserProfileInfo(props) {
                     <div className="flex">
                         <div className="textInfo">
                             <p className="userName">{props.userInfo.name}</p>
-                            <p>133 friends</p>
+                            <p>{props.userInfo.numFriends} friends</p>
                         </div>
 
                     </div>
