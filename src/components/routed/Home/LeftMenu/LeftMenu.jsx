@@ -8,11 +8,9 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Link } from 'react-router-dom';
 import ManageInterestsModal from '../../../shared/ManageInterestsModal/ManageInterestsModal';
 import { useDispatch } from "react-redux"
-import { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager'
 import Globals from '../../../../service/Globals';
 import LogoutEventManager from '../../../../service/LogOutEventManager';
 function LeftMenu(props) {
-    const setCurrentUserDispatcher = useDispatch()
     const currentUser = useSelector((state) => state.currentUser.value)
     const [manageInterestModalVisibility, setManageInterestModalVisibility] = React.useState(false)
     const [isOnMobile, setDeviceType] = React.useState(false)

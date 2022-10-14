@@ -5,7 +5,6 @@ import Globals from '../../../../../service/Globals';
 function ActiveUser(props) {
     return (
         <div onClick={() => {
-            console.log(props.user.Id)
             MessengerTogglerService.onCall(props.currentUserId, props.user.Id)
 
         }} className='activeUserContainer' style={{

@@ -24,6 +24,7 @@ import PhotoFeaturingContainer from './components/routed/PhotoFeaturingContainer
 import SearchResultRoot from './components/routed/SearchResultRoot/SearchResultRoot';
 import FriendRequestContainer from './components/shared/FriendRequestContainer/FriendRequestContainer';
 import LogoutEventManager from './service/LogOutEventManager';
+import FloatingMenu from './components/shared/FloatingMenu/FloatingMenu';
 function App() {
 	const navigate = useNavigate()
 	const location = useLocation();
@@ -63,6 +64,7 @@ function App() {
 				<SlideInMessagesRoot />
 				<NotificationListRoot />
 				<FriendRequestContainer />
+				<FloatingMenu />
 			</>}
 
 			<Routes>

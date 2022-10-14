@@ -9,13 +9,12 @@ import PriorityHighIcon from '@mui/icons-material/PriorityHigh'; import Question
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
-import { toggleLeftMenu, closeLeftMenu } from '../../../redux/HomeMenuSelector'
-import useNotifications from '../../../service/useNotifications'
-import useFriendRequest from '../../../service/useFriendRequest'
+import { toggleLeftMenu, closeLeftMenu, setToggleStatus } from '../../../redux/HomeMenuSelector'
 import { toggleFriendRequestTrayView, closeFriendRequestTrayView } from '../../../redux/FriendRequestToggleManager'
 import { toggleConversationListView, closeConversationListView } from '../../../redux/ConversatinListToggleManager'
 import { toggleNotificationTrayView, closeNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
 import UserService from '../../../service/UserServices';
+
 function NavBar(props) {
     const fiendRequestTrayViewToggleDispatcher = useDispatch()
     const navigate = useNavigate()
@@ -114,7 +113,10 @@ function NavBar(props) {
                         </div>
                     </div>
                     <div className="otherOptions">
-                        {location.pathname !== '/' && <AppsSharpIcon fontSize='10' className="menuBtn menuButton" />}
+                        {location.pathname !== '/' && <div onClick={() => {
+                            sideBarToggleStatusDispatcher(setToggleStatus(1))
+                        }}>
+                            <AppsSharpIcon fontSize='10' className="menuBtn menuButton" /></div>}
                         <div style={{
                             position: 'relative'
                         }} onClick={() => {

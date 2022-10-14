@@ -3,7 +3,7 @@ import ConversationService from './ConversationService';
 import Globals from './Globals'
 import SocketSubscriptionManager from './SocketSubscriptionManager'
 
-export default function useChat(conversationId, sender, messageList, component = 'mainMessenger') {
+export default function useChat(conversationId, sender, receiver, messageList, component = 'mainMessenger') {
     const [messages, setMessagesList] = React.useState(messageList);
     const socketRef = React.useRef()
     const [participantId, setParticipantId] = React.useState(-1)
@@ -25,7 +25,9 @@ export default function useChat(conversationId, sender, messageList, component =
         SocketSubscriptionManager.subscribe({
             component,
             onMessage: (data) => {
+                console.log(data)
                 if (data.type === 'personalMessage') {
+
                     //setMessages(messages)
                     let newList = JSON.parse(JSON.stringify(getMessages()))
                     newList.push(data.body.newMessage)

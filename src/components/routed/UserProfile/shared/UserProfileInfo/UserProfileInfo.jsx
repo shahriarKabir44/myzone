@@ -13,7 +13,6 @@ function UserProfileInfo(props) {
         component: null, onFriendRequestReceived: null
 
     })
-    console.log(props)
     const [friendShipStatus, setFriendShipStatus] = React.useState(-1)
     const currentUser = useSelector((state) => state.currentUser.value)
     function getFriendshipType(currentUserId, userId) {

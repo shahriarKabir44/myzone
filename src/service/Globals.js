@@ -9,7 +9,8 @@ export default class Globals {
     }
     static onSelfMessage(newMessage) {
         newMessage.last_message = newMessage.body
-        this.conversationsListClient.handleOnMessage(newMessage)
+        if (this.conversationsListClient)
+            this.conversationsListClient.handleOnMessage(newMessage)
     }
     static initSocket(currentUserId) {
         if (Globals.hasSocketInitiated) return

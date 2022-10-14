@@ -28,7 +28,6 @@ function FloatingMessengerRoot(props) {
                     conversationId: conversation.Id,
                     sender: currentUser.Id * 1 === conversation.participant1 * 1 ? conversation.participant1 : conversation.participant2
                 })
-                console.log(conversation)
                 setSelectionStatus(true)
             }
         })
