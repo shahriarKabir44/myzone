@@ -5,14 +5,11 @@ import LockIcon from '@mui/icons-material/Lock';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Button from '@mui/material/Button'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { updateUserInfo } from '../../../redux/CurrentUserManager'
-import { useDispatch } from 'react-redux'
 import UserService from '../../../service/UserServices'
 import Globals from '../../../service/Globals';
 
 const defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXUeyw_tNSf_cm7tM_q8uWbkcr0deNJhyItxp3ZSk&s"
 function LoginRegistration({ onAuthorized }) {
-    const globalUserDispatcher = useDispatch()
     const [formMode, setFormMode] = React.useState(0)
     const [selectedImage, setSelectedImage] = React.useState(defaultImageURL)
     const fileInputRef = React.useRef(null)
@@ -29,6 +26,7 @@ function LoginRegistration({ onAuthorized }) {
         if (!fileObj) {
             return;
         }
+        console.log(URL.createObjectURL(fileObj))
         setSelectedImage(URL.createObjectURL(fileObj))
     }
     return (
@@ -77,7 +75,7 @@ function LoginRegistration({ onAuthorized }) {
                             }} />
 
                         </div>
-                        <img src={Globals.SERVER_IP + selectedImage} style={{
+                        <img src={selectedImage} style={{
                             height: "150px",
                             width: "150px"
                         }} alt="" className="tempProfileImageContainer" />
