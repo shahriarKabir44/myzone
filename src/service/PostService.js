@@ -68,7 +68,7 @@ export default class PostService {
                 }
             }`
         })
-        return data
+        return data.getNewFeed
     }
     static async getPostDetails(Id) {
         let { data } = await fetch(Globals.SERVER_IP + '/graphql', {

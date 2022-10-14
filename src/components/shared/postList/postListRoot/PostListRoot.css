@@ -3,7 +3,7 @@
     overflow-x: hidden;
 
     overflow-y: auto;
-
+    margin: 10px;
 }
 
 @media screen and (min-width:620px) {
