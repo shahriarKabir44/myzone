@@ -9,6 +9,7 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 import LogoutEventManager from '../../../service/LogOutEventManager';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 export default function FloatingMenu() {
     const leftMenuStatus = useSelector(state => state.currentlySelectedView.value.toggleStatus)
     const leftMenuToggleDispatcher = useDispatch()
@@ -44,12 +45,13 @@ export default function FloatingMenu() {
                         background: "#47494a",
                         right: 0
                     }} className={`notificationsContainerRoot`}  >
-                        <div className="leftMenuItem">
-                            <GroupAddIcon style={{
-                                fontSize: "40px"
-                            }} className="leftMenuIcon"></GroupAddIcon>
-                            <p className="leftMenuText">Find friends</p>
-                        </div>
+                        <Link to={'/findFriends'} style={{ textDecoration: 'none' }}>
+                            <div className="leftMenuItem">
+                                <GroupAddIcon style={{
+                                    fontSize: "40px"
+                                }} className="leftMenuIcon"></GroupAddIcon>
+                                <p className="leftMenuText">Find friends</p>
+                            </div></Link>
                         <div className="leftMenuItem" style={{
                             cursor: 'pointer'
                         }} onClick={() => {

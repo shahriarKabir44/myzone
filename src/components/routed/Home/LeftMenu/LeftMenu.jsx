@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Link } from 'react-router-dom';
 import ManageInterestsModal from '../../../shared/ManageInterestsModal/ManageInterestsModal';
-import { useDispatch } from "react-redux"
 import Globals from '../../../../service/Globals';
 import LogoutEventManager from '../../../../service/LogOutEventManager';
 function LeftMenu(props) {
@@ -45,12 +44,13 @@ function LeftMenu(props) {
                     </div>
                 </Link>
 
-                <div className="leftMenuItem">
-                    <GroupAddIcon style={{
-                        fontSize: "40px"
-                    }} className="leftMenuIcon"></GroupAddIcon>
-                    <p className="leftMenuText">Find friends</p>
-                </div>
+                <Link to={'/findFriends'} style={{ textDecoration: 'none' }}>
+                    <div className="leftMenuItem">
+                        <GroupAddIcon style={{
+                            fontSize: "40px"
+                        }} className="leftMenuIcon"></GroupAddIcon>
+                        <p className="leftMenuText">Find friends</p>
+                    </div></Link>
                 <div className="leftMenuItem" onClick={() => {
                     setManageInterestModalVisibility(true)
                 }} style={{
