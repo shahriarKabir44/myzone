@@ -7,7 +7,7 @@ import InitialCreatePostView from '../../../shared/CreatePost/InitialView/Initia
 import UserProfileInfo from '../shared/UserProfileInfo/UserProfileInfo';
 import { useDispatch } from 'react-redux'
 import { setToggleStatus } from '../../../../redux/HomeMenuSelector'
-import { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager'
+import CurrentUserManager, { updateCurrentlyViewingUser } from '../../../../redux/CurrentUserManager'
 import { Navigate, useParams } from 'react-router-dom';
 import {
     Routes,
@@ -24,6 +24,7 @@ import UserService from '../../../../service/UserServices';
 
 function UserProfileRoot(props) {
     const [user, setUser] = React.useState({})
+    const currentUser = useSelector(state => state.currentUser.value)
     const sideBarToggleStatusrDispatcher = useDispatch()
     const setFocusedUserDispatcher = useDispatch()
     const currentRoute = useParams()
@@ -90,7 +91,7 @@ function UserProfileRoot(props) {
                                     <div>
 
 
-                                        <InitialCreatePostView />
+                                        {currentUser.Id * 1 === currentRoute.userId * 1 && <InitialCreatePostView />}
                                         <UserPostListRoot createsPosts={createsPosts} />
                                     </div>
                                     <InterestList />
@@ -117,7 +118,7 @@ function UserProfileRoot(props) {
                                 <ProfileTabSelector pageIndex={1} />
                                 <InterestList />
                                 <FeaturedPostGroupRoot featuredAlbums={featuredAlbums} />
-                                <InitialCreatePostView />
+                                {currentUser.Id * 1 === currentRoute.userId * 1 && <InitialCreatePostView />}
 
                                 <UserPostListRoot createsPosts={createsPosts} />
                             </>}>
