@@ -1,11 +1,27 @@
+import ConversationService from "./ConversationService";
+
 export default class MessengerTogglerService {
     static client = null
     static subscribe(client) {
         this.client = client;
     }
-    static onCall(conversationId) {
+    static onCall(participant1, participant2) {
         if (this.client) {
-            this.client.onCall(conversationId);
+            ConversationService.getConversationInfo(participant1, participant2)
+                .then(({ conversationInfo }) => {
+                    if (!conversationInfo) {
+                        ConversationService.createConversation(participant1, participant2)
+                            .then(({ data }) => {
+
+                                this.client.onCall(data)
+                            })
+                    }
+                    else {
+
+                        this.client.onCall(conversationInfo)
+                    }
+                })
+
         }
     }
 }

@@ -22,12 +22,12 @@ function FloatingMessengerRoot(props) {
     React.useEffect(() => {
         subscribe()
         MessengerTogglerService.subscribe({
-            onCall: (data) => {
+            onCall: (conversation) => {
                 setSelectedChatHead({
-                    conversationId: data.Id,
-                    sender: currentUser.Id * 1 === data.participant1 * 1 ? data.participant1 : data.participant2
+                    conversationId: conversation.Id,
+                    sender: currentUser.Id * 1 === conversation.participant1 * 1 ? conversation.participant1 : conversation.participant2
                 })
-
+                console.log(conversation)
                 setSelectionStatus(true)
             }
         })

@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import FriendshipService from '../../../../../service/FriendshipService';
 import useFriendRequest from '../../../../../service/useFriendRequest';
 import Globals from '../../../../../service/Globals';
+import MessengerTogglerService from '../../../../../service/MessengerTogglerService';
 function UserProfileInfo(props) {
     const { userId } = useParams()
     let { sendRequest } = useFriendRequest({
@@ -89,7 +90,7 @@ function UserProfileInfo(props) {
                                     .then(setFriendShipStatus(0))
                             }}>Unfriend</Button>
                             <Button variant='contained' onClick={() => {
-
+                                MessengerTogglerService.onCall(currentUser.Id, userId)
                             }}>Send message</Button>
                         </div>}
                     </>}

@@ -37,7 +37,7 @@
 }
 
 .messagesContainer {
-    height: calc(100% - 50px);
+    height: calc(100% - 90px);
 }
 
 @media screen and(max-width: 620px) {

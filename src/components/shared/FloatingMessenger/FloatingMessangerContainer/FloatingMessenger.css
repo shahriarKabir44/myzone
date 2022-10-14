@@ -37,6 +37,7 @@
 .textMessagesContainer {
     max-height: calc(100% - 71px);
     overflow-y: auto;
+    height: calc(100% - 71px);
 }
 
 .userInfoContainer {

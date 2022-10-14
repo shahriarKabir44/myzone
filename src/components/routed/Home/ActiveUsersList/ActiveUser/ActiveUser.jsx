@@ -1,15 +1,12 @@
 import React from 'react';
 import './ActiveUser.css'
 import MessengerTogglerService from '../../../../../service/MessengerTogglerService'
-import ConversationService from '../../../../../service/ConversationService';
 import Globals from '../../../../../service/Globals';
 function ActiveUser(props) {
     return (
         <div onClick={() => {
-            ConversationService.getConversationInfo(props.currentUserId, props.user.Id)
-                .then(({ conversationInfo }) => {
-                    MessengerTogglerService.onCall(conversationInfo)
-                })
+            console.log(props.user.Id)
+            MessengerTogglerService.onCall(props.currentUserId, props.user.Id)
 
         }} className='activeUserContainer' style={{
             cursor: 'pointer'
