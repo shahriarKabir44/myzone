@@ -8,26 +8,30 @@ import FiberNewSharpIcon from '@mui/icons-material/FiberNewSharp';
 import MessengerTogglerService from '../../../../service/MessengerTogglerService';
 import { useSelector } from 'react-redux'
 import Globals from '../../../../service/Globals';
+import ConversationService from '../../../../service/ConversationService';
 function FloatingMessengerRoot(props) {
-    const [onversations, setConversationList] = React.useState([])
+    const [conversations, setConversationList] = React.useState([])
     const currentUser = useSelector((state) => state.currentUser.value)
     const [isChatHeadSelected, setSelectionStatus] = React.useState(false)
     const [selectedChatHead, setSelectedChatHead] = React.useState(null)
     const [isChatHeadListExpanded, setExpansionStatus] = React.useState(false)
     const [hasNewConversationArrived, setNewConversationArrival] = React.useState(false)
-    const { conversations, subscribe, unsubscribe } = useConversation(onversations, setConversationList, "floatingMessenger", (message) => {
+    const { conversations: conversationList, subscribe, unsubscribe } = useConversation(conversations, setConversationList, "floatingMessenger", (message) => {
         setNewConversationArrival(true)
 
     })
 
     React.useEffect(() => {
+        setConversationList([])
         subscribe()
         MessengerTogglerService.subscribe({
             onCall: (conversation) => {
                 setSelectedChatHead({
                     conversationId: conversation.Id,
-                    sender: currentUser.Id * 1 === conversation.participant1 * 1 ? conversation.participant1 : conversation.participant2
+                    receiver: currentUser.Id * 1 !== conversation.participant1 * 1 ? conversation.participant1 : conversation.participant2,
+                    sender: currentUser.Id * 1
                 })
+
                 setSelectionStatus(true)
             }
         })
@@ -37,8 +41,17 @@ function FloatingMessengerRoot(props) {
     }, [])
 
     function openFloatingMessenger(chatHead) {
-        setSelectionStatus(true)
-        setSelectedChatHead(chatHead)
+        ConversationService.getParticipantInfo(chatHead.conversationId, currentUser.Id)
+            .then(({ participant }) => {
+                let newChatHead = {
+                    conversationId: chatHead.conversationId,
+                    sender: currentUser.Id,
+                    receiver: participant.Id
+                }
+                setSelectedChatHead(newChatHead)
+                setSelectionStatus(true)
+
+            })
 
     }
     return (

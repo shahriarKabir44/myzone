@@ -17,18 +17,21 @@ function FloatingMessenger({ selectedChatHead, onClose }) {
     const [participantInfo, setParticipantInfo] = React.useState({})
     const { messages, sendMessage, setMessages, setParticipantId, unsubscribe, subscribe } = useChat(selectedChatHead.conversationId, currentUser.Id, [], 'floatingMessengerMain')
     const [messageText, setmessageText] = React.useState("")
-
+    const [hasMessageLoaded, setMessageLoadingStatus] = React.useState(false)
     React.useEffect(() => {
         subscribe()
         ConversationService.getConversationMessages(selectedChatHead.conversationId)
             .then(({ data }) => {
+                setTimeout(() => {
+                    setMessages(data);
+                    setMessageLoadingStatus(true)
+                    divRef.current.scrollIntoView({ behavior: 'smooth' });
+                }, 300)
 
-                setMessages(data);
-                divRef.current.scrollIntoView({ behavior: 'smooth' });
                 return data
             })
-        setParticipantId(selectedChatHead.sender)
-        UserService.getUserInfo(selectedChatHead.sender)
+        setParticipantId(selectedChatHead.receiver)
+        UserService.getUserInfo(selectedChatHead.receiver)
             .then(userInfo => {
                 setParticipantInfo(userInfo)
             })
@@ -68,7 +71,7 @@ function FloatingMessenger({ selectedChatHead, onClose }) {
                 </div>
             </div>
             <div className="textMessagesContainer">
-                <MessageContainerRoot divRef={divRef} messages={messages} />
+                {hasMessageLoaded && <MessageContainerRoot divRef={divRef} messages={messages} />}
             </div>
             <div className="messageInputContainer">
                 <form onSubmit={(e) => {
