@@ -23,12 +23,20 @@ import { updateUserInfo } from './redux/CurrentUserManager'
 import PhotoFeaturingContainer from './components/routed/PhotoFeaturingContainer/PhotoFeaturingContainer';
 import SearchResultRoot from './components/routed/SearchResultRoot/SearchResultRoot';
 import FriendRequestContainer from './components/shared/FriendRequestContainer/FriendRequestContainer';
+import LogoutEventManager from './service/LogOutEventManager';
 function App() {
 	const navigate = useNavigate()
 	const location = useLocation();
 	const currentser = useSelector(state => state.currentUser.value)
 	const setCurrentUserDispatch = useDispatch()
 	React.useEffect(() => {
+		LogoutEventManager.subscribe({
+			handleLogout: () => {
+
+				setCurrentUserDispatch(updateUserInfo(null))
+				navigate('/')
+			}
+		})
 		UserService.isAuthorized()
 			.then(({ user }) => {
 
