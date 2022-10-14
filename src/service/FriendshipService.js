@@ -11,11 +11,15 @@ export default class FriendshipService {
             }
         }).then(res => res.json())
     }
+
     static async getFriendshipType(userId, friendId) {
         return Globals._fetch(this.basePath + '/getFriendshipType', { userId, friendId })
     }
     static async getMutualFriends(userId) {
         return Globals._fetch(this.basePath + '/getMutualFriends', { userId })
+    }
+    static async findUsersWithCommonInterests(userId) {
+        return Globals._fetch(this.basePath + '/findUsersWithCommonInterests', { userId })
     }
     static async countMutualFriends(friend1, friend2) {
         return Globals._fetch(this.basePath + '/countMutualFriends', {

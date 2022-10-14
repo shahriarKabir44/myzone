@@ -12,9 +12,7 @@ import LogoutEventManager from '../../../../service/LogOutEventManager';
 function LeftMenu(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const [manageInterestModalVisibility, setManageInterestModalVisibility] = React.useState(false)
-    const [isOnMobile, setDeviceType] = React.useState(false)
     React.useEffect(() => {
-        setDeviceType(window.innerWidth <= 620)
     }, [])
     return (
         <div className="leftMenuRoot" style={{
