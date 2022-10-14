@@ -3,7 +3,14 @@ export default class Globals {
     static SERVER_IP = `${this.SERVER_IP_ADDRESS}:4000`
     static socket = null
     static hasSocketInitiated = false
-
+    static conversationsListClient = null
+    static subscribeToSelfMessageEvent(client) {
+        this.conversationsListClient = client
+    }
+    static onSelfMessage(newMessage) {
+        newMessage.last_message = newMessage.body
+        this.conversationsListClient.handleOnMessage(newMessage)
+    }
     static initSocket(currentUserId) {
         if (Globals.hasSocketInitiated) return
 

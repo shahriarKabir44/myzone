@@ -6,7 +6,6 @@ import SocketSubscriptionManager from './SocketSubscriptionManager'
 export default function useChat(conversationId, sender, messageList, component = 'mainMessenger') {
     const [messages, setMessagesList] = React.useState(messageList);
     const socketRef = React.useRef()
-
     const [participantId, setParticipantId] = React.useState(-1)
     React.useEffect(() => {
         try {
@@ -46,6 +45,7 @@ export default function useChat(conversationId, sender, messageList, component =
         let newMessage = {
             conversationId, sender, time, body
         }
+        Globals.onSelfMessage(newMessage)
         window.scrollBy(0, 100);
         ConversationService.createMessage({ ...newMessage, receiver: participantId })
         setMessages([...messages, newMessage])

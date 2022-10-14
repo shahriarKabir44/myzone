@@ -9,12 +9,13 @@ import MessengerTogglerService from '../../../../service/MessengerTogglerService
 import { useSelector } from 'react-redux'
 import Globals from '../../../../service/Globals';
 function FloatingMessengerRoot(props) {
+    const [onversations, setConversationList] = React.useState([])
     const currentUser = useSelector((state) => state.currentUser.value)
     const [isChatHeadSelected, setSelectionStatus] = React.useState(false)
     const [selectedChatHead, setSelectedChatHead] = React.useState(null)
     const [isChatHeadListExpanded, setExpansionStatus] = React.useState(false)
     const [hasNewConversationArrived, setNewConversationArrival] = React.useState(false)
-    const { conversations, subscribe, unsubscribe } = useConversation("floatingMessenger", (message) => {
+    const { conversations, subscribe, unsubscribe } = useConversation(onversations, setConversationList, "floatingMessenger", (message) => {
         setNewConversationArrival(true)
 
     })

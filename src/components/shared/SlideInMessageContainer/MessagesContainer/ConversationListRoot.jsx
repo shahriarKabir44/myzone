@@ -10,21 +10,30 @@ import { useSelector } from 'react-redux'
 import FriendshipService from '../../../../service/FriendshipService';
 import ConversationService from '../../../../service/ConversationService';
 import { useParams } from 'react-router-dom'
-import useConversation from '../../../../service/useConversation'
 import Globals from '../../../../service/Globals';
 function ConversationListRoot(props) {
     const currentRoute = useParams()
     const currentUser = useSelector((state) => state.currentUser.value)
     const [friendsList, setFriends] = React.useState([])
-    const { conversations, setConversationList, subscribe, unsubscribe } = useConversation()
+    const [conversations, setConversationList] = React.useState([])
     React.useEffect(() => {
-        subscribe()
+        Globals.subscribeToSelfMessageEvent({
+            handleOnMessage: (newMessage) => {
+                let conversationList = conversations
+                let target = conversationList.filter(conversation => conversation.Id * 1 === newMessage.conversationId * 1)
+                if (target.length) {
+                    target[0].last_message = newMessage.body
+                    const temp = [...target, ...conversationList.filter(conversation => conversation.Id * 1 !== newMessage.conversationId * 1)]
+                    setConversationList(temp)
+                }
+
+            }
+        })
         ConversationService.getConversationList(currentUser.Id)
             .then(({ conversationList }) => {
                 setConversationList(conversationList)
             })
         return () => {
-            unsubscribe()
         }
     }, [])
     const [shouldOpenCreateConversationModal, toggleConversationModal] = React.useState(false)
