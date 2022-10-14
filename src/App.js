@@ -25,6 +25,7 @@ import SearchResultRoot from './components/routed/SearchResultRoot/SearchResultR
 import FriendRequestContainer from './components/shared/FriendRequestContainer/FriendRequestContainer';
 import LogoutEventManager from './service/LogOutEventManager';
 import FloatingMenu from './components/shared/FloatingMenu/FloatingMenu';
+import FindFriends from './components/routed/FindFriends/FindFriends';
 function App() {
 	const navigate = useNavigate()
 	const location = useLocation();
@@ -84,6 +85,7 @@ function App() {
 					<Route path='/featured'>
 						<Route path=':groupId/*' element={<PhotoFeaturingContainer />} />
 					</Route>
+					<Route path='/findFriends' element={<FindFriends />} />
 					<Route path='/messenger'>
 						<Route path=':conversationId' element={<MessengerRoot />} />
 					</Route>
