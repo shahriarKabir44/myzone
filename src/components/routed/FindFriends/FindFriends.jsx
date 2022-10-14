@@ -27,7 +27,7 @@ function FindFriends(props) {
                     fontWeight: 100
                 }}>Find Friends</h2>
                 {mutualFriends.map((mutualFriend, index) => {
-                    return <SearchResultUserContainer key={index} user={mutualFriend} />
+                    return <SearchResultUserContainer currentUserId={currentUser.Id} key={index} user={mutualFriend} />
                 })}
             </div>
         </div>

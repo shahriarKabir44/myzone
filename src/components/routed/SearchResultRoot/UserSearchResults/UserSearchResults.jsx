@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import FriendshipService from '../../../../service/FriendshipService';
 import Globals from '../../../../service/Globals';
 import SearchingServices from '../../../../service/SearchingServices';
 import './UserSearchResults.css'
@@ -22,15 +23,21 @@ function UserSearchResults({ query, onLoad }) {
             }}>Users meeting your query</h3>
             <div className="searchResultUsersContainer">
                 {searchResult.map((user, index) => {
-                    return <SearchResultUserContainer key={index} user={user} />
+                    return <SearchResultUserContainer currentUserId={currentUser.Id} key={index} user={user} />
                 })}
 
             </div>
         </div>
     );
 }
-export function SearchResultUserContainer({ user }) {
-
+export function SearchResultUserContainer({ user, currentUserId }) {
+    const [mutualFriendsCount, setMutualFriendsCount] = React.useState(0)
+    React.useEffect(() => {
+        FriendshipService.countMutualFriends(user.Id, currentUserId)
+            .then(({ numMutualFriends }) => {
+                setMutualFriendsCount(numMutualFriends)
+            })
+    }, [])
     return <Link to={'/profile/' + user.Id} style={{ textDecoration: 'none' }}>
         <div className='searchResultUserInfo' >
             <div className="flex" style={{
@@ -43,8 +50,11 @@ export function SearchResultUserContainer({ user }) {
                         width: '60px'
                     }} className="userImg" />
                 </div>
-                <div className="infoCOntainer">
+                <div className="infoCOntainer" style={{
+                    lineHeight: '5px'
+                }}>
                     <h3>{user.name}</h3>
+                    <p>{mutualFriendsCount} mutual friends</p>
                     <p>Email: {user.email}</p>
                 </div>
             </div>
