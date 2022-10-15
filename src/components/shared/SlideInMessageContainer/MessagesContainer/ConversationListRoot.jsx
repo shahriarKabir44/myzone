@@ -19,6 +19,7 @@ function ConversationListRoot(props) {
     React.useEffect(() => {
         Globals.subscribeToSelfMessageEvent({
             handleOnMessage: (newMessage) => {
+                console.log(newMessage)
                 let conversationList = conversations
                 let target = conversationList.filter(conversation => conversation.Id * 1 === newMessage.conversationId * 1)
                 if (target.length) {

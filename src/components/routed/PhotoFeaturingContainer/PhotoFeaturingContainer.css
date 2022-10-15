@@ -23,7 +23,10 @@
 }
 
 .photoContainer {
-    max-height: 70vh;
+    max-height: 60vh;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
 }
 
 .photo {

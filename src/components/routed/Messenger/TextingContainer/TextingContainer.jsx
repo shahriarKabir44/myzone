@@ -60,7 +60,7 @@ function TextingContainer(props) {
                     setTimeout(() => {
                         divRef.current.scrollIntoView({ behavior: 'smooth' });
 
-                    }, 100)
+                    }, 200)
 
                 }} className="commentActionsContainer">
                     <input value={messageText}

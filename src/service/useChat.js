@@ -27,7 +27,7 @@ export default function useChat(conversationId, sender, receiver, messageList, c
             onMessage: (data) => {
                 console.log(data)
                 if (data.type === 'personalMessage') {
-
+                    Globals.onIncomingMessage(data.body.newMessage)
                     //setMessages(messages)
                     let newList = JSON.parse(JSON.stringify(getMessages()))
                     newList.push(data.body.newMessage)

@@ -12,6 +12,9 @@ export default class Globals {
         if (this.conversationsListClient)
             this.conversationsListClient.handleOnMessage(newMessage)
     }
+    static onIncomingMessage(newMessage) {
+        this.onSelfMessage(newMessage)
+    }
     static initSocket(currentUserId) {
         if (Globals.hasSocketInitiated) return
 

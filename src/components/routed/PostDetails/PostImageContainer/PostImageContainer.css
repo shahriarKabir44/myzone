@@ -1,25 +1,32 @@
-.imgContainer,
-.focusedImg {
-    width: 100%;
-}
+ .imgContainer {
+     max-height: 50vh;
+     height: 50vh;
+     display: flex;
+     justify-content: center;
+     width: 30vw;
+ }
 
+ .swipeContainerRoot {
+     display: flex;
+     justify-content: center;
 
-.swipeContainerRoot {
-    display: flex;
-    justify-content: center;
+ }
 
-}
+ .focusedImg {
+     max-width: 100%;
+     max-height: 100%;
+ }
 
-.swipeContainer {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
+ .swipeContainer {
+     display: flex;
+     gap: 10px;
+     align-items: center;
+ }
 
-.swipeBtn {
-    display: flex;
+ .swipeBtn {
+     display: flex;
 
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 5px;
-}
+     align-items: center;
+     justify-content: space-between;
+     border-radius: 5px;
+ }
