@@ -3,13 +3,22 @@
      height: 50vh;
      display: flex;
      justify-content: center;
-     width: 30vw;
+ }
+
+ .postImageContainer {
+     display: flex;
+     justify-content: center;
+     height: 40vh;
  }
 
  .swipeContainerRoot {
      display: flex;
      justify-content: center;
 
+ }
+
+ .postImage {
+     width: 100%;
  }
 
  .focusedImg {

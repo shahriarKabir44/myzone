@@ -4,12 +4,12 @@
     align-items: center;
     grid-template-columns: 60px auto;
     color: white;
-    font-size: 19px;
+    font-size: 15px;
     align-content: center;
     padding: 0px 10px;
     margin: 10px;
     border-radius: 10px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     cursor: pointer;
 }
 

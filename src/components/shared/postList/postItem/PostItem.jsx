@@ -41,7 +41,7 @@ function PostItem(props) {
                 <div className="postContent">
                     <p className="postText">{post.body}</p>
                     {JSON.parse(post.attached_media)[0] !== null && <div className="postImageContainer">
-                        <img src={Globals.SERVER_IP + JSON.parse(post.attached_media)[0]} alt="" style={{ width: "100%" }} className="postImage" />
+                        <img src={Globals.SERVER_IP + JSON.parse(post.attached_media)[0]} alt="" className="postImage" />
 
                     </div>}
                 </div>

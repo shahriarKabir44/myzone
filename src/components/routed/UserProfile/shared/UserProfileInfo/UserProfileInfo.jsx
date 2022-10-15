@@ -36,7 +36,7 @@ function UserProfileInfo(props) {
             senderId: currentUser.Id,
             receiverId: userId,
             relatedSchemaId: currentUser.Id,
-            body: `${currentUser.name} has send you a friend request.`,
+            body: `${currentUser.name} has sent you a friend request.`,
             type: 3
         }, userId)
     }

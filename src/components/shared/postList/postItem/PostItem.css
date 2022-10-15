@@ -1,12 +1,12 @@
 .postCreatorSection {
     display: flex;
     flex-direction: row;
-
     flex-grow: 1;
     align-items: center;
     line-height: 0px;
     align-content: center;
     gap: 10px;
+    margin: 10px;
 }
 
 .imageContainer {
@@ -21,11 +21,8 @@
 
 .postBody {
     background: #242526;
-
-    padding: 17px;
     border-radius: 10px;
     margin: 20px;
-    border: 2px solid white;
 }
 
 .postViewText {
@@ -50,7 +47,7 @@ p.time {
     flex-direction: row;
     justify-content: space-between;
 
-    padding: 0px 37px;
+    padding: 5px 37px;
 }
 
 .postInteractions {
@@ -74,11 +71,10 @@ p.time {
 
 .postText {
     color: white;
+    padding: 10px;
 }
 
 .postContent {
-    padding: 10px;
-    background: #47494A;
-    margin: 10px;
+
     border-radius: 10px;
 }
