@@ -6,12 +6,13 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import PostInteractionService from '../../../../service/PostInteractionService'
-import { Global } from '@emotion/react';
+
 import Globals from '../../../../service/Globals';
 import PostModificationModal from '../../PostModificationModal/PostModificationModal';
 import EditPostEventHandler from '../../../../service/EditPostEventHandler';
+import { useLocation } from 'react-router-dom'
 function PostItem(props) {
-
+    const location = useLocation();
     const [post, setPostDetails] = React.useState(props.post)
     const currentUser = useSelector((state) => state.currentUser.value)
     const [hasReacted, setReactionSatus] = React.useState(false)
@@ -29,7 +30,12 @@ function PostItem(props) {
     return (
         <div className='postBody'>
             <div className="postHeader">
-                <Link to={'profile/' + creatorInfo.Id} style={{
+                <Link to={(() => {
+                    if (location.pathname.startsWith('/profile')) {
+                        return '/profile/' + creatorInfo.Id
+                    }
+                    return 'profile/' + creatorInfo.Id
+                })()} style={{
                     textDecoration: 'none',
                 }}>
                     <div className="postCreatorSection">

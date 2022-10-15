@@ -1,6 +1,6 @@
 import React from 'react'
 import './PhotoFeaturingContainer.css'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
@@ -28,34 +28,37 @@ export default function PhotoFeaturingContainer() {
     } return (
         <div className='featuredPhotoContainerRoot'>
             <div className="storyContainer">
-                <div className="creatorInfoContainer">
-                    <div style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px"
-                    }}>
-                        <img src={Globals.SERVER_IP + creatorInfo.profileImage} style={{
-                            height: "50px",
-                            width: "50px"
-                        }} alt="" className="userImg" />
+                <Link to={'/profile/' + creatorInfo.Id} style={{
+                    textDecoration: 'none',
+                }}>
+                    <div className="creatorInfoContainer">
                         <div style={{
-
-                            margin: '5px'
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px"
                         }}>
-                            <p style={{
-                                color: "white",
-                                fontWeight: 200,
-                                fontSize: "25px",
-                                margin: 0
-                            }}>{creatorInfo.name}</p>
-                            <p style={{
-                                color: "white",
+                            <img src={Globals.SERVER_IP + creatorInfo.profileImage} style={{
+                                height: "50px",
+                                width: "50px"
+                            }} alt="" className="userImg" />
+                            <div style={{
 
-                                margin: 0
-                            }}>{label}</p>
+                                margin: '5px'
+                            }}>
+                                <p style={{
+                                    color: "white",
+                                    fontWeight: 200,
+                                    fontSize: "25px",
+                                    margin: 0
+                                }}>{creatorInfo.name}</p>
+                                <p style={{
+                                    color: "white",
+
+                                    margin: 0
+                                }}>{label}</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div></Link>
                 <div className="photoContainer">
                     <img className="photo" alt="imag" src={Globals.SERVER_IP + currentURL} />
                 </div>
