@@ -2,7 +2,7 @@ import React from 'react';
 import PostImageContainer from '../PostImageContainer/PostImageContainer';
 import CommentIcon from '@mui/icons-material/Comment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './PostDetailsRoot.css'
 import PostComments from '../PostComments/PostComments';
@@ -49,21 +49,25 @@ function PostDetailsRoot(props) {
         <div className="mainPostDetailsContainer">
             <div></div>
             <div className="postDetailsContainer">
-                <div className="postCreatorInfoContainer">
-                    <div style={{
-                        width: '50px'
-                    }} className="userImg">
-                        <img src={Globals.SERVER_IP + postDetails.creatorInfo.profileImage} alt="" className="creatorImg" />
+                <Link to={'/profile/' + postDetails.creatorInfo.Id} style={{
+                    textDecoration: 'none',
+                }}>
+                    <div className="postCreatorInfoContainer">
+                        <div style={{
+                            width: '50px'
+                        }} className="userImg">
+                            <img src={Globals.SERVER_IP + postDetails.creatorInfo.profileImage} alt="" className="creatorImg" />
+                        </div>
+                        <div className="infoContainer">
+                            <p style={{
+                                margin: 0
+                            }} className="creatorName">{postDetails.creatorInfo.name}</p>
+                            <p style={{
+                                margin: 0
+                            }} className="creationTime"> {new Date(postDetails.posted_on).toLocaleString()} </p>
+                        </div>
                     </div>
-                    <div className="infoContainer">
-                        <p style={{
-                            margin: 0
-                        }} className="creatorName">{postDetails.creatorInfo.name}</p>
-                        <p style={{
-                            margin: 0
-                        }} className="creationTime"> {new Date(postDetails.posted_on).toLocaleString()} </p>
-                    </div>
-                </div>
+                </Link>
                 <div className="postBodyContainer">
                     <p className="postText">{postDetails.body}</p>
                 </div>
