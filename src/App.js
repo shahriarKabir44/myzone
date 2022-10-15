@@ -31,6 +31,7 @@ function App() {
 	const location = useLocation();
 	const currentser = useSelector(state => state.currentUser.value)
 	const setCurrentUserDispatch = useDispatch()
+	const [hasUserInfoLoaded, setUserInfoLoadingStatus] = React.useState(false)
 	React.useEffect(() => {
 		LogoutEventManager.subscribe({
 			handleLogout: () => {
@@ -44,12 +45,18 @@ function App() {
 
 
 				if (!user) {
+					setUserInfoLoadingStatus(true)
 					navigate('/')
+
 				}
-				else Globals.initSocket(user.Id)
-				setTimeout(() => {
-					setCurrentUserDispatch(updateUserInfo(user))
-				}, 300)
+				else {
+					Globals.initSocket(user.Id)
+					setTimeout(() => {
+						setUserInfoLoadingStatus(true)
+						setCurrentUserDispatch(updateUserInfo(user))
+					}, 300)
+				}
+
 			})
 
 	}, [])
@@ -61,44 +68,46 @@ function App() {
 	}
 	return (
 		<div className="App">
-			{currentser !== null && <><NavBar />
-				<SlideInMessagesRoot />
-				<NotificationListRoot />
-				<FriendRequestContainer />
-				<FloatingMenu />
-			</>}
-
-			<Routes>
-				{currentser == null && <Route path='/' element={<LoginRegistration onAuthorized={(user) => {
-					onAuthorized(user)
-				}} />} />}
-
-
-				{currentser != null && <>
-					<Route path='/' element={<Home />} />
-					<Route path='/profile'>
-						<Route path=':userId/*' element={<UserProfileRoot />} />
-					</Route>
-					<Route path='/search' >
-						<Route path='query=:query/*' element={<SearchResultRoot />} />
-					</Route>
-					<Route path='/featured'>
-						<Route path=':groupId/*' element={<PhotoFeaturingContainer />} />
-					</Route>
-					<Route path='/findFriends' element={<FindFriends />} />
-					<Route path='/messenger'>
-						<Route path=':conversationId' element={<MessengerRoot />} />
-					</Route>
-					<Route path='/post'>
-						<Route path=':Id' element={<PostDetailsRoot />} />
-					</Route>
-
+			{hasUserInfoLoaded && <>
+				{currentser !== null && <><NavBar />
+					<SlideInMessagesRoot />
+					<NotificationListRoot />
+					<FriendRequestContainer />
+					<FloatingMenu />
 				</>}
 
-			</Routes>
+				<Routes>
+					{currentser == null && <Route path='/' element={<LoginRegistration onAuthorized={(user) => {
+						onAuthorized(user)
+					}} />} />}
 
-			{!location.pathname.startsWith('/messenger') && currentser !== null &&
-				<FloatingMessengerRoot />}
+
+					{currentser != null && <>
+						<Route path='/' element={<Home />} />
+						<Route path='/profile'>
+							<Route path=':userId/*' element={<UserProfileRoot />} />
+						</Route>
+						<Route path='/search' >
+							<Route path='query=:query/*' element={<SearchResultRoot />} />
+						</Route>
+						<Route path='/featured'>
+							<Route path=':groupId/*' element={<PhotoFeaturingContainer />} />
+						</Route>
+						<Route path='/findFriends' element={<FindFriends />} />
+						<Route path='/messenger'>
+							<Route path=':conversationId' element={<MessengerRoot />} />
+						</Route>
+						<Route path='/post'>
+							<Route path=':Id' element={<PostDetailsRoot />} />
+						</Route>
+
+					</>}
+
+				</Routes>
+
+				{!location.pathname.startsWith('/messenger') && currentser !== null &&
+					<FloatingMessengerRoot />}
+			</>}
 		</div>
 	);
 }

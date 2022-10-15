@@ -8,11 +8,14 @@ import { useSelector } from 'react-redux'
 import PostInteractionService from '../../../../service/PostInteractionService'
 import { Global } from '@emotion/react';
 import Globals from '../../../../service/Globals';
+import PostModificationModal from '../../PostModificationModal/PostModificationModal';
 function PostItem(props) {
 
     const [post, setPostDetails] = React.useState(props.post)
     const currentUser = useSelector((state) => state.currentUser.value)
     const [hasReacted, setReactionSatus] = React.useState(false)
+    const [postActionVisibility, setPostActionVisibility] = React.useState(false)
+    const [postModificationModalVisibility, setPostModificationModalVisibility] = React.useState(false)
     React.useEffect(() => {
         PostInteractionService.hasReacted({
             postId: post.Id,
@@ -38,7 +41,22 @@ function PostItem(props) {
                             <p className="time postViewText">{new Date(post.posted_on).toLocaleString()}</p>
                         </div>
                     </div></Link>
-                <MoreVertIcon className='moreBtn' />
+                {post.creatorInfo.Id * 1 === currentUser.Id && <div className='actionContainer'>
+                    {postActionVisibility && <div className="postOptionContainer">
+                        <div onClick={() => {
+                            setPostModificationModalVisibility(true)
+                        }} className="postOption">Delete</div>
+                        <div className="postOption">Update</div>
+                    </div>}
+                    <div onClick={() => {
+                        setPostActionVisibility(!postActionVisibility);
+                    }} style={{
+                        cursor: 'pointer',
+
+                    }}>
+                        <MoreVertIcon className='moreBtn' />
+                    </div>
+                </div>}
             </div>
             <Link to={`/post/${post.Id}`} style={{ textDecoration: 'none' }}>
                 <div className="postContent">
@@ -89,7 +107,9 @@ function PostItem(props) {
                 </div>
             </div>
 
-
+            <PostModificationModal open={postModificationModalVisibility} handleClose={() => {
+                setPostModificationModalVisibility(false)
+            }} postId={post.Id} />
 
         </div>
     );

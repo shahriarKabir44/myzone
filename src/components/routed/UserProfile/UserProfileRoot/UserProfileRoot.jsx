@@ -58,7 +58,11 @@ function UserProfileRoot(props) {
 
         seDeviceType(window.innerWidth <= 620)
         sideBarToggleStatusrDispatcher(setToggleStatus(-2))
-
+        return () => {
+            setCreatedPostList([])
+            setFeaturedPhotos([])
+            setFocusedUserDispatcher(updateCurrentlyViewingUser({}))
+        }
 
     }, [currentRoute]);
 

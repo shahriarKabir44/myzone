@@ -18,6 +18,9 @@ export default class PostService {
         }).then(res => res.json())
 
     }
+    static async delete(postId) {
+        return Globals._fetch(Globals.SERVER_IP + '/post/delete/' + postId)
+    }
     static async createPost(postedBy, postBody, imageURIs) {
         let { newPost } = await PostService.createPostObject(postedBy, postBody)
         let uploadedURLs = []

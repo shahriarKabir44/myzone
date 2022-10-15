@@ -79,3 +79,27 @@ p.time {
 
     border-radius: 10px;
 }
+
+.actionContainer {
+    position: relative;
+}
+
+.postOptionContainer {
+    position: absolute;
+    background: #5c5a5a;
+    color: white;
+    right: 0;
+    border-radius: 10px;
+    top: 30px;
+}
+
+.postOption {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.postOption:hover {
+    background: #7a7979;
+    overflow: hidden;
+    border-radius: 10px;
+}
