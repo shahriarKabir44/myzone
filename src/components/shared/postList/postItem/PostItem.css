@@ -37,9 +37,10 @@ p.time {
 .postHeader {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-content: center;
     align-items: center;
+    padding: 0px 20px;
 }
 
 .reactionsTab {

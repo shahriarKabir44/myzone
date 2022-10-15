@@ -19,6 +19,7 @@ function LeftMenu(props) {
             display: 'flex',
             justifyContent: 'space-between',
             flexDirection: 'column',
+            padding: 0
         }}>
             <div>
                 <ManageInterestsModal modalVisibility={manageInterestModalVisibility} closeModal={() => {
