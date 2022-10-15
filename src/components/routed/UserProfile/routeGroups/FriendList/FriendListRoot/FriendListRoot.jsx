@@ -8,7 +8,7 @@ import FriendShipService from '../../../../../../service/FriendshipService'
 
 function FriendListRoot(props) {
     const [friendList, setFriendList] = React.useState([])
-    const user = useSelector((state) => state.currentUser.value)
+    const user = props.userInfo
     React.useEffect(() => {
         FriendShipService.getAllFriends(user.Id)
             .then(({ data }) => {

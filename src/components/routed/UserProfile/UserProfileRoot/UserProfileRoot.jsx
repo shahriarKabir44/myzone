@@ -99,7 +99,7 @@ function UserProfileRoot(props) {
                             </>
 
                         } />
-                        <Route path='friends' element={<FriendListRoot shouldShowUserInfo={inView} intersectionObserverRef={ref} />} />
+                        <Route path='friends' element={<FriendListRoot userInfo={user} shouldShowUserInfo={inView} intersectionObserverRef={ref} />} />
                         <Route path='/' element={<Navigate to="home" />} />
                     </Routes>
                 </div>

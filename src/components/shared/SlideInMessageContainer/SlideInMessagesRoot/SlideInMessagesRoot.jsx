@@ -40,9 +40,7 @@ function SlideInMessagesRoot(props) {
                         <h3 style={{
                             fontWeight: 200
                         }} className="headingTextSlideMessage">Messages</h3>
-                        <div>
-                            <OpenWithIcon />
-                        </div>
+
                     </div>
                     {toggleStatus === 1 && <div style={{
                         background: "#47494a",
