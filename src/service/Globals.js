@@ -3,6 +3,7 @@ export default class Globals {
     static SERVER_IP = `${this.SERVER_IP_ADDRESS}:4000`
     static socket = null
     static hasSocketInitiated = false
+    static CLEINT_URL = `${this.SERVER_IP_ADDRESS}:3000`
     static conversationsListClient = null
     static subscribeToSelfMessageEvent(client) {
         this.conversationsListClient = client

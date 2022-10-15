@@ -176,7 +176,9 @@ function PostEditingContainer({ post }) {
                             return img.image
                         })
 
-                    }, post.Id, post.creatorInfo.Id)
+                    }, post.Id, post.creatorInfo.Id).then(() => {
+                        window.location.reload()
+                    })
                 }} style={{
                     width: "100%",
                     margin: "10px 0px"

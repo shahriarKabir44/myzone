@@ -12,16 +12,18 @@ export default function PhotoFeaturingContainer() {
     const [creatorInfo, setCreatorInfo] = React.useState({})
     const [label, setLabel] = React.useState("")
     const [photoIndex, setPhotoIndex] = React.useState(0)
+    const [currentURL, setCurrentURL] = React.useState("")
     React.useEffect(() => {
         FeaturingService.getAlbumInfo(currentRoute.groupId)
             .then(albumInfo => {
                 setCreatorInfo(albumInfo.creatorInfo)
                 setPhotoList(albumInfo.attachedPhotos)
                 setLabel(albumInfo.label)
+                setCurrentURL(albumInfo.attachedPhotos[0])
             })
     }, [])
     function swipe(direction) {
-
+        setCurrentURL(photos[(photoIndex + direction + photos.length) % photos.length])
         setPhotoIndex((photoIndex + direction + photos.length) % photos.length);
     } return (
         <div className='featuredPhotoContainerRoot'>
@@ -55,7 +57,7 @@ export default function PhotoFeaturingContainer() {
                     </div>
                 </div>
                 <div className="photoContainer">
-                    <img className="photo" alt="imag" src={Globals.SERVER_IP + photos[0]} />
+                    <img className="photo" alt="imag" src={Globals.SERVER_IP + currentURL} />
                 </div>
                 <div className="navContainer">
                     <div className="swipeContainerRoot">

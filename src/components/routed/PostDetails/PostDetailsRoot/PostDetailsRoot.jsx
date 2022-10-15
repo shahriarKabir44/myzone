@@ -4,13 +4,19 @@ import CommentIcon from '@mui/icons-material/Comment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PostModificationModal from '../../../shared/PostModificationModal/PostModificationModal';
 import './PostDetailsRoot.css'
 import PostComments from '../PostComments/PostComments';
 import PostService from '../../../../service/PostService';
 import PostInteractionService from '../../../../service/PostInteractionService';
 import NotificationService from '../../../../service/NotificationService'
 import Globals from '../../../../service/Globals';
+import EditPostEventHandler from '../../../../service/EditPostEventHandler';
 function PostDetailsRoot(props) {
+    const [postActionVisibility, setPostActionVisibility] = React.useState(false)
+    const [postModificationModalVisibility, setPostModificationModalVisibility] = React.useState(false)
+
     const currentUser = useSelector((state) => state.currentUser.value)
     const currentRoute = useParams()
     const [hasReacted, setReactionSatus] = React.useState(false)
@@ -47,12 +53,23 @@ function PostDetailsRoot(props) {
     }, [])
     return (
         <div className="mainPostDetailsContainer">
+
             <div></div>
             <div className="postDetailsContainer">
-                <Link to={'/profile/' + postDetails.creatorInfo.Id} style={{
+                <PostModificationModal open={postModificationModalVisibility} handleClose={() => {
+                    setPostModificationModalVisibility(false)
+                }} postId={postDetails.Id} />
+                <div style={{
                     textDecoration: 'none',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignContent: 'center',
+                    alignItems: 'center'
                 }}>
-                    <div className="postCreatorInfoContainer">
+                    <Link to={'/profile/' + postDetails.creatorInfo.Id} style={{
+                        textDecoration: 'none',
+
+                    }} className="postCreatorInfoContainer">
                         <div style={{
                             width: '50px'
                         }} className="userImg">
@@ -66,8 +83,26 @@ function PostDetailsRoot(props) {
                                 margin: 0
                             }} className="creationTime"> {new Date(postDetails.posted_on).toLocaleString()} </p>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                    {postDetails.creatorInfo.Id * 1 === currentUser.Id && <div className='actionContainer'>
+                        {postActionVisibility && <div className="postOptionContainer">
+                            <div onClick={() => {
+                                setPostModificationModalVisibility(true)
+                            }} className="postOption">Delete</div>
+                            <div onClick={() => {
+                                EditPostEventHandler.handlePostEditEvent(postDetails)
+                            }} className="postOption">Update</div>
+                        </div>}
+                        <div onClick={() => {
+                            setPostActionVisibility(!postActionVisibility);
+                        }} style={{
+                            cursor: 'pointer',
+
+                        }}>
+                            <MoreVertIcon className='moreBtn' />
+                        </div>
+                    </div>}
+                </div>
                 <div className="postBodyContainer">
                     <p className="postText">{postDetails.body}</p>
                 </div>
