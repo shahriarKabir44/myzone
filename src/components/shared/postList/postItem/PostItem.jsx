@@ -25,16 +25,19 @@ function PostItem(props) {
     return (
         <div className='postBody'>
             <div className="postHeader">
-                <div className="postCreatorSection">
-                    <div className="imageContainer">
-                        <img src={Globals.SERVER_IP + creatorInfo.profileImage} alt="" className="creatorImg" />
+                <Link to={'profile/' + creatorInfo.Id} style={{
+                    textDecoration: 'none',
+                }}>
+                    <div className="postCreatorSection">
+                        <div className="imageContainer">
+                            <img src={Globals.SERVER_IP + creatorInfo.profileImage} alt="" className="creatorImg" />
 
-                    </div>
-                    <div className="info">
-                        <p className="creatorName postViewText">{creatorInfo.name}</p>
-                        <p className="time postViewText">{new Date(post.posted_on).toLocaleString()}</p>
-                    </div>
-                </div>
+                        </div>
+                        <div className="info">
+                            <p className="creatorName postViewText">{creatorInfo.name}</p>
+                            <p className="time postViewText">{new Date(post.posted_on).toLocaleString()}</p>
+                        </div>
+                    </div></Link>
                 <MoreVertIcon className='moreBtn' />
             </div>
             <Link to={`/post/${post.Id}`} style={{ textDecoration: 'none' }}>

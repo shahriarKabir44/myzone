@@ -15,8 +15,8 @@ function PostImageContainer({ images, postDetails, currentUser }) {
     const [selectedImgURL, setSelctedImgURL] = React.useState("")
     React.useEffect(() => { }, [])
     return (
-        <div className='postImageContainer'>
-            <div className="imgContainer">
+        <div className='postDetailsImageContainer'>
+            <div className="postImgContainer">
                 <img src={Globals.SERVER_IP + images[currentlyViewingImageIndex]} alt="" className="focusedImg" />
             </div>
             <div className="swipeContainerRoot">
