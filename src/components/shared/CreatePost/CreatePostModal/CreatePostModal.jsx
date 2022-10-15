@@ -46,6 +46,7 @@ function CreatePostModal(props) {
             <Modal keepMounted
                 open={props.open}
                 onClose={() => {
+                    setPostBody('')
                     setSelectedImages([])
                     props.onClose()
                 }}
@@ -161,7 +162,7 @@ function AttachedPostImage(props) {
         <div className="closeBtn" onClick={props.onDelete}>
             <CancelIcon />
         </div>
-        <img src={Globals.SERVER_IP + props.file} alt="" className="attachedImage" />
+        <img src={props.file} alt="" className="attachedImage" />
     </div>)
 }
 
