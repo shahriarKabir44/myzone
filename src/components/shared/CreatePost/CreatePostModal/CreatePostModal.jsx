@@ -12,7 +12,6 @@ import UserInfoContainer from '../../UserInfoContainer'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Snackbar from '@mui/material/Snackbar';
 import PostService from '../../../../service/PostService';
-import Globals from '../../../../service/Globals';
 const modalStyle = {
     position: 'absolute',
     top: '50%',

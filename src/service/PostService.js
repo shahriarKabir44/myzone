@@ -1,7 +1,42 @@
 import Globals from "./Globals";
 import UploadManager from "./UploadManager";
 export default class PostService {
+    static async editPost({
+        newPostBody,
+        newImages,
+        remainingOriginalImages, imagesToDelete }, postId, postedBy) {
+        let imageUploadPromises = []
+        let newURLs = []
+        for (let newImage of newImages) {
+            imageUploadPromises.push(UploadManager.uploadImage(newImage.image, {
+                postedby: postedBy,
+                postid: postId,
+                index: newImage.Id,
+                token: localStorage.getItem('token')
+            }, 'file', '/post/uploadPostImage').then(({ url }) => {
+                console.log(url)
+                newURLs.push(url)
+            }))
+        }
+        console.log(imagesToDelete)
+        for (let url of imagesToDelete) {
+            this.deleteImage(url)
+        }
+        return await Promise.all(imageUploadPromises)
+            .then(() => {
+                console.log(remainingOriginalImages)
+                PostService.editPostInfo(postId, newPostBody, JSON.stringify([...remainingOriginalImages, ...newURLs]))
 
+            })
+
+    }
+    static async deleteImage(imageURL) {
+        console.log(imageURL)
+        return Globals._fetch(Globals.SERVER_IP + '/post/deleteImage', { imageURL })
+    }
+    static async editPostInfo(postId, postBody, imageURLs) {
+        return Globals._fetch(Globals.SERVER_IP + '/post/edit', { postId, postBody, imageURLs })
+    }
     static async createPostObject(postedBy, postBody) {
         let body = {
             postedBy,

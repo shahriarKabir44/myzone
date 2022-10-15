@@ -9,6 +9,7 @@ import PostInteractionService from '../../../../service/PostInteractionService'
 import { Global } from '@emotion/react';
 import Globals from '../../../../service/Globals';
 import PostModificationModal from '../../PostModificationModal/PostModificationModal';
+import EditPostEventHandler from '../../../../service/EditPostEventHandler';
 function PostItem(props) {
 
     const [post, setPostDetails] = React.useState(props.post)
@@ -46,7 +47,9 @@ function PostItem(props) {
                         <div onClick={() => {
                             setPostModificationModalVisibility(true)
                         }} className="postOption">Delete</div>
-                        <div className="postOption">Update</div>
+                        <div onClick={() => {
+                            EditPostEventHandler.handlePostEditEvent(props.post)
+                        }} className="postOption">Update</div>
                     </div>}
                     <div onClick={() => {
                         setPostActionVisibility(!postActionVisibility);

@@ -26,6 +26,7 @@ import FriendRequestContainer from './components/shared/FriendRequestContainer/F
 import LogoutEventManager from './service/LogOutEventManager';
 import FloatingMenu from './components/shared/FloatingMenu/FloatingMenu';
 import FindFriends from './components/routed/FindFriends/FindFriends';
+import EditPostModal from './components/shared/CreatePost/CreatePostModal/EditPostModal';
 function App() {
 	const navigate = useNavigate()
 	const location = useLocation();
@@ -74,6 +75,7 @@ function App() {
 					<NotificationListRoot />
 					<FriendRequestContainer />
 					<FloatingMenu />
+					<EditPostModal />
 				</>}
 
 				<Routes>
