@@ -19,6 +19,7 @@
     .postsView {
         max-height: var(--containerHeightSmall);
         width: 100vw;
+        margin: 0 !important;
     }
 
 

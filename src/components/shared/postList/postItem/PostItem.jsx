@@ -108,11 +108,11 @@ function PostItem(props) {
                         }} className='reactionBtn' />
 
                     </div>
-                    <p className="likesCount reactionText">{post.numReactions ? post.numReactions : 0} reaction(s)</p>
+                    <p className="likesCount reactionText">{post.numReactions ? post.numReactions : 0}  {window.innerWidth >= 620 ? 'reaction(s)' : ''}</p>
                 </div>
                 <div className="comments postInteractions">
                     <CommentIcon className='reactionBtn' />
-                    <p className="commentsCount  reactionText">{post.numComments ? post.numComments : 0} comment(s)</p>
+                    <p className="commentsCount  reactionText">{post.numComments ? post.numComments : 0} {window.innerWidth >= 620 ? 'comment(s)' : ''}</p>
                 </div>
             </div>
 

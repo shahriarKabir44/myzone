@@ -25,6 +25,12 @@
     margin: 20px;
 }
 
+@media screen and (max-width:620px) {
+    .postBody {
+        margin: 0;
+    }
+}
+
 .postViewText {
     color: white;
     margin: 20px
