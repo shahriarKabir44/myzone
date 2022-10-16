@@ -7,7 +7,6 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-
 import UserInfoContainer from '../../UserInfoContainer'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Snackbar from '@mui/material/Snackbar';
@@ -17,7 +16,7 @@ const modalStyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: window.innerWidth > 620 ? 400 : '75vw',
     bgcolor: '#242526',
     border: '2px solid #000',
     boxShadow: 24,
@@ -54,9 +53,24 @@ function CreatePostModal(props) {
 
             >
                 <Box sx={modalStyle}>
-                    <h2 className='createPostModalHeader'>
-                        Create a post
-                    </h2>
+                    <div className="flex" style={{
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}>
+                        <h2 className='createPostModalHeader'>
+                            Create a post
+                        </h2>
+                        <div onClick={() => {
+                            setPostBody('')
+                            setSelectedImages([])
+                            props.onClose()
+                        }}>
+                            <CloseIcon style={{
+                                color: 'white'
+                            }} />
+                        </div>
+                    </div>
+
                     <div id="modal-modal-description" sx={{ mt: 2 }}>
                         <div className="postCreatorContainer">
                             <UserInfoContainer name={currentUser.name} imgURL={currentUser.profileImage} />
@@ -68,7 +82,7 @@ function CreatePostModal(props) {
                                 setPostBody(e.target.value)
                             }} style={{
                                 resize: 'none'
-                            }} className='postTextInput' name="" id="" cols="30" rows="10"></textarea>
+                            }} className='postTextInput' name="" id="" cols="30" rows="5"></textarea>
                         </div>
                         <div className="attachedImagesContainer">
                             <input

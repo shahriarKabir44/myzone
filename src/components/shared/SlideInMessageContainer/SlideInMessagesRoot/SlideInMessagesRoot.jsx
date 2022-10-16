@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ConversationListRoot from '../MessagesContainer/ConversationListRoot';
 import './SlideInMessagesRoot.css'
 import Box from '@mui/material/Box';
-import OpenWithIcon from '@mui/icons-material/OpenWith';
+import CloseIcon from '@mui/icons-material/Close';
 
 import { useDispatch } from 'react-redux';
 import { closeConversationListView } from '../../../../redux/ConversatinListToggleManager'
@@ -12,7 +12,7 @@ const modalStyle = {
     position: 'absolute',
     top: 'var(--navBarHeightLarge);',
     right: '10px',
-    width: "30vw",
+    width: window.innerWidth > 620 ? "30vw" : '95vw',
     height: 'calc(var(--containerHeightLarge) - 50px)',
     bgcolor: '#47494a',
     border: '1px solid',
@@ -40,7 +40,11 @@ function SlideInMessagesRoot(props) {
                         <h3 style={{
                             fontWeight: 200
                         }} className="headingTextSlideMessage">Messages</h3>
-
+                        <div onClick={() => {
+                            conversationsTrayToggleDispatcher(closeConversationListView())
+                        }}>
+                            <CloseIcon color='white' />
+                        </div>
                     </div>
                     {toggleStatus === 1 && <div style={{
                         background: "#47494a",

@@ -17,7 +17,7 @@ const modalStyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: window.innerWidth > 620 ? 400 : '75vw',
     bgcolor: '#242526',
     border: '2px solid #000',
     boxShadow: 24,
@@ -47,9 +47,22 @@ function EditPostModal(props) {
 
             >
                 <Box sx={modalStyle}>
-                    <h2 className='createPostModalHeader'>
-                        Create a post
-                    </h2>
+                    <div className="flex" style={{
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}>
+                        <h2 className='createPostModalHeader'>
+                            Edit post
+                        </h2>
+                        <div onClick={() => {
+
+                            setModalVisibility(false)
+                        }}>
+                            <CloseIcon style={{
+                                color: 'white'
+                            }} />
+                        </div>
+                    </div>
                     {modalVisibility && <PostEditingContainer post={post} />}
                 </Box>
 
@@ -107,7 +120,7 @@ function PostEditingContainer({ post }) {
                     setPostBody(e.target.value)
                 }} style={{
                     resize: 'none'
-                }} className='postTextInput' name="" id="" cols="30" rows="10"></textarea>
+                }} className='postTextInput' name="" id="" cols="30" rows="5"></textarea>
             </div>
             <div className="attachedImagesContainer">
                 <input

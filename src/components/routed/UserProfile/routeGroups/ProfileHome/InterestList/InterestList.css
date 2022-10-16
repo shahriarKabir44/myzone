@@ -37,7 +37,6 @@
     }
 
     .interestListPanel {
-        flex-direction: column;
         max-height: 150px;
         overflow-y: auto;
     }

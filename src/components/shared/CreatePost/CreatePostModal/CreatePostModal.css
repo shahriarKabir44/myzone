@@ -20,6 +20,11 @@
 
 }
 
+@media screen and (max-width: 620px) {
+    .postTextInput {
+        width: 65vw;
+    }
+}
 
 
 .horizontalImagesContainer {

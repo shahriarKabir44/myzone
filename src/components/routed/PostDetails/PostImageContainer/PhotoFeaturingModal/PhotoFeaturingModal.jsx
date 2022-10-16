@@ -17,7 +17,7 @@ function PhotoFeaturingModal(props) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: window.innerWidth > 620 ? 400 : '75vw',
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,

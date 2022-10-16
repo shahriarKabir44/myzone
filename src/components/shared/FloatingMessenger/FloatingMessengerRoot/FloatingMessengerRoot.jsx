@@ -56,44 +56,45 @@ function FloatingMessengerRoot(props) {
     }
     return (
         <div>
-            {!isChatHeadSelected && <div className="chatHeadContainer">
-                {isChatHeadListExpanded && <>
-                    <div onClick={() => {
-                        setExpansionStatus(false)
+            {window.innerWidth > 620 && <>
+                {!isChatHeadSelected && <div className="chatHeadContainer">
+                    {isChatHeadListExpanded && <>
+                        <div onClick={() => {
+                            setExpansionStatus(false)
+                        }} style={{
+                            margin: 0
+                        }}><ExpandCircleDownIcon style={{
+                            fontSize: "60px",
+                            color: "white",
+
+                        }} />
+                        </div>
+                        <div className="scrollableChatHeadListContainer">
+                            {conversations.map((chatHead, index) => {
+                                return <ChatHead conversation={chatHead} key={index} onOpen={() => {
+                                    openFloatingMessenger(chatHead);
+                                }} />
+                            })}
+                        </div>
+
+                    </>}
+                    {!isChatHeadListExpanded && <div onClick={() => {
+                        setExpansionStatus(true)
+                        setNewConversationArrival(false)
                     }} style={{
-                        margin: 0
-                    }}><ExpandCircleDownIcon style={{
-                        fontSize: "60px",
-                        color: "white",
+                        margin: 0,
+                        position: 'relative'
+                    }}>
+                        <MapsUgcIcon style={{
+                            fontSize: "60px",
+                            color: "white",
 
-                    }} />
-                    </div>
-                    <div className="scrollableChatHeadListContainer">
-                        {conversations.map((chatHead, index) => {
-                            return <ChatHead conversation={chatHead} key={index} onOpen={() => {
-                                openFloatingMessenger(chatHead);
-                            }} />
-                        })}
-                    </div>
-
-                </>}
-                {!isChatHeadListExpanded && <div onClick={() => {
-                    setExpansionStatus(true)
-                    setNewConversationArrival(false)
-                }} style={{
-                    margin: 0,
-                    position: 'relative'
-                }}>
-                    <MapsUgcIcon style={{
-                        fontSize: "60px",
-                        color: "white",
-
-                    }} />
-                    {hasNewConversationArrived && <div className="newIconContainer">
-                        <FiberNewSharpIcon />
+                        }} />
+                        {hasNewConversationArrived && <div className="newIconContainer">
+                            <FiberNewSharpIcon />
+                        </div>}
                     </div>}
-                </div>}
-            </div>}
+                </div>}</>}
             {isChatHeadSelected && selectedChatHead !== null && <FloatingMessenger selectedChatHead={selectedChatHead} onClose={() => {
                 setSelectedChatHead(null)
                 setSelectionStatus(false)
