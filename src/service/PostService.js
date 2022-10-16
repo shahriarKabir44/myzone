@@ -14,24 +14,20 @@ export default class PostService {
                 index: newImage.Id,
                 token: localStorage.getItem('token')
             }, 'file', '/post/uploadPostImage').then(({ url }) => {
-                console.log(url)
                 newURLs.push(url)
             }))
         }
-        console.log(imagesToDelete)
         for (let url of imagesToDelete) {
             this.deleteImage(url)
         }
         return await Promise.all(imageUploadPromises)
             .then(() => {
-                console.log(remainingOriginalImages)
                 PostService.editPostInfo(postId, newPostBody, JSON.stringify([...remainingOriginalImages, ...newURLs]))
 
             })
 
     }
     static async deleteImage(imageURL) {
-        console.log(imageURL)
         return Globals._fetch(Globals.SERVER_URL + '/post/deleteImage', { imageURL })
     }
     static async editPostInfo(postId, postBody, imageURLs) {

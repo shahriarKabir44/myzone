@@ -26,7 +26,6 @@ function LoginRegistration({ onAuthorized }) {
         if (!fileObj) {
             return;
         }
-        console.log(URL.createObjectURL(fileObj))
         setSelectedImage(URL.createObjectURL(fileObj))
     }
     return (

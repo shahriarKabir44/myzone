@@ -25,7 +25,6 @@ export default function useChat(conversationId, sender, receiver, messageList, c
         SocketSubscriptionManager.subscribe({
             component,
             onMessage: (data) => {
-                console.log(data)
                 if (data.type === 'personalMessage') {
                     Globals.onIncomingMessage(data.body.newMessage)
                     //setMessages(messages)

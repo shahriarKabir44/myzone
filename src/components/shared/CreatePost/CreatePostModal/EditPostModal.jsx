@@ -135,7 +135,6 @@ function PostEditingContainer({ post }) {
                                     post.isDeleted = false
                                 }
                             }
-                            console.log(temp)
                             setInitialPosts(JSON.parse(JSON.stringify(temp)))
                         }} isDeleted={image.isDeleted} key={index} onDelete={() => {
                             let temp = initialPosts
@@ -158,14 +157,7 @@ function PostEditingContainer({ post }) {
             </div>
             <div className="createPostBtn">
                 <Button onClick={() => {
-                    console.log({
-                        newPostBody: postBody,
-                        newImages: newImages,
-                        remainingOriginalImages: initialPosts.filter(img => img.isDeleted === false).map(img => {
-                            return img.image
-                        })
 
-                    }, initialPosts)
                     PostService.editPost({
                         newPostBody: postBody,
                         newImages: newImages,

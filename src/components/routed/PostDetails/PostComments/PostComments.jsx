@@ -31,6 +31,7 @@ function SharedModal({ open, handleClose, children }) {
     </Modal>)
 }
 
+
 function CommentDeletionView({ open, handleClose, Id, handleCommentDeletion, }) {
     return (<SharedModal open={open} handleClose={handleClose} children={<Box sx={modalStyle}>
         <h2 style={{
@@ -58,24 +59,75 @@ function CommentDeletionView({ open, handleClose, Id, handleCommentDeletion, }) 
 
 function PostComments({ comments, onCommentCreated, postId, currentUserId, postedBy, onCommentUpdated }) {
     const [commentDeletionModalVisible, setCommentDeletionModalVisible] = React.useState(false)
-    const [selectedCommentForDeletion, setSelectedCommentForDeletion] = React.useState(-1)
+
+    const [selectedCommentForModification, setSelectedCommentForModification] = React.useState({})
+    const [commentModificationModalVisibility, setCommentModificationModalVisibility] = React.useState(false)
     return (
         <div className="postCommentsRoot">
             <CommentDeletionView handleCommentDeletion={() => {
                 onCommentUpdated()
             }} open={commentDeletionModalVisible} handleClose={() => {
                 setCommentDeletionModalVisible(false);
-            }} Id={selectedCommentForDeletion} />
+            }} Id={selectedCommentForModification} />
+
+            <SharedModal open={commentModificationModalVisibility} handleClose={() => {
+                setCommentModificationModalVisibility(false)
+            }} children={<Box sx={modalStyle}>
+                <h2 style={{
+                    color: 'white',
+                    fontWeight: 100
+                }}> Update comment</h2>
+                {selectedCommentForModification.commentId !== null && <>
+                    <input type="text" name="" placeholder='Comment' value={(selectedCommentForModification.commentBody)}
+                        onChange={(e) => {
+                            let newComment = JSON.parse(JSON.stringify(selectedCommentForModification))
+                            newComment.commentBody = e.target.value;
+                            setSelectedCommentForModification(newComment)
+                        }}
+                        style={{
+                            width: '100%',
+                            padding: '10px',
+                            borderRadius: '10px',
+                            border: 'none',
+                            margin: '10px 0'
+                        }} />
+                    <div className="flex" style={{
+                        justifyContent: 'space-between',
+
+                    }}>
+                        <Button variant="contained" onClick={() => {
+                            PostInteractionService.updateComment(selectedCommentForModification.commentId, selectedCommentForModification.commentBody)
+                                .then(() => {
+                                    onCommentUpdated()
+                                    setCommentModificationModalVisibility(false)
+                                })
+                        }} color='success'>Yes</Button>
+                        <Button variant="contained" onClick={() => {
+                            setCommentModificationModalVisibility();
+                        }} color='error'>No</Button>
+
+                    </div>
+                </>}
+            </Box>} />
+
             <p style={{
                 fontSize: "20px",
                 color: "white",
                 fontWeight: "100"
             }}>Comments</p>
             {comments.map((comment, index) => {
-                return <PostCommentItem onSelectForDeletion={() => {
-                    setSelectedCommentForDeletion(comment.commentId)
-                    setCommentDeletionModalVisible(true)
-                }} postId={postId} postedBy={postedBy} currentUserId={currentUserId} key={index} comment={comment} />
+                return <PostCommentItem
+
+                    onSelectedForModification={() => {
+                        setSelectedCommentForModification(JSON.parse(JSON.stringify(comment)))
+                        setCommentModificationModalVisibility(true)
+
+                    }}
+
+                    onSelectForDeletion={() => {
+                        setSelectedCommentForModification(comment.commentId)
+                        setCommentDeletionModalVisible(true)
+                    }} postId={postId} postedBy={postedBy} currentUserId={currentUserId} key={index} comment={comment} />
             })} <CreateComment onCommentCreated={(comentBody) => {
                 onCommentCreated(comentBody)
             }} />
@@ -83,7 +135,7 @@ function PostComments({ comments, onCommentCreated, postId, currentUserId, poste
     );
 }
 
-function PostCommentItem({ comment, postId, onSelectForDeletion, currentUserId, postedBy }) {
+function PostCommentItem({ comment, onSelectedForModification, onSelectForDeletion, currentUserId, postedBy }) {
     return (
         <div className="commentRoot">
             <div className="commenterImgContainer" style={{ width: "50px" }}>
@@ -109,7 +161,9 @@ function PostCommentItem({ comment, postId, onSelectForDeletion, currentUserId, 
                     }} className='commentAction'>
                         Delete
                     </div>}
-                    {comment.commenterId * 1 === currentUserId * 1 && <div className='commentAction'>
+                    {comment.commenterId * 1 === currentUserId * 1 && <div onClick={() => {
+                        onSelectedForModification()
+                    }} className='commentAction'>
                         Update
                     </div>}
                 </div>

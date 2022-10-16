@@ -15,6 +15,9 @@ export default class PostInteractionService {
     static async deleteComment(Id) {
         return Globals._fetch(this.basePath + '/deleteComment/' + Id)
     }
+    static async updateComment(Id, commentBody) {
+        return Globals._fetch(this.basePath + '/updateComment', { Id, commentBody })
+    }
     static async react(reactionObject) {
         return await fetch(Globals.SERVER_URL + '/postInteraction/react', {
             method: 'POST',
