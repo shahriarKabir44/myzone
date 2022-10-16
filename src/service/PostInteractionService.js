@@ -43,6 +43,6 @@ export default class PostInteractionService {
         }).then(res => res.json())
     }
     static async getPostComments(Id) {
-        return await fetch(Globals.SERVER_URL + '/postInteraction/getComments/' + Id)
+        return await Globals._fetch(Globals.SERVER_URL + '/postInteraction/getPostComments/' + Id)
     }
 }

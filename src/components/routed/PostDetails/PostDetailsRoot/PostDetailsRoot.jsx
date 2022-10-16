@@ -42,6 +42,12 @@ function PostDetailsRoot(props) {
         },
         "getFirstComments": []
     })
+    function getPostComments() {
+        PostInteractionService.getPostComments(currentRoute.Id)
+            .then(({ comments }) => {
+                setPostComments(comments)
+            })
+    }
     const [postComments, setPostComments] = React.useState([])
     React.useEffect(() => {
         PostService.getPostDetails(currentRoute.Id)
@@ -51,6 +57,7 @@ function PostDetailsRoot(props) {
                 setPostDetails({ ...postDetails, getFirstComments: [] })
             })
     }, [])
+
     return (
         <div className="mainPostDetailsContainer">
 
@@ -158,7 +165,7 @@ function PostDetailsRoot(props) {
 
 
                 <PostComments onCommentUpdated={() => {
-
+                    getPostComments()
                 }} postedBy={postDetails.creatorInfo.Id} currentUserId={currentUser.Id} postId={currentRoute.postId} onCommentCreated={(comment) => {
                     let newComment = {
                         commentBody: comment,
