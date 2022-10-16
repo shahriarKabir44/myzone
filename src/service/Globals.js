@@ -1,6 +1,6 @@
 export default class Globals {
     static SERVER_IP_ADDRESS = 'http://192.168.43.90'
-    static SERVER_IP = `${this.SERVER_IP_ADDRESS}:4000`
+    static SERVER_URL = `${this.SERVER_IP_ADDRESS}:4000`
     static socket = null
     static hasSocketInitiated = false
     static CLEINT_URL = `${this.SERVER_IP_ADDRESS}:3000`

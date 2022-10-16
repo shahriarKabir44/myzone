@@ -26,7 +26,7 @@ function NotificationListItem({ notification }) {
                 redirect()
             }} className="notiificationContainer">
                 <div className="initiatorInfoContainer ">
-                    <img src={Globals.SERVER_IP + notification.senderInfo.profileImage} alt="" style={{ width: "50px" }} className="initiatorImg userImg" />
+                    <img src={Globals.SERVER_URL + notification.senderInfo.profileImage} alt="" style={{ width: "50px" }} className="initiatorImg userImg" />
                 </div>
                 <div className="notificationMessageContainer">
                     <p className="notificationMessage">{notification.body}</p>

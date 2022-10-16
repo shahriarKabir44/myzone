@@ -1,7 +1,7 @@
 import Globals from "./Globals";
 export default class FeaturingService {
     static async getFeaturedAlbums(createdBy, selectedImgURL) {
-        return fetch(Globals.SERVER_IP + '/featuredAlbums/getFeaturedAlbums/', {
+        return fetch(Globals.SERVER_URL + '/featuredAlbums/getFeaturedAlbums/', {
             method: 'POST',
             body: JSON.stringify({ selectedImgURL, createdBy }),
             headers: {
@@ -11,7 +11,7 @@ export default class FeaturingService {
         }).then(res => res.json())
     }
     static async getAlbumInfo(Id) {
-        let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+        let { data } = await fetch(Globals.SERVER_URL + '/graphql', {
             method: 'POST',
             body: JSON.stringify({
                 query: `{
@@ -37,7 +37,7 @@ export default class FeaturingService {
 
     }
     static async createFeaturedAlbum(label, createdBy) {
-        return fetch(Globals.SERVER_IP + '/featuredAlbums/createFeaturedAlbum/', {
+        return fetch(Globals.SERVER_URL + '/featuredAlbums/createFeaturedAlbum/', {
             method: 'POST',
             body: JSON.stringify({ label, createdBy }),
             headers: {
@@ -47,7 +47,7 @@ export default class FeaturingService {
         }).then(res => res.json())
     }
     static async addPhotoToFeaturedAlbum(groupId, photoURL) {
-        return fetch(Globals.SERVER_IP + '/featuredAlbums/addPhotoToFeaturedAlbum/', {
+        return fetch(Globals.SERVER_URL + '/featuredAlbums/addPhotoToFeaturedAlbum/', {
             method: 'POST',
             body: JSON.stringify({ groupId, photoURL }),
             headers: {

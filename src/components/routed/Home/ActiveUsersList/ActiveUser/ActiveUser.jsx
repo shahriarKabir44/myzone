@@ -11,7 +11,7 @@ function ActiveUser(props) {
             cursor: 'pointer'
         }}>
             <div className="activeUserImgContainer">
-                <img src={Globals.SERVER_IP + props.user.profileImage} alt="" className="activeUserImg" />
+                <img src={Globals.SERVER_URL + props.user.profileImage} alt="" className="activeUserImg" />
 
             </div>
             <p className="activeUserName">{props.user.name}</p>

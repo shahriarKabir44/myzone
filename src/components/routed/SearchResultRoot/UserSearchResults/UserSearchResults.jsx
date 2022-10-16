@@ -46,7 +46,7 @@ export function SearchResultUserContainer({ user, currentUserId }) {
                 gap: '10px'
             }}>
                 <div className="imgCOntainer">
-                    <img src={Globals.SERVER_IP + user.profileImage} alt="" style={{
+                    <img src={Globals.SERVER_URL + user.profileImage} alt="" style={{
                         width: '60px'
                     }} className="userImg" />
                 </div>

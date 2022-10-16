@@ -17,7 +17,7 @@ function PostImageContainer({ images, postDetails, currentUser }) {
     return (
         <div className='postDetailsImageContainer'>
             <div className="postImgContainer">
-                <img src={Globals.SERVER_IP + images[currentlyViewingImageIndex]} alt="" className="focusedImg" />
+                <img src={Globals.SERVER_URL + images[currentlyViewingImageIndex]} alt="" className="focusedImg" />
             </div>
             <div className="swipeContainerRoot">
                 <div className="swipeContainer">

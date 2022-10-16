@@ -10,7 +10,7 @@ function FriendListItem(props) {
         }}>
             <div className='FriendListItemContainer'>
                 <div className="friendImageContainer">
-                    <img src={Globals.SERVER_IP + props.user.profileImage} alt="" className="friendImage" />
+                    <img src={Globals.SERVER_URL + props.user.profileImage} alt="" className="friendImage" />
                 </div>
                 <div className="frinedInfoContainer">
                     <p style={{

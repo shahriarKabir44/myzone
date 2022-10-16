@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 import PostInteractionService from '../../../../service/PostInteractionService'
 
 import Globals from '../../../../service/Globals';
-import PostModificationModal from '../../PostModificationModal/PostModificationModal';
+import PostDeletionModal from '../../PostDeletionModal/PostDeletionModal';
 import EditPostEventHandler from '../../../../service/EditPostEventHandler';
 import { useLocation } from 'react-router-dom'
 function PostItem(props) {
@@ -40,7 +40,7 @@ function PostItem(props) {
                 }}>
                     <div className="postCreatorSection">
                         <div className="imageContainer">
-                            <img src={Globals.SERVER_IP + creatorInfo.profileImage} alt="" className="creatorImg" />
+                            <img src={Globals.SERVER_URL + creatorInfo.profileImage} alt="" className="creatorImg" />
 
                         </div>
                         <div className="info">
@@ -71,7 +71,7 @@ function PostItem(props) {
                 <div className="postContent">
                     <p className="postText">{post.body}</p>
                     {JSON.parse(post.attached_media)[0] !== null && <div className="postImageContainer">
-                        <img src={Globals.SERVER_IP + JSON.parse(post.attached_media)[0]} alt="" className="postImage" />
+                        <img src={Globals.SERVER_URL + JSON.parse(post.attached_media)[0]} alt="" className="postImage" />
 
                     </div>}
                 </div>
@@ -116,7 +116,7 @@ function PostItem(props) {
                 </div>
             </div>
 
-            <PostModificationModal open={postModificationModalVisibility} handleClose={() => {
+            <PostDeletionModal open={postModificationModalVisibility} handleClose={() => {
                 setPostModificationModalVisibility(false)
             }} postId={post.Id} />
 

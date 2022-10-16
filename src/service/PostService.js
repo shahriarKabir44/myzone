@@ -32,17 +32,17 @@ export default class PostService {
     }
     static async deleteImage(imageURL) {
         console.log(imageURL)
-        return Globals._fetch(Globals.SERVER_IP + '/post/deleteImage', { imageURL })
+        return Globals._fetch(Globals.SERVER_URL + '/post/deleteImage', { imageURL })
     }
     static async editPostInfo(postId, postBody, imageURLs) {
-        return Globals._fetch(Globals.SERVER_IP + '/post/edit', { postId, postBody, imageURLs })
+        return Globals._fetch(Globals.SERVER_URL + '/post/edit', { postId, postBody, imageURLs })
     }
     static async createPostObject(postedBy, postBody) {
         let body = {
             postedBy,
             postBody
         };
-        return await fetch(Globals.SERVER_IP + '/post/createPost', {
+        return await fetch(Globals.SERVER_URL + '/post/createPost', {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -54,7 +54,7 @@ export default class PostService {
 
     }
     static async delete(postId) {
-        return Globals._fetch(Globals.SERVER_IP + '/post/delete/' + postId)
+        return Globals._fetch(Globals.SERVER_URL + '/post/delete/' + postId)
     }
     static async createPost(postedBy, postBody, imageURIs) {
         let { newPost } = await PostService.createPostObject(postedBy, postBody)
@@ -75,7 +75,7 @@ export default class PostService {
         })
     }
     static async setPostImageURLs(Id, attached_media) {
-        return fetch(Globals.SERVER_IP + '/post/setPostImageURLs', {
+        return fetch(Globals.SERVER_URL + '/post/setPostImageURLs', {
             method: 'POST',
             body: JSON.stringify({
                 Id, attached_media
@@ -88,7 +88,7 @@ export default class PostService {
         })
     }
     static async getNewsFeed(userId, pageNumber = 0) {
-        let { data } = await Globals._fetch(Globals.SERVER_IP + '/graphql', {
+        let { data } = await Globals._fetch(Globals.SERVER_URL + '/graphql', {
             query: `query{
                 getNewFeed(userId: ${userId}, pageNumber: ${pageNumber}){
                     Id
@@ -109,7 +109,7 @@ export default class PostService {
         return data.getNewFeed
     }
     static async getPostDetails(Id) {
-        let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+        let { data } = await fetch(Globals.SERVER_URL + '/graphql', {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json"

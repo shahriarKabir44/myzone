@@ -37,7 +37,7 @@ export default function PhotoFeaturingContainer() {
                             alignItems: "center",
                             gap: "10px"
                         }}>
-                            <img src={Globals.SERVER_IP + creatorInfo.profileImage} style={{
+                            <img src={Globals.SERVER_URL + creatorInfo.profileImage} style={{
                                 height: "50px",
                                 width: "50px"
                             }} alt="" className="userImg" />
@@ -60,7 +60,7 @@ export default function PhotoFeaturingContainer() {
                         </div>
                     </div></Link>
                 <div className="photoContainer">
-                    <img className="photo" alt="imag" src={Globals.SERVER_IP + currentURL} />
+                    <img className="photo" alt="imag" src={Globals.SERVER_URL + currentURL} />
                 </div>
                 <div className="navContainer">
                     <div className="swipeContainerRoot">

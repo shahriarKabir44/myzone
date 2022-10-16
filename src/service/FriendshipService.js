@@ -1,9 +1,9 @@
 import Globals from "./Globals";
 import NotidicationService from "./NotificationService";
 export default class FriendshipService {
-    static basePath = Globals.SERVER_IP + '/friendship'
+    static basePath = Globals.SERVER_URL + '/friendship'
     static async getAllFriends(userId) {
-        return fetch(Globals.SERVER_IP + '/friendship/getFriends/' + userId, {
+        return fetch(Globals.SERVER_URL + '/friendship/getFriends/' + userId, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export default class FriendshipService {
         })
     }
     static async getFriendsipNotification(receiverId, pageNumber = 0) {
-        let { data } = await Globals._fetch(Globals.SERVER_IP + '/graphql', {
+        let { data } = await Globals._fetch(Globals.SERVER_URL + '/graphql', {
             query: `query{
                     getNotifications(receiverId:${receiverId},pageNumber:${pageNumber},groupType:1){
                       body

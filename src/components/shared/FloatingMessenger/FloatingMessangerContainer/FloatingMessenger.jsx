@@ -44,7 +44,7 @@ function FloatingMessenger({ selectedChatHead, onClose }) {
         <div className='floatingMessengerContainer'>
             <div className="messengerHeadingContainer">
                 <div className="userInfoContainer">
-                    <img src={Globals.SERVER_IP + participantInfo.profileImage} style={{
+                    <img src={Globals.SERVER_URL + participantInfo.profileImage} style={{
                         width: "50px", height: "50px"
                     }} alt="" className="userImage" />
                     <div className="chatHeadTextData">

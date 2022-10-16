@@ -49,10 +49,10 @@ function UserProfileInfo(props) {
     return (
         <div className="userProfileInfoContainer">
             <div className="coverPhotoContainer">
-                <img src={Globals.SERVER_IP + props.userInfo.coverPhoto} alt="" className="userCoverPhoto" />
+                <img src={Globals.SERVER_URL + props.userInfo.coverPhoto} alt="" className="userCoverPhoto" />
                 <div className="nameAndPropic">
                     <div className="profileViewUserInfoContainer">
-                        <img src={Globals.SERVER_IP + props.userInfo.profileImage} alt="" className="profileViewProPic" />
+                        <img src={Globals.SERVER_URL + props.userInfo.profileImage} alt="" className="profileViewProPic" />
 
                     </div>
                     <div className="flex">

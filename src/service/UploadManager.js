@@ -12,7 +12,7 @@ export default class UploadManager {
 
         formData.append("file", blob)
 
-        let url = await fetch(Globals.SERVER_IP + apiURL, {
+        let url = await fetch(Globals.SERVER_URL + apiURL, {
             method: 'POST',
             body: formData,
             headers: {

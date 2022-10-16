@@ -8,7 +8,7 @@ function UserInfoContainer({ imgURL, name, additionalInfo }) {
             alignItems: "center",
             gap: "10px"
         }}>
-            <img src={Globals.SERVER_IP + imgURL} style={{
+            <img src={Globals.SERVER_URL + imgURL} style={{
                 height: "50px",
                 width: "50px"
             }} alt="" className="userImg" />

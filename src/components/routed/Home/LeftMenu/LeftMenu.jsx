@@ -28,7 +28,7 @@ function LeftMenu(props) {
                 <Link style={{ textDecoration: 'none' }} to={"/profile/" + currentUser.Id}>
                     <div className="leftMenuItem">
                         <div className="userImageContainer">
-                            <img src={Globals.SERVER_IP + currentUser.profileImage} alt="" className="userImage" />
+                            <img src={Globals.SERVER_URL + currentUser.profileImage} alt="" className="userImage" />
 
                         </div>
                         <p className="leftMenuText">{currentUser.name}</p>

@@ -39,7 +39,7 @@ function TextingContainer(props) {
         <div className='textingContainerRoot'>
             <div className="participantInfoContainer flex">
                 <div className="participantImageContainer ">
-                    <img src={Globals.SERVER_IP + participantInfo.profileImage} alt="" className="participantImg userImg" />
+                    <img src={Globals.SERVER_URL + participantInfo.profileImage} alt="" className="participantImg userImg" />
                 </div>
                 <div className="textInfoContainer ">
                     <p className="participantName">{participantInfo.name}</p>

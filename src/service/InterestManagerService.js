@@ -1,6 +1,6 @@
 import Globals from './Globals'
 export default class InterestManagerService {
-    static basePath = Globals.SERVER_IP + '/interests/'
+    static basePath = Globals.SERVER_URL + '/interests/'
     static async updateInterestList(newItems, addedItems, removedItems, userId) {
         return Promise.all([
             this.createManyInterestItemAndConnect(newItems, userId),

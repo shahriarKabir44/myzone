@@ -79,7 +79,7 @@ function ConversationListItem(props) {
             ${props.conversation.Id === props.currentRoute.conversationId * 1 ? 'activeConversationItem' : ''}
         `}>
                 <div className="conversationImgContainer">
-                    <img src={Globals.SERVER_IP + props.conversation.participantInfo.profileImage} alt="" className="userImg" />
+                    <img src={Globals.SERVER_URL + props.conversation.participantInfo.profileImage} alt="" className="userImg" />
                 </div>
                 <div className="infoContainer">
                     <p className="senderName">{props.conversation.participantInfo.name}</p>

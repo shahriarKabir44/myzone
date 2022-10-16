@@ -15,6 +15,11 @@
     border-radius: 13px
 }
 
+.commentAction {
+    color: white;
+    cursor: pointer;
+}
+
 .commentRoot {
     display: flex;
     gap: 10px;

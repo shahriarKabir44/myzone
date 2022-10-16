@@ -7,7 +7,7 @@ function FeaturedPostGroupItem({ post }) {
         <Link to={'/featured/' + post.Id}>
             <div className="featuredPostContainer">
                 <div className="featuredImageContainer">
-                    <img src={Globals.SERVER_IP + post.initialPhoto} alt="" className="featuredImage" />
+                    <img src={Globals.SERVER_URL + post.initialPhoto} alt="" className="featuredImage" />
                 </div>
                 <div className="groupLabel">
                     <p className="groupLabelText">{post.label}</p>

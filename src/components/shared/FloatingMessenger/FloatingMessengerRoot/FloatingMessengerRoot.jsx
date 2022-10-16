@@ -108,7 +108,7 @@ function ChatHead({ conversation, onOpen }) {
         <div onClick={() => {
             onOpen();
         }}>
-            <img src={Globals.SERVER_IP + conversation.participantInfo.profileImage} style={{
+            <img src={Globals.SERVER_URL + conversation.participantInfo.profileImage} style={{
                 height: "50px", width: "50px"
             }} alt="" className="userImg" />
         </div>

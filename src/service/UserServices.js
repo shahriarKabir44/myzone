@@ -2,15 +2,15 @@ import Globals from "./Globals";
 import UploadManager from "./UploadManager";
 
 export default class UserService {
-    static basePath = Globals.SERVER_IP + '/user'
+    static basePath = Globals.SERVER_URL + '/user'
     static async getNumMissedNotifications(userId) {
         return Globals._fetch(this.basePath + '/getNumMissedNotifications', { userId })
     }
     static async getNumUnreadMessages(userId) {
-        return Globals._fetch(`${Globals.SERVER_IP}/conversation/getNumUnreadMessages/${userId}`)
+        return Globals._fetch(`${Globals.SERVER_URL}/conversation/getNumUnreadMessages/${userId}`)
     }
     static async login(userInfo) {
-        return await fetch(Globals.SERVER_IP + '/user/login', {
+        return await fetch(Globals.SERVER_URL + '/user/login', {
             method: 'POST',
             body: JSON.stringify(userInfo),
             headers: {
@@ -19,7 +19,7 @@ export default class UserService {
         }).then(res => res.json())
     }
     static async registerUser(userInfo) {
-        return await fetch(Globals.SERVER_IP + '/user/register', {
+        return await fetch(Globals.SERVER_URL + '/user/register', {
             method: 'POST',
             body: JSON.stringify(userInfo),
             headers: {
@@ -28,7 +28,7 @@ export default class UserService {
         }).then(res => res.json())
     }
     static async isAuthorized() {
-        return fetch(Globals.SERVER_IP + '/user/isAuthorized', {
+        return fetch(Globals.SERVER_URL + '/user/isAuthorized', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export default class UserService {
         }).then(res => res.json())
     }
     static async getUserInfo(Id) {
-        let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+        let { data } = await fetch(Globals.SERVER_URL + '/graphql', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -55,7 +55,7 @@ export default class UserService {
         return data.findUserById
     }
     static async getUserProfileInfo(Id) {
-        let { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+        let { data } = await fetch(Globals.SERVER_URL + '/graphql', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -114,7 +114,7 @@ export default class UserService {
         }
     }
     static async setProfileImage(Id, url) {
-        return await fetch(Globals.SERVER_IP + '/user/setProfileImageUrl', {
+        return await fetch(Globals.SERVER_URL + '/user/setProfileImageUrl', {
             method: 'POST',
             body: JSON.stringify({
                 Id: Id,

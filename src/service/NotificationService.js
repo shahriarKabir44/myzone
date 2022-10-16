@@ -3,7 +3,7 @@ import Globals from './Globals'
 export default class NotidicationService {
     static async createNotification({ senderId, receiverId, body, relatedSchemaId, type }) {
         const time = (new Date()) * 1
-        return await fetch(Globals.SERVER_IP + '/notification/create', {
+        return await fetch(Globals.SERVER_URL + '/notification/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ export default class NotidicationService {
             })
     }
     static async getNotifications(receiverId, pageNumber = 0) {
-        const { data } = await fetch(Globals.SERVER_IP + '/graphql', {
+        const { data } = await fetch(Globals.SERVER_URL + '/graphql', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

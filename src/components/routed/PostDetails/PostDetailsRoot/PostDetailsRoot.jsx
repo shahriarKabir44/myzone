@@ -5,7 +5,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import PostModificationModal from '../../../shared/PostModificationModal/PostModificationModal';
+import PostDeletionModal from '../../../shared/PostDeletionModal/PostDeletionModal';
 import './PostDetailsRoot.css'
 import PostComments from '../PostComments/PostComments';
 import PostService from '../../../../service/PostService';
@@ -56,7 +56,7 @@ function PostDetailsRoot(props) {
 
             <div></div>
             <div className="postDetailsContainer">
-                <PostModificationModal open={postModificationModalVisibility} handleClose={() => {
+                <PostDeletionModal open={postModificationModalVisibility} handleClose={() => {
                     setPostModificationModalVisibility(false)
                 }} postId={postDetails.Id} />
                 <div style={{
@@ -73,7 +73,7 @@ function PostDetailsRoot(props) {
                         <div style={{
                             width: '50px'
                         }} className="userImg">
-                            <img src={Globals.SERVER_IP + postDetails.creatorInfo.profileImage} alt="" className="creatorImg" />
+                            <img src={Globals.SERVER_URL + postDetails.creatorInfo.profileImage} alt="" className="creatorImg" />
                         </div>
                         <div className="infoContainer">
                             <p style={{
@@ -157,7 +157,9 @@ function PostDetailsRoot(props) {
                 </div>
 
 
-                <PostComments onCommentCreated={(comment) => {
+                <PostComments onCommentUpdated={() => {
+
+                }} postedBy={postDetails.creatorInfo.Id} currentUserId={currentUser.Id} postId={currentRoute.postId} onCommentCreated={(comment) => {
                     let newComment = {
                         commentBody: comment,
                         commentedBy: currentUser.Id,

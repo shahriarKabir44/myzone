@@ -128,7 +128,7 @@ function PostEditingContainer({ post }) {
                 </div>
                 <div className="horizontalImagesContainer">
                     {initialPosts.map((image, index) => {
-                        return <AttachedPostImage file={Globals.SERVER_IP + image.image} undo={() => {
+                        return <AttachedPostImage file={Globals.SERVER_URL + image.image} undo={() => {
                             let temp = initialPosts
                             for (let post of temp) {
                                 if (post.image === image.image) {

@@ -1,10 +1,9 @@
 import React from 'react';
-import './PostModificationModal.css'
+import './PostDeletionModal.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Button } from '@mui/material';
 import PostService from '../../../service/PostService';
-import { useNavigate } from 'react-router-dom';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -17,8 +16,7 @@ const style = {
     p: 4,
     color: 'white'
 };
-function PostModificationModal({ open, handleClose, postId }) {
-    const navigate = useNavigate();
+function PostDeletionModal({ open, handleClose, postId }) {
     return (
         <div>
             <Modal
@@ -53,4 +51,4 @@ function PostModificationModal({ open, handleClose, postId }) {
     );
 }
 
-export default PostModificationModal;
+export default PostDeletionModal;

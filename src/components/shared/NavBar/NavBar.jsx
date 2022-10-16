@@ -155,7 +155,7 @@ function NavBar(props) {
                         </div>
                         <Link to={"/profile/" + currentUser.Id}>
                             <button className="menuBtn profileBtn">
-                                <img className='profileImageNavBar' src={Globals.SERVER_IP + currentUser.profileImage} alt="profile pic" />
+                                <img className='profileImageNavBar' src={Globals.SERVER_URL + currentUser.profileImage} alt="profile pic" />
                             </button>
                         </Link>
 
@@ -173,7 +173,7 @@ function NavBar(props) {
                         {renderHeaderBtn()}
                         <Link to={"/profile/" + currentUser.Id}>
                             <button className="menuBtn profileBtn">
-                                <img className='profileImageNavBar' src={Globals.SERVER_IP + currentUser.profileImage} alt="profile pic" />
+                                <img className='profileImageNavBar' src={Globals.SERVER_URL + currentUser.profileImage} alt="profile pic" />
                             </button>
                         </Link>
                     </div>
