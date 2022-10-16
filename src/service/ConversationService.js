@@ -13,6 +13,10 @@ export default class ConversationService {
             }
         }).then(res => res.json())
     }
+    static async findById(Id) {
+        return Globals._fetch(this.basePath + '/findById', { Id })
+
+    }
     static async getConversationInfo(participant1, participant2) {
         return Globals._fetch(this.basePath + '/getConversationInfo', { participant1, participant2 })
     }

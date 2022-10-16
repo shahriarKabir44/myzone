@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './ConversationListRoot.css';
 import Button from '@mui/material/Button';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import { closeConversationListView } from '../../../../redux/ConversatinListToggleManager'
 import UserInfoContainer from '../../UserInfoContainer'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import FriendshipService from '../../../../service/FriendshipService';
 import ConversationService from '../../../../service/ConversationService';
 import { useParams } from 'react-router-dom'
 import Globals from '../../../../service/Globals';
+import MessengerTogglerService from '../../../../service/MessengerTogglerService';
 function ConversationListRoot(props) {
     const currentRoute = useParams()
     const currentUser = useSelector((state) => state.currentUser.value)
@@ -31,6 +33,7 @@ function ConversationListRoot(props) {
         })
         ConversationService.getConversationList(currentUser.Id)
             .then(({ conversationList }) => {
+                console.log(conversationList)
                 setConversationList(conversationList)
             })
         return () => {
@@ -71,10 +74,22 @@ function ConversationListRoot(props) {
     );
 }
 function ConversationListItem(props) {
+    const conversationsTrayToggleDispatcher = useDispatch()
+
+
+    const navigate = useNavigate()
+    const location = useLocation()
     return (
-        <Link style={{
-            textDecoration: "none"
-        }} to={"/messenger/" + props.conversation.Id}><div className={`conversationContainer 
+        <div onClick={() => {
+            console.log('here')
+            if (location.pathname.startsWith('/messenger')) {
+                navigate(`/messenger/${props.conversation.Id}`)
+            }
+            else {
+                conversationsTrayToggleDispatcher(closeConversationListView())
+                MessengerTogglerService.findConversationAndCall(props.conversation.Id)
+            }
+        }}   ><div className={`conversationContainer 
             ${props.conversation.Id === props.currentRoute.conversationId * 1 ? 'activeConversationItem' : ''}
         `}>
                 <div className="conversationImgContainer">
@@ -86,7 +101,7 @@ function ConversationListItem(props) {
                     <p className="messageTime">{new Date(props.conversation.time).toLocaleString()}</p>
                 </div>
             </div>
-        </Link>
+        </div >
 
     );
 }

@@ -74,7 +74,7 @@ function App() {
 					<SlideInMessagesRoot />
 					<NotificationListRoot />
 					<FriendRequestContainer />
-					<FloatingMenu />
+					{window.innerWidth >= 620 && <FloatingMenu />}
 					<EditPostModal />
 				</>}
 

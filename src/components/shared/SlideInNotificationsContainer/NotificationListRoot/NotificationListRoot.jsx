@@ -11,7 +11,7 @@ const modalStyle = {
     position: 'absolute',
     top: 'var(--navBarHeightLarge);',
     right: '10px',
-    width: "30vw",
+    width: window.innerWidth > 620 ? "30vw" : "95vw",
     height: 'calc(var(--containerHeightLarge) - 50px)',
     bgcolor: '#47494a',
     border: '1px solid',
