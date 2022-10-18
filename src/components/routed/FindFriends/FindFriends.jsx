@@ -57,7 +57,7 @@ function FindFriends(props) {
                     }}>Users with common interests</h2></summary>
 
                     {usersWithCommonInterests.map((user, index) => {
-                        return <SearchResultUserContainer currentUserId={currentUser.Id} key={index} user={user} />
+                        return <SearchResultUserContainer currentUserId={currentUser.Id} key={index} user={user} shouldShowCommonInterests={true} />
                     })}
                 </details>
 

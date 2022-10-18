@@ -63,7 +63,8 @@ function InterestList(props) {
 }
 export function InterestItem({ interest, _onClick, additionalInfo }) {
     return <div onClick={() => {
-        _onClick()
+        if (_onClick)
+            _onClick()
     }} className="interestItem" style={{
         display: 'flex',
         justifyContent: 'space-between',

@@ -9,3 +9,8 @@
     border-radius: 16px;
     margin: 10px;
 }
+
+.commonInterestContainer {
+    display: flex;
+    align-items: center;
+}

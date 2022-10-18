@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import FriendshipService from '../../../../service/FriendshipService';
 import Globals from '../../../../service/Globals';
 import SearchingServices from '../../../../service/SearchingServices';
+import InterestManagerService from '../../../../service/InterestManagerService';
 import './UserSearchResults.css'
+import { InterestItem } from '../../UserProfile/routeGroups/ProfileHome/InterestList/InterestList';
 function UserSearchResults({ query, onLoad }) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const [searchResult, setSearchResultUsers] = React.useState([])
@@ -30,13 +32,25 @@ function UserSearchResults({ query, onLoad }) {
         </div>
     );
 }
-export function SearchResultUserContainer({ user, currentUserId }) {
+export function SearchResultUserContainer({ user, currentUserId, shouldShowCommonInterests }) {
     const [mutualFriendsCount, setMutualFriendsCount] = React.useState(0)
+    const [commonInterests, setCommonInterests] = React.useState([])
     React.useEffect(() => {
         FriendshipService.countMutualFriends(user.Id, currentUserId)
             .then(({ numMutualFriends }) => {
                 setMutualFriendsCount(numMutualFriends)
             })
+        if (shouldShowCommonInterests) {
+            InterestManagerService.getCommonInterest(user.Id, currentUserId)
+                .then(({ commonInterests }) => {
+                    const temp = commonInterests.map(commonInterest => commonInterest.interestName)
+                    let finalList = []
+                    for (let n = 0; n < 3 && n < temp.length; n++) {
+                        finalList.push(temp[n])
+                    }
+                    setCommonInterests(finalList)
+                })
+        }
     }, [])
     return <Link to={'/profile/' + user.Id} style={{ textDecoration: 'none' }}>
         <div className='searchResultUserInfo' >
@@ -56,7 +70,13 @@ export function SearchResultUserContainer({ user, currentUserId }) {
                     <h3>{user.name}</h3>
                     <p>{mutualFriendsCount} mutual friends</p>
                     <p>Email: {user.email}</p>
+                    <div className="commonInterestContainer">
+                        {commonInterests.map((commonInterest, index) => {
+                            return <InterestItem key={index} interest={commonInterest} />
+                        })}
+                    </div>
                 </div>
+
             </div>
 
             <div className="actionButtonContainer">
@@ -67,6 +87,8 @@ export function SearchResultUserContainer({ user, currentUserId }) {
                     you are not friends
                 </div>}
             </div>
-        </div></Link>
+        </div>
+
+    </Link>
 }
 export default UserSearchResults;

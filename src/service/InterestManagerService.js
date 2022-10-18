@@ -8,6 +8,9 @@ export default class InterestManagerService {
             this.removeManyInterest(removedItems, userId)
         ])
     }
+    static async getCommonInterest(friend1, friend2) {
+        return Globals._fetch(this.basePath + '/getCommonInterest', { friend1, friend2 })
+    }
     static async removeManyInterest(interestList, userId) {
         let promises = []
         for (let interestName of interestList) {
