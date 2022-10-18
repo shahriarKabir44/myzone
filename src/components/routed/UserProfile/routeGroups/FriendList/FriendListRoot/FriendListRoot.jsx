@@ -2,15 +2,17 @@ import React from 'react';
 import ProfileTabSelector from '../../../shared/ProfileTabSelector/ProfileTabSelector';
 import UserProfileInfo from '../../../shared/UserProfileInfo/UserProfileInfo';
 import './FriendListRoot.css'
-import { useSelector } from 'react-redux';
 import FriendListItem from '../FriendListItem/FriendListItem';
 import FriendShipService from '../../../../../../service/FriendshipService'
-
+import { useParams } from 'react-router-dom'
 function FriendListRoot(props) {
+    const currentRoute = useParams()
+
     const [friendList, setFriendList] = React.useState([])
     const user = props.userInfo
     React.useEffect(() => {
-        FriendShipService.getAllFriends(user.Id)
+
+        FriendShipService.getAllFriends(currentRoute.userId)
             .then(({ data }) => {
                 setFriendList(data)
             })

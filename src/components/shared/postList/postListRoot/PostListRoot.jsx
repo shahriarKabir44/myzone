@@ -32,8 +32,8 @@ function PostListRoot(props) {
             }}>
                 <Button onClick={() => {
 
-                    getNewsFeed(pageNumber + 10)
-                    setPageNumber(pageNumber + 10)
+                    getNewsFeed(pageNumber + 5)
+                    setPageNumber(pageNumber + 5)
                 }} variant="outlined">load more</Button>
 
             </div>

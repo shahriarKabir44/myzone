@@ -2,7 +2,7 @@
     position: absolute;
     top: calc(40vh - 40px);
     width: 30vw;
-
+    z-index: 1100;
     right: 0;
     height: 60vh;
 }

@@ -4,7 +4,9 @@ import Globals from '../../../../../../../service/Globals';
 import './FeaturedPostGroupItem.css'
 function FeaturedPostGroupItem({ post }) {
     return (
-        <Link to={'/featured/' + post.Id}>
+        <Link to={'/featured/' + post.Id} style={{
+            textDecoration: "none"
+        }}>
             <div className="featuredPostContainer">
                 <div className="featuredImageContainer">
                     <img src={Globals.SERVER_URL + post.initialPhoto} alt="" className="featuredImage" />
