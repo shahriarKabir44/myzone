@@ -7,6 +7,7 @@ function FindFriends(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const [mutualFriends, setMutualFriendsList] = React.useState([])
     const [usersWithCommonInterests, setUsersWithCommonInterestsList] = React.useState([])
+    const [viewingTab, setViewingTab] = React.useState(0)
     React.useEffect(() => {
         FriendshipService.getMutualFriends(currentUser.Id)
             .then(({ mutualFriends }) => {
@@ -31,9 +32,11 @@ function FindFriends(props) {
                 padding: "10px",
 
             }}>
-                <details className='fiendFriendsGroupContainer' open={true} style={{
+                <details className='fiendFriendsGroupContainer' open={viewingTab === 0} style={{
                 }}>
-                    <summary style={{
+                    <summary onClick={() => {
+                        setViewingTab(0)
+                    }} style={{
 
                         display: 'flex',
                         cursor: 'pointer',
@@ -42,12 +45,14 @@ function FindFriends(props) {
                         fontWeight: 100,
                     }}>Users with common friends</h2></summary>
 
-                    {mutualFriends.map((mutualFriend, index) => {
+                    {viewingTab === 0 && mutualFriends.map((mutualFriend, index) => {
                         return <SearchResultUserContainer currentUserId={currentUser.Id} key={index} user={mutualFriend} />
                     })}
                 </details>
-                <details className='fiendFriendsGroupContainer'>
-                    <summary style={{
+                <details open={viewingTab === 1} className='fiendFriendsGroupContainer'>
+                    <summary onClick={() => {
+                        setViewingTab(1)
+                    }} style={{
 
                         display: 'flex',
                         cursor: 'pointer',
@@ -56,7 +61,7 @@ function FindFriends(props) {
                         fontWeight: 100,
                     }}>Users with common interests</h2></summary>
 
-                    {usersWithCommonInterests.map((user, index) => {
+                    {viewingTab === 1 && usersWithCommonInterests.map((user, index) => {
                         return <SearchResultUserContainer currentUserId={currentUser.Id} key={index} user={user} shouldShowCommonInterests={true} />
                     })}
                 </details>
