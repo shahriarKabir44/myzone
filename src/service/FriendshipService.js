@@ -12,7 +12,10 @@ export default class FriendshipService {
             }
         }).then(res => res.json())
     }
+    static async getFriendRequests(userId) {
+        return Globals._fetch(this.basePath + '/getFriendRequests/' + userId)
 
+    }
     static async getFriendshipType(userId, friendId) {
         return Globals._fetch(this.basePath + '/getFriendshipType', { userId, friendId })
     }

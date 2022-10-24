@@ -41,7 +41,7 @@ function FriendListRoot(props) {
                 <div className="friendListContainer">
                     {
                         friendList.map((friend, index) => {
-                            return <FriendListItem key={index} user={friend} />
+                            return <FriendListItem currentUserId={currentRoute.userId} key={index} user={friend} />
                         })
                     }
                 </div>

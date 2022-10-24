@@ -1,9 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FriendshipService from '../../../../../../service/FriendshipService';
 import Globals from '../../../../../../service/Globals';
 import './FriendListItem.css'
 
 function FriendListItem(props) {
+    const [numMutualFriends, setNumMutualFriends] = React.useState(0)
+    React.useEffect(() => {
+        FriendshipService.countMutualFriends(props.user.Id, props.currentUserId)
+            .then(({ numMutualFriends }) => {
+                setNumMutualFriends(numMutualFriends)
+            })
+    }, [])
     return (
         <Link to={'/profile/' + props.user.Id} style={{
             textDecoration: 'none',
@@ -18,6 +26,12 @@ function FriendListItem(props) {
                         fontSize: "20px"
                     }} className="frinedName">
                         {props.user.name}
+                    </p>
+                    <p style={{
+                        margin: "0",
+
+                    }} className="friendTime">
+                        {numMutualFriends} mutual friends
                     </p>
                     <p style={{
                         margin: "0",

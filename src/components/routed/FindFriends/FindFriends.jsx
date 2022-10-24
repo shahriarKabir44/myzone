@@ -8,6 +8,7 @@ function FindFriends(props) {
     const [mutualFriends, setMutualFriendsList] = React.useState([])
     const [usersWithCommonInterests, setUsersWithCommonInterestsList] = React.useState([])
     const [viewingTab, setViewingTab] = React.useState(0)
+    const [friendRequests, setFriendRequestList] = React.useState([])
     React.useEffect(() => {
         FriendshipService.getMutualFriends(currentUser.Id)
             .then(({ mutualFriends }) => {
@@ -16,6 +17,10 @@ function FindFriends(props) {
         FriendshipService.findUsersWithCommonInterests(currentUser.Id)
             .then(({ usersWithCommonInterests }) => {
                 setUsersWithCommonInterestsList(usersWithCommonInterests)
+            })
+        FriendshipService.getFriendRequests(currentUser.Id)
+            .then(({ friendRequests }) => {
+                setFriendRequestList(friendRequests)
             })
     }, [])
     return (
@@ -48,6 +53,24 @@ function FindFriends(props) {
                     {viewingTab === 0 && mutualFriends.map((mutualFriend, index) => {
                         return <SearchResultUserContainer currentUserId={currentUser.Id} key={index} user={mutualFriend} />
                     })}
+                </details>
+                <details className='fiendFriendsGroupContainer' open={viewingTab === 2} style={{
+                }}>
+                    <summary onClick={() => {
+                        setViewingTab(2)
+                    }} style={{
+
+                        display: 'flex',
+                        cursor: 'pointer',
+                    }}><h2 style={{
+                        color: 'white',
+                        fontWeight: 100,
+                    }}>Friend requests</h2></summary>
+
+                    {viewingTab === 2 && friendRequests.length > 0 && friendRequests.map((mutualFriend, index) => {
+                        return <SearchResultUserContainer currentUserId={currentUser.Id} key={index} user={mutualFriend} />
+                    })}
+                    {viewingTab === 2 && friendRequests.length === 0 && <h3>No friend request left</h3>}
                 </details>
                 <details open={viewingTab === 1} className='fiendFriendsGroupContainer'>
                     <summary onClick={() => {
