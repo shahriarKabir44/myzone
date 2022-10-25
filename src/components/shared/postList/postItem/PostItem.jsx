@@ -6,7 +6,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import PostInteractionService from '../../../../service/PostInteractionService'
-
+import NotificationService from '../../../../service/NotificationService';
 import Globals from '../../../../service/Globals';
 import PostDeletionModal from '../../PostDeletionModal/PostDeletionModal';
 import EditPostEventHandler from '../../../../service/EditPostEventHandler';
@@ -81,6 +81,15 @@ function PostItem(props) {
                 <div className="likes postInteractions">
                     <div onClick={() => {
                         if (!hasReacted) {
+                            if (currentUser.Id * 1 !== creatorInfo.Id * 1) {
+                                NotificationService.createNotification({
+                                    senderId: currentUser.Id,
+                                    receiverId: creatorInfo.Id,
+                                    body: `${currentUser.name} has liked your post.`,
+                                    relatedSchemaId: post.Id,
+                                    type: 1
+                                })
+                            }
                             PostInteractionService.react({
                                 postId: post.Id,
                                 reactedBy: currentUser.Id

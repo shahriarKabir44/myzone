@@ -119,7 +119,7 @@ function PostDetailsRoot(props) {
                     <div className="likes postInteractions">
                         <div onClick={() => {
                             if (!hasReacted) {
-                                if (currentUser.Id !== postDetails.creatorInfo.Id * 1) {
+                                if (currentUser.Id * 1 !== postDetails.creatorInfo.Id * 1) {
                                     NotificationService.createNotification({
                                         senderId: currentUser.Id,
                                         receiverId: postDetails.creatorInfo.Id,
