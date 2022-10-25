@@ -43,7 +43,6 @@ function App() {
 		})
 		UserService.isAuthorized()
 			.then(({ user }) => {
-				console.log(user)
 
 				if (!user) {
 					setUserInfoLoadingStatus(true)

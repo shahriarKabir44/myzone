@@ -33,7 +33,6 @@ function ConversationListRoot(props) {
         })
         ConversationService.getConversationList(currentUser.Id)
             .then(({ conversationList }) => {
-                console.log(conversationList)
                 setConversationList(conversationList)
             })
         return () => {
@@ -81,7 +80,6 @@ function ConversationListItem(props) {
     const location = useLocation()
     return (
         <div onClick={() => {
-            console.log('here')
             if (location.pathname.startsWith('/messenger')) {
                 navigate(`/messenger/${props.conversation.Id}`)
             }

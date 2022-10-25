@@ -30,7 +30,6 @@ export default function useChat(conversationId, sender, receiver, messageList, c
                     //setMessages(messages)
                     let newList = JSON.parse(JSON.stringify(getMessages()))
                     newList.push(data.body.newMessage)
-                    //console.log(getMessages(), newList)
                     setMessages(newList)
                 }
             }

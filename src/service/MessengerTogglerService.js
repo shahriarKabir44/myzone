@@ -6,10 +6,8 @@ export default class MessengerTogglerService {
         this.client = client;
     }
     static async findConversationAndCall(conversationId) {
-        console.log(conversationId)
         ConversationService.findById(conversationId).then(({ conversation }) => {
             if (this.client) {
-                console.log(conversation);
                 this.client.onCall(conversation)
             }
         })

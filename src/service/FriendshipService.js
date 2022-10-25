@@ -3,7 +3,6 @@ import NotidicationService from "./NotificationService";
 export default class FriendshipService {
     static basePath = Globals.SERVER_URL + '/friendship'
     static async getAllFriends(userId) {
-        console.log(userId);
         return fetch(Globals.SERVER_URL + '/friendship/getFriends/' + userId, {
             method: 'GET',
             headers: {
