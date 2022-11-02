@@ -4,7 +4,7 @@ import './PostImageContainer.css'
 import PhotoFeaturingModal from './PhotoFeaturingModal/PhotoFeaturingModal'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import Globals from '../../../../service/Globals';
+import Globals from '../../../../services/Globals';
 function PostImageContainer({ images, postDetails, currentUser }) {
     const [albumSelectorModalVisibility, setAlbumSelectorModalVisibility] = React.useState(false)
     const [currentlyViewingImageIndex, setCurrentlyViewingImageIndex] = React.useState(0)

@@ -3,7 +3,7 @@ import './PostDeletionModal.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Button } from '@mui/material';
-import PostService from '../../../service/PostService';
+import PostService from '../../../services/PostService';
 const style = {
     position: 'absolute',
     top: '50%',

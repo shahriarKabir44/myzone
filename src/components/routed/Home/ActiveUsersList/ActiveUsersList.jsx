@@ -1,7 +1,7 @@
 import React from 'react';
 import ActiveUser from './ActiveUser/ActiveUser';
 import './ActiveUsersList.css'
-import FriendshipService from '../../../../service/FriendshipService'
+import FriendshipService from '../../../../services/FriendshipService'
 import { useSelector } from 'react-redux';
 
 function ActiveUsersList(props) {

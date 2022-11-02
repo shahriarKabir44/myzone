@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchingServices from '../../../../service/SearchingServices';
+import SearchingServices from '../../../../services/SearchingServices';
 import PostItem from '../../../shared/postList/postItem/PostItem';
 import './PostSearchResults.css'
 function PostSearchResults({ query, onLoad }) {

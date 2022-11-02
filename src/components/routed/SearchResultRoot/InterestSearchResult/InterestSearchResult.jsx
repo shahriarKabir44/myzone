@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchingServices from '../../../../service/SearchingServices';
+import SearchingServices from '../../../../services/SearchingServices';
 import { useSelector } from 'react-redux'
 import { SearchResultUserContainer } from '../UserSearchResults/UserSearchResults';
 function InterestSearchResult({ query, onLoad }) {

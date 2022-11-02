@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import FriendshipService from '../../../service/FriendshipService';
+import FriendshipService from '../../../services/FriendshipService';
 import Box from '@mui/material/Box';
 import { useDispatch } from 'react-redux';
 import { closeFriendRequestTrayView } from '../../../redux/FriendRequestToggleManager'

@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import UserInfoContainer from '../../UserInfoContainer'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Snackbar from '@mui/material/Snackbar';
-import PostService from '../../../../service/PostService';
+import PostService from '../../../../services/PostService';
 const modalStyle = {
     position: 'absolute',
     top: '50%',

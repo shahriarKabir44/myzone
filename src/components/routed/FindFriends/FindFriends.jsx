@@ -1,7 +1,7 @@
 import React from 'react';
 import './FindFriends.css'
 import { useSelector } from 'react-redux'
-import FriendshipService from '../../../service/FriendshipService';
+import FriendshipService from '../../../services/FriendshipService';
 import { SearchResultUserContainer } from '../SearchResultRoot/UserSearchResults/UserSearchResults'
 function FindFriends(props) {
     const currentUser = useSelector((state) => state.currentUser.value)

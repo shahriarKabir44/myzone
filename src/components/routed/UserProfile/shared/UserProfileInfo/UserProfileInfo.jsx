@@ -3,10 +3,10 @@ import './UserProfileInfo.css'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button'
-import FriendshipService from '../../../../../service/FriendshipService';
-import useFriendRequest from '../../../../../service/useFriendRequest';
-import Globals from '../../../../../service/Globals';
-import MessengerTogglerService from '../../../../../service/MessengerTogglerService';
+import FriendshipService from '../../../../../services/FriendshipService';
+import useFriendRequest from '../../../../../services/useFriendRequest';
+import Globals from '../../../../../services/Globals';
+import MessengerTogglerService from '../../../../../services/MessengerTogglerService';
 function UserProfileInfo(props) {
     const { userId } = useParams()
     let { sendRequest } = useFriendRequest({

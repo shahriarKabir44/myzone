@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FriendshipService from '../../../../../../service/FriendshipService';
-import Globals from '../../../../../../service/Globals';
+import FriendshipService from '../../../../../../services/FriendshipService';
+import Globals from '../../../../../../services/Globals';
 import './FriendListItem.css'
 
 function FriendListItem(props) {

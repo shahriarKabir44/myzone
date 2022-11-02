@@ -2,8 +2,8 @@ import React from 'react';
 import NotificationListItem from '../NotificationListItem/NotificationListItem';
 import './NotificationListRoot.css'
 import { useDispatch, useSelector } from 'react-redux'
-import NotificationService from '../../../../service/NotificationService'
-import useNotifications from '../../../../service/useNotifications';
+import NotificationService from '../../../../services/NotificationService'
+import useNotifications from '../../../../services/useNotifications';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { closeNotificationTrayView } from '../../../../redux/NotificationTrayToggleManager'

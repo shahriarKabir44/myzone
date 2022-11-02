@@ -5,11 +5,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import LaunchIcon from '@mui/icons-material/Launch';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
-import ConversationService from '../../../../service/ConversationService'
-import useChat from '../../../../service/useChat';
+import ConversationService from '../../../../services/ConversationService'
+import useChat from '../../../../services/useChat';
 import { useSelector } from 'react-redux'
-import UserService from '../../../../service/UserServices';
-import Globals from '../../../../service/Globals';
+import UserService from '../../../../services/UserServices';
+import Globals from '../../../../services/Globals';
 function FloatingMessenger({ selectedChatHead, onClose }) {
     let navigate = useNavigate();
     let divRef = React.useRef(null)

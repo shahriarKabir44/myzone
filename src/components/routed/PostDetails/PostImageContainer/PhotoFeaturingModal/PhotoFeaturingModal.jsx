@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import { useSelector } from 'react-redux'
 import './PhotoFeaturingModal.css'
 import Button from '@mui/material/Button';
-import FeaturingService from '../../../../../service/FeaturingService';
+import FeaturingService from '../../../../../services/FeaturingService';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';

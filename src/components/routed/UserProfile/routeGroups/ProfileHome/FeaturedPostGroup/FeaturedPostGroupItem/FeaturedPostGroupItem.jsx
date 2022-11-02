@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Globals from '../../../../../../../service/Globals';
+import Globals from '../../../../../../../services/Globals';
 import './FeaturedPostGroupItem.css'
 function FeaturedPostGroupItem({ post }) {
     return (

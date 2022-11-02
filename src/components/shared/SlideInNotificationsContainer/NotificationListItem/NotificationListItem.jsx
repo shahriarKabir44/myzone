@@ -1,7 +1,7 @@
 import React from 'react';
 import './NotificationListItem.css'
 import { useNavigate } from 'react-router-dom'
-import Globals from '../../../../service/Globals';
+import Globals from '../../../../services/Globals';
 function NotificationListItem({ notification }) {
     const navigate = useNavigate()
     function redirect() {

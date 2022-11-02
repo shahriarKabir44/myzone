@@ -8,11 +8,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PostDeletionModal from '../../../shared/PostDeletionModal/PostDeletionModal';
 import './PostDetailsRoot.css'
 import PostComments from '../PostComments/PostComments';
-import PostService from '../../../../service/PostService';
-import PostInteractionService from '../../../../service/PostInteractionService';
-import NotificationService from '../../../../service/NotificationService'
-import Globals from '../../../../service/Globals';
-import EditPostEventHandler from '../../../../service/EditPostEventHandler';
+import PostService from '../../../../services/PostService';
+import PostInteractionService from '../../../../services/PostInteractionService';
+import NotificationService from '../../../../services/NotificationService'
+import Globals from '../../../../services/Globals';
+import EditPostEventHandler from '../../../../services/EditPostEventHandler';
 function PostDetailsRoot(props) {
     const [postActionVisibility, setPostActionVisibility] = React.useState(false)
     const [postModificationModalVisibility, setPostModificationModalVisibility] = React.useState(false)

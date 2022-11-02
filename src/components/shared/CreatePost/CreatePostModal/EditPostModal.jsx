@@ -9,9 +9,9 @@ import './CreatePostModal.css'
 import UserInfoContainer from '../../UserInfoContainer'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Snackbar from '@mui/material/Snackbar';
-import PostService from '../../../../service/PostService';
-import EditPostEventHandler from '../../../../service/EditPostEventHandler';
-import Globals from '../../../../service/Globals';
+import PostService from '../../../../services/PostService';
+import EditPostEventHandler from '../../../../services/EditPostEventHandler';
+import Globals from '../../../../services/Globals';
 const modalStyle = {
     position: 'absolute',
     top: '50%',

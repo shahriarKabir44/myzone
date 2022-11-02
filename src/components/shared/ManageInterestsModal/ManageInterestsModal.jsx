@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { InterestItem } from '../../routed/UserProfile/routeGroups/ProfileHome/InterestList/InterestList'
-import InterestManagerService from '../../../service/InterestManagerService';
+import InterestManagerService from '../../../services/InterestManagerService';
 function ManageInterestsModal({ onComplete, closeModal, modalVisibility }) {
     const [interestConfirmationVisibility, setInterestConfirmationVisibility] = React.useState(false)
 

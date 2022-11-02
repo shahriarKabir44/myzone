@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { closeLeftMenu } from '../../../redux/HomeMenuSelector'
 import LogoutIcon from '@mui/icons-material/Logout';
-import Globals from '../../../service/Globals';
+import Globals from '../../../services/Globals';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
-import LogoutEventManager from '../../../service/LogOutEventManager';
+import LogoutEventManager from '../../../services/LogOutEventManager';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 export default function FloatingMenu() {

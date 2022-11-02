@@ -4,8 +4,8 @@ import { Link, useParams } from 'react-router-dom'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-import FeaturingService from '../../../service/FeaturingService'
-import Globals from '../../../service/Globals';
+import FeaturingService from '../../../services/FeaturingService'
+import Globals from '../../../services/Globals';
 export default function PhotoFeaturingContainer() {
     const currentRoute = useParams()
     const [photos, setPhotoList] = React.useState([])

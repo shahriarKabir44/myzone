@@ -1,7 +1,7 @@
 import React from 'react';
 import './ActiveUser.css'
-import MessengerTogglerService from '../../../../../service/MessengerTogglerService'
-import Globals from '../../../../../service/Globals';
+import MessengerTogglerService from '../../../../../services/MessengerTogglerService'
+import Globals from '../../../../../services/Globals';
 function ActiveUser(props) {
     return (
         <div onClick={() => {

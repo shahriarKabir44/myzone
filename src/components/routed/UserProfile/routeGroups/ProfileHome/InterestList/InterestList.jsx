@@ -3,7 +3,7 @@ import './InterestList.css'
 import { useParams, useNavigate } from 'react-router-dom'
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ManageInterestsModal from '../../../../../shared/ManageInterestsModal/ManageInterestsModal';
-import InterestManagerService from '../../../../../../service/InterestManagerService';
+import InterestManagerService from '../../../../../../services/InterestManagerService';
 import { useSelector } from 'react-redux'
 function InterestList(props) {
     const { userId } = useParams()

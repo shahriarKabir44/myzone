@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Link } from 'react-router-dom';
 import ManageInterestsModal from '../../../shared/ManageInterestsModal/ManageInterestsModal';
-import Globals from '../../../../service/Globals';
-import LogoutEventManager from '../../../../service/LogOutEventManager';
+import Globals from '../../../../services/Globals';
+import LogoutEventManager from '../../../../services/LogOutEventManager';
 function LeftMenu(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const [manageInterestModalVisibility, setManageInterestModalVisibility] = React.useState(false)

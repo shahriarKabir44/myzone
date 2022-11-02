@@ -3,12 +3,12 @@ import './FloatingMessengerRoot.css'
 import MapsUgcIcon from '@mui/icons-material/MapsUgc';
 import FloatingMessenger from '../FloatingMessangerContainer/FloatingMessenger';
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
-import useConversation from '../../../../service/useConversation';
+import useConversation from '../../../../services/useConversation';
 import FiberNewSharpIcon from '@mui/icons-material/FiberNewSharp';
-import MessengerTogglerService from '../../../../service/MessengerTogglerService';
+import MessengerTogglerService from '../../../../services/MessengerTogglerService';
 import { useSelector } from 'react-redux'
-import Globals from '../../../../service/Globals';
-import ConversationService from '../../../../service/ConversationService';
+import Globals from '../../../../services/Globals';
+import ConversationService from '../../../../services/ConversationService';
 function FloatingMessengerRoot(props) {
     const [conversations, setConversationList] = React.useState([])
     const currentUser = useSelector((state) => state.currentUser.value)

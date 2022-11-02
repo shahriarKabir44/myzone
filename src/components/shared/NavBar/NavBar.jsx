@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.css'
-import SocketSubscriptionManager from '../../../service/SocketSubscriptionManager'
-import Globals from '../../../service/Globals'
+import SocketSubscriptionManager from '../../../services/SocketSubscriptionManager'
+import Globals from '../../../services/Globals'
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
@@ -13,7 +13,7 @@ import { toggleLeftMenu, closeLeftMenu, setToggleStatus } from '../../../redux/H
 import { toggleFriendRequestTrayView, closeFriendRequestTrayView } from '../../../redux/FriendRequestToggleManager'
 import { toggleConversationListView, closeConversationListView } from '../../../redux/ConversatinListToggleManager'
 import { toggleNotificationTrayView, closeNotificationTrayView } from '../../../redux/NotificationTrayToggleManager'
-import UserService from '../../../service/UserServices';
+import UserService from '../../../services/UserServices';
 
 function NavBar(props) {
     const fiendRequestTrayViewToggleDispatcher = useDispatch()

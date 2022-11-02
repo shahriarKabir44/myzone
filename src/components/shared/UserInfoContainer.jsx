@@ -1,5 +1,5 @@
 import React from 'react';
-import Globals from '../../service/Globals';
+import Globals from '../../services/Globals';
 
 function UserInfoContainer({ imgURL, name, additionalInfo }) {
     return (

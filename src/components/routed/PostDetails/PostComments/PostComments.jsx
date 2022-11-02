@@ -2,11 +2,11 @@ import React from 'react';
 import './PostComments.css'
 import { Link } from 'react-router-dom'
 import SendIcon from '@mui/icons-material/Send';
-import Globals from '../../../../service/Globals';
+import Globals from '../../../../services/Globals';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Button } from '@mui/material';
-import PostInteractionService from '../../../../service/PostInteractionService';
+import PostInteractionService from '../../../../services/PostInteractionService';
 const modalStyle = {
     position: 'absolute',
     top: '50%',

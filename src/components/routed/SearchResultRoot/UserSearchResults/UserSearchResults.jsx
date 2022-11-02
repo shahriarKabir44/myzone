@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import FriendshipService from '../../../../service/FriendshipService';
-import Globals from '../../../../service/Globals';
-import SearchingServices from '../../../../service/SearchingServices';
-import InterestManagerService from '../../../../service/InterestManagerService';
+import FriendshipService from '../../../../services/FriendshipService';
+import Globals from '../../../../services/Globals';
+import SearchingServices from '../../../../services/SearchingServices';
+import InterestManagerService from '../../../../services/InterestManagerService';
 import './UserSearchResults.css'
 import { InterestItem } from '../../UserProfile/routeGroups/ProfileHome/InterestList/InterestList';
 function UserSearchResults({ query, onLoad }) {

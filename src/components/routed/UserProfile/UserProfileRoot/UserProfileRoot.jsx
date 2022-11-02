@@ -20,7 +20,7 @@ import ProfileTabSelector from '../shared/ProfileTabSelector/ProfileTabSelector'
 import InterestList from '../routeGroups/ProfileHome/InterestList/InterestList';
 import FeaturedPostGroupRoot from '../routeGroups/ProfileHome/FeaturedPostGroup/FeaturedPostGroupRoot/FeaturedPostGroupRoot';
 import FriendListRoot from '../routeGroups/FriendList/FriendListRoot/FriendListRoot';
-import UserService from '../../../../service/UserServices';
+import UserService from '../../../../services/UserServices';
 
 function UserProfileRoot(props) {
     const [user, setUser] = React.useState({})

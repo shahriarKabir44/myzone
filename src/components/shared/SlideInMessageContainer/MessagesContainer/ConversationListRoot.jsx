@@ -8,11 +8,11 @@ import Box from '@mui/material/Box';
 import { closeConversationListView } from '../../../../redux/ConversatinListToggleManager'
 import UserInfoContainer from '../../UserInfoContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import FriendshipService from '../../../../service/FriendshipService';
-import ConversationService from '../../../../service/ConversationService';
+import FriendshipService from '../../../../services/FriendshipService';
+import ConversationService from '../../../../services/ConversationService';
 import { useParams } from 'react-router-dom'
-import Globals from '../../../../service/Globals';
-import MessengerTogglerService from '../../../../service/MessengerTogglerService';
+import Globals from '../../../../services/Globals';
+import MessengerTogglerService from '../../../../services/MessengerTogglerService';
 function ConversationListRoot(props) {
     const currentRoute = useParams()
     const currentUser = useSelector((state) => state.currentUser.value)

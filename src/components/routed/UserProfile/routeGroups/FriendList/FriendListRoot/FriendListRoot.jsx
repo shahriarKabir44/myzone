@@ -3,7 +3,7 @@ import ProfileTabSelector from '../../../shared/ProfileTabSelector/ProfileTabSel
 import UserProfileInfo from '../../../shared/UserProfileInfo/UserProfileInfo';
 import './FriendListRoot.css'
 import FriendListItem from '../FriendListItem/FriendListItem';
-import FriendShipService from '../../../../../../service/FriendshipService'
+import FriendShipService from '../../../../../../services/FriendshipService'
 import { useParams } from 'react-router-dom'
 function FriendListRoot(props) {
     const currentRoute = useParams()

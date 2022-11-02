@@ -3,10 +3,10 @@ import MessageContainerRoot from '../../../shared/MessagesContainer/MessageConta
 import './TextingContainer.css'
 import SendIcon from '@mui/icons-material/Send';
 import { useParams } from 'react-router-dom';
-import ConversationService from '../../../../service/ConversationService';
+import ConversationService from '../../../../services/ConversationService';
 import { useSelector } from 'react-redux'
-import useChat from '../../../../service/useChat';
-import Globals from '../../../../service/Globals';
+import useChat from '../../../../services/useChat';
+import Globals from '../../../../services/Globals';
 function TextingContainer(props) {
     const divRef = React.useRef(null)
     const currentUser = useSelector(state => state.currentUser.value)

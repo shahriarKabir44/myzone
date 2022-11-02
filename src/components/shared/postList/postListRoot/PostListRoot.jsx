@@ -4,7 +4,7 @@ import PostItem from '../postItem/PostItem';
 import './PostListRoot.css'
 
 import { useSelector } from 'react-redux'
-import PostService from '../../../../service/PostService';
+import PostService from '../../../../services/PostService';
 import { Button } from '@mui/material';
 function PostListRoot(props) {
     const [pageNumber, setPageNumber] = React.useState(0)

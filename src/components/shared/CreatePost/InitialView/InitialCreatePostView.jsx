@@ -2,7 +2,7 @@ import React from 'react';
 import './InitialCreatePostView.css'
 import { useSelector } from 'react-redux';
 import CreatePostModal from '../CreatePostModal/CreatePostModal';
-import Globals from '../../../../service/Globals';
+import Globals from '../../../../services/Globals';
 function InitialCreatePostView(props) {
     const currentUser = useSelector((state) => state.currentUser.value)
     const [canShowCreatePostModal, toggleCreatePostModalVisible] = React.useState(false)

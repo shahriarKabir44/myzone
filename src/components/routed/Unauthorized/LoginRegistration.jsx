@@ -5,8 +5,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Button from '@mui/material/Button'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import UserService from '../../../service/UserServices'
-import Globals from '../../../service/Globals';
+import UserService from '../../../services/UserServices'
+import Globals from '../../../services/Globals';
 
 const defaultImageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXUeyw_tNSf_cm7tM_q8uWbkcr0deNJhyItxp3ZSk&s"
 function LoginRegistration({ onAuthorized }) {

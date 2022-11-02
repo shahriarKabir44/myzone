@@ -5,11 +5,11 @@ import CommentIcon from '@mui/icons-material/Comment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
-import PostInteractionService from '../../../../service/PostInteractionService'
-import NotificationService from '../../../../service/NotificationService';
-import Globals from '../../../../service/Globals';
+import PostInteractionService from '../../../../services/PostInteractionService'
+import NotificationService from '../../../../services/NotificationService';
+import Globals from '../../../../services/Globals';
 import PostDeletionModal from '../../PostDeletionModal/PostDeletionModal';
-import EditPostEventHandler from '../../../../service/EditPostEventHandler';
+import EditPostEventHandler from '../../../../services/EditPostEventHandler';
 import { useLocation } from 'react-router-dom'
 function PostItem(props) {
     const location = useLocation();

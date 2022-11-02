@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-import Globals from './service/Globals'
+import Globals from './services/Globals'
 
 import {
 	useNavigate,
@@ -18,12 +18,12 @@ import PostDetailsRoot from './components/routed/PostDetails/PostDetailsRoot/Pos
 import MessengerRoot from './components/routed/Messenger/MessengerRoot/MessengerRoot';
 import FloatingMessengerRoot from './components/shared/FloatingMessenger/FloatingMessengerRoot/FloatingMessengerRoot';
 import LoginRegistration from './components/routed/Unauthorized/LoginRegistration';
-import UserService from './service/UserServices';
+import UserService from './services/UserServices';
 import { updateUserInfo } from './redux/CurrentUserManager'
 import PhotoFeaturingContainer from './components/routed/PhotoFeaturingContainer/PhotoFeaturingContainer';
 import SearchResultRoot from './components/routed/SearchResultRoot/SearchResultRoot';
 import FriendRequestContainer from './components/shared/FriendRequestContainer/FriendRequestContainer';
-import LogoutEventManager from './service/LogOutEventManager';
+import LogoutEventManager from './services/LogOutEventManager';
 import FloatingMenu from './components/shared/FloatingMenu/FloatingMenu';
 import FindFriends from './components/routed/FindFriends/FindFriends';
 import EditPostModal from './components/shared/CreatePost/CreatePostModal/EditPostModal';
