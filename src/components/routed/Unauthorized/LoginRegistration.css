@@ -84,7 +84,7 @@ input.inputContainerForm {
 
 @keyframes slideDown {
     0% {
-        max-height: 100px;
+        max-height: 90px;
     }
 
     100% {
@@ -98,7 +98,7 @@ input.inputContainerForm {
     }
 
     100% {
-        max-height: 100px;
+        max-height: 90px;
     }
 }
 

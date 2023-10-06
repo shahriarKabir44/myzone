@@ -20,6 +20,29 @@ function LoginRegistration({ onAuthorized }) {
         email: "",
         name: "",
     })
+    function handleFormSubmission() {
+        if (formMode === 1) {
+            UserService.registerThenUploadImage(userData, selectedImage)
+                .then(data => {
+                    if (!data) {
+                        setHasEmailError(true)
+                        return
+                    }
+                    onAuthorized(data)
+
+                })
+        }
+        else {
+            UserService.login(userData)
+                .then(data => {
+                    localStorage.setItem('token', data.token)
+                    if (data.data === -1) setHasLoginError(true)
+                    else {
+                        onAuthorized(data.data)
+                    }
+                })
+        }
+    }
     function handleFileChange(event) {
 
         const fileObj = event.target.files && event.target.files[0];
@@ -33,35 +56,39 @@ function LoginRegistration({ onAuthorized }) {
             <div className="logoContainer">
                 <img src="logo2.png" alt="" className="loginPageLogo" />
             </div>
-            <div className="formContainer">
+            <form onSubmit={e => {
+                e.preventDefault()
+                handleFormSubmission()
+            }} className="formContainer">
                 <div className="formHeader">{`${(formMode === 2 || formMode === 0) ? "Log in" : "Sign up"}`}</div>
                 <div className={`formItemsContainer ${formMode === 1 ? 'slideDown' : formMode === 2 ? 'slideUp' : ''}`}>
                     <div className="formElement">
                         <AlternateEmailIcon className='formIcon' />
-                        <input onChange={e => {
+                        <input required onChange={e => {
                             setUserData({ ...userData, email: e.target.value })
-                        }} className='inputContainerForm' type="email" name="" placeholder='Your email' autoComplete='off' id="" />
+                        }} className='inputContainerForm' type="email" name="email" placeholder='Your email' autoComplete='off' id="" />
                     </div>
                     <div className="formElement">
                         <LockIcon className='formIcon' />
-                        <input onChange={e => {
+                        <input required onChange={e => {
                             setUserData({ ...userData, password: e.target.value })
-                        }} className='inputContainerForm' type="password" name="" placeholder='Password' autoComplete='off' id="" />
+                        }} className='inputContainerForm' type="password" name="password" placeholder='Password' autoComplete='off' id="" />
                     </div>
-                    <div className="formElement">
+                    {formMode === 1 && <div className="formElement">
                         <PersonIcon className='formIcon' />
-                        <input onChange={e => {
+                        <input required onChange={e => {
                             setUserData({ ...userData, name: e.target.value })
-                        }} className='inputContainerForm' type="text" name="" placeholder='Your name' autoComplete='off' id="" />
-                    </div>
-                    <div className="registrationFormImageUpload">
+                        }} className='inputContainerForm' type="text" name="name" placeholder='Your name' autoComplete='off' id="" />
+                    </div>}
+                    {formMode === 1 && <div className="registrationFormImageUpload">
                         <p style={{
                             color: "white"
                         }}>Set your profile picture</p>
-                        <input
+                        <input required
                             style={{ display: 'none' }}
                             ref={fileInputRef}
                             type="file"
+                            name='image'
                             onChange={(handleFileChange)}
                         />
 
@@ -78,21 +105,12 @@ function LoginRegistration({ onAuthorized }) {
                             height: "150px",
                             width: "150px"
                         }} alt="" className="tempProfileImageContainer" />
-                    </div>
+                    </div>}
 
                 </div>
                 {(formMode === 1) && <>
                     <div className='formActionBtnContainer'>
-                        <Button onClick={() => {
-                            UserService.registerThenUploadImage(userData, selectedImage)
-                                .then(data => {
-                                    if (!data) {
-                                        setHasEmailError(true)
-                                        return
-                                    }
-                                    onAuthorized(data)
-
-                                })
+                        <Button type='submit' onClick={() => {
 
                         }} variant="contained">Sign up</Button>
                         <p>Already have an account?</p>
@@ -109,15 +127,8 @@ function LoginRegistration({ onAuthorized }) {
 
                 {(formMode === 2 || formMode === 0) && <React.Fragment>
                     <div className='formActionBtnContainer'>
-                        <Button onClick={() => {
-                            UserService.login(userData)
-                                .then(data => {
-                                    localStorage.setItem('token', data.token)
-                                    if (data.data === -1) setHasLoginError(true)
-                                    else {
-                                        onAuthorized(data.data)
-                                    }
-                                })
+                        <Button type='submit' onClick={() => {
+
                         }} variant="contained">Log in</Button>
                         <p>Don't have an account?</p>
                         <Button style={{
@@ -130,7 +141,7 @@ function LoginRegistration({ onAuthorized }) {
                         margin: 0
                     }}>*Invalid email or password</p>}
                 </React.Fragment>}
-            </div>
+            </form>
         </div>
     );
 }
