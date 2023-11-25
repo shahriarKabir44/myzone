@@ -1,5 +1,4 @@
 # MyZone
-# Social Media Clone
 
 A full-stack web application that mimics the features and functionalities of popular social media platforms. Users can create profiles, send and accept friend requests, share posts, react and comment on them, feature photos on their profile, find users based on their interests, and find users who have friends in common.
 
