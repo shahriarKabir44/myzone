@@ -1,9 +1,8 @@
 export default class Globals {
-    static SERVER_IP_ADDRESS = 'http://localhost'
-    static SERVER_URL = `${this.SERVER_IP_ADDRESS}:4000`
+    static SERVER_URL = `https://myzone-api-hnvl.onrender.com`
     static socket = null
     static hasSocketInitiated = false
-    static CLEINT_URL = `${this.SERVER_IP_ADDRESS}:3000`
+    static CLEINT_URL = `https://myzone-omega.vercel.app`
     static conversationsListClient = null
     static subscribeToSelfMessageEvent(client) {
         this.conversationsListClient = client
@@ -19,7 +18,7 @@ export default class Globals {
     static initSocket(currentUserId) {
         if (Globals.hasSocketInitiated) return
 
-        let socket = new WebSocket('ws://192.168.43.90:4030')
+        let socket = new WebSocket('ws://myzone-ws.onrender.com')
         socket.onopen = (e) => {
             const message = {
                 type: 'setWebSocketId',
