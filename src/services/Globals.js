@@ -18,7 +18,7 @@ export default class Globals {
     static initSocket(currentUserId) {
         if (Globals.hasSocketInitiated) return
 
-        let socket = new WebSocket('ws://myzone-ws.onrender.com')
+        let socket = new WebSocket('wss://myzone-ws.onrender.com')
         socket.onopen = (e) => {
             const message = {
                 type: 'setWebSocketId',
