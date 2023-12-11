@@ -16,6 +16,7 @@
 @media screen and (min-width:620px) {
     .profileViewLargeScreen {
         max-height: var(--containerHeightLarge);
+        height: var(--containerHeightLarge);
     }
 
 
