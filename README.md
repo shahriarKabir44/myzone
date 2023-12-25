@@ -23,6 +23,40 @@ A full-stack web application that mimics the features and functionalities of pop
 - Search: Users can search for other users by name, email, or interest. They can also see the profile picture, bio, and location of each user in the search results.
 - Notifications: Users can see the notifications of friend requests, reactions, and comments on their posts. They can also mark the notifications as read or unread, and clear them all.
 
+## How to run it locally using docker:
+- Clone this repository.
+- Run the MySQL docker image
+```bash 
+sudo docker run -p  3300:3306 --name myzone_mysql -e MYSQL_ROOT_PASSWORD=<password> -e MYSQL_DATABASE=find_home -d mysql:latest
+```
+- Create the database schema.
+- - Install Migratify globally (if not installed)
+```bash
+npm install -g migratify
+```
+- - Run 
+```bash
+migratify clear
+```
+- - Run the following command to create the database.
+```
+migratify create-db
+```
+
+- - Run the following command to create the schema.
+```bash
+migratfy migrate
+```
+- Now stop the MySQL image.
+
+```bash 
+sudo docker stop myzone_mysql
+```
+- Open the docker-compose.yml file and put your database password
+- Run the project
+```bash 
+sudo docker-compose up
+```
 
 ## Related Repositories:
 <ol>
