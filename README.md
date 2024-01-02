@@ -1,6 +1,6 @@
 # MyZone
 
-A full-stack web application that mimics the features and functionalities of popular social media platforms. Users can create profiles, send and accept friend requests, share posts, react and comment on them, feature photos on their profile, find users based on their interests, and find users who have friends in common.
+A web application that mimics the features and functionalities of popular social media platforms. Users can create profiles, send and accept friend requests, share posts, react and comment on them, feature photos on their profile, find users based on their interests, and find users who have friends in common.
 
 ## Technologies Used
 
@@ -17,11 +17,16 @@ A full-stack web application that mimics the features and functionalities of pop
 - Profile: Users can edit their profile information, such as name, bio, location, interests, and profile picture. They can also feature up to three photos on their profile page.
 - Friends: Users can send and receive friend requests, accept or decline them, and view their friends list. They can also see the number of mutual friends they have with other users.
 - Posts: Users can create text or image posts, edit or delete them, and view them on their own or other users' profile pages. They can also see the number of reactions and comments on each post.
-- Reactions: Users can react to posts with emojis, such as like, love, wow, sad, or angry. They can also see the total number of reactions and the breakdown of each reaction on each post.
-- Comments: Users can comment on posts, edit or delete them, and view them on the post page. They can also see the number of replies and the timestamp of each comment.
-- Feed: Users can see the latest posts from their friends and themselves on their home page. They can also filter the posts by text or image, and sort them by date or popularity.
-- Search: Users can search for other users by name, email, or interest. They can also see the profile picture, bio, and location of each user in the search results.
-- Notifications: Users can see the notifications of friend requests, reactions, and comments on their posts. They can also mark the notifications as read or unread, and clear them all.
+- Reactions: Users can react to posts. They can also see the total number of reactions on each post.
+- Comments: Users can comment on posts, edit or delete them, and view them on the post page.
+- Feed: Users can see the latest posts from their friends and themselves on their home page. 
+- Search: Users can search for other users by name, email, or interest 
+- Notifications: Users can see the notifications of friend requests, reactions, and comments on their posts in real-time.
+
+## Key Points:
+ - Developed a subscription system in React to enable the parent components to trigger the child components or a completely separate component to call a function when some specific events are raised.
+ - Used a single SQL query to find all the users with at least one common friend but not friends with the user.
+ - Implemented clustering to load balance the server into the different CPU cores to enhance performance.
 
 ## How to run it locally using docker
 
